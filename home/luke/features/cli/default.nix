@@ -1,0 +1,50 @@
+{ pkgs, ... }: {
+  imports = [
+    ./bash.nix
+    ./bat.nix
+    ./cava.nix
+    ./cmatrix.nix
+    ./cm4all-vpn.nix
+    ./direnv.nix
+    ./dev-env.nix
+    ./dragon.nix
+    ./fish.nix
+    ./fzf.nix
+    ./gh.nix
+    ./git.nix
+    ./jujutsu.nix
+    ./neofetch.nix
+    ./nix-index.nix
+    ./ranger.nix
+    ./screen.nix
+    ./shellcolor.nix
+    ./ssh.nix
+    ./starship.nix
+    ./tmux.nix
+    ./xpo.nix
+  ];
+
+  home.packages = with pkgs; [
+    comma
+    distrobox
+    bc
+    bottom
+    eza
+    zip
+    unzip
+    ripgrep
+    fd
+    httpie
+    diffsitter
+    jq
+    timer
+    tree
+    ltex-ls
+    commitmsg
+    nixd
+    nixfmt-classic
+    nvd
+    nix-output-monitor
+    nh
+  ];
+}

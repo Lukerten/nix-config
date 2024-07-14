@@ -1,0 +1,41 @@
+extends:
+  - airbnb
+  - prettier
+
+plugins:
+
+root: true
+
+settings:
+  react:
+    version: detect
+
+env:
+  shared-node-browser: true
+  browser: true
+  node: true
+
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+
+globals:
+
+rules:
+  {
+    'valid-jsdoc': 'warn',
+    'no-var': 'error',
+    'react/jsx-uses-react': 'warn',
+    'react/jsx-no-undef': 'warn',
+    'func-names': 'warn',
+    'new-cap': 'warn',
+    'no-undef': 'warn',
+    'import/no-unresolved': 'off',
+    'no-restricted-syntax': 'off',
+    'no-param-reassign': 'off',
+    'import/prefer-default-export': 'off',
+    'radix': 'off',
+    'camelcase': 'off',
+  }

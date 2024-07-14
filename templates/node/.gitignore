@@ -1,0 +1,20 @@
+**/Snapshots/
+**/build/
+**/export/
+**/wp-env-home/
+**/node_modules/
+
+# wp-env files
+**/.wp-env.override.json
+
+
+# Playwright temp
+/test-results/
+playwright-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/test-results/
+/playwright-report/
+/playwright/.cache/prettier": "2.8.1"

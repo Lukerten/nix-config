@@ -1,0 +1,1 @@
+{ programs.xpo = { enable = true; }; }

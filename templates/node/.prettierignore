@@ -1,0 +1,7 @@
+**/node_modules/**
+**/wp-env-home/**
+**/test/**
+**/playwright-report/**
+**/package-lock.json
+**/pnpm-lock.yaml
+**/*build.js

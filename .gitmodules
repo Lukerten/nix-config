@@ -1,0 +1,4 @@
+# TODO: load this submodule from another git repository
+#[submodule "secrets"]
+#   path = secrets
+#   url= git@gitlab.mbretsch.de:luke/nixos-secrets.git
