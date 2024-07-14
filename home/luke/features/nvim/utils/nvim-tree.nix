@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
-  programs.neovim.plugins = with pkgs.vimPlugins; [{
-    plugin = nvim-tree-lua;
+{pkgs, ... }: {
+  programs.neovim.plugins = with pkgs; [{
+    plugin = vimPlugins.nvim-tree-lua;
     type = "lua";
     config = # lua
       ''
@@ -9,7 +9,7 @@
           hijack_netrw = true,
           open_on_tab = false,
           system_open = {
-            cmd = '${pkgs.xdg-utils}/bin/xdg-open',
+            cmd = '${xdg-utils}/bin/xdg-open',
           },
           diagnostics = {
             enable = true,
@@ -55,6 +55,16 @@
           },
           filters = {
             dotfiles = false,
+            custom = {
+              ".git",
+              ".direnv",
+              ".node_modules",
+            },
+            exclude = {
+              ".gitignore",
+              ".gitmodules",
+              ".gitkeep"
+            }
           },
         }
       '';

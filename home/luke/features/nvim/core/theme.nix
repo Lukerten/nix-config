@@ -260,27 +260,24 @@ in ''
   let g:terminal_color_foreground = "${c.on_surface}"
 
   let g:terminal_color_0  = "${c.surface}"
-  let g:terminal_color_1  = "${c.error}"
-  let g:terminal_color_2  = "${c.green}"
-  let g:terminal_color_3  = "${c.yellow}"
-  let g:terminal_color_4  = "${c.blue}"
-  let g:terminal_color_5  = "${c.magenta}"
-  let g:terminal_color_6  = "${c.cyan}"
-  let g:terminal_color_7  = "${c.on_surface}"
-  let g:terminal_color_8  = "${c.primary_container}"
-  let g:terminal_color_9  = "${c.error}"
-  let g:terminal_color_10 = "${c.green}"
-  let g:terminal_color_11 = "${c.yellow}"
-  let g:terminal_color_12 = "${c.blue}"
-  let g:terminal_color_13 = "${c.magenta}"
-  let g:terminal_color_14 = "${c.cyan}"
-  let g:terminal_color_15 = "${c.on_primary_container}"
-
-  hi IndentBlankLine       guifg=${c.surface_variant} guibg=NONE gui=NONE guisp=NONE
+  let g:terminal_color_1  = "${c.surface_variant}"
+  let g:terminal_color_2  = "${c.tertiary_container}"
+  let g:terminal_color_3  = "${c.primary_container}"
+  let g:terminal_color_4  = "${c.on_surface_variant}"
+  let g:terminal_color_5  = "${c.on_surface}"
+  let g:terminal_color_6  = "${c.on_tertiary_container}"
+  let g:terminal_color_7  = "${c.on_primary_container}"
+  let g:terminal_color_8  = "${c.error_container}"
+  let g:terminal_color_9  = "${c.tertiary}"
+  let g:terminal_color_10 = "${c.primary}"
+  let g:terminal_color_11 = "${c.tertiary}"
+  let g:terminal_color_12 = "${c.primary}"
+  let g:terminal_color_13 = "${c.secondary}"
+  let g:terminal_color_14 = "${c.secondary}"
+  let g:terminal_color_15 = "${c.error}"
 
   hi NvimTreeNormal        guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
-
-  hi CmpItemAbbr            guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+hi CmpItemAbbr            guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
   hi CmpItemAbbrDeprecated  guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE
   hi CmpItemAbbrMatch       guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
   hi CmpItemAbbrMatchFuzzy  guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE

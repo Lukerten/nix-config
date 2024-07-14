@@ -66,12 +66,6 @@ in {
         autocmd!
         autocmd BufLeave * if &buftype ==# 'terminal' | execute 'bdelete!' | endif
       augroup END
-
-      "AutoClose NvimTree"
-      augroup AutoCloseNvimTree
-        autocmd!
-        autocmd BufLeave * if &buftype ==# 'NvimTree' | execute 'NvimTreeClose' | endif
-      augroup END
     '';
 
   programs.neovim.extraLuaConfig = # lua
