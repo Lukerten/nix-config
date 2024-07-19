@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
-let inherit (config.colorscheme) colors harmonized;
+let
+  inherit (config.colorscheme) colors;
+  rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
   programs.wofi = {
     enable = true;
@@ -7,22 +9,22 @@ in {
       (oa: { patches = (oa.patches or [ ]) ++ [ ./wofi-run-shell.patch ]; });
     settings = {
       hide_scroll = true;
-      width = "40%";
+      width = "45%";
       columns = 1;
-      lines = 8;
+      lines = 11;
       line_wrap = "word";
+      term="kitty";
       allow_markup = true;
       allow_images = true;
       show_all = true;
       key_expand = "Tab";
-      prompt = "  Search ";
+      prompt = "Search ";
     };
 
     style = ''
       * {
         font-family: JetBrainsMono;
         color: ${colors.on_surface};
-        background: ${colors.surface};
         border-radius: 10px;
       }
 
@@ -30,12 +32,14 @@ in {
         background: ${colors.surface};
         margin: auto;
         padding: 10px;
-        border-radius: 20px;
-        border: 2px solid ${colors.primary};
+        border: 5px solid ${colors.on_tertiary_fixed};
+        opacity: 0.98;
       }
 
       #input {
-        visibility: hidden;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
       }
 
       #outer-box {
@@ -48,23 +52,17 @@ in {
 
       #entry {
         padding: 10px;
-        border-radius: 15px;
+        border-radius: 10px;
       }
 
       #entry:selected {
-        background-color: ${colors.surface};
+        background-color: ${colors.on_tertiary_fixed};
+        border-style: none;
       }
 
       #text {
         margin: 2px;
-      }
-
-      #text:selected {
-        color: ${colors.primary};
-      }
-
-
-    '';
+      }    '';
   };
   home.packages = let inherit (config.programs.password-store) package enable;
   in lib.optional enable (pkgs.pass-wofi.override { pass = package; });
