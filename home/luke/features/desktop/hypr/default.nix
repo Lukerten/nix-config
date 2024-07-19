@@ -36,7 +36,7 @@ in {
       general = {
         gaps_in = 8;
         gaps_out = 12;
-        border_size = 0;
+        border_size = 2;
         "col.active_border" = rgba config.colorscheme.colors.primary "aa";
         "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
       };
@@ -68,10 +68,8 @@ in {
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
       in [
         "nofocus, ${sweethome3d-tooltips}"
-
         "stayfocused, ${steam}"
         "minsize 1 1, ${steam}"
-
         "size 100% 110%, ${kdeconnect-pointer}"
         "center, ${kdeconnect-pointer}"
         "nofocus, ${kdeconnect-pointer}"
@@ -97,7 +95,7 @@ in {
 
       decoration = {
         active_opacity = 1.0;
-        inactive_opacity = 0.93;
+        inactive_opacity = 0.90;
         fullscreen_opacity = 1.0;
         rounding = 7;
         blur = {
