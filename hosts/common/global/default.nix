@@ -7,6 +7,7 @@
     ./locale.nix
     ./nix-ld.nix
     ./nix.nix
+    ./openssh.nix
     ./prometeus-node-exporter.nix
     ./systemd-initrd.nix
     ./sops.nix

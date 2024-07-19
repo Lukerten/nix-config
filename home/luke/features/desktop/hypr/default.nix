@@ -7,7 +7,7 @@ in {
     ../common
     ./wayland
     ./basic-binds.nix
-    # ./hyprbars.nix
+    ./hyprbars.nix
   ];
 
   xdg.portal = let

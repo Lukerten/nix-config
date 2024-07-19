@@ -7,7 +7,6 @@ in {
   users.users.luke = {
     isNormalUser = true;
     shell = pkgs.fish;
-    initialPassword = "password";
     home = "/home/luke";
     extraGroups = [ "wheel" "video" "audio" ] ++ ifTheyExist [
       "minecraft"
@@ -23,16 +22,14 @@ in {
       "deluge"
     ];
 
-    # openssh.authorizedKeys.keys = [ (builtins.readFile
-    # ../../../../home/luke/ssh.pub) ];
-    # hashedPasswordFile = config.sops.secrets.luke-password.path;
+    hashedPasswordFile = config.sops.secrets.luke-password.path;
     packages = [ pkgs.home-manager ];
   };
 
-  #  sops.secrets.luke-password = {
-  #  sopsFile = ../../secrets.yaml;
-  #  neededForUsers = true;
-  # };
+   sops.secrets.luke-password = {
+    sopsFile = ../../secrets.yaml;
+    neededForUsers = true;
+  };
 
   home-manager.users.luke =
     import ../../../../home/luke/${config.networking.hostName}.nix;

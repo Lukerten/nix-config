@@ -10,7 +10,6 @@ let
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 
   hyprbars = (pkgs.hyprbars.override {
-    # Make sure it's using the same hyprland package as we are
     hyprland = config.wayland.windowManager.hyprland.package;
   }).overrideAttrs (old: {
     # Yeet the initialization notification (I hate it)
@@ -43,11 +42,8 @@ in {
 
           maximizeAction = "hyprctl dispatch fullscreen 1";
         in [
-          # Red close button
           "${rgb config.colorscheme.harmonized.red},12,,${closeAction}"
-          # Yellow "minimize" (send to special workspace) button
           "${rgb config.colorscheme.harmonized.yellow},12,,${minimizeAction}"
-          # Green "maximize" (fullscreen) button
           "${rgb config.colorscheme.harmonized.green},12,,${maximizeAction}"
         ];
       };
