@@ -1,7 +1,7 @@
 keys:
   - &hosts:
     - &exaflare age1lzurp5dvgpgeqhan7sf5aftc6wphf0kkvjyyznpf6s7uwpvlf5lszracjc
-    - &annihilation age19sf3e0556wmxlmhzrvklqdgtfuk5mpazjs3utvvkzrujjhpwdsjs7ln7u7
+    - &annihilation age1242kck29d7z36a5qewzxeyn3crrujp306qd0nwv7fnx4aadnq5rs339nfv
 
 creation_rules:
   - path_regex: hosts/exaflare/secrets.ya?ml
