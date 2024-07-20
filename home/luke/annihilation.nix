@@ -2,7 +2,8 @@
   imports =
     [ ./global ./features/desktop/hypr ./features/pass ./features/games ];
 
-  wallpaper = pkgs.wallpapers.mountain-nebula-purple-pink;
+    wallpaper = pkgs.wallpapers.autumn-japanese-room;
+    colorscheme.type = "rainbow";
 
   monitors = [{
     name = "eDP-1";
