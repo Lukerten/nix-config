@@ -1,5 +1,12 @@
 { lib, pkgs, config, ... }: {
-  imports = [ ./firefox.nix ./thunderbird.nix ./font.nix ./gtk.nix ./qt.nix ];
+  imports = [
+    ./firefox.nix
+    ./thunderbird.nix
+    ./font.nix
+    ./gtk.nix
+    ./qt.nix
+    ./thunar.nix
+  ];
 
   # Also sets org.freedesktop.appearance color-scheme
   dconf.settings."org/gnome/desktop/interface".color-scheme =
@@ -16,10 +23,10 @@
     discord.enable = true;
     spotify.enable = true;
     obsidian.enable = true;
-    code.enable = true;
+    obs-studio.enable = true;
     audioctrl.enable = true;
-    filemanager.enable = true;
     audacity.enable = true;
+    code.enable = true;
     blender.enable = true;
     deluge.enable = true;
     filezilla.enable = true;

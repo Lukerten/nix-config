@@ -3,12 +3,7 @@ let
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
-  imports = [
-    ../common
-    ./wayland
-    ./basic-binds.nix
-    ./hyprbars.nix
-  ];
+  imports = [ ../common ./wayland ./basic-binds.nix ./hyprbars.nix ];
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
@@ -18,7 +13,14 @@ in {
     configPackages = [ hyprland ];
   };
 
-  home.packages = with pkgs; [ grimblast hyprpicker ];
+  home.packages = with pkgs; [
+    grimblast
+    hyprpicker
+    psmisc
+    wlogout
+    ffmpeg_6-full
+    wl-screenrec
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -95,7 +97,7 @@ in {
 
       decoration = {
         active_opacity = 1.0;
-        inactive_opacity = 0.90;
+        inactive_opacity = 0.9;
         fullscreen_opacity = 1.0;
         rounding = 7;
         blur = {
