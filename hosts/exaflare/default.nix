@@ -16,7 +16,6 @@
     ../common/optional/bluez.nix
     ../common/optional/ckb-next.nix
     ../common/optional/cups.nix
-    ../common/optional/docker.nix
     ../common/optional/pipewire.nix
     ../common/optional/regreet.nix
     ../common/optional/steam.nix
@@ -25,6 +24,7 @@
     ../common/optional/x11-no-suspend.nix
     ../common/optional/quietboot.nix
     ../common/optional/thunar.nix
+    ../common/optional/usb-auto.nix
   ];
 
   system.stateVersion = "23.11";
