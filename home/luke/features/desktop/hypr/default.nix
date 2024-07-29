@@ -145,12 +145,15 @@ in {
       exec = [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
 
       bind = let
+        wlogout = lib.getExe pkgs.wlogout;
         grimblast = lib.getExe pkgs.grimblast;
         tesseract = lib.getExe pkgs.tesseract;
         pactl = lib.getExe' pkgs.pulseaudio "pactl";
         notify-send = lib.getExe' pkgs.libnotify "notify-send";
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
       in [
+        # Basic binds
+        "SUPERSHIFT,e,exec,${wlogout}"
         # Program bindings
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
         "SUPER,e,exec,${defaultApp "text/plain"}"

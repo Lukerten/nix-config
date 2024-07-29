@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   wayland.windowManager.hyprland.settings = {
     bindm = [ "SUPER,mouse:272,movewindow" "SUPER,mouse:273,resizewindow" ];
 
@@ -36,7 +36,6 @@
       };
     in [
       "SUPERSHIFT,q,killactive"
-      "SUPERSHIFT,e,exit"
 
       "SUPER, mouse_down, workspace, next"
       "SUPER, mouse_up, workspace, previous"
