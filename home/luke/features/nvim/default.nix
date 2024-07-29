@@ -22,7 +22,7 @@ in {
       name = "Neovim";
       genericName = "Text Editor";
       comment = "Edit text files";
-      exec = "nvim %F";
+      exec = "kitty nvim";
       icon = "nvim";
       mimeType = [
         "text/english"
@@ -43,7 +43,14 @@ in {
       ];
       terminal = true;
       type = "Application";
-      categories = [ "Utility" "TextEditor" ];
+      categories = [
+        "Utility"
+        "TextEditor"
+      ];
     };
+  };
+
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = [ "nvim.desktop" ];
   };
 }
