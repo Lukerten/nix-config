@@ -24,7 +24,7 @@
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
     ../common/optional/quietboot.nix
-    # ../common/optional/waydroid.nix
+    ../common/optional/thunar.nix
   ];
 
   system.stateVersion = "23.11";
