@@ -2,8 +2,7 @@
   imports =
     [ ./global ./features/desktop/hypr ./features/pass ./features/games ];
 
-    wallpaper = pkgs.wallpapers.autumn-japanese-room;
-    colorscheme.type = "rainbow";
+  wallpaper = pkgs.wallpapers.aenami-somewhere-in-time;
 
   monitors = [{
     name = "eDP-1";
