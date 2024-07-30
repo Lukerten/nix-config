@@ -34,9 +34,25 @@ let
       }
     '';
 in {
-  options.programs.discord = { enable = lib.mkEnableOption "discord"; };
+  options.programs.discord = {
+    enable = lib.mkEnableOption "discord";
+
+    package = lib.mkOption {
+      type = with pkgs; lib.types.package;
+      default = pkgs.vesktop;
+      description = "The code package to use.";
+    };
+
+    customCss = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable Custom CSS";
+    };
+  };
+
+
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.vesktop ];
+    home.packages = [ cfg.package];
     xdg.configFile."vesktop/themes/base16.css".text = customCSS;
   };
 }

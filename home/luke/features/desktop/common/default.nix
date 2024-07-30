@@ -1,5 +1,6 @@
 { lib, pkgs, config, ... }: {
   imports = [
+    ./discord.nix
     ./firefox.nix
     ./thunderbird.nix
     ./font.nix
