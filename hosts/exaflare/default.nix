@@ -24,7 +24,6 @@
     ../common/optional/x11-no-suspend.nix
     ../common/optional/quietboot.nix
     ../common/optional/thunar.nix
-    ../common/optional/usb-auto.nix
   ];
 
   system.stateVersion = "23.11";
