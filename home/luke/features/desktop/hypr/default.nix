@@ -90,8 +90,8 @@ in {
         "ignorezero,waybar"
         "blur,notifications"
         "ignorezero,notifications"
-        "blur,wofi"
-        "ignorezero,wofi"
+        "blur,rofi"
+        "ignorezero,rofi"
         "noanim,wallpaper"
       ];
 
@@ -199,16 +199,20 @@ in {
         "SUPERSHIFT,w,exec,${makoctl} restore"
       ]) ++
       # Launcher
-      (let wofi = lib.getExe config.programs.wofi.package;
-      in lib.optionals config.programs.wofi.enable [
-        "SUPER,space,exec,${wofi} --show drun"
-        "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
-        "SUPER,d,exec,${wofi} -S run"
-      ] ++ (let cliphist = lib.getExe config.services.cliphist.package;
-      in lib.optionals config.services.cliphist.enable [
-        ''
-          SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
-      ]));
+      (let rofi-menu = lib.getExe config.programs.rofi.launcherScript;
+      in lib.optionals config.programs.rofi.enableLauncher [
+        "SUPER,space,exec,${rofi-menu}"
+      ]) ++
+      # Clipper
+      (let rofi-clipper = lib.getExe config.programs.rofi.clipperScript;
+      in lib.optionals config.programs.rofi.enableClipper [
+        "SUPER,c,exec,${rofi-clipper}"
+      ]) ++
+      # Specialisation menu
+      (let rofi-specialisation = lib.getExe config.programs.rofi.specialisationScript;
+      in lib.optionals config.programs.rofi.enableSpecialisation [
+       "SUPER,s,exec,${rofi-specialisation}"
+      ]);
 
       monitor = let
         waybarSpace = let

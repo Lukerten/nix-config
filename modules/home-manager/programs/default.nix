@@ -1,1 +1,1 @@
-{ imports = [ ./cli ./desktop ./pass ./productivity ]; }
+{ imports = [ ./cli ./desktop ./pass ./productivity ./rofi]; }

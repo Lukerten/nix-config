@@ -1,14 +1,14 @@
 { pkgs, ... }: {
   imports = [
-    ./cliphist.nix
     ./gammastep.nix
     ./imv.nix
     ./kitty.nix
     ./mako.nix
+    ./qutebrowser.nix
+    ./rofi.nix
     ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
-    ./wofi.nix
     ./zathura.nix
   ];
 

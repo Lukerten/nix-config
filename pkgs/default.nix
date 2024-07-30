@@ -12,7 +12,6 @@
 
   # stolen from misterio77
   nix-inspect = pkgs.callPackage ./nix-inspect { };
-  pass-wofi = pkgs.callPackage ./pass-wofi { };
   xpo = pkgs.callPackage ./xpo { };
   plymouth-spinner-monochrome =
     pkgs.callPackage ./plymouth-spinner-monochrome { };

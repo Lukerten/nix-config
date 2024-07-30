@@ -18,7 +18,6 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   playerctld = "${pkgs.playerctl}/bin/playerctld";
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-  wofi = "${pkgs.wofi}/bin/wofi";
 
   # Function to simplify making waybar outputs
   jsonOutput = name:
@@ -179,7 +178,8 @@ in {
               $(${cat} /etc/os-release | ${grep} PRETTY_NAME | ${cut} -d '"' -f2)'';
             class = "$(if ${isFullScreen}; then echo fullscreen; fi)";
           };
-          on-click = "${wofi} -show drun";
+          # TODO: Migrate this to rofi-menu
+          # on-click = "${wofi} -show drun";
           on-click-middle = "${bash} $HOME/.config/rofi/powermenu.sh";
           on-click-right = lib.concatStringsSep ";" ((lib.optional hasHyprland
             "${hyprland}/bin/hyprctl dispatch togglespecialworkspace")
