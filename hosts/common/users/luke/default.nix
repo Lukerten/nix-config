@@ -26,7 +26,7 @@ in {
     packages = [ pkgs.home-manager ];
   };
 
-   sops.secrets.luke-password = {
+  sops.secrets.luke-password = {
     sopsFile = ../../secrets.yaml;
     neededForUsers = true;
   };

@@ -1,10 +1,5 @@
-{
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
+{ outputs, lib, config, pkgs, ... }:
+let
   hosts = lib.attrNames outputs.nixosConfigurations;
   hasOptinPersistence = config.environment.persistence ? "/persist";
 in {
@@ -19,12 +14,10 @@ in {
       X11Forwarding = true;
     };
 
-    hostKeys = [
-      {
-        path = "/etc/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-      }
-    ];
+    hostKeys = [{
+      path = "/etc/ssh/ssh_host_ed25519_key";
+      type = "ed25519";
+    }];
   };
 
   programs.ssh = {
