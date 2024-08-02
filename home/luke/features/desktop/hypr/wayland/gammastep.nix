@@ -1,8 +1,6 @@
-{pkgs, ...}:{
-  
-  home.packages = with pkgs; [
-    brightnessctl
-  ];
+{ pkgs, ... }: {
+
+  home.packages = with pkgs; [ brightnessctl ];
 
   services.gammastep = {
     enable = true;

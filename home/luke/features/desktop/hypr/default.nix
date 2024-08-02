@@ -200,19 +200,18 @@ in {
       ]) ++
       # Launcher
       (let rofi-menu = lib.getExe config.programs.rofi.launcherScript;
-      in lib.optionals config.programs.rofi.enableLauncher [
-        "SUPER,space,exec,${rofi-menu}"
-      ]) ++
+      in lib.optionals config.programs.rofi.enableLauncher
+      [ "SUPER,space,exec,${rofi-menu}" ]) ++
       # Clipper
       (let rofi-clipper = lib.getExe config.programs.rofi.clipperScript;
-      in lib.optionals config.programs.rofi.enableClipper [
-        "SUPER,c,exec,${rofi-clipper}"
-      ]) ++
+      in lib.optionals config.programs.rofi.enableClipper
+      [ "SUPER,c,exec,${rofi-clipper}" ]) ++
       # Specialisation menu
-      (let rofi-specialisation = lib.getExe config.programs.rofi.specialisationScript;
-      in lib.optionals config.programs.rofi.enableSpecialisation [
-       "SUPER,s,exec,${rofi-specialisation}"
-      ]);
+      (let
+        rofi-specialisation =
+          lib.getExe config.programs.rofi.specialisationScript;
+      in lib.optionals config.programs.rofi.enableSpecialisation
+      [ "SUPER,s,exec,${rofi-specialisation}" ]);
 
       monitor = let
         waybarSpace = let

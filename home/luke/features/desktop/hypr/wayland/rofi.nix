@@ -2,8 +2,7 @@
 let
   inherit (config.colorscheme) colors;
   rmHash = lib.removePrefix "#";
-in
-{
+in {
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;

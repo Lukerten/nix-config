@@ -1,1 +1,1 @@
-{ imports = [ ./cm4all-vpn.nix ./dev-env.nix ./dragon.nix ./xpo.nix ]; }
+{ imports = [ ./neovim ./cm4all-vpn.nix ./dragon.nix ./xpo.nix ]; }

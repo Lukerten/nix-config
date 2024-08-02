@@ -1,5 +1,5 @@
 { inputs, lib, pkgs, config, outputs, ... }: {
-  imports = [ ../features/cli ../features/nvim ]
+  imports = [ ../features/cli ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
   # Nixpkgs

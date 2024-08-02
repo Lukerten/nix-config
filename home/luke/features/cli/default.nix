@@ -6,7 +6,6 @@
     ./cmatrix.nix
     ./cm4all-vpn.nix
     ./direnv.nix
-    ./dev-env.nix
     ./dragon.nix
     ./fish.nix
     ./fzf.nix
@@ -47,4 +46,6 @@
     nix-output-monitor
     nh
   ];
+
+  programs.neovim.enable = true;
 }
