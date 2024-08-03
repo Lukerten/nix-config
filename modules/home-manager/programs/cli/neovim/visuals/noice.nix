@@ -14,13 +14,82 @@
             signature = {
               enabled = false,
             },
+            documentation = {
+              view = "hover",
+              opts = {
+                lang = "markdown",
+                replace = true,
+                render = "plain",
+                format = { "{message}" },
+                win_options = { concealcursor = "n", conceallevel = 3 },
+              },
+            },
           },
-          presets = {
-            bottom_search = true,
-            command_palette = true,
-            long_message_to_split = true,
-            inc_rename = false,
-            lsp_doc_border = false,
+          markdown = {
+            hover = {
+              ["|(%S-)|"] = vim.cmd.help, -- vim help links
+              ["%[.-%]%((%S-)%)"] = require("noice.util").open, -- markdown links
+            },
+            highlights = {
+              ["|%S-|"] = "@text.reference",
+              ["@%S+"] = "@parameter",
+              ["^%s*(Parameters:)"] = "@text.title",
+              ["^%s*(Return:)"] = "@text.title",
+              ["^%s*(See also:)"] = "@text.title",
+              ["{%S-}"] = "@parameter",
+            },
+          },
+          health = {
+            checker = true, -- Disable if you don't want health checks to run
+          },
+          commands ={
+            history = {
+              -- options for the message history that you get with `:Noice`
+              view = "split",
+              opts = { enter = true, format = "details" },
+              filter = {
+                any = {
+                  { event = "notify" },
+                  { error = true },
+                  { warning = true },
+                    { event = "msg_show", kind = { "" } },
+                { event = "lsp", kind = "message" },
+                },
+              },
+            },
+            -- :Noice last
+            last = {
+              view = "popup",
+                opts = { enter = true, format = "details" },
+                filter = {
+                  any = {
+                    { event = "notify" },
+                    { error = true },
+                    { warning = true },
+                    { event = "msg_show", kind = { "" } },
+                    { event = "lsp", kind = "message" },
+                  },
+                },
+              filter_opts = { count = 1 },
+            },
+            -- :Noice errors
+            errors = {
+              -- options for the message history that you get with `:Noice`
+              view = "popup",
+              opts = { enter = true, format = "details" },
+              filter = { error = true },
+              filter_opts = { reverse = true },
+            },
+            all = {
+              -- options for the message history that you get with `:Noice`
+              view = "split",
+                opts = { enter = true, format = "details" },
+                filter = {},
+            },
+          },
+          notify = {
+            enabled = true,
+            view = "notify",
           },
           views = {
             cmdline_popup = {

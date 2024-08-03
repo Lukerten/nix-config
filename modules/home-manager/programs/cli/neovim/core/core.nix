@@ -57,6 +57,10 @@ in {
           return { noremap = true, silent = true, desc = desc }
         end
 
+        function default_opts( desc, buffnr )
+          return { noremap = true, silent = true, desc = desc, buffer = buffnr }
+        end
+
         add_sign("DiagnosticSignError", "󰅚 ")
         add_sign("DiagnosticSignWarn", " ")
         add_sign("DiagnosticSignHint", "󰌶 ")
