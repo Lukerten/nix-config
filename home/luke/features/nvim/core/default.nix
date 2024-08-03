@@ -8,7 +8,7 @@ let
     done
   '';
 in {
-  imports = [ ./autocmd.nix ./core.nix];
+  imports = [ ./autocmd.nix ./core.nix ];
 
   xdg.configFile."nvim/color.vim".source = color;
   xdg.configFile."nvim/color.vim".onChange = reloadNvim;

@@ -60,9 +60,9 @@
             augroup END
           ]])
         '';
-      }
-    ];
+    }
+  ];
 
-    # Copilot requires an executeable version of node to be installed
-    home.packages = [ pkgs.nodejs-slim ];
+  # Copilot requires an executeable version of node to be installed
+  home.packages = [ pkgs.nodejs-slim ];
 }

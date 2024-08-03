@@ -46,6 +46,4 @@
     nix-output-monitor
     nh
   ];
-
-  programs.neovim.enable = true;
 }

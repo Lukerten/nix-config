@@ -1,6 +1,12 @@
 { pkgs, ... }: {
-  imports =
-    [ ./dap.nix ./gitsigns.nix ./gx.nix ./kommentary.nix ./oil.nix ./lazygit.nix ];
+  imports = [
+    ./dap.nix
+    ./gitsigns.nix
+    ./gx.nix
+    ./kommentary.nix
+    ./oil.nix
+    ./lazygit.nix
+  ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
     nui-nvim

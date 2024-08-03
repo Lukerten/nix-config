@@ -2,7 +2,7 @@
 let
 
   bash = # lua
-  ''
+    ''
       -- Bash language server
       lspconfig.bashls.setup{
         capabilities = capabilities;
@@ -12,7 +12,7 @@ let
     '';
 
   clang = # lua
-  ''
+    ''
       -- C/C++ language server
       local clangd_capabilities = capabilities;
       clangd_capabilities.textDocument.semanticHighlighting = true;
@@ -25,7 +25,7 @@ let
     '';
 
   css = # lua
-  ''
+    ''
       -- CSS language server
       lspconfig.cssls.setup{
         cmd = {'${pkgs.gopls}/bin/vscode-css-languageserver-bin'};
@@ -45,7 +45,7 @@ let
     '';
 
   golang = # lua
-  ''
+    ''
       -- Go language server
       lspconfig.gopls.setup{
         on_attach = attach_keymaps,
@@ -62,10 +62,10 @@ let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper'};
       }
-      '';
+    '';
 
   java = # lua
-  ''
+    ''
       -- Java language server
       -- workspace setup
       local home = os.getenv("HOME")
@@ -145,7 +145,7 @@ let
     '';
 
   json = # lua
-  ''
+    ''
       -- JSON language server
       lspconfig.jsonls.setup{
         capabilities = capabilities;
@@ -155,7 +155,7 @@ let
     '';
 
   kotlin = # lua
-  ''
+    ''
       -- Kotlin language server
       lspconfig.kotlin_language_server.setup{
         capabilities = capabilities;
@@ -165,7 +165,7 @@ let
     '';
 
   lua = # lua
-  ''
+    ''
       -- Lua language server
       lspconfig.lua_ls.setup{
         capabilities = capabilities;
@@ -189,22 +189,22 @@ let
     '';
 
   nix = # lua
-  ''
-    -- Nix language server
-    lspconfig.nil_ls.setup{
-      capabilities = capabilities,
-      on_attach = attach_keymaps,
-      cmd = {"${pkgs.nil}/bin/nil"},
-      settings = {
-        formatting = {
-          command = {"${pkgs.alejandra}/bin/alejandra", "--quiet"},
+    ''
+      -- Nix language server
+      lspconfig.nil_ls.setup{
+        capabilities = capabilities,
+        on_attach = attach_keymaps,
+        cmd = {"${pkgs.nil}/bin/nil"},
+        settings = {
+          formatting = {
+            command = {"${pkgs.alejandra}/bin/alejandra", "--quiet"},
+          },
         },
-      },
-    }
-  '';
+      }
+    '';
 
   python = # lua
-  ''
+    ''
       -- Python language server
       lspconfig.pyright.setup{
         capabilities = capabilities;
@@ -214,7 +214,7 @@ let
     '';
 
   rust = # lua
-  ''
+    ''
       -- Rust language server
       lspconfig.rust_analyzer.setup{
         capabilities = capabilities;
@@ -224,7 +224,7 @@ let
     '';
 
   sql = # lua
-  ''
+    ''
       -- SQL language server
       local root_dir = require('lspconfig/util').root_pattern('.git', 'flake.nix')(vim.fn.getcwd())
       lspconfig.sqlls.setup {
@@ -237,10 +237,12 @@ let
       }
     '';
   tailwindcss = # lua
-  ''
+    ''
       -- TailwindCSS language server
       lspconfig.tailwindcss.setup{
-        cmd = {'${pkgs.nodePackages."@tailwindcss/language-server"}/bin/tailwindcss-language-server'};
+        cmd = {'${
+          pkgs.nodePackages."@tailwindcss/language-server"
+        }/bin/tailwindcss-language-server'};
         filetypes = {'css', 'scss', 'less', 'html', 'vue', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'};
         root_dir = require('lspconfig/util').root_pattern('tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.lua', 'package.json');
         on_attach = attach_keymaps;
@@ -248,7 +250,7 @@ let
       }
     '';
   ts = # lua
-  ''
+    ''
       -- TypeScript language server
       lspconfig.tsserver.setup {
         capabilities = capabilities;
@@ -257,7 +259,7 @@ let
       }
     '';
   vue = # lua
-  ''
+    ''
       -- Vue language server
       lspconfig.vuels.setup {
         capabilities = capabilities;
@@ -267,7 +269,7 @@ let
     '';
 
   yaml = # lua
-  ''
+    ''
       -- YAML language server
       lspconfig.yamlls.setup{
         capabilities = capabilities;
@@ -297,11 +299,10 @@ let
   ];
 
 in {
-  programs.neovim.plugins = [
-    {
-      plugin = pkgs.vimPlugins.nvim-lspconfig;
-      type = "lua";
-      config = # lua
+  programs.neovim.plugins = [{
+    plugin = pkgs.vimPlugins.nvim-lspconfig;
+    type = "lua";
+    config = # lua
       ''
         local lspconfig = require('lspconfig')
         local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -343,6 +344,5 @@ in {
         -- Add all language servers
         ${builtins.concatStringsSep "\n" allLanguages}
       '';
-    }
-  ];
+  }];
 }

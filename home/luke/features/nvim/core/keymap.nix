@@ -1,6 +1,6 @@
 {
   programs.neovim = {
-     extraLuaConfig = # lua
+    extraLuaConfig = # lua
       ''
         -- Scroll up and down
         vim.keymap.set("n", "<C-j>", "<C-e>", default_opts("Scroll down"))
