@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "Lukes NixOS configuration";
 
   inputs = {
     systems.url = "github:nix-systems/default-linux";
@@ -65,14 +65,11 @@
       homeManagerModules = import ./modules/home-manager;
       templates = import ./templates;
       overlays = import ./overlays { inherit inputs outputs; };
-
-      # Hydra
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild switch --flake .#your-hostname'
       nixosConfigurations = {
         # Main Laptop configuration
         annihilation = lib.nixosSystem {
