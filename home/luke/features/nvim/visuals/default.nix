@@ -6,7 +6,6 @@
     ./nvim-tree.nix
     ./statusline.nix
     ./toggleterm.nix
-    ./trouble.nix
     ./noice.nix
   ];
   programs.neovim.plugins = with pkgs.vimPlugins; [

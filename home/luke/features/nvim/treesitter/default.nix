@@ -1,17 +1,5 @@
 { pkgs, config, lib, ... }: {
   programs.neovim = {
-    extraConfig = lib.mkAfter # vim
-
-      ''
-        function! SetCustomKeywords()
-          syn match Todo  /TODO/
-          syn match Done  /DONE/
-          syn match Start /START/
-          syn match End   /END/
-        endfunction
-
-        autocmd Syntax * call SetCustomKeywords()
-      '';
     plugins = with pkgs.vimPlugins; [
       rust-vim
       dart-vim-plugin
@@ -38,13 +26,10 @@
             }'
           '';
       }
-
-      # Tree sitter
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
-        config =
-          # lua
+        config = # lua
           ''
             require('nvim-treesitter.configs').setup{
               highlight = {
@@ -53,6 +38,7 @@
               },
             }
           '';
+
       }
     ];
   };

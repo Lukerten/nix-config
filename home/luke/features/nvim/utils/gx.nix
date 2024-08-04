@@ -13,8 +13,8 @@ let
   gx-config = # lua
     ''
       require('gx').setup{}
-      vim.keymap.set("n", "<space>x", ":Browse<cr>", default_opts("Search for Selection"))
-      vim.keymap.set("v", "<space>x", ":Browse<cr>", default_opts("Search for Selection"))
+      vim.keymap.set("n", "<space>b", ":Browse<cr>", default_opts("Browse Selection"))
+      vim.keymap.set("v", "<space>b", ":Browse<cr>", default_opts("Browse Selection"))
     '';
 in {
   programs.neovim.plugins = [{

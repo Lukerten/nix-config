@@ -41,7 +41,7 @@
     ltex-ls
     commitmsg
     nixd
-    nixfmt-classic
+    alejandra
     nvd
     nix-output-monitor
     nh

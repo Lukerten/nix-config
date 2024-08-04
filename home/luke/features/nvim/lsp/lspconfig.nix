@@ -1,7 +1,8 @@
-{ pkgs, ... }:
+{ pkgs,lib, ... }:
+with lib;
+with builtins;
 let
-
-  bash = # lua
+  lspconfigs = [
     ''
       -- Bash language server
       lspconfig.bashls.setup{
@@ -9,9 +10,7 @@ let
         on_attach = attach_keymaps,
        cmd = {'${pkgs.bash-language-server}/bin/bash-language-server'};
       }
-    '';
-
-  clang = # lua
+    ''
     ''
       -- C/C++ language server
       local clangd_capabilities = capabilities;
@@ -22,9 +21,7 @@ let
         on_attach = attach_keymaps,
         cmd = {"${pkgs.clang-tools}/bin/clangd"};
       }
-    '';
-
-  css = # lua
+    ''
     ''
       -- CSS language server
       lspconfig.cssls.setup{
@@ -42,9 +39,7 @@ let
           };
         };
       }
-    '';
-
-  golang = # lua
+    ''
     ''
       -- Go language server
       lspconfig.gopls.setup{
@@ -52,9 +47,7 @@ let
         cmd = {'${pkgs.gopls}/bin/gopls'};
         filetypes = {'gox', 'go'};
       }
-    '';
-
-  haskell = # lua
+    ''
     ''
       -- Haskell language server
       lspconfig.hls.setup{
@@ -62,9 +55,7 @@ let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper'};
       }
-    '';
-
-  java = # lua
+    ''
     ''
       -- Java language server
       -- workspace setup
@@ -142,9 +133,7 @@ let
         };
         filetypes = { "java" };
       }
-    '';
-
-  json = # lua
+    ''
     ''
       -- JSON language server
       lspconfig.jsonls.setup{
@@ -152,9 +141,7 @@ let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver'};
       }
-    '';
-
-  kotlin = # lua
+    ''
     ''
       -- Kotlin language server
       lspconfig.kotlin_language_server.setup{
@@ -162,9 +149,7 @@ let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.kotlin-language-server}/bin/kotlin-language-server'};
       }
-    '';
-
-  lua = # lua
+    ''
     ''
       -- Lua language server
       lspconfig.lua_ls.setup{
@@ -186,9 +171,7 @@ let
           };
         };
       }
-    '';
-
-  nix = # lua
+    ''
     ''
       -- Nix language server
       lspconfig.nil_ls.setup{
@@ -201,9 +184,7 @@ let
           },
         },
       }
-    '';
-
-  python = # lua
+    ''
     ''
       -- Python language server
       lspconfig.pyright.setup{
@@ -211,9 +192,7 @@ let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.pyright}/bin/pyright-langserver'};
       }
-    '';
-
-  rust = # lua
+    ''
     ''
       -- Rust language server
       lspconfig.rust_analyzer.setup{
@@ -221,9 +200,7 @@ let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.rust-analyzer}/bin/rust-analyzer'};
       }
-    '';
-
-  sql = # lua
+    ''
     ''
       -- SQL language server
       local root_dir = require('lspconfig/util').root_pattern('.git', 'flake.nix')(vim.fn.getcwd())
@@ -235,8 +212,7 @@ let
           return root_dir
         end;
       }
-    '';
-  tailwindcss = # lua
+    ''
     ''
       -- TailwindCSS language server
       lspconfig.tailwindcss.setup{
@@ -248,8 +224,7 @@ let
         on_attach = attach_keymaps;
         capabilities = capabilities;
       }
-    '';
-  ts = # lua
+    ''
     ''
       -- TypeScript language server
       lspconfig.tsserver.setup {
@@ -257,8 +232,7 @@ let
         on_attach = attach_keymaps,
         cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" }
       }
-    '';
-  vue = # lua
+    ''
     ''
       -- Vue language server
       lspconfig.vuels.setup {
@@ -266,9 +240,7 @@ let
         on_attach = attach_keymaps,
         cmd = { "${pkgs.nodePackages.vls}/bin/vls", "--stdio" }
       }
-    '';
-
-  yaml = # lua
+    ''
     ''
       -- YAML language server
       lspconfig.yamlls.setup{
@@ -276,26 +248,7 @@ let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.yaml-language-server}/bin/yaml-language-server'};
       }
-    '';
-
-  allLanguages = [
-    bash
-    clang
-    css
-    golang
-    haskell
-    java
-    json
-    kotlin
-    lua
-    nix
-    python
-    rust
-    sql
-    tailwindcss
-    ts
-    vue
-    yaml
+    ''
   ];
 
 in {
@@ -342,7 +295,7 @@ in {
         end
 
         -- Add all language servers
-        ${builtins.concatStringsSep "\n" allLanguages}
+        ${concatMapStringsSep "\n" (s: s) lspconfigs}
       '';
   }];
 }

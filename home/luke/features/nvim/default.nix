@@ -1,12 +1,11 @@
 { pkgs, config, lib, ... }: {
-  imports = [ ./core ./languages ./telescope ./utils ./visuals ];
+  imports =
+    [ ./completions ./core ./lsp ./treesitter ./telescope ./utils ./visuals ];
 
   home.sessionVariables.EDITOR = "nvim";
   home.packages = with pkgs; [ lazygit xclip ];
 
-  programs.neovim = {
-    enable = true;
-  };
+  programs.neovim = { enable = true; };
 
   xdg = {
     desktopEntries = {
