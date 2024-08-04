@@ -1,63 +1,40 @@
-{
-  outputs,
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: let
-  # Dependencies
-  cat = "${pkgs.coreutils}/bin/cat";
-  cut = "${pkgs.coreutils}/bin/cut";
-  find = "${pkgs.findutils}/bin/find";
-  grep = "${pkgs.gnugrep}/bin/grep";
-  pgrep = "${pkgs.procps}/bin/pgrep";
-  tail = "${pkgs.coreutils}/bin/tail";
-  wc = "${pkgs.coreutils}/bin/wc";
-  xargs = "${pkgs.findutils}/bin/xargs";
-  timeout = "${pkgs.coreutils}/bin/timeout";
-  ping = "${pkgs.iputils}/bin/ping";
-  bash = "${pkgs.bash}/bin/bash";
-  jq = "${pkgs.jq}/bin/jq";
-  systemctl = "${pkgs.systemd}/bin/systemctl";
-  journalctl = "${pkgs.systemd}/bin/journalctl";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  playerctld = "${pkgs.playerctl}/bin/playerctld";
-  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-
+{ outputs, config, lib, pkgs, inputs, ... }:
+let
+  commonDeps = with pkgs; [ coreutils gnugrep systemd ];
   # Function to simplify making waybar outputs
-  jsonOutput = name: {
-    pre ? "",
-    text ? "",
-    tooltip ? "",
-    alt ? "",
-    class ? "",
-    percentage ? "",
-  }: "${
-    pkgs.writeShellScriptBin "waybar-${name}" ''
-      set -euo pipefail
-      ${pre}
-      ${jq} -cn \
-        --arg text "${text}" \
-        --arg tooltip "${tooltip}" \
-        --arg alt "${alt}" \
-        --arg class "${class}" \
-        --arg percentage "${percentage}" \
-        '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
-    ''
-  }/bin/waybar-${name}";
+  mkScript = { name ? "script", deps ? [ ], script ? "", }:
+    lib.getExe (pkgs.writeShellApplication {
+      inherit name;
+      text = script;
+      runtimeInputs = commonDeps ++ deps;
+    });
+  # Specialized for JSON outputs
+  mkScriptJson = { name ? "script", deps ? [ ], pre ? "", text ? ""
+    , tooltip ? "", alt ? "", class ? "", percentage ? "", }:
+    mkScript {
+      inherit name;
+      deps = [ pkgs.jq ] ++ deps;
+      script = ''
+        ${pre}
+        jq -cn \
+          --arg text "${text}" \
+          --arg tooltip "${tooltip}" \
+          --arg alt "${alt}" \
+          --arg class "${class}" \
+          --arg percentage "${percentage}" \
+          '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
+      '';
+    };
 
-  hasSway = config.wayland.windowManager.sway.enable;
-  sway = config.wayland.windowManager.sway.package;
-  hasHyprland = config.wayland.windowManager.hyprland.enable;
-  hyprland = config.wayland.windowManager.hyprland.package;
+  swayCfg = config.wayland.windowManager.sway;
+  hyprlandCfg = config.wayland.windowManager.hyprland;
 in {
   # Let it try to start a few more times
-  systemd.user.services.waybar = {Unit.StartLimitBurst = 30;};
+  systemd.user.services.waybar = { Unit.StartLimitBurst = 30; };
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
+      mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
     });
     systemd.enable = true;
     settings = {
@@ -67,33 +44,28 @@ in {
         height = 40;
         margin = "6";
         position = "top";
-        modules-left =
-          ["custom/menu"]
-          ++ (lib.optionals hasSway ["sway/workspaces" "sway/mode"])
-          ++ (lib.optionals hasHyprland [
+        modules-left = [ "custom/menu" ]
+          ++ (lib.optionals swayCfg.enable [ "sway/workspaces" "sway/mode" ])
+          ++ (lib.optionals hyprlandCfg.enable [
             "hyprland/workspaces"
             "hyprland/submap"
-          ])
-          ++ ["custom/currentplayer" "custom/player"];
+          ]) ++ [ "custom/currentplayer" "custom/player" ];
 
-        modules-center = ["clock" "custom/unread-mail" "custom/gpg-agent"];
+        modules-center =
+          [ "cpu" "custom/gpu" "memory" "clock" "custom/unread-mail" ];
 
         modules-right = [
-          # "custom/gammastep" TODO: currently broken for some reason
-          "pulseaudio"
-          "custom/tailscale-ping"
-          "cpu"
-          "custom/gpu"
-          "memory"
-          "battery"
+          "custom/rfkill"
           "network"
+          "pulseaudio"
+          "battery"
           "tray"
           "custom/hostname"
         ];
 
         clock = {
           interval = 1;
-          format = "{:%d.%m %H:%M}";
+          format = "{:%d/%m %H:%M:%S}";
           format-alt = "{:%Y-%m-%d %H:%M:%S %z}";
           on-click-left = "mode";
           tooltip-format = ''
@@ -101,10 +73,12 @@ in {
             <tt><small>{calendar}</small></tt>'';
         };
 
-        cpu = {format = "  {usage}%";};
+        cpu = { format = "  {usage}%"; };
         "custom/gpu" = {
           interval = 5;
-          exec = "${cat} /sys/class/drm/card1/device/gpu_busy_percent";
+          exec = mkScript {
+            script = "cat /sys/class/drm/card0/device/gpu_busy_percent";
+          };
           format = "󰒋  {}%";
         };
         memory = {
@@ -113,15 +87,12 @@ in {
         };
 
         pulseaudio = {
-          format = "{icon}  {volume}%";
-          format-muted = "   0%";
-          format-icons = {
-            headphone = "󰋋";
-            headset = "󰋎";
-            portable = "";
-            default = [" " " " " "];
-          };
-          on-click = pavucontrol;
+          format-source = "󰍬 {volume}%";
+          format-source-muted = "󰍭 0%";
+          format = "{icon} {volume}% {format_source}";
+          format-muted = "󰸈 0% {format_source}";
+          format-icons = { default = [ "󰕿" "󰖀" "󰕾" ]; };
+          on-click = lib.getExe pkgs.pavucontrol;
         };
         idle_inhibitor = {
           format = "{icon}";
@@ -131,14 +102,14 @@ in {
           };
         };
         battery = {
-          bat = "BAT1";
+          bat = "BAT0";
           interval = 10;
-          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           onclick = "";
         };
-        "sway/window" = {max-length = 20;};
+        "sway/window" = { max-length = 20; };
         network = {
           interval = 3;
           format-wifi = "   {essid}";
@@ -149,74 +120,41 @@ in {
             {ipaddr}/{cidr}
             Up: {bandwidthUpBits}
             Down: {bandwidthDownBits}'';
-          on-click = "";
         };
-        "custom/tailscale-ping" = {
-          interval = 10;
-          return-type = "json";
-          exec = let
-            inherit (builtins) concatStringsSep attrNames;
-            hosts = attrNames outputs.nixosConfigurations;
-            homeMachine = "merope";
-            remoteMachine = "alcyone";
-          in
-            jsonOutput "tailscale-ping" {
-              # Build variables for each host
-              pre = ''
-                set -o pipefail
-                ${concatStringsSep "\n" (map (host: ''
-                    ping_${host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${host}="Disconnected"
-                  '')
-                  hosts)}
-              '';
-              # Access a remote machine's and a home machine's ping
-              text = "  $ping_${remoteMachine} /  $ping_${homeMachine}";
-              # Show pings from all machines
-              tooltip =
-                concatStringsSep "\n"
-                (map (host: "${host}: $ping_${host}") hosts);
-            };
-          format = "{}";
-          on-click = "";
-        };
-        "custom/menu" = let
-          isFullScreen =
-            if hasHyprland
-            then "${hyprland}/bin/hyprctl activewindow -j | ${jq} -e '.fullscreen' &>/dev/null"
-            else "false";
-        in {
+        "custom/menu" = {
           interval = 1;
           return-type = "json";
-          exec = jsonOutput "menu" {
+          exec = mkScriptJson {
+            deps = lib.optional hyprlandCfg.enable hyprlandCfg.package;
             text = "";
-            tooltip = ''
-              $(${cat} /etc/os-release | ${grep} PRETTY_NAME | ${cut} -d '"' -f2)'';
-            class = "$(if ${isFullScreen}; then echo fullscreen; fi)";
+            tooltip = ''$(grep /etc/os-release PRETTY_NAME | cut -d '"' -f2)'';
+            class = let
+              isFullScreen = if hyprlandCfg.enable then
+                "hyprctl activewindow -j | jq -e '.fullscreen' &>/dev/null"
+              else
+                "false";
+            in "$(if ${isFullScreen}; then echo fullscreen; fi)";
           };
-          # TODO: Migrate this to rofi-menu
-          # on-click = "${wofi} -show drun";
-          on-click-middle = "${bash} $HOME/.config/rofi/powermenu.sh";
-          on-click-right = lib.concatStringsSep ";" ((lib.optional hasHyprland
-            "${hyprland}/bin/hyprctl dispatch togglespecialworkspace")
-          ++ (lib.optional hasSway "${sway}/bin/swaymsg scratchpad show"));
         };
         "custom/hostname" = {
-          exec = "echo $USER@$HOSTNAME";
-          on-click = "${systemctl} --user restart waybar";
+          exec = mkScript { script = ''echo "$USER@$HOSTNAME"''; };
+          on-click = mkScript { script = "systemctl --user restart waybar"; };
         };
         "custom/unread-mail" = {
           interval = 5;
           return-type = "json";
-          exec = jsonOutput "unread-mail" {
+          exec = mkScriptJson {
+            deps = [ pkgs.findutils pkgs.procps ];
             pre = ''
-              count=$(${find} ~/Mail/*/Inbox/new -type f | ${wc} -l)
-              if ${pgrep} mbsync &>/dev/null; then
+              count=$(find ~/Mail/*/Inbox/new -type f | wc -l)
+              if pgrep mbsync &>/dev/null; then
                 status="syncing"
-              else if [ "$count" == "0" ]; then
-                status="read"
               else
-                status="unread"
-              fi
+                if [ "$count" == "0" ]; then
+                  status="read"
+                else
+                  status="unread"
+                fi
               fi
             '';
             text = "$count";
@@ -229,53 +167,14 @@ in {
             "syncing" = "󰁪";
           };
         };
-        "custom/gpg-agent" = {
-          interval = 2;
-          return-type = "json";
-          format = "{icon}";
-          format-icons = {
-            "locked" = "";
-            "unlocked" = "";
-          };
-          on-click = "";
-        };
-        "custom/gammastep" = {
-          interval = 5;
-          return-type = "json";
-          exec = jsonOutput "gammastep" {
-            pre = ''
-              if unit_status="$(${systemctl} --user is-active gammastep)"; then
-                status="$unit_status ($(${journalctl} --user -u gammastep.service -g 'Period: ' | ${tail} -1 | ${cut} -d ':' -f6 | ${xargs}))"
-              else
-                status="$unit_status"
-              fi
-            '';
-            alt = "\${status:-inactive}";
-            tooltip = "Gammastep is $status";
-          };
-          format = "{icon}";
-          format-icons = {
-            "activating" = "󰁪 ";
-            "deactivating" = "󰁪 ";
-            "inactive" = "? ";
-            "active (Night)" = " ";
-            "active (Nighttime)" = " ";
-            "active (Transition (Night)" = " ";
-            "active (Transition (Nighttime)" = " ";
-            "active (Day)" = " ";
-            "active (Daytime)" = " ";
-            "active (Transition (Day)" = " ";
-            "active (Transition (Daytime)" = " ";
-          };
-          on-click = "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
-        };
         "custom/currentplayer" = {
           interval = 2;
           return-type = "json";
-          exec = jsonOutput "currentplayer" {
+          exec = mkScriptJson {
+            deps = [ pkgs.playerctl ];
             pre = ''
-              player="$(${playerctl} status -f "{{playerName}}" 2>/dev/null || echo "No player active" | ${cut} -d '.' -f1)"
-              count="$(${playerctl} -l 2>/dev/null | ${wc} -l)"
+              player="$(playerctl status -f "{{playerName}}" 2>/dev/null || echo "No player active" | cut -d '.' -f1)"
+              count="$(playerctl -l 2>/dev/null | wc -l)"
               if ((count > 1)); then
                 more=" +$((count - 1))"
               else
@@ -299,25 +198,39 @@ in {
             "kdeconnect" = "󰄡 ";
             "chromium" = " ";
           };
-          on-click = "${playerctld} shift";
-          on-click-right = "${playerctld} unshift";
+        };
+        "custom/rfkill" = {
+          interval = 1;
+          exec-if = mkScript {
+            deps = [ pkgs.util-linux ];
+            script = "rfkill | grep '<blocked>'";
+          };
         };
         "custom/player" = {
-          exec-if = "${playerctl} status 2>/dev/null";
-          exec = ''
-            ${playerctl} metadata --format '{"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}' 2>/dev/null '';
+          exec-if = mkScript {
+            deps = [ pkgs.playerctl ];
+            script = "playerctl status 2>/dev/null";
+          };
+          exec = let
+            format = ''
+              {"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}'';
+          in mkScript {
+            deps = [ pkgs.playerctl ];
+            script = "playerctl metadata --format '${format}' 2>/dev/null";
+          };
           return-type = "json";
           interval = 2;
           max-length = 30;
           format = "{icon} {}";
           format-icons = {
             "Playing" = "󰐊";
-            "Paused" = "󰏤";
+            "Paused" = "󰏤 ";
             "Stopped" = "󰓛";
           };
-          on-click = "${playerctl} previous";
-          on-click-right = "${playerctl} next";
-          on-click-middle = "${playerctl} play-pause";
+          on-click = mkScript {
+            deps = [ pkgs.playerctl ];
+            script = "playerctl play-pause";
+          };
         };
       };
     };
@@ -328,8 +241,9 @@ in {
     # w x y z -> top, right, bottom, left
     style = let
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
-      inherit (config.colorscheme) colors harmonized;
-      toRGBA = color: opacity: "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
+      inherit (config.colorscheme) colors;
+      toRGBA = color: opacity:
+        "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
       # css
     in ''
       * {
@@ -341,7 +255,6 @@ in {
 
       window#waybar {
         padding: 0;
-        opacity: 0.75;
         border-radius: 0.5em;
         background-color: ${toRGBA colors.surface "0.7"};
         color: ${colors.on_surface};
@@ -354,7 +267,7 @@ in {
       }
 
       #workspaces button {
-        background-color: ${toRGBA colors.surface "0.7"};
+        background-color: ${colors.surface};
         color: ${colors.on_surface};
         padding-left: 0.4em;
         padding-right: 0.4em;
@@ -362,13 +275,13 @@ in {
         margin-bottom: 0.15em;
       }
       #workspaces button.hidden {
-        background-color: ${toRGBA colors.surface "0.7"};
+        background-color: ${colors.surface};
         color: ${colors.on_surface_variant};
       }
       #workspaces button.focused,
       #workspaces button.active {
-        background-color: ${colors.tertiary};
-        color: ${colors.on_tertiary};
+        background-color: ${colors.primary};
+        color: ${colors.on_primary};
       }
 
       #clock {
@@ -378,6 +291,8 @@ in {
       }
 
       #custom-menu {
+        background-color: ${colors.surface_container};
+        color: ${colors.primary};
         padding-right: 1.5em;
         padding-left: 1em;
         margin-right: 0;
@@ -388,6 +303,8 @@ in {
         color: ${colors.on_primary};
       }
       #custom-hostname {
+        background-color: ${colors.surface_container};
+        color: ${colors.primary};
         padding-right: 1em;
         padding-left: 1em;
         margin-left: 0;
