@@ -1,5 +1,7 @@
 {
   pkgs,
+  lib,
+  config,
   inputs,
   ...
 }: let
@@ -117,199 +119,6 @@
     "Bing".metaData.hidden = true;
   };
 
-  GitBookmarks = [
-    {
-      name = "Github";
-      url = "https://github.com";
-    }
-    {
-      name = "Gitlab FH-Erfurt";
-      url = "https://git.ai.fh-erfurt.de";
-    }
-    {
-      name = "Gitlab Private";
-      url = "https://gitlab.mbretsch.de";
-    }
-  ];
-
-  SocialBookmarks = [
-    {
-      name = "Reddit";
-      url = "https://www.reddit.com";
-    }
-    {
-      name = "Instagram";
-      url = "https://www.instagram.com";
-    }
-    {
-      name = "Twitter";
-      url = "https://twitter.com";
-    }
-    {
-      name = "Linkedin";
-      url = "https://www.linkedin.com";
-    }
-  ];
-
-  ResourcesBookmarks = [
-    {
-      name = "MDN";
-      url = "https://developer.mozilla.org";
-    }
-    {
-      name = "W3Schools";
-      url = "https://www.w3schools.com";
-    }
-    {
-      name = "Stackoverflow";
-      url = "https://stackoverflow.com";
-    }
-    {
-      name = "Nix Packages";
-      url = "https://search.nixos.org/packages";
-    }
-    {
-      name = "NixOS Wiki";
-      url = "https://nixos.wiki";
-    }
-  ];
-
-  WorkBookmarks = [
-    {
-      name = "United Internet";
-      url = "https://united-internet.org";
-    }
-    {
-      name = "Confluence";
-      url = "https://confluence.cm4all.com";
-    }
-    {
-      name = "Jira";
-      url = "https://jira.cm4all.com";
-    }
-  ];
-
-  FHErfurtBookmarks = [
-    {
-      name = "Moodle";
-      url = "https://moodle.fh-erfurt.de";
-    }
-    {
-      name = "Bibliothek";
-      url = "https://katalog.fh-erfurt.de";
-    }
-    {
-      name = "ECampus";
-      url = "https://ecampus.fh-erfurt.de";
-    }
-    {
-      name = "WebEx";
-      url = "https://web.webex.com/spaces";
-    }
-    {
-      name = "Mail";
-      url = "https://fhemail.fh-erfurt.de";
-    }
-    {
-      name = "Asana";
-      url = "https://app.asana.com";
-    }
-  ];
-
-  DevBookmarks = [
-    {
-      name = "Resources";
-      bookmarks = ResourcesBookmarks;
-    }
-    {
-      name = "Work";
-      bookmarks = WorkBookmarks;
-    }
-    {
-      name = "FH-Erfurt";
-      bookmarks = FHErfurtBookmarks;
-    }
-  ];
-
-  FFXIVBookmarks = [
-    {
-      name = "Lodestone";
-      url = "https://eu.finalfantasyxiv.com/lodestone";
-    }
-    {
-      name = "FFLogs";
-      url = "https://www.fflogs.com";
-    }
-    {
-      name = "XIVAPI";
-      url = "https://xivapi.com";
-    }
-    {
-      name = "Garland Tools";
-      url = "https://www.garlandtools.org";
-    }
-  ];
-
-  BG3Bookmarks = [
-    {
-      name = "Builds";
-      bookmarks = [
-        {
-          name = "Eldrich Knight";
-          url = "https://alcasthq.com/bg3-eldritch-knight-fighter-build-guide/";
-        }
-        {
-          name = "Beast Master";
-          url = "https://alcasthq.com/bg3-beast-master-ranger-build-guide/";
-        }
-        {
-          name = "Wild Heart";
-          url = "https://alcasthq.com/bg3-wildheart-barbarian-build-guide/";
-        }
-        {
-          name = "Life Domain Cleric";
-          url = "https://www.thegamer.com/baldurs-gate-3-bg3-best-life-domain-cleric-build-guide/";
-        }
-        {
-          name = "PalaBard";
-          url = "https://alcasthq.com/bg3-bard-paladin-multiclass-build/";
-        }
-      ];
-    }
-    {
-      name = "Wiki";
-      bookmarks = [
-        {
-          name = "Approval";
-          url = "https://bg3.wiki/wiki/Shadowheart/approval";
-        }
-        {
-          name = "Weapons";
-          url = "https://bg3.wiki/wiki/Weapons";
-        }
-      ];
-    }
-  ];
-
-  WarframeBookmarks = [
-    {
-      name = "Wiki";
-      url = "https://warframe.fandom.com/wiki/WARFRAME_Wiki";
-    }
-    {
-      name = "Rivenmarket";
-      url = "https://riven.market";
-    }
-    {
-      name = "Market";
-      url = "https://warframe.market";
-    }
-    {
-      name = "Overframe";
-      url = "https://overframe.gg";
-    }
-  ];
-
   defaultPolicies = {
     DisableTelemetry = true;
     DisableFirefoxStudies = true;
@@ -355,15 +164,13 @@ in {
     };
   };
 
-  xdg.mimeApps.defaultApplications = {
+  xdg.mimeApps.defaultApplications = lib.mkIf (!config.programs.qutebrowser.enable) {
     "text/html" = ["firefox.desktop"];
     "text/xml" = ["firefox.desktop"];
     "x-scheme-handler/http" = ["firefox.desktop"];
     "x-scheme-handler/https" = ["firefox.desktop"];
     "x-scheme-handler/ftp" = ["firefox.desktop"];
     "x-scheme-handler/about" = ["firefox.desktop"];
-
-    # use firefox to view images
     "image/jpeg" = ["firefox.desktop"];
     "image/png" = ["firefox.desktop"];
     "image/gif" = ["firefox.desktop"];
