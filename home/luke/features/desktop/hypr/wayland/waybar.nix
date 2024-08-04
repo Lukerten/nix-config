@@ -52,20 +52,22 @@ in {
           ]) ++ [ "custom/currentplayer" "custom/player" ];
 
         modules-center =
-          [ "cpu" "custom/gpu" "memory" "clock" "custom/unread-mail" ];
+          [ "clock" "custom/unread-mail" ];
 
         modules-right = [
-          "custom/rfkill"
-          "network"
-          "pulseaudio"
-          "battery"
           "tray"
+          "pulseaudio"
+          "cpu"
+          "custom/gpu"
+          "memory"
+          "battery"
+          "network"
           "custom/hostname"
         ];
 
         clock = {
           interval = 1;
-          format = "{:%d/%m %H:%M:%S}";
+          format = "{:%d.%m.%y %H:%M:%S}";
           format-alt = "{:%Y-%m-%d %H:%M:%S %z}";
           on-click-left = "mode";
           tooltip-format = ''
@@ -77,7 +79,7 @@ in {
         "custom/gpu" = {
           interval = 5;
           exec = mkScript {
-            script = "cat /sys/class/drm/card0/device/gpu_busy_percent";
+            script = "cat /sys/class/drm/card1/device/gpu_busy_percent";
           };
           format = "󰒋  {}%";
         };
@@ -112,18 +114,20 @@ in {
         "sway/window" = { max-length = 20; };
         network = {
           interval = 3;
-          format-wifi = "   {essid}";
-          format-ethernet = "󰈁 Connected";
+          format-wifi = "";
+          format-ethernet = "󰈁";
           format-disconnected = "";
           tooltip-format = ''
             {ifname}
             {ipaddr}/{cidr}
+            {essid}
             Up: {bandwidthUpBits}
             Down: {bandwidthDownBits}'';
         };
         "custom/menu" = {
           interval = 1;
           return-type = "json";
+          on-click = "${lib.getExe config.programs.rofi.launcherScript}";
           exec = mkScriptJson {
             deps = lib.optional hyprlandCfg.enable hyprlandCfg.package;
             text = "";
@@ -140,6 +144,7 @@ in {
           exec = mkScript { script = ''echo "$USER@$HOSTNAME"''; };
           on-click = mkScript { script = "systemctl --user restart waybar"; };
         };
+
         "custom/unread-mail" = {
           interval = 5;
           return-type = "json";
