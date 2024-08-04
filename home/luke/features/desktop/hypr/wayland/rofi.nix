@@ -14,8 +14,8 @@ in {
       background:     #${rmHash colors.surface}FF;
       background-alt: #${rmHash colors.surface_variant}FF;
       foreground:     #${rmHash colors.on_surface}FF;
-      selected:       #${rmHash colors.primary_container}FF;
-      active:         #${rmHash colors.primary_container}FF;
+      selected:       #${rmHash colors.primary}FF;
+      active:         #${rmHash colors.secondary}FF;
       urgent:         #${rmHash colors.error_container}FF;
     '';
     enableLauncher = true;
