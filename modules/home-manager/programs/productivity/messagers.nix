@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.programs.messager;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.programs.messager;
 in {
   options.programs.messager = {
     whatsapp = {
@@ -81,11 +86,11 @@ in {
     };
   };
 
-  config.home.packages = (lib.optional cfg.whatsapp.enable cfg.whatsapp.package
+  config.home.packages =
+    lib.optional cfg.whatsapp.enable cfg.whatsapp.package
     ++ lib.optional cfg.signal.enable cfg.signal.package
     ++ lib.optional cfg.slack.enable cfg.slack.package
     ++ lib.optional cfg.element.enable cfg.element.package
     ++ lib.optional cfg.webex.enable cfg.webex.package
-    ++ lib.optional cfg.teams.enable cfg.teams.package);
+    ++ lib.optional cfg.teams.enable cfg.teams.package;
 }
-

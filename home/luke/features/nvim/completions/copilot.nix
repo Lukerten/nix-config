@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.neovim.plugins = with pkgs.vimPlugins; [
     {
       plugin = copilot-vim;
       type = "lua";
-      config = # lua
+      config =
+        # lua
         ''
           require("copilot").setup()
 
@@ -15,7 +16,8 @@
     {
       plugin = CopilotChat-nvim;
       type = "lua";
-      config = # lua
+      config =
+        # lua
         ''
           require("CopilotChat").setup({
             window = {
@@ -64,5 +66,5 @@
   ];
 
   # Copilot requires an executeable version of node to be installed
-  home.packages = [ pkgs.nodejs-slim ];
+  home.packages = [pkgs.nodejs-slim];
 }

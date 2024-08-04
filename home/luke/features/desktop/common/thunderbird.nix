@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   defaultSettings = {
     "general.useragent.locale" = "de-DE";
     "mail.server.default.check_all_folders_for_new" = true;
@@ -8,11 +11,11 @@ let
     "privacy.donottrackheader.enabled" = true;
   };
 
-  defaultUserContent = # css
+  defaultUserContent =
+    # css
     ''
       *{scrollbar-width: none !important;}
     '';
-
 in {
   programs.thunderbird = {
     enable = true;

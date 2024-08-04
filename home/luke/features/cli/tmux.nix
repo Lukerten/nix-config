@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     plugins = with pkgs.tmuxPlugins; [
@@ -7,7 +7,6 @@
       open
       urlview
       better-mouse-mode
-
     ];
     package = pkgs.tmux;
     clock24 = true;
@@ -54,7 +53,7 @@
       icon = "utilities-terminal";
       terminal = true;
       type = "Application";
-      categories = [ "System" "Utility" "TerminalEmulator" ];
+      categories = ["System" "Utility" "TerminalEmulator"];
     };
   };
 }

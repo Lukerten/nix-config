@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  imports = [ ./lspconfig.nix ./null-ls.nix ./trouble.nix];
+{pkgs, ...}: {
+  imports = [./lspconfig.nix ./null-ls.nix ./trouble.nix];
 
   programs.neovim.plugins = [
     pkgs.vimPlugins.lspkind-nvim

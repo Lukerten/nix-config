@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   gx-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "gx-nvim";
     src = pkgs.fetchFromGitHub {
@@ -10,16 +9,19 @@ let
     };
   };
 
-  gx-config = # lua
+  gx-config =
+    # lua
     ''
       require('gx').setup{}
       vim.keymap.set("n", "<space>b", ":Browse<cr>", default_opts("Browse Selection"))
       vim.keymap.set("v", "<space>b", ":Browse<cr>", default_opts("Browse Selection"))
     '';
 in {
-  programs.neovim.plugins = [{
-    plugin = gx-nvim;
-    type = "lua";
-    config = gx-config;
-  }];
+  programs.neovim.plugins = [
+    {
+      plugin = gx-nvim;
+      type = "lua";
+      config = gx-config;
+    }
+  ];
 }

@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.programs.office;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.programs.office;
 in {
   options.programs.office = {
     enable = lib.mkEnableOption "office";
@@ -10,5 +15,5 @@ in {
       description = "The Office package to use.";
     };
   };
-  config = lib.mkIf cfg.enable { home.packages = [ cfg.package ]; };
+  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
 }

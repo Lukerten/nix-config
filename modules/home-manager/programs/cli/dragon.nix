@@ -1,5 +1,10 @@
-{ lib, config, pkgs, ... }:
-let cfg = config.programs.dragon;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.programs.dragon;
 in {
   options.programs.dragon = {
     enable = lib.mkEnableOption "dragon";
@@ -10,5 +15,5 @@ in {
       description = "The dragon package";
     };
   };
-  config = lib.mkIf cfg.enable { home.packages = [ cfg.package ]; };
+  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
 }

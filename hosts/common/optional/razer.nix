@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   hardware.openrazer = {
     enable = true;
-    users = [ "luke" "root" ];
+    users = ["luke" "root"];
     devicesOffOnScreensaver = false;
   };
   environment.systemPackages = with pkgs; [

@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.programs.gimp;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.programs.gimp;
 in {
   options.programs.gimp = {
     enable = lib.mkEnableOption "gimp";
@@ -10,5 +15,5 @@ in {
       description = "The Gimp package to use.";
     };
   };
-  config = lib.mkIf cfg.enable { home.packages = [ cfg.package ]; };
+  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
 }

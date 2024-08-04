@@ -1,4 +1,7 @@
-{ writeShellScriptBin, opensc, }:
+{
+  writeShellScriptBin,
+  opensc,
+}:
 writeShellScriptBin "cm4all-vpn" ''
   #!/bin/bash
   OVPN_VERB=0

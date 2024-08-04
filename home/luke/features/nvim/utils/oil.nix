@@ -1,6 +1,6 @@
-{ pkgs, ... }:
-let
-  oil-config = # lua
+{pkgs, ...}: let
+  oil-config =
+    # lua
     ''
       require('oil').setup{
         buf_options = {
@@ -27,9 +27,11 @@ let
       vim.keymap.set("n", "<space>n", "<cmd>Oil<CR>", default_opts("create new Files"))
     '';
 in {
-  programs.neovim.plugins = [{
-    plugin = pkgs.vimPlugins.oil-nvim;
-    type = "lua";
-    config = oil-config;
-  }];
+  programs.neovim.plugins = [
+    {
+      plugin = pkgs.vimPlugins.oil-nvim;
+      type = "lua";
+      config = oil-config;
+    }
+  ];
 }

@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.programs.rofi;
   rofi-specialisation = pkgs.writeShellScriptBin "rofi-specialisation" ''
     specialisation $(specialisation | rofi -dmenu -theme $HOME/.config/rofi/specialisation.rasi)
@@ -14,7 +18,7 @@ in {
   };
 
   config = lib.mkIf cfg.enableLauncher {
-    home.packages = [ cfg.specialisationScript ];
+    home.packages = [cfg.specialisationScript];
     xdg.configFile."rofi/specialisation.rasi".source = ./specialisation.rasi;
   };
 }

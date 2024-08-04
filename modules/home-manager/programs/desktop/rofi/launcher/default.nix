@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.programs.rofi;
   rofi-menu = pkgs.writeShellScriptBin "rofi-menu" ''
     rofi \
@@ -16,7 +20,7 @@ in {
   };
 
   config = lib.mkIf cfg.enableLauncher {
-    home.packages = [ cfg.launcherScript ];
+    home.packages = [cfg.launcherScript];
     xdg.configFile."rofi/launcher.rasi".source = ./launcher.rasi;
   };
 }

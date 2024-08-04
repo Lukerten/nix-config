@@ -1,12 +1,17 @@
-{ config, pkgs, lib, ... }:
-let inherit (config.colorscheme) colors;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (config.colorscheme) colors;
 in {
   programs.qutebrowser = {
     enable = true;
     loadAutoconfig = true;
     settings = {
       downloads.open_dispatcher = "${lib.getExe pkgs.handlr-regex} open {}";
-      editor.command = [ "${lib.getExe pkgs.handlr-regex}" "open" "{file}" ];
+      editor.command = ["${lib.getExe pkgs.handlr-regex}" "open" "{file}"];
       tabs = {
         show = "multiple";
         position = "left";

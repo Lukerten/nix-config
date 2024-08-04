@@ -1,8 +1,13 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   c = config.colorscheme.colors;
   cfg = config.programs.discord;
-  customCSS = # css
+  customCSS =
+    # css
     ''
       @import url("https://slowstab.github.io/dracula/BetterDiscord/source.css");
       @import url("https://mulverinex.github.io/legacy-settings-icons/dist-native.css");
@@ -51,8 +56,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
     xdg.configFile."vesktop/themes/base16.css".text = customCSS;
   };
 }
-

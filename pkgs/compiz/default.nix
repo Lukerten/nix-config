@@ -1,19 +1,39 @@
-{ stdenv, fetchurl, lib, cmake, pkg-config, makeWrapper, boost, cairo, fuse
-, glibmm, gnome, intltool, libnotify, libstartup_notification, libwnck3, libxml2
-, libxslt, mesa_glu, pcre2, protobuf, python3Packages, xorg, xorgserver, ... }:
+{
+  stdenv,
+  fetchurl,
+  lib,
+  cmake,
+  pkg-config,
+  makeWrapper,
+  boost,
+  cairo,
+  fuse,
+  glibmm,
+  gnome,
+  intltool,
+  libnotify,
+  libstartup_notification,
+  libwnck3,
+  libxml2,
+  libxslt,
+  mesa_glu,
+  pcre2,
+  protobuf,
+  python3Packages,
+  xorg,
+  xorgserver,
+  ...
+}:
 stdenv.mkDerivation (f: {
   pname = "compiz";
   version = "0.9.14.2";
-  shortVersion =
-    "${lib.versions.majorMinor f.version}.${lib.versions.patch f.version}";
+  shortVersion = "${lib.versions.majorMinor f.version}.${lib.versions.patch f.version}";
   src = fetchurl {
-    url =
-      "https://launchpad.net/compiz/${f.shortVersion}/${f.version}/+download/compiz-${f.version}.tar.xz";
+    url = "https://launchpad.net/compiz/${f.shortVersion}/${f.version}/+download/compiz-${f.version}.tar.xz";
     hash = "sha256-z6Bh6TsDInX/nnBB9YKo9tWuJxz4qJ5rx049NjWZnTw=";
   };
 
-  nativeBuildInputs =
-    [ cmake pkg-config makeWrapper xorg.libXdmcp.dev pcre2.dev libxml2.dev ];
+  nativeBuildInputs = [cmake pkg-config makeWrapper xorg.libXdmcp.dev pcre2.dev libxml2.dev];
   buildInputs = [
     boost
     cairo

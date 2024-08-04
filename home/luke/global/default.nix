@@ -1,5 +1,13 @@
-{ inputs, lib, pkgs, config, outputs, ... }: {
-  imports = [ ../features/cli ../features/nvim ]
+{
+  inputs,
+  lib,
+  pkgs,
+  config,
+  outputs,
+  ...
+}: {
+  imports =
+    [../features/cli ../features/nvim]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
   # Nixpkgs
@@ -14,8 +22,7 @@
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      experimental-features =
-        [ "nix-command" "flakes" "repl-flake" "ca-derivations" ];
+      experimental-features = ["nix-command" "flakes" "repl-flake" "ca-derivations"];
       warn-dirty = false;
     };
   };
@@ -31,8 +38,8 @@
     username = lib.mkDefault "luke";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "23.11";
-    sessionPath = [ "$HOME/.local/bin" ];
-    sessionVariables = { FLAKE = "$HOME/Documents/NixConfig"; };
+    sessionPath = ["$HOME/.local/bin"];
+    sessionVariables = {FLAKE = "$HOME/Documents/NixConfig";};
   };
 
   colorscheme.mode = lib.mkOverride 1499 "dark";
@@ -88,5 +95,5 @@
       fi
       ${lib.getExe specialisation} "$theme"
     '';
-  in [ specialisation toggle-theme ];
+  in [specialisation toggle-theme];
 }

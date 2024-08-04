@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
@@ -29,7 +33,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    binfmt.emulatedSystems = ["aarch64-linux" "i686-linux"];
   };
 
   # Intel Config
@@ -38,7 +42,7 @@
     graphics.enable = true;
   };
 
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
 
   services.hardware.openrgb.enable = true;
   programs = {

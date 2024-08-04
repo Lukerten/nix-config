@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   steam-with-pkgs = pkgs.steam.override {
     extraPkgs = pkgs:
       with pkgs; [
@@ -31,15 +35,16 @@ let
       "--hdr-enabled"
       "--steam"
     ];
-    steam = lib.concatStringsSep " " [ "steam" "steam://open/bigpicture" ];
-  in pkgs.writeTextDir "share/wayland-sessions/steam-sesson.desktop" # ini
-
-  ''
-    [Desktop Entry]
-    Name=Steam Session
-    Exec=${gamescope} -- ${steam}
-    Type=Application
-  '';
+    steam = lib.concatStringsSep " " ["steam" "steam://open/bigpicture"];
+  in
+    pkgs.writeTextDir "share/wayland-sessions/steam-sesson.desktop" # ini
+    
+    ''
+      [Desktop Entry]
+      Name=Steam Session
+      Exec=${gamescope} -- ${steam}
+      Type=Application
+    '';
 in {
   home.packages = with pkgs; [
     steam-with-pkgs

@@ -1,5 +1,4 @@
-scheme:
-let
+scheme: let
   c = scheme.colors // scheme.harmonized;
   hash = builtins.hashString "md5" (builtins.toJSON scheme.colors);
   # vim

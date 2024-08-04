@@ -1,11 +1,15 @@
-{ pkgs, config, lib, ... }: {
-  imports =
-    [ ./completions ./core ./lsp ./treesitter ./telescope ./utils ./visuals ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
+  imports = [./completions ./core ./lsp ./treesitter ./telescope ./utils ./visuals];
 
   home.sessionVariables.EDITOR = "nvim";
-  home.packages = with pkgs; [ lazygit xclip ];
+  home.packages = with pkgs; [lazygit xclip];
 
-  programs.neovim = { enable = true; };
+  programs.neovim = {enable = true;};
 
   xdg = {
     desktopEntries = {
@@ -35,10 +39,10 @@
         ];
         terminal = true;
         type = "Application";
-        categories = [ "Utility" "TextEditor" ];
+        categories = ["Utility" "TextEditor"];
       };
     };
 
-    mimeApps.defaultApplications = { "text/plain" = [ "nvim.desktop" ]; };
+    mimeApps.defaultApplications = {"text/plain" = ["nvim.desktop"];};
   };
 }

@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     # hardware configuration
     inputs.hardware.nixosModules.common-cpu-amd
@@ -35,7 +39,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    binfmt.emulatedSystems = ["aarch64-linux" "i686-linux"];
   };
 
   hardware = {

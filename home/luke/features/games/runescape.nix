@@ -1,10 +1,11 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   # Add PULSE_LATENCY_MSEC to .desktop file
   pulse_latency = 100;
   runescape = pkgs.runescape.overrideAttrs (oa: {
-    nativeBuildInputs = (oa.nativeBuildInputs or [ ]) ++ [ pkgs.makeWrapper ];
-    buildCommand = (oa.buildCommand or "") +
+    nativeBuildInputs = (oa.nativeBuildInputs or []) ++ [pkgs.makeWrapper];
+    buildCommand =
+      (oa.buildCommand or "")
+      +
       # bash
       ''
         wrapProgram "$out/bin/RuneScape" \
@@ -12,4 +13,4 @@ let
           --run 'echo $PULSE_LATENCY_MSEC'
       '';
   });
-in { home.packages = [ runescape ]; }
+in {home.packages = [runescape];}

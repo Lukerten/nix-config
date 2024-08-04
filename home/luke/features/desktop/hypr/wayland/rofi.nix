@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (config.colorscheme) colors;
   rmHash = lib.removePrefix "#";
 in {

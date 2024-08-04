@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./gammastep.nix
     ./imv.nix
@@ -13,7 +13,7 @@
   ];
 
   xdg.mimeApps.enable = true;
-  home.packages = with pkgs; [ wf-recorder wl-clipboard ];
+  home.packages = with pkgs; [wf-recorder wl-clipboard];
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
@@ -25,5 +25,5 @@
     XDG_SESSION_TYPE = "wayland";
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-wlr];
 }

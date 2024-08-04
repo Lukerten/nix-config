@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.system.hydraAutoUpgrade;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.system.hydraAutoUpgrade;
 in {
   options = {
     system.hydraAutoUpgrade = {
       enable = lib.mkEnableOption "periodic hydra-based auto upgrade";
       operation = lib.mkOption {
-        type = lib.types.enum [ "switch" "boot" ];
+        type = lib.types.enum ["switch" "boot"];
         default = "switch";
       };
       dates = lib.mkOption {
@@ -45,12 +50,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [{
-      assertion = cfg.enable -> !config.system.autoUpgrade.enable;
-      message = ''
-        hydraAutoUpgrade and autoUpgrade are mutually exclusive.
-      '';
-    }];
+    assertions = [
+      {
+        assertion = cfg.enable -> !config.system.autoUpgrade.enable;
+        message = ''
+          hydraAutoUpgrade and autoUpgrade are mutually exclusive.
+        '';
+      }
+    ];
     systemd.services.nixos-upgrade = {
       description = "NixOS Upgrade";
       restartIfChanged = false;
@@ -70,52 +77,52 @@ in {
       ];
 
       script = let
-        evalUrl =
-          "${cfg.instance}/jobset/${cfg.project}/${cfg.jobset}/latest-eval";
-        buildUrl =
-          "${cfg.instance}/job/${cfg.project}/${cfg.jobset}/${cfg.job}/latest";
-      in (lib.optionalString (cfg.oldFlakeRef != null) ''
-        flake="$(curl -sLH 'accept: application/json' ${evalUrl} | jq -r '.flake')"
-        echo "New flake: $flake" >&2
-        new="$(nix flake metadata "$flake" --json | jq -r '.lastModified')"
-        echo "Modified at: $(date -d @$new)" >&2
+        evalUrl = "${cfg.instance}/jobset/${cfg.project}/${cfg.jobset}/latest-eval";
+        buildUrl = "${cfg.instance}/job/${cfg.project}/${cfg.jobset}/${cfg.job}/latest";
+      in
+        (lib.optionalString (cfg.oldFlakeRef != null) ''
+          flake="$(curl -sLH 'accept: application/json' ${evalUrl} | jq -r '.flake')"
+          echo "New flake: $flake" >&2
+          new="$(nix flake metadata "$flake" --json | jq -r '.lastModified')"
+          echo "Modified at: $(date -d @$new)" >&2
 
-        echo "Current flake: ${cfg.oldFlakeRef}" >&2
-        current="$(nix flake metadata "${cfg.oldFlakeRef}" --json | jq -r '.lastModified')"
-        echo "Modified at: $(date -d @$current)" >&2
+          echo "Current flake: ${cfg.oldFlakeRef}" >&2
+          current="$(nix flake metadata "${cfg.oldFlakeRef}" --json | jq -r '.lastModified')"
+          echo "Modified at: $(date -d @$current)" >&2
 
-        if [ "$new" -le "$current" ]; then
-          echo "Skipping upgrade, not newer" >&2
-          exit 0
-        fi
-      '') + ''
-        profile="/nix/var/nix/profiles/system"
-        path="$(curl -sLH 'accept: application/json' ${buildUrl} | jq -r '.buildoutputs.out.path')"
+          if [ "$new" -le "$current" ]; then
+            echo "Skipping upgrade, not newer" >&2
+            exit 0
+          fi
+        '')
+        + ''
+          profile="/nix/var/nix/profiles/system"
+          path="$(curl -sLH 'accept: application/json' ${buildUrl} | jq -r '.buildoutputs.out.path')"
 
-        if [ "$(readlink -f "$profile")" = "$path" ]; then
-          echo "Already up to date" >&2
-          exit 0
-        fi
+          if [ "$(readlink -f "$profile")" = "$path" ]; then
+            echo "Already up to date" >&2
+            exit 0
+          fi
 
-        echo "Building $path" >&2
-        nix build --no-link "$path"
+          echo "Building $path" >&2
+          nix build --no-link "$path"
 
-        echo "Comparing changes" >&2
-        nvd --color=always diff "$profile" "$path"
+          echo "Comparing changes" >&2
+          nvd --color=always diff "$profile" "$path"
 
-        echo "Activating configuration" >&2
-        "$path/bin/switch-to-configuration" test
+          echo "Activating configuration" >&2
+          "$path/bin/switch-to-configuration" test
 
-        echo "Setting profile" >&2
-        nix build --no-link --profile "$profile" "$path"
+          echo "Setting profile" >&2
+          nix build --no-link --profile "$profile" "$path"
 
-        echo "Adding to bootloader" >&2
-        "$path/bin/switch-to-configuration" boot
-      '';
+          echo "Adding to bootloader" >&2
+          "$path/bin/switch-to-configuration" boot
+        '';
 
       startAt = cfg.dates;
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
     };
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.discord.enable = true;
 
   services.arrpc = {

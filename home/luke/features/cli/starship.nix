@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.starship = {
     enable = true;
     settings = {
@@ -33,7 +37,7 @@
         repeat = true;
         disabled = false;
       };
-      cmd_duration = { format = "took [$duration]($style) "; };
+      cmd_duration = {format = "took [$duration]($style) ";};
 
       directory = {
         format = "[$path]($style)( [$read_only]($read_only_style)) ";
@@ -45,18 +49,18 @@
         style = "bold red";
       };
       custom = {
-        nix_inspect =
-          let excluded = [ "kitty" "imagemagick" "ncurses" "user-environment" ];
-          in {
-            disabled = false;
-            when = "test -z $IN_NIX_SHELL";
-            command = "${(lib.getExe pkgs.nix-inspect)} ${
-                (lib.concatStringsSep " " excluded)
-              }";
-            format = "[($output <- )$symbol]($style) ";
-            symbol = " ";
-            style = "bold blue";
-          };
+        nix_inspect = let
+          excluded = ["kitty" "imagemagick" "ncurses" "user-environment"];
+        in {
+          disabled = false;
+          when = "test -z $IN_NIX_SHELL";
+          command = "${(lib.getExe pkgs.nix-inspect)} ${
+            (lib.concatStringsSep " " excluded)
+          }";
+          format = "[($output <- )$symbol]($style) ";
+          symbol = " ";
+          style = "bold blue";
+        };
       };
 
       character = {
@@ -77,7 +81,7 @@
       gcloud = {
         format = "on [$symbol$active(/$project)(\\($region\\))]($style)";
       };
-      aws = { format = "on [$symbol$profile(\\($region\\))]($style)"; };
+      aws = {format = "on [$symbol$profile(\\($region\\))]($style)";};
 
       # Icon changes only \/
       aws.symbol = "  ";

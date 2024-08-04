@@ -1,5 +1,10 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.cm4all-vpn;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.programs.cm4all-vpn;
 in {
   options.programs.cm4all-vpn = {
     enable = lib.mkEnableOption "Enable the cm4all-vpn utils";

@@ -1,15 +1,18 @@
-{ pkgs }: {
-  gzipJson = { }: {
+{pkgs}: {
+  gzipJson = {}: {
     generate = name: value:
-      pkgs.callPackage ({ runCommand, gzip, }:
+      pkgs.callPackage ({
+        runCommand,
+        gzip,
+      }:
         runCommand name {
-          nativeBuildInputs = [ gzip ];
+          nativeBuildInputs = [gzip];
           value = builtins.toJSON value;
-          passAsFile = [ "value" ];
+          passAsFile = ["value"];
         } ''
           gzip "$valuePath" -c > "$out"
-        '') { };
+        '') {};
 
-    type = (pkgs.formats.json { }).type;
+    type = (pkgs.formats.json {}).type;
   };
 }

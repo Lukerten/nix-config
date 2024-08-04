@@ -1,19 +1,28 @@
-{ config, pkgs, lib, outputs, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  outputs,
+  ...
+}: let
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 
-  hyprbars = (pkgs.hyprbars.override {
-    hyprland = config.wayland.windowManager.hyprland.package;
-  }).overrideAttrs (old: {
-    # Yeet the initialization notification (I hate it)
-    postPatch = (old.postPatch or "") + ''
-      ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
-    '';
-  });
+  hyprbars =
+    (pkgs.hyprbars.override {
+      hyprland = config.wayland.windowManager.hyprland.package;
+    })
+    .overrideAttrs (old: {
+      # Yeet the initialization notification (I hate it)
+      postPatch =
+        (old.postPatch or "")
+        + ''
+          ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
+        '';
+    });
 in {
   wayland.windowManager.hyprland = {
-    plugins = [ hyprbars ];
+    plugins = [hyprbars];
     settings = {
       "plugin:hyprbars" = {
         bar_height = 25;
@@ -31,10 +40,8 @@ in {
           isOnSpecial = ''
             hyprctl activewindow -j | jq -re 'select(.workspace.name == "special")' >/dev/null'';
           moveToSpecial = "hyprctl dispatch movetoworkspacesilent special";
-          moveToActive =
-            "hyprctl dispatch movetoworkspacesilent name:$(hyprctl -j activeworkspace | jq -re '.name')";
-          minimizeAction =
-            "${isOnSpecial} && ${moveToActive} || ${moveToSpecial}";
+          moveToActive = "hyprctl dispatch movetoworkspacesilent name:$(hyprctl -j activeworkspace | jq -re '.name')";
+          minimizeAction = "${isOnSpecial} && ${moveToActive} || ${moveToSpecial}";
           maximizeAction = "hyprctl dispatch fullscreen 1";
         in [
           "${rgb config.colorscheme.harmonized.red},12,,${closeAction}"

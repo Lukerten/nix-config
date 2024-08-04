@@ -1,8 +1,8 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   kommentary-nvim = pkgs.vimPlugins.kommentary;
 
-  kommentary-config = # lua
+  kommentary-config =
+    # lua
     ''
       require("kommentary.config").configure_language("default", {
         prefer_single_line_comments = true,
@@ -11,9 +11,11 @@ let
       })
     '';
 in {
-  programs.neovim.plugins = [{
-    plugin = kommentary-nvim;
-    type = "lua";
-    config = kommentary-config;
-  }];
+  programs.neovim.plugins = [
+    {
+      plugin = kommentary-nvim;
+      type = "lua";
+      config = kommentary-config;
+    }
+  ];
 }

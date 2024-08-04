@@ -1,8 +1,14 @@
-{ pkgs, config, lib, ... }:
-let color = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  color = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
 in {
   xdg.configFile."nvim/color.vim".source = color;
-  programs.neovim.extraConfig = # vim
+  programs.neovim.extraConfig =
+    # vim
     ''
         "Use system clipboard
         set clipboard=unnamedplus
@@ -44,7 +50,8 @@ in {
       set nowrap
     '';
 
-  programs.neovim.extraLuaConfig = # lua
+  programs.neovim.extraLuaConfig =
+    # lua
     ''
       function add_sign(name, text)
         vim.fn.sign_define(name, { text = text, texthl = name, numhl = name})
@@ -81,7 +88,8 @@ in {
     {
       plugin = nvim-autopairs;
       type = "lua";
-      config = # lua
+      config =
+        # lua
         ''
           require('nvim-autopairs').setup{}
         '';

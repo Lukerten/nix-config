@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./dap.nix
     ./gitsigns.nix
@@ -16,7 +16,8 @@
     {
       plugin = vim-bbye;
       type = "lua";
-      config = # lua
+      config =
+        # lua
         ''
           vim.keymap.set("n", "<C-d>", "<cmd>Bdelete<cr>", {desc="Close buffer"});
         '';
@@ -24,7 +25,8 @@
     {
       plugin = todo-comments-nvim;
       type = "lua";
-      config = # lua
+      config =
+        # lua
         ''
           require("todo-comments").setup {}
         '';
@@ -73,7 +75,8 @@
     {
       plugin = noice-nvim;
       type = "lua";
-      config = # lua
+      config =
+        # lua
         ''
           require("noice").setup({
             lsp = {

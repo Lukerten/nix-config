@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.programs.blender;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.programs.blender;
 in {
   options.programs.blender = {
     enable = lib.mkEnableOption "blender";
@@ -10,6 +15,5 @@ in {
       description = "The Blender package to use.";
     };
   };
-  config = lib.mkIf cfg.enable { home.packages = [ cfg.package ]; };
+  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
 }
-

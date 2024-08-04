@@ -1,4 +1,9 @@
-{ stdenv, logo ? null, lib, ... }:
+{
+  stdenv,
+  logo ? null,
+  lib,
+  ...
+}:
 stdenv.mkDerivation {
   pname = "plymouth-spinner-monochrome";
   version = "1.0";
@@ -12,5 +17,5 @@ stdenv.mkDerivation {
     cp -rT . $out/share/plymouth/themes/spinner-monochrome
   '';
 
-  meta = { platforms = lib.platforms.all; };
+  meta = {platforms = lib.platforms.all;};
 }

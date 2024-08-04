@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
-  programs.wireshark = { enable = true; };
-  environment.systemPackages = with pkgs; [ wireshark ];
+{pkgs, ...}: {
+  programs.wireshark = {enable = true;};
+  environment.systemPackages = with pkgs; [wireshark];
 }

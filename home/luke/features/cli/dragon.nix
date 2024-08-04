@@ -1,1 +1,1 @@
-{ programs.dragon.enable = true; }
+{programs.dragon.enable = true;}

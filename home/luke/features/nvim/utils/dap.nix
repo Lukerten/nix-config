@@ -1,6 +1,6 @@
-{ pkgs, ... }:
-let
-  dap-config = # lua
+{pkgs, ...}: let
+  dap-config =
+    # lua
     ''
       local dap = require('dap')
 
@@ -32,7 +32,8 @@ let
       vim.keymap.set("n", "<space>Dbl", set_dap_logpoint, default_opts("Set logpoint"))
     '';
 
-  dapui-config = # lua
+  dapui-config =
+    # lua
     ''
       local dapui = require('dapui')
 
@@ -52,7 +53,6 @@ let
         dapui.close()
       end
     '';
-
 in {
   programs.neovim.plugins = [
     pkgs.vimPlugins.nvim-dap-virtual-text

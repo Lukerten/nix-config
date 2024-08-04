@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
-let
+{
+  pkgs,
+  config,
+  ...
+}: let
   color = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
   reloadNvim = ''
     XDG_RUNTIME_DIR=''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
@@ -8,11 +11,12 @@ let
     done
   '';
 in {
-  imports = [ ./autocmd.nix ./core.nix ];
+  imports = [./autocmd.nix ./core.nix];
 
   xdg.configFile."nvim/color.vim".source = color;
   xdg.configFile."nvim/color.vim".onChange = reloadNvim;
-  programs.neovim.extraConfig = # vim
+  programs.neovim.extraConfig =
+    # vim
     ''
       "Source colorscheme
       source ${color}

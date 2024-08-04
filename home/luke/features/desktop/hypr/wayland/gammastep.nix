@@ -1,6 +1,5 @@
-{ pkgs, ... }: {
-
-  home.packages = with pkgs; [ brightnessctl ];
+{pkgs, ...}: {
+  home.packages = with pkgs; [brightnessctl];
 
   services.gammastep = {
     enable = true;
@@ -10,6 +9,6 @@
       day = 6000;
       night = 4600;
     };
-    settings = { general.adjustment-method = "wayland"; };
+    settings = {general.adjustment-method = "wayland";};
   };
 }

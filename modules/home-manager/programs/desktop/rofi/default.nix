@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.programs.rofi;
 
   default-theme = ''
@@ -19,7 +23,7 @@ in {
     };
   };
 
-  imports = [ ./launcher ./clipper ./specialization ];
+  imports = [./launcher ./clipper ./specialization];
 
   config = lib.mkIf cfg.enable {
     xdg.configFile."rofi/shared/colors.rasi".text = ''
@@ -29,4 +33,3 @@ in {
     '';
   };
 }
-

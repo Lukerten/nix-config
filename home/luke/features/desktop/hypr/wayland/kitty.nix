@@ -1,9 +1,9 @@
-{ config, ... }:
-let inherit (config.colorscheme) colors harmonized;
+{config, ...}: let
+  inherit (config.colorscheme) colors harmonized;
 in {
   xdg.mimeApps = {
-    associations.added = { "x-scheme-handler/terminal" = "kitty.desktop"; };
-    defaultApplications = { "x-scheme-handler/terminal" = "kitty.desktop"; };
+    associations.added = {"x-scheme-handler/terminal" = "kitty.desktop";};
+    defaultApplications = {"x-scheme-handler/terminal" = "kitty.desktop";};
   };
   programs.kitty = {
     enable = true;

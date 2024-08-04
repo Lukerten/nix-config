@@ -1,5 +1,6 @@
 {
-  programs.neovim.extraConfig = # vim
+  programs.neovim.extraConfig =
+    # vim
     ''
       "AutoClose Terminal
       augroup AutoCloseTerminal

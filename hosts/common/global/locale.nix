@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   time.timeZone = lib.mkDefault "Europe/Berlin";
 
   i18n = {

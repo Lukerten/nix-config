@@ -1,5 +1,11 @@
-{ outputs, config, lib, pkgs, inputs, ... }:
-let
+{
+  outputs,
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
   # Dependencies
   cat = "${pkgs.coreutils}/bin/cat";
   cut = "${pkgs.coreutils}/bin/cut";
@@ -20,22 +26,26 @@ let
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
 
   # Function to simplify making waybar outputs
-  jsonOutput = name:
-    { pre ? "", text ? "", tooltip ? "", alt ? "", class ? "", percentage ? "",
-    }:
-    "${
-      pkgs.writeShellScriptBin "waybar-${name}" ''
-        set -euo pipefail
-        ${pre}
-        ${jq} -cn \
-          --arg text "${text}" \
-          --arg tooltip "${tooltip}" \
-          --arg alt "${alt}" \
-          --arg class "${class}" \
-          --arg percentage "${percentage}" \
-          '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
-      ''
-    }/bin/waybar-${name}";
+  jsonOutput = name: {
+    pre ? "",
+    text ? "",
+    tooltip ? "",
+    alt ? "",
+    class ? "",
+    percentage ? "",
+  }: "${
+    pkgs.writeShellScriptBin "waybar-${name}" ''
+      set -euo pipefail
+      ${pre}
+      ${jq} -cn \
+        --arg text "${text}" \
+        --arg tooltip "${tooltip}" \
+        --arg alt "${alt}" \
+        --arg class "${class}" \
+        --arg percentage "${percentage}" \
+        '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
+    ''
+  }/bin/waybar-${name}";
 
   hasSway = config.wayland.windowManager.sway.enable;
   sway = config.wayland.windowManager.sway.package;
@@ -43,11 +53,11 @@ let
   hyprland = config.wayland.windowManager.hyprland.package;
 in {
   # Let it try to start a few more times
-  systemd.user.services.waybar = { Unit.StartLimitBurst = 30; };
+  systemd.user.services.waybar = {Unit.StartLimitBurst = 30;};
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
+      mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
     });
     systemd.enable = true;
     settings = {
@@ -57,14 +67,16 @@ in {
         height = 40;
         margin = "6";
         position = "top";
-        modules-left = [ "custom/menu" ]
-          ++ (lib.optionals hasSway [ "sway/workspaces" "sway/mode" ])
+        modules-left =
+          ["custom/menu"]
+          ++ (lib.optionals hasSway ["sway/workspaces" "sway/mode"])
           ++ (lib.optionals hasHyprland [
             "hyprland/workspaces"
             "hyprland/submap"
-          ]) ++ [ "custom/currentplayer" "custom/player" ];
+          ])
+          ++ ["custom/currentplayer" "custom/player"];
 
-        modules-center = [ "clock" "custom/unread-mail" "custom/gpg-agent" ];
+        modules-center = ["clock" "custom/unread-mail" "custom/gpg-agent"];
 
         modules-right = [
           # "custom/gammastep" TODO: currently broken for some reason
@@ -89,7 +101,7 @@ in {
             <tt><small>{calendar}</small></tt>'';
         };
 
-        cpu = { format = "  {usage}%"; };
+        cpu = {format = "  {usage}%";};
         "custom/gpu" = {
           interval = 5;
           exec = "${cat} /sys/class/drm/card1/device/gpu_busy_percent";
@@ -107,7 +119,7 @@ in {
             headphone = "󰋋";
             headset = "󰋎";
             portable = "";
-            default = [ " " " " " " ];
+            default = [" " " " " "];
           };
           on-click = pavucontrol;
         };
@@ -121,12 +133,12 @@ in {
         battery = {
           bat = "BAT1";
           interval = 10;
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           onclick = "";
         };
-        "sway/window" = { max-length = 20; };
+        "sway/window" = {max-length = 20;};
         network = {
           interval = 3;
           format-wifi = "   {essid}";
@@ -147,28 +159,31 @@ in {
             hosts = attrNames outputs.nixosConfigurations;
             homeMachine = "merope";
             remoteMachine = "alcyone";
-          in jsonOutput "tailscale-ping" {
-            # Build variables for each host
-            pre = ''
-              set -o pipefail
-              ${concatStringsSep "\n" (map (host: ''
-                ping_${host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${host}="Disconnected"
-              '') hosts)}
-            '';
-            # Access a remote machine's and a home machine's ping
-            text = "  $ping_${remoteMachine} /  $ping_${homeMachine}";
-            # Show pings from all machines
-            tooltip = concatStringsSep "\n"
-              (map (host: "${host}: $ping_${host}") hosts);
-          };
+          in
+            jsonOutput "tailscale-ping" {
+              # Build variables for each host
+              pre = ''
+                set -o pipefail
+                ${concatStringsSep "\n" (map (host: ''
+                    ping_${host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${host}="Disconnected"
+                  '')
+                  hosts)}
+              '';
+              # Access a remote machine's and a home machine's ping
+              text = "  $ping_${remoteMachine} /  $ping_${homeMachine}";
+              # Show pings from all machines
+              tooltip =
+                concatStringsSep "\n"
+                (map (host: "${host}: $ping_${host}") hosts);
+            };
           format = "{}";
           on-click = "";
         };
         "custom/menu" = let
-          isFullScreen = if hasHyprland then
-            "${hyprland}/bin/hyprctl activewindow -j | ${jq} -e '.fullscreen' &>/dev/null"
-          else
-            "false";
+          isFullScreen =
+            if hasHyprland
+            then "${hyprland}/bin/hyprctl activewindow -j | ${jq} -e '.fullscreen' &>/dev/null"
+            else "false";
         in {
           interval = 1;
           return-type = "json";
@@ -183,7 +198,7 @@ in {
           on-click-middle = "${bash} $HOME/.config/rofi/powermenu.sh";
           on-click-right = lib.concatStringsSep ";" ((lib.optional hasHyprland
             "${hyprland}/bin/hyprctl dispatch togglespecialworkspace")
-            ++ (lib.optional hasSway "${sway}/bin/swaymsg scratchpad show"));
+          ++ (lib.optional hasSway "${sway}/bin/swaymsg scratchpad show"));
         };
         "custom/hostname" = {
           exec = "echo $USER@$HOSTNAME";
@@ -252,8 +267,7 @@ in {
             "active (Transition (Day)" = " ";
             "active (Transition (Daytime)" = " ";
           };
-          on-click =
-            "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
+          on-click = "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
         };
         "custom/currentplayer" = {
           interval = 2;
@@ -315,8 +329,7 @@ in {
     style = let
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
       inherit (config.colorscheme) colors harmonized;
-      toRGBA = color: opacity:
-        "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
+      toRGBA = color: opacity: "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
       # css
     in ''
       * {
@@ -391,6 +404,5 @@ in {
         margin-right: 0.55em;
       }
     '';
-
   };
 }

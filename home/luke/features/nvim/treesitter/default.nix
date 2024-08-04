@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       rust-vim
@@ -22,14 +27,17 @@
           # vim
           ''
             let g:vimtex_view_method = '${
-              if config.programs.zathura.enable then "zathura" else "general"
+              if config.programs.zathura.enable
+              then "zathura"
+              else "general"
             }'
           '';
       }
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
-        config = # lua
+        config =
+          # lua
           ''
             require('nvim-treesitter.configs').setup{
               highlight = {
@@ -38,7 +46,6 @@
               },
             }
           '';
-
       }
     ];
   };

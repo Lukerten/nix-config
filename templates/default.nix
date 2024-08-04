@@ -7,4 +7,3 @@
   rust.path = ./rust;
   wasm.path = ./wasm;
 }
-

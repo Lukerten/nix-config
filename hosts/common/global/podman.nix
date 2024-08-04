@@ -1,5 +1,9 @@
-{ config, pkgs, ... }:
-let dockerEnabled = config.virtualisation.docker.enable;
+{
+  config,
+  pkgs,
+  ...
+}: let
+  dockerEnabled = config.virtualisation.docker.enable;
 in {
   virtualisation.podman = {
     enable = true;

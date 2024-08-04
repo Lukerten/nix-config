@@ -1,5 +1,9 @@
-{ pkgs, lib, ... }: {
-  imports = [ ./copilot.nix ./snippets.nix ./vim-cmp.nix ];
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [./copilot.nix ./snippets.nix ./vim-cmp.nix];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
     otter-nvim

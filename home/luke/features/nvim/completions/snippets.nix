@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  programs.neovim.plugins = with pkgs.vimPlugins; [ vim-vsnip ];
+{pkgs, ...}: {
+  programs.neovim.plugins = with pkgs.vimPlugins; [vim-vsnip];
 }

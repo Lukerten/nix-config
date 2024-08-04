@@ -1,1 +1,1 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ prismlauncher jdk8 ]; }
+{pkgs, ...}: {home.packages = with pkgs; [prismlauncher jdk8];}

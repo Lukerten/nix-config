@@ -1,5 +1,9 @@
-{ lib, config, pkgs, ... }:
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.colorscheme;
   inherit (lib) types mkOption;
 
@@ -10,7 +14,6 @@ let
       name = lib.removePrefix prefix n;
       value = v;
     }) (lib.filterAttrs (n: _: lib.hasPrefix prefix n) attrs);
-
 in {
   options.colorscheme = {
     source = mkOption {
@@ -18,10 +21,12 @@ in {
       # TODO: generate default from hostname
       # colorFromString = c: builtins.substring 0 6 (builtins.hashString "md5" c);
       default =
-        if config.wallpaper != null then config.wallpaper else "#2B3975";
+        if config.wallpaper != null
+        then config.wallpaper
+        else "#2B3975";
     };
     mode = mkOption {
-      type = types.enum [ "dark" "light" ];
+      type = types.enum ["dark" "light"];
       default = "dark";
     };
     type = mkOption {
@@ -47,7 +52,8 @@ in {
     harmonized = mkOption {
       readOnly = true;
       type = types.attrsOf hexColor;
-      default = removeFilterPrefixAttrs "${cfg.mode}-"
+      default =
+        removeFilterPrefixAttrs "${cfg.mode}-"
         cfg.rawColorscheme.harmonized_colors;
     };
   };

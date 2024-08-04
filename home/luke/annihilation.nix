@@ -1,16 +1,22 @@
-{ pkgs, config, lib, ... }: {
-  imports =
-    [ ./global ./features/desktop/hypr ./features/pass ./features/games ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
+  imports = [./global ./features/desktop/hypr ./features/pass ./features/games];
 
   wallpaper = pkgs.wallpapers.aenami-somewhere-in-time;
 
-  monitors = [{
-    name = "eDP-1";
-    width = 2520;
-    height = 1680;
-    enabled = true;
-    x = 0;
-    primary = true;
-    workspace = "1";
-  }];
+  monitors = [
+    {
+      name = "eDP-1";
+      width = 2520;
+      height = 1680;
+      enabled = true;
+      x = 0;
+      primary = true;
+      workspace = "1";
+    }
+  ];
 }

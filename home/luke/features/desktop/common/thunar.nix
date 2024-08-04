@@ -8,11 +8,11 @@
       icon = "thunar";
       terminal = false;
       type = "Application";
-      categories = [ "Utility" "FileManager" ];
+      categories = ["Utility" "FileManager"];
     };
   };
 
   xdg.mimeApps.defaultApplications = {
-    "inode/directory" = [ "thunar.desktop" ];
+    "inode/directory" = ["thunar.desktop"];
   };
 }

@@ -1,16 +1,21 @@
-{ lib, config, pkgs, outputs, ... }:
-let
+{
+  lib,
+  config,
+  pkgs,
+  outputs,
+  ...
+}: let
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
-  imports = [ ../common ./wayland ./basic-binds.nix ./hyprbars.nix ];
+  imports = [../common ./wayland ./basic-binds.nix ./hyprbars.nix];
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
-    xdph = pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; };
+    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
   in {
-    extraPortals = [ xdph ];
-    configPackages = [ hyprland ];
+    extraPortals = [xdph];
+    configPackages = [hyprland];
   };
 
   home.packages = with pkgs; [
@@ -24,7 +29,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland.override { wrapRuntimeDeps = false; };
+    package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
     systemd = {
       enable = true;
       # Same as default, but stop graphical-session too
@@ -48,7 +53,7 @@ in {
         "col.border_inactive" = rgba config.colorscheme.colors.surface "aa";
         groupbar.font_size = 11;
       };
-      binds = { movefocus_cycles_fullscreen = false; };
+      binds = {movefocus_cycles_fullscreen = false;};
       input = {
         kb_layout = "de";
         touchpad.disable_while_typing = false;
@@ -64,8 +69,7 @@ in {
         new_window_takes_over_fullscreen = 2;
       };
       windowrulev2 = let
-        sweethome3d-tooltips =
-          "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
+        sweethome3d-tooltips = "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
         steam = "title:^()$,class:^(steam)$";
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
       in [
@@ -142,7 +146,7 @@ in {
         ];
       };
 
-      exec = [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
+      exec = ["${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"];
 
       bind = let
         wlogout = lib.getExe pkgs.wlogout;
@@ -151,96 +155,133 @@ in {
         pactl = lib.getExe' pkgs.pulseaudio "pactl";
         notify-send = lib.getExe' pkgs.libnotify "notify-send";
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
-      in [
-        # Basic binds
-        "SUPERSHIFT,e,exec,${wlogout}"
-        # Program bindings
-        "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
-        "SUPER,e,exec,${defaultApp "text/plain"}"
-        "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
-        # Brightness control (only works if the system has lightd)
-        ",XF86MonBrightnessUp,exec,light -A 10"
-        ",XF86MonBrightnessDown,exec,light -U 10"
-        # Volume
-        ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-        ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-        ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-        "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-        ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-        # Screenshotting
-        ",Print,exec,${grimblast} --notify --freeze copysave output"
-        "SUPER,Print,exec,${grimblast} --notify --freeze copysave area"
-        "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
-      ] ++ (let
-        playerctl = lib.getExe' config.services.playerctld.package "playerctl";
-        playerctld =
-          lib.getExe' config.services.playerctld.package "playerctld";
-      in lib.optionals config.services.playerctld.enable [
-        # Media control
-        ",XF86AudioNext,exec,${playerctl} next"
-        ",XF86AudioPrev,exec,${playerctl} previous"
-        ",XF86AudioPlay,exec,${playerctl} play-pause"
-        ",XF86AudioStop,exec,${playerctl} stop"
-        "ALT,XF86AudioNext,exec,${playerctld} shift"
-        "ALT,XF86AudioPrev,exec,${playerctld} unshift"
-        "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
-      ]) ++
-      # Screen lock
-      (let swaylock = lib.getExe config.programs.swaylock.package;
-      in lib.optionals config.programs.swaylock.enable [
-        ",XF86Launch5,exec,${swaylock} -S --grace 2"
-        ",XF86Launch4,exec,${swaylock} -S --grace 2"
-        "SUPER,q,exec,${swaylock} -S --grace 2"
-      ]) ++
-      # Notification manager
-      (let makoctl = lib.getExe' config.services.mako.package "makoctl";
-      in lib.optionals config.services.mako.enable [
-        "SUPER,w,exec,${makoctl} dismiss"
-        "SUPERSHIFT,w,exec,${makoctl} restore"
-      ]) ++
-      # Launcher
-      (let rofi-menu = lib.getExe config.programs.rofi.launcherScript;
-      in lib.optionals config.programs.rofi.enableLauncher
-      [ "SUPER,space,exec,${rofi-menu}" ]) ++
-      # Clipper
-      (let rofi-clipper = lib.getExe config.programs.rofi.clipperScript;
-      in lib.optionals config.programs.rofi.enableClipper
-      [ "SUPER,c,exec,${rofi-clipper}" ]) ++
-      # Specialisation menu
-      (let
-        rofi-specialisation =
-          lib.getExe config.programs.rofi.specialisationScript;
-      in lib.optionals config.programs.rofi.enableSpecialisation
-      [ "SUPER,s,exec,${rofi-specialisation}" ]);
+      in
+        [
+          # Basic binds
+          "SUPERSHIFT,e,exec,${wlogout}"
+          # Program bindings
+          "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
+          "SUPER,e,exec,${defaultApp "text/plain"}"
+          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
+          # Brightness control (only works if the system has lightd)
+          ",XF86MonBrightnessUp,exec,light -A 10"
+          ",XF86MonBrightnessDown,exec,light -U 10"
+          # Volume
+          ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+          ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+          ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+          "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+          ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+          # Screenshotting
+          ",Print,exec,${grimblast} --notify --freeze copysave output"
+          "SUPER,Print,exec,${grimblast} --notify --freeze copysave area"
+          "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
+        ]
+        ++ (let
+          playerctl = lib.getExe' config.services.playerctld.package "playerctl";
+          playerctld =
+            lib.getExe' config.services.playerctld.package "playerctld";
+        in
+          lib.optionals config.services.playerctld.enable [
+            # Media control
+            ",XF86AudioNext,exec,${playerctl} next"
+            ",XF86AudioPrev,exec,${playerctl} previous"
+            ",XF86AudioPlay,exec,${playerctl} play-pause"
+            ",XF86AudioStop,exec,${playerctl} stop"
+            "ALT,XF86AudioNext,exec,${playerctld} shift"
+            "ALT,XF86AudioPrev,exec,${playerctld} unshift"
+            "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
+          ])
+        ++
+        # Screen lock
+        (let
+          swaylock = lib.getExe config.programs.swaylock.package;
+        in
+          lib.optionals config.programs.swaylock.enable [
+            ",XF86Launch5,exec,${swaylock} -S --grace 2"
+            ",XF86Launch4,exec,${swaylock} -S --grace 2"
+            "SUPER,q,exec,${swaylock} -S --grace 2"
+          ])
+        ++
+        # Notification manager
+        (let
+          makoctl = lib.getExe' config.services.mako.package "makoctl";
+        in
+          lib.optionals config.services.mako.enable [
+            "SUPER,w,exec,${makoctl} dismiss"
+            "SUPERSHIFT,w,exec,${makoctl} restore"
+          ])
+        ++
+        # Launcher
+        (let
+          rofi-menu = lib.getExe config.programs.rofi.launcherScript;
+        in
+          lib.optionals config.programs.rofi.enableLauncher
+          ["SUPER,space,exec,${rofi-menu}"])
+        ++
+        # Clipper
+        (let
+          rofi-clipper = lib.getExe config.programs.rofi.clipperScript;
+        in
+          lib.optionals config.programs.rofi.enableClipper
+          ["SUPER,c,exec,${rofi-clipper}"])
+        ++
+        # Specialisation menu
+        (let
+          rofi-specialisation =
+            lib.getExe config.programs.rofi.specialisationScript;
+        in
+          lib.optionals config.programs.rofi.enableSpecialisation
+          ["SUPER,s,exec,${rofi-specialisation}"]);
 
       monitor = let
         waybarSpace = let
-          inherit (config.wayland.windowManager.hyprland.settings.general)
-            gaps_in gaps_out;
-          inherit (config.programs.waybar.settings.primary)
-            position height width;
+          inherit
+            (config.wayland.windowManager.hyprland.settings.general)
+            gaps_in
+            gaps_out
+            ;
+          inherit
+            (config.programs.waybar.settings.primary)
+            position
+            height
+            width
+            ;
           gap = gaps_out - gaps_in;
         in {
-          top = if (position == "top") then height + gap else 0;
-          bottom = if (position == "bottom") then height + gap else 0;
-          left = if (position == "left") then width + gap else 0;
-          right = if (position == "right") then width + gap else 0;
+          top =
+            if (position == "top")
+            then height + gap
+            else 0;
+          bottom =
+            if (position == "bottom")
+            then height + gap
+            else 0;
+          left =
+            if (position == "left")
+            then width + gap
+            else 0;
+          right =
+            if (position == "right")
+            then width + gap
+            else 0;
         };
-      in [
-        ",addreserved,${toString waybarSpace.top},${
-          toString waybarSpace.bottom
-        },${toString waybarSpace.left},${toString waybarSpace.right}"
-      ] ++ (map (m:
-        "${m.name},${
-          if m.enabled then
-            "${toString m.width}x${toString m.height}@${
-              toString m.refreshRate
-            },${toString m.x}x${toString m.y},1"
-          else
-            "disable"
+      in
+        [
+          ",addreserved,${toString waybarSpace.top},${
+            toString waybarSpace.bottom
+          },${toString waybarSpace.left},${toString waybarSpace.right}"
+        ]
+        ++ (map (m: "${m.name},${
+          if m.enabled
+          then "${toString m.width}x${toString m.height}@${
+            toString m.refreshRate
+          },${toString m.x}x${toString m.y},1"
+          else "disable"
         }") (config.monitors));
 
-      workspace = map (m: "name:${m.workspace},monitor:${m.name}")
+      workspace =
+        map (m: "name:${m.workspace},monitor:${m.name}")
         (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
     # This is order sensitive, so it has to come here.

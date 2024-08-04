@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   # Telescope
   telescope-package = pkgs.vimPlugins.telescope-nvim;
   telescope-config = ''

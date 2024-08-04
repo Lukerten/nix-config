@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   virtualisation.waydroid.enable = true;
 
-  environment.systemPackages = with pkgs; [ fdroidcl fdroidserver ];
+  environment.systemPackages = with pkgs; [fdroidcl fdroidserver];
 }

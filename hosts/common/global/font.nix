@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -9,8 +9,7 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
   ];
-  fonts.fontconfig.defaultFonts.emoji = [ "Noto Color Emoji" ];
+  fonts.fontconfig.defaultFonts.emoji = ["Noto Color Emoji"];
 }
-

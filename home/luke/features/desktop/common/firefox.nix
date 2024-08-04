@@ -1,10 +1,12 @@
-{ pkgs, inputs, ... }:
-let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   defaultSettings = {
     "browser.download.panel.shown" = true;
     "browser.contentblocking.category" = "strict";
-    "browser.newtabPage.activity-stream.improvedsearch.topSiteSearchShortcuts.haveP1inned" =
-      "duckduckgo";
+    "browser.newtabPage.activity-stream.improvedsearch.topSiteSearchShortcuts.haveP1inned" = "duckduckgo";
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.policies.applied" = true;
     "browser.loadInBackgr1ound" = true;
@@ -33,69 +35,82 @@ let
 
   defaultSearch = {
     "Nix Packages" = {
-      urls = [{
-        template = "https://search.nixos.org/packages?";
-        params = [
-          {
-            name = "type";
-            value = "packages";
-          }
-          {
-            name = "query";
-            value = "{searchTerms}";
-          }
-          {
-            name = "channel";
-            value = "unstable";
-          }
-        ];
-      }];
+      urls = [
+        {
+          template = "https://search.nixos.org/packages?";
+          params = [
+            {
+              name = "type";
+              value = "packages";
+            }
+            {
+              name = "query";
+              value = "{searchTerms}";
+            }
+            {
+              name = "channel";
+              value = "unstable";
+            }
+          ];
+        }
+      ];
       icon = "https://nixos.wiki/favicon.ico";
-      definedAliases = [ "@np" ];
+      definedAliases = ["@np"];
     };
 
     "NixOS Wiki" = {
-      urls =
-        [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+      urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
       iconUpdateUrl = "https://nixos.wiki/favicon.ico";
       updateInterval = 24 * 60 * 60 * 1000;
-      definedAliases = [ "@nw" ];
+      definedAliases = ["@nw"];
     };
 
     "Wikipedia (de)" = {
-      urls = [{
-        template = "https://de.wikipedia.org/w/index.php";
-        params = [{
-          name = "search";
-          value = "{searchTerms}";
-        }];
-      }];
-      definedAliases = [ "@wd" ];
+      urls = [
+        {
+          template = "https://de.wikipedia.org/w/index.php";
+          params = [
+            {
+              name = "search";
+              value = "{searchTerms}";
+            }
+          ];
+        }
+      ];
+      definedAliases = ["@wd"];
     };
 
     "Wikipedia (en)" = {
-      urls = [{
-        template = "https://en.wikipedia.org/w/index.php";
-        params = [{
-          name = "search";
-          value = "{searchTerms}";
-        }];
-      }];
-      definedAliases = [ "@we" ];
+      urls = [
+        {
+          template = "https://en.wikipedia.org/w/index.php";
+          params = [
+            {
+              name = "search";
+              value = "{searchTerms}";
+            }
+          ];
+        }
+      ];
+      definedAliases = ["@we"];
     };
 
     "Openstreetmap" = {
-      urls = [{
-        template = "https://www.openstreetmap.org/search?query={searchTerms}";
-      }];
-      definedAliases = [ "@osm" "@map" ];
+      urls = [
+        {
+          template = "https://www.openstreetmap.org/search?query={searchTerms}";
+        }
+      ];
+      definedAliases = ["@osm" "@map"];
     };
 
     "Youtube" = {
-      urls = [{
-        template = "https://www.youtube.com/results?search_query={searchTerms}";
-      }];
-      definedAliases = [ "@yt" ];
+      urls = [
+        {
+          template = "https://www.youtube.com/results?search_query={searchTerms}";
+        }
+      ];
+      definedAliases = ["@yt"];
     };
     "Amazon".metaData.hidden = true;
     "Google".metaData.hidden = true;
@@ -253,8 +268,7 @@ let
         }
         {
           name = "Life Domain Cleric";
-          url =
-            "https://www.thegamer.com/baldurs-gate-3-bg3-best-life-domain-cleric-build-guide/";
+          url = "https://www.thegamer.com/baldurs-gate-3-bg3-best-life-domain-cleric-build-guide/";
         }
         {
           name = "PalaBard";
@@ -313,8 +327,7 @@ let
     OverridePostUpdatePage = "";
     DontCheckDefaultBrowser = true;
     DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
-    DisplayMenuBar =
-      "default-off"; # alternatives: "always", "never" or "default-on"
+    DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
     SearchBar = "unified"; # alternative: "separate"
   };
 in {
@@ -343,31 +356,31 @@ in {
   };
 
   xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "firefox.desktop" ];
-    "text/xml" = [ "firefox.desktop" ];
-    "x-scheme-handler/http" = [ "firefox.desktop" ];
-    "x-scheme-handler/https" = [ "firefox.desktop" ];
-    "x-scheme-handler/ftp" = [ "firefox.desktop" ];
-    "x-scheme-handler/about" = [ "firefox.desktop" ];
+    "text/html" = ["firefox.desktop"];
+    "text/xml" = ["firefox.desktop"];
+    "x-scheme-handler/http" = ["firefox.desktop"];
+    "x-scheme-handler/https" = ["firefox.desktop"];
+    "x-scheme-handler/ftp" = ["firefox.desktop"];
+    "x-scheme-handler/about" = ["firefox.desktop"];
 
     # use firefox to view images
-    "image/jpeg" = [ "firefox.desktop" ];
-    "image/png" = [ "firefox.desktop" ];
-    "image/gif" = [ "firefox.desktop" ];
-    "image/bmp" = [ "firefox.desktop" ];
-    "image/webp" = [ "firefox.desktop" ];
-    "image/svg+xml" = [ "firefox.desktop" ];
-    "image/x-windows-bmp" = [ "firefox.desktop" ];
-    "image/x-portable-bitmap" = [ "firefox.desktop" ];
-    "image/x-portable-graymap" = [ "firefox.desktop" ];
-    "image/x-portable-pixmap" = [ "firefox.desktop" ];
-    "image/x-xbitmap" = [ "firefox.desktop" ];
-    "image/x-xpixmap" = [ "firefox.desktop" ];
-    "image/x-xwindowdump" = [ "firefox.desktop" ];
-    "image/tiff" = [ "firefox.desktop" ];
-    "image/x-icon" = [ "firefox.desktop" ];
-    "image/vnd.microsoft.icon" = [ "firefox.desktop" ];
-    "image/vnd.wap.wbmp" = [ "firefox.desktop" ];
-    "image/x-jng" = [ "firefox.desktop" ];
+    "image/jpeg" = ["firefox.desktop"];
+    "image/png" = ["firefox.desktop"];
+    "image/gif" = ["firefox.desktop"];
+    "image/bmp" = ["firefox.desktop"];
+    "image/webp" = ["firefox.desktop"];
+    "image/svg+xml" = ["firefox.desktop"];
+    "image/x-windows-bmp" = ["firefox.desktop"];
+    "image/x-portable-bitmap" = ["firefox.desktop"];
+    "image/x-portable-graymap" = ["firefox.desktop"];
+    "image/x-portable-pixmap" = ["firefox.desktop"];
+    "image/x-xbitmap" = ["firefox.desktop"];
+    "image/x-xpixmap" = ["firefox.desktop"];
+    "image/x-xwindowdump" = ["firefox.desktop"];
+    "image/tiff" = ["firefox.desktop"];
+    "image/x-icon" = ["firefox.desktop"];
+    "image/vnd.microsoft.icon" = ["firefox.desktop"];
+    "image/vnd.wap.wbmp" = ["firefox.desktop"];
+    "image/x-jng" = ["firefox.desktop"];
   };
 }

@@ -1,7 +1,10 @@
-{ pkgs,lib, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
-with builtins;
-let
+with builtins; let
   lspconfigs = [
     ''
       -- Bash language server
@@ -217,8 +220,8 @@ let
       -- TailwindCSS language server
       lspconfig.tailwindcss.setup{
         cmd = {'${
-          pkgs.nodePackages."@tailwindcss/language-server"
-        }/bin/tailwindcss-language-server'};
+        pkgs.nodePackages."@tailwindcss/language-server"
+      }/bin/tailwindcss-language-server'};
         filetypes = {'css', 'scss', 'less', 'html', 'vue', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'};
         root_dir = require('lspconfig/util').root_pattern('tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.lua', 'package.json');
         on_attach = attach_keymaps;
@@ -250,52 +253,54 @@ let
       }
     ''
   ];
-
 in {
-  programs.neovim.plugins = [{
-    plugin = pkgs.vimPlugins.nvim-lspconfig;
-    type = "lua";
-    config = # lua
-      ''
-        local lspconfig = require('lspconfig')
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        local attach_keymaps = function(client, bufnr)
-          local opts = { noremap=true, silent=true }
-          -- Keymaps
-            vim.keymap.set("n", "<space>Lgc", "<cmd> lua vim.lsp.buf.declaration()<cr>",default_opts("Go to declaration", bufnr))
-            vim.keymap.set("n", "<space>Lgd", "<cmd> lua vim.lsp.buf.definition()<cr>",default_opts("Go to definition", bufnr))
-            vim.keymap.set("n", "<space>Lgt", "<cmd> lua vim.lsp.buf.type_definition()<cr>",default_opts("Go to type definition", bufnr))
-            vim.keymap.set("n", "<space>Lgr", "<cmd> lua vim.lsp.buf.references()<cr>",default_opts("Go to references", bufnr))
-            vim.keymap.set("n", "<space>Lgn", "<cmd> lua vim.lsp.diagnostic.goto_next()<cr>",default_opts("next diagnostic", bufnr))
-            vim.keymap.set("n", "<space>Lgp", "<cmd> lua vim.lsp.diagnostic.goto_prev()<cr>",default_opts("previous diagnostic", bufnr))
-            vim.keymap.set("n", "<space>Lgi", "<cmd> lua vim.lsp.buf.implementation()<cr>",default_opts("Go to implementation", bufnr))
-            vim.keymap.set("n", "<space>Lwa", "<cmd> lua vim.lsp.buf.add_workspace_folder()<cr>",default_opts("Add workspace folder", bufnr))
-            vim.keymap.set("n", "<space>Lwr", "<cmd> lua vim.lsp.buf.remove_workspace_folder()<cr>",default_opts("Remove workspace folder", bufnr))
-            vim.keymap.set("n", "<space>Lwl", "<cmd> lua vim.lsp.buf.list_workspace_folders()<cr>",default_opts("List workspace folders", bufnr))
-            vim.keymap.set("n", "<space>Lh" , "<cmd> lua vim.lsp.buf.hover()<cr>",default_opts("Hover Documentation", bufnr))
-            vim.keymap.set("n", "<space>Ls" , "<cmd> lua vim.lsp.buf.signature_help()<cr>",default_opts("Signature help", bufnr))
-            vim.keymap.set("n", "<space>r"  , "<cmd> lua vim.lsp.buf.rename()<cr>",default_opts("Rename", bufnr))
-            vim.keymap.set("n", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code", bufnr))
-            vim.keymap.set("v", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code",bufnr))
-        end
-
-
-        -- Add language server with default options
-        function add_lsp(server, options)
-          if not options["cmd"] then
-            options["cmd"] = server["document_config"]["default_config"]["cmd"]
-          end
-          if not options["capabilities"] then
-            options["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
+  programs.neovim.plugins = [
+    {
+      plugin = pkgs.vimPlugins.nvim-lspconfig;
+      type = "lua";
+      config =
+        # lua
+        ''
+          local lspconfig = require('lspconfig')
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          local attach_keymaps = function(client, bufnr)
+            local opts = { noremap=true, silent=true }
+            -- Keymaps
+              vim.keymap.set("n", "<space>Lgc", "<cmd> lua vim.lsp.buf.declaration()<cr>",default_opts("Go to declaration", bufnr))
+              vim.keymap.set("n", "<space>Lgd", "<cmd> lua vim.lsp.buf.definition()<cr>",default_opts("Go to definition", bufnr))
+              vim.keymap.set("n", "<space>Lgt", "<cmd> lua vim.lsp.buf.type_definition()<cr>",default_opts("Go to type definition", bufnr))
+              vim.keymap.set("n", "<space>Lgr", "<cmd> lua vim.lsp.buf.references()<cr>",default_opts("Go to references", bufnr))
+              vim.keymap.set("n", "<space>Lgn", "<cmd> lua vim.lsp.diagnostic.goto_next()<cr>",default_opts("next diagnostic", bufnr))
+              vim.keymap.set("n", "<space>Lgp", "<cmd> lua vim.lsp.diagnostic.goto_prev()<cr>",default_opts("previous diagnostic", bufnr))
+              vim.keymap.set("n", "<space>Lgi", "<cmd> lua vim.lsp.buf.implementation()<cr>",default_opts("Go to implementation", bufnr))
+              vim.keymap.set("n", "<space>Lwa", "<cmd> lua vim.lsp.buf.add_workspace_folder()<cr>",default_opts("Add workspace folder", bufnr))
+              vim.keymap.set("n", "<space>Lwr", "<cmd> lua vim.lsp.buf.remove_workspace_folder()<cr>",default_opts("Remove workspace folder", bufnr))
+              vim.keymap.set("n", "<space>Lwl", "<cmd> lua vim.lsp.buf.list_workspace_folders()<cr>",default_opts("List workspace folders", bufnr))
+              vim.keymap.set("n", "<space>Lh" , "<cmd> lua vim.lsp.buf.hover()<cr>",default_opts("Hover Documentation", bufnr))
+              vim.keymap.set("n", "<space>Ls" , "<cmd> lua vim.lsp.buf.signature_help()<cr>",default_opts("Signature help", bufnr))
+              vim.keymap.set("n", "<space>r"  , "<cmd> lua vim.lsp.buf.rename()<cr>",default_opts("Rename", bufnr))
+              vim.keymap.set("n", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code", bufnr))
+              vim.keymap.set("v", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code",bufnr))
           end
 
-          if vim.fn.executable(options["cmd"][1]) == 1 then
-            server.setup(options)
-          end
-        end
 
-        -- Add all language servers
-        ${concatMapStringsSep "\n" (s: s) lspconfigs}
-      '';
-  }];
+          -- Add language server with default options
+          function add_lsp(server, options)
+            if not options["cmd"] then
+              options["cmd"] = server["document_config"]["default_config"]["cmd"]
+            end
+            if not options["capabilities"] then
+              options["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
+            end
+
+            if vim.fn.executable(options["cmd"][1]) == 1 then
+              server.setup(options)
+            end
+          end
+
+          -- Add all language servers
+          ${concatMapStringsSep "\n" (s: s) lspconfigs}
+        '';
+    }
+  ];
 }

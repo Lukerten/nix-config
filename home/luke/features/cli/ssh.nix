@@ -1,5 +1,9 @@
-{ outputs, lib, ... }:
-let hostnames = builtins.attrNames outputs.nixosConfigurations;
+{
+  outputs,
+  lib,
+  ...
+}: let
+  hostnames = builtins.attrNames outputs.nixosConfigurations;
 in {
   services.ssh-agent.enable = true;
 

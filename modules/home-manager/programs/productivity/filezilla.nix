@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.programs.filezilla;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.programs.filezilla;
 in {
   options.programs.filezilla = {
     enable = lib.mkEnableOption "filezilla";
@@ -10,5 +15,5 @@ in {
       description = "The Filezilla package to use.";
     };
   };
-  config = lib.mkIf cfg.enable { home.packages = [ cfg.package ]; };
+  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
 }

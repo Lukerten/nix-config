@@ -1,7 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   hash = builtins.hashString "md5" (builtins.toJSON config.colorscheme);
-  rendersvg = pkgs.runCommand "rendersvg" { } ''
+  rendersvg = pkgs.runCommand "rendersvg" {} ''
     mkdir -p $out/bin
     ln -s ${pkgs.resvg}/bin/resvg $out/bin/rendersvg
   '';
@@ -25,7 +29,7 @@ let
         gtk4.dev
         optipng
       ];
-      phases = [ "unpackPhase" "installPhase" ];
+      phases = ["unpackPhase" "installPhase"];
       installPhase = ''
         HOME=/build
         chmod 777 -R .
@@ -74,7 +78,8 @@ in rec {
     };
     theme = {
       name = "generated-${hash}";
-      package = materiaTheme
+      package =
+        materiaTheme
         (lib.mapAttrs (_: v: lib.removePrefix "#" v) config.colorscheme.colors);
     };
     iconTheme = {
@@ -91,5 +96,5 @@ in rec {
     };
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 }

@@ -1,1 +1,1 @@
-{ programs.xpo = { enable = true; }; }
+{programs.xpo = {enable = true;};}

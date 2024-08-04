@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf;
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
   hasPackage = name: lib.any (x: x == name) packageNames;
@@ -78,7 +82,8 @@ in {
           end
         '';
       # Integrate ssh with shellcolord
-      ssh = mkIf hasShellColor
+      ssh =
+        mkIf hasShellColor
         # fish
         ''
           ${shellcolor} disable $fish_pid

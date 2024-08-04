@@ -1,1 +1,1 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ xivlauncher ]; }
+{pkgs, ...}: {home.packages = with pkgs; [xivlauncher];}

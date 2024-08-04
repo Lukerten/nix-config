@@ -1,5 +1,9 @@
-{ config, lib, ... }:
-let inherit (config.colorscheme) colors;
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.colorscheme) colors;
 in {
   services.rgbdaemon = {
     enable = true;
@@ -36,7 +40,7 @@ in {
     mouse = {
       device = "/dev/input/ckb2/cmd";
       dpi = 750;
-      highlighted = [ "wheel" "thumb" ];
+      highlighted = ["wheel" "thumb"];
     };
   };
 }

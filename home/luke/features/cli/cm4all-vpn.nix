@@ -1,1 +1,1 @@
-{ programs.cm4all-vpn.enable = true; }
+{programs.cm4all-vpn.enable = true;}

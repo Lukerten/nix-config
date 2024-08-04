@@ -1,1 +1,1 @@
-{ pkgs, ... }: { environment.systemPackages = [ pkgs.webex ]; }
+{pkgs, ...}: {environment.systemPackages = [pkgs.webex];}

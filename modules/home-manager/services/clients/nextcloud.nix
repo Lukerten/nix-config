@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.service.nextcloud-client;
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.service.nextcloud-client;
 in {
   options.service.nextcloud-client = {
     enable = lib.mkEnableOption "nextcloud-client";
@@ -10,5 +15,5 @@ in {
       description = "The package to use for the Nextcloud client.";
     };
   };
-  config = lib.mkIf cfg.enable { home.packages = [ cfg.package ]; };
+  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
 }

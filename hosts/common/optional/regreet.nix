@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   homeCfgs = config.home-manager.users;
   homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
   vars = ''
@@ -12,20 +16,19 @@ let
   iconTheme = lukeCfg.gtk.iconTheme;
   wallpaper = lukeCfg.wallpaper;
 
-  sway-kiosk = command:
-    "${lib.getExe pkgs.sway} --unsupported-gpu --config ${
-      pkgs.writeText "kiosk.config" ''
-        output * bg #000000 solid_color
-        xwayland disable
-        input "type:touchpad" {
-          tap enabled
-        }
-        exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
-      ''
-    }";
+  sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${
+    pkgs.writeText "kiosk.config" ''
+      output * bg #000000 solid_color
+      xwayland disable
+      input "type:touchpad" {
+        tap enabled
+      }
+      exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
+    ''
+  }";
 in {
   users.extraUsers.greeter = {
-    packages = [ gtkTheme.package iconTheme.package ];
+    packages = [gtkTheme.package iconTheme.package];
     # For caching and such
     home = "/tmp/greeter-home";
     createHome = true;

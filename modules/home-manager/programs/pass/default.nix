@@ -1,1 +1,1 @@
-{ imports = [ ./pass-secret-service.nix ]; }
+{imports = [./pass-secret-service.nix];}
