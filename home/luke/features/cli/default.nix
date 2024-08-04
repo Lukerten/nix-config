@@ -46,4 +46,8 @@
     nix-output-monitor
     nh
   ];
+
+  programs = {
+    youtube-tui.enable = true;
+  };
 }
