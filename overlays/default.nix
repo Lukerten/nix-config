@@ -16,7 +16,8 @@ in {
     in
       if legacyPackages != {}
       then legacyPackages
-      else packages) inputs;
+      else packages)
+    inputs;
   };
 
   # Adds pkgs.stable == inputs.nixpkgs-stable.legacyPackages.${pkgs.system}

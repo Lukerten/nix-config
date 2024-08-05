@@ -1,6 +1,10 @@
-{ pkgs, config, lib, ... }:
-with lib;
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.neofetch;
   neofetch = pkgs.neofetch;
 in {
@@ -17,10 +21,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
     xdg.configFile."neofetch/config.conf".source = ./neofetch.conf;
     xdg.configFile."neofetch/pngs/nixos.png".source = ./nixos.png;
   };
 }
-
-

@@ -1,13 +1,14 @@
-{pkgs, ...}:
-let
-    overseer = pkgs.vimPlugins.overseer-nvim;
-    overseer-config = # lua
+{pkgs, ...}: let
+  overseer = pkgs.vimPlugins.overseer-nvim;
+  overseer-config =
+    # lua
     ''
       local overseer = require('overseer')
       overseer.setup();
     '';
-    compiler = pkgs.vimPlugins.compiler-nvim;
-    compiler-config = # lua
+  compiler = pkgs.vimPlugins.compiler-nvim;
+  compiler-config =
+    # lua
     ''
       local compiler = require('compiler')
       compiler.setup();
