@@ -207,35 +207,7 @@ in {
     '';
   };
 
-  xdg = lib.mkIf config.programs.qutebrowser.enable {
-    configFile."qutebrowser/config.py".onChange = lib.mkForce ''
-      ${pkgs.procps}/bin/pkill -u $USER -HUP qutebrowser || true
-    '';
-    mimeApps.defaultApplications = {
-      "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
-      "text/xml" = [ "org.qutebrowser.qutebrowser.desktop" ];
-      "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
-      "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
-      "x-scheme-handler/ftp" = ["org.qutebrowser.qutebrowser.desktop"];
-      "x-scheme-handler/about" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/jpeg" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/png" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/gif" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/bmp" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/webp" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/svg+xml" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-windows-bmp" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-portable-bitmap" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-portable-graymap" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-portable-pixmap" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-xbitmap" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-xpixmap" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-xwindowdump" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/tiff" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-icon" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/vnd.microsoft.icon" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/vnd.wap.wbmp" = ["org.qutebrowser.qutebrowser.desktop"];
-      "image/x-jng" = ["org.qutebrowser.qutebrowser.desktop"];
-    };
-  };
+  xdg.configFile."qutebrowser/config.py".onChange = lib.mkForce ''
+    ${pkgs.procps}/bin/pkill -u $USER -HUP qutebrowser || true
+  '';
 }
