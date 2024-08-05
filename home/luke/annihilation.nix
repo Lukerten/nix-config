@@ -6,7 +6,8 @@
 }: {
   imports = [./global ./features/desktop/hypr ./features/pass ./features/games];
 
-  wallpaper = pkgs.wallpapers.ying-yang-koi;
+  wallpaper = pkgs.wallpapers.neon-city;
+  colorscheme.type="rainbow";
 
   monitors = [
     {
