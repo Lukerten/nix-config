@@ -16,8 +16,8 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  wallpaper = pkgs.wallpapers.aenami-7pm;
-
+  wallpaper = pkgs.wallpapers.anime-death;
+  colorscheme.type = "rainbow";
   monitors = [
     {
       name = "DP-2";

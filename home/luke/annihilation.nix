@@ -6,7 +6,7 @@
 }: {
   imports = [./global ./features/desktop/hypr ./features/pass ./features/games];
 
-  wallpaper = pkgs.wallpapers.aenami-somewhere-in-time;
+  wallpaper = pkgs.wallpapers.ying-yang-koi;
 
   monitors = [
     {
