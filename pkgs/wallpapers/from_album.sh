@@ -10,7 +10,7 @@ function fetch_image() {
 }
 
 album="bXDPRpV" # https://imgur.com/a/bXDPRpV
-clientid="0c2b2b57cdbe5d8"
+clientid="501d56d2805f6ec"
 
 result=$(https api.imgur.com/3/album/$album Authorization:"Client-ID $clientid")
 images=$(echo $result | jq -r '.data.images[] | "\(.description)|\(.type)|\(.id)"')
