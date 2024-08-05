@@ -12,7 +12,6 @@
     ./gh.nix
     ./git.nix
     ./jujutsu.nix
-    ./neofetch.nix
     ./nix-index.nix
     ./ranger.nix
     ./screen.nix
@@ -49,5 +48,6 @@
 
   programs = {
     youtube-tui.enable = true;
+    neofetch.enable = true;
   };
 }
