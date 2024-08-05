@@ -1,19 +1,37 @@
-{ outputs, config, lib, pkgs, inputs, ... }:
-let
-  commonDeps = with pkgs; [ coreutils gnugrep systemd ];
+{
+  outputs,
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
+  commonDeps = with pkgs; [coreutils gnugrep systemd];
   # Function to simplify making waybar outputs
-  mkScript = { name ? "script", deps ? [ ], script ? "", }:
+  mkScript = {
+    name ? "script",
+    deps ? [],
+    script ? "",
+  }:
     lib.getExe (pkgs.writeShellApplication {
       inherit name;
       text = script;
       runtimeInputs = commonDeps ++ deps;
     });
   # Specialized for JSON outputs
-  mkScriptJson = { name ? "script", deps ? [ ], pre ? "", text ? ""
-    , tooltip ? "", alt ? "", class ? "", percentage ? "", }:
+  mkScriptJson = {
+    name ? "script",
+    deps ? [],
+    pre ? "",
+    text ? "",
+    tooltip ? "",
+    alt ? "",
+    class ? "",
+    percentage ? "",
+  }:
     mkScript {
       inherit name;
-      deps = [ pkgs.jq ] ++ deps;
+      deps = [pkgs.jq] ++ deps;
       script = ''
         ${pre}
         jq -cn \
@@ -30,11 +48,11 @@ let
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in {
   # Let it try to start a few more times
-  systemd.user.services.waybar = { Unit.StartLimitBurst = 30; };
+  systemd.user.services.waybar = {Unit.StartLimitBurst = 30;};
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
+      mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
     });
     systemd.enable = true;
     settings = {
@@ -44,24 +62,25 @@ in {
         height = 40;
         margin = "6";
         position = "top";
-        modules-left = [ "custom/menu" ]
-          ++ (lib.optionals swayCfg.enable [ "sway/workspaces" "sway/mode" ])
+        modules-left =
+          ["custom/menu"]
+          ++ (lib.optionals swayCfg.enable ["sway/workspaces" "sway/mode"])
           ++ (lib.optionals hyprlandCfg.enable [
             "hyprland/workspaces"
             "hyprland/submap"
-          ]) ++ [ "custom/currentplayer" "custom/player" ];
+          ])
+          ++ ["custom/currentplayer" "custom/player"];
 
-        modules-center =
-          [ "clock" "custom/unread-mail" ];
+        modules-center = ["clock" "custom/unread-mail"];
 
         modules-right = [
           "tray"
           "pulseaudio"
+          "network"
           "cpu"
           "custom/gpu"
           "memory"
           "battery"
-          "network"
           "custom/hostname"
         ];
 
@@ -75,7 +94,7 @@ in {
             <tt><small>{calendar}</small></tt>'';
         };
 
-        cpu = { format = "  {usage}%"; };
+        cpu = {format = "  {usage}%";};
         "custom/gpu" = {
           interval = 5;
           exec = mkScript {
@@ -93,7 +112,7 @@ in {
           format-source-muted = "󰍭 0%";
           format = "{icon} {volume}% {format_source}";
           format-muted = "󰸈 0% {format_source}";
-          format-icons = { default = [ "󰕿" "󰖀" "󰕾" ]; };
+          format-icons = {default = ["󰕿" "󰖀" "󰕾"];};
           on-click = lib.getExe pkgs.pavucontrol;
         };
         idle_inhibitor = {
@@ -104,23 +123,22 @@ in {
           };
         };
         battery = {
-          bat = "BAT0";
+          bat = "BAT1";
           interval = 10;
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           onclick = "";
         };
-        "sway/window" = { max-length = 20; };
+        "sway/window" = {max-length = 20;};
         network = {
           interval = 3;
-          format-wifi = "";
+          format-wifi = "   {essid}";
           format-ethernet = "󰈁";
           format-disconnected = "";
           tooltip-format = ''
             {ifname}
             {ipaddr}/{cidr}
-            {essid}
             Up: {bandwidthUpBits}
             Down: {bandwidthDownBits}'';
         };
@@ -133,23 +151,23 @@ in {
             text = "";
             tooltip = ''$(grep /etc/os-release PRETTY_NAME | cut -d '"' -f2)'';
             class = let
-              isFullScreen = if hyprlandCfg.enable then
-                "hyprctl activewindow -j | jq -e '.fullscreen' &>/dev/null"
-              else
-                "false";
+              isFullScreen =
+                if hyprlandCfg.enable
+                then "hyprctl activewindow -j | jq -e '.fullscreen' &>/dev/null"
+                else "false";
             in "$(if ${isFullScreen}; then echo fullscreen; fi)";
           };
         };
         "custom/hostname" = {
-          exec = mkScript { script = ''echo "$USER@$HOSTNAME"''; };
-          on-click = mkScript { script = "systemctl --user restart waybar"; };
+          exec = mkScript {script = ''echo "$USER@$HOSTNAME"'';};
+          on-click = mkScript {script = "systemctl --user restart waybar";};
         };
 
         "custom/unread-mail" = {
           interval = 5;
           return-type = "json";
           exec = mkScriptJson {
-            deps = [ pkgs.findutils pkgs.procps ];
+            deps = [pkgs.findutils pkgs.procps];
             pre = ''
               count=$(find ~/Mail/*/Inbox/new -type f | wc -l)
               if pgrep mbsync &>/dev/null; then
@@ -176,7 +194,7 @@ in {
           interval = 2;
           return-type = "json";
           exec = mkScriptJson {
-            deps = [ pkgs.playerctl ];
+            deps = [pkgs.playerctl];
             pre = ''
               player="$(playerctl status -f "{{playerName}}" 2>/dev/null || echo "No player active" | cut -d '.' -f1)"
               count="$(playerctl -l 2>/dev/null | wc -l)"
@@ -207,22 +225,23 @@ in {
         "custom/rfkill" = {
           interval = 1;
           exec-if = mkScript {
-            deps = [ pkgs.util-linux ];
+            deps = [pkgs.util-linux];
             script = "rfkill | grep '<blocked>'";
           };
         };
         "custom/player" = {
           exec-if = mkScript {
-            deps = [ pkgs.playerctl ];
+            deps = [pkgs.playerctl];
             script = "playerctl status 2>/dev/null";
           };
           exec = let
             format = ''
               {"text": "{{title}} - {{artist}}", "alt": "{{status}}", "tooltip": "{{title}} - {{artist}} ({{album}})"}'';
-          in mkScript {
-            deps = [ pkgs.playerctl ];
-            script = "playerctl metadata --format '${format}' 2>/dev/null";
-          };
+          in
+            mkScript {
+              deps = [pkgs.playerctl];
+              script = "playerctl metadata --format '${format}' 2>/dev/null";
+            };
           return-type = "json";
           interval = 2;
           max-length = 30;
@@ -233,15 +252,15 @@ in {
             "Stopped" = "󰓛";
           };
           on-click = mkScript {
-            deps = [ pkgs.playerctl ];
+            deps = [pkgs.playerctl];
             script = "playerctl play-pause";
           };
           on-click-right = mkScript {
-            deps = [ pkgs.playerctl ];
+            deps = [pkgs.playerctl];
             script = "playerctl next";
           };
           on-click-middle = mkScript {
-            deps = [ pkgs.playerctl ];
+            deps = [pkgs.playerctl];
             script = "playerctl shuffle";
           };
         };
@@ -255,8 +274,7 @@ in {
     style = let
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
       inherit (config.colorscheme) colors;
-      toRGBA = color: opacity:
-        "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
+      toRGBA = color: opacity: "rgba(${hexToRGBString "," (lib.removePrefix "#" color)},${opacity})";
       # css
     in ''
       * {
