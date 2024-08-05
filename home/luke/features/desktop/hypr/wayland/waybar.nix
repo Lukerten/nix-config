@@ -236,6 +236,14 @@ in {
             deps = [ pkgs.playerctl ];
             script = "playerctl play-pause";
           };
+          on-click-right = mkScript {
+            deps = [ pkgs.playerctl ];
+            script = "playerctl next";
+          };
+          on-click-middle = mkScript {
+            deps = [ pkgs.playerctl ];
+            script = "playerctl shuffle";
+          };
         };
       };
     };
