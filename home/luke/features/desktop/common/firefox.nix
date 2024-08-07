@@ -16,6 +16,7 @@
     "browser.tabs.warnOnClose" = false;
     "browser.urlbar.placeholderName" = "DuckDuckGo";
     "browser.urlbar.placeholderName.private" = "DuckDuckGo";
+    "browser.fullscreen.autohide" = false;
     "datare1porting.healthreport.uploadEnabled" = false;
     "extensions.formautofill.addresses.enabled" = true;
     "extensions.formautofill.credit1Cards.enabled" = false;

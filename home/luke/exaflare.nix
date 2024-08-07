@@ -16,8 +16,7 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  wallpaper = pkgs.wallpapers.anime-death;
-  colorscheme.type = "rainbow";
+  wallpaper = pkgs.wallpapers.red-cityscape-messy;
   monitors = [
     {
       name = "DP-2";

@@ -121,12 +121,6 @@
   },
   {
     "ext": "jpeg",
-    "id": "WH4OIWR",
-    "name": "aenami-dawn",
-    "sha256": "17vnqcf8wrk3aspl9y6823hm3pqm43yg08f9ils482xrwxxbgqq9"
-  },
-  {
-    "ext": "jpeg",
     "id": "4N8Nce3",
     "name": "aenami-avalanches",
     "sha256": "17k83biz6yy2r6bwxk6x01rskmlnfw2wckln3msdkdz1r2vm0hnf"
@@ -1276,5 +1270,59 @@
     "ext": "jpeg",
     "id": "232cGZ9",
     "sha256": "0g3dkm7fmcqk35n10z72b41cjg4nyh2xj14v6bwdliqx7fl0fjyp"
+  },
+  {
+    "name": "autumn-alley",
+    "ext": "jpeg",
+    "id": "AmIHHbA",
+    "sha256": "1bb8g5j3jylxxx745m88rnawxgdkimhhzhx3ssmrbn1dwz2q5lyb"
+  },
+  {
+    "name": "galaxy-red",
+    "ext": "jpeg",
+    "id": "WKLCaBl",
+    "sha256": "0xvbpk8h90y0gmpgv4675da7px6r0hzcrkb40g3fn89p8fhfl6ap"
+  },
+  {
+    "name": "long-exposure-stars",
+    "ext": "jpeg",
+    "id": "AomkOyx",
+    "sha256": "12hf7f1ybi5qfi8hwa8rc8jh24fk27b13ra0rqrh766gnaa7sn66"
+  },
+  {
+    "name": "industrial-city",
+    "ext": "jpeg",
+    "id": "A8MHbWc",
+    "sha256": "0sv4pw92bhsls7nv617gav7qrb8gysifn8lqnaml8h0a590gli7p"
+  },
+  {
+    "name": "ghibli-overgrown-house",
+    "ext": "png",
+    "id": "cwLnRHt",
+    "sha256": "103z2ax27bqr4vz4rf27rxsdl0j9y4qah88imxadqa7a0p77jc5m"
+  },
+  {
+    "name": "ghibli-chihiro",
+    "ext": "png",
+    "id": "MxwmpVi",
+    "sha256": "0318hb18l0hafrl6z0qrczsv3m5c6iyzgikrfn0md63cp987pcsd"
+  },
+  {
+    "name": "rapture",
+    "ext": "jpeg",
+    "id": "UiVrgbo",
+    "sha256": "1hykyfjf95pdk89ax8x9z54m7wd01dxww15b2r6gn8g5vlzzb39j"
+  },
+  {
+    "name": "skyscraper-gray",
+    "ext": "jpeg",
+    "id": "1FctpHE",
+    "sha256": "0v2rcxckf4p2wqbvh0mjlj2fbyh7ixgwv2clfv3rvpvsxrn7rj78"
+  },
+  {
+    "name": "cityscape-night",
+    "ext": "jpeg",
+    "id": "cxDw37f",
+    "sha256": "19yz4cc08yzadivsqzv6nw69gdjzh1zf6c3zd7hjp9drc241xb8b"
   }
 ]
