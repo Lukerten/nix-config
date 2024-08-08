@@ -9,6 +9,9 @@
         use_consistent_indentation = true,
         ignore_whitespace = true,
       })
+
+      vim.keymap.set("n", "<space>c", "<Plug>kommentary_line_default", {})
+      vim.keymap.set("v", "<space>c", "<Plug>kommentary_visual_default", {})
     '';
 in {
   programs.neovim.plugins = [
