@@ -11,6 +11,7 @@
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./gpg.nix
     ./jujutsu.nix
     ./nix-index.nix
     ./ranger.nix
