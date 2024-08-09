@@ -7,7 +7,7 @@ with lib;
 with builtins; let
   null_ls = pkgs.vimPlugins.null-ls-nvim;
   null_ls_formatters = [
-    # clang-format
+    # lua
     ''
       -- C/C++ formatting: clang-format
       table.insert(ls_sources, null_ls.builtins.formatting.clang_format.with({
@@ -15,7 +15,7 @@ with builtins; let
         filetypes = { "c", "cpp", "cs", "*.h", "*.hpp", "*.cc", "*.cxx", "*.c++", "*.hh", "*.hxx", "*.h++" },
       }))
     ''
-    # google-java-format
+    # lua
     ''
       -- Java formatting: google-java-format
       table.insert(ls_sources, null_ls.builtins.formatting.google_java_format.with({
@@ -27,10 +27,11 @@ with builtins; let
         },
       }))
     ''
-    # kotlin
+    # lua
     ''
       -- Kotlin formatting: ktlint
       table.insert(ls_sources, null_ls.builtins.formatting.ktlint.with({
+        filetypes = { "kotlin" },
         command = "${pkgs.ktlint}/bin/ktlint",
       }))
     ''
@@ -38,34 +39,31 @@ with builtins; let
     ''
       -- Lua formatting: stylua
       table.insert(ls_sources, null_ls.builtins.formatting.stylua.with({
+        filetypes = { "lua" },
         command = "${pkgs.stylua}/bin/stylua",
       }))
     ''
-    # nix
-    ''
-      -- Nix formatting: alejandra
-      table.insert(ls_sources, null_ls.builtins.formatting.alejandra.with({
-        command = "${pkgs.alejandra}/bin/alejandra",
-      }))
-    ''
-    # python
+    # lua
     ''
       -- Python formatting: black
       table.insert(ls_sources, null_ls.builtins.formatting.black.with({
+        filetypes = { "python" },
         command = "${pkgs.black}/bin/black",
       }))
     ''
-    # sql
+    # lua
     ''
       -- SQL formatting: sqlfluff
       table.insert(ls_sources, null_ls.builtins.formatting.sqlfluff.with({
+        filetypes = { "sql", "mysql", "pgsql" },
         command = "${pkgs.sqlfluff}/bin/sqlfluff",
       }))
     ''
-    # ts
+    # lua
     ''
       -- TypeScript formatting: prettier
       table.insert(ls_sources, null_ls.builtins.formatting.prettier.with({
+        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "jsonc", "yaml", "html"},
         command = "${pkgs.nodePackages.prettier}/bin/prettier",
       }))
     ''

@@ -6,6 +6,7 @@
 with lib;
 with builtins; let
   lspconfigs = [
+    # lua
     ''
       -- Bash language server
       lspconfig.bashls.setup{
@@ -14,6 +15,7 @@ with builtins; let
        cmd = {'${pkgs.bash-language-server}/bin/bash-language-server'};
       }
     ''
+    # lua
     ''
       -- C/C++ language server
       local clangd_capabilities = capabilities;
@@ -25,6 +27,7 @@ with builtins; let
         cmd = {"${pkgs.clang-tools}/bin/clangd"};
       }
     ''
+    # lua
     ''
       -- CSS language server
       lspconfig.cssls.setup{
@@ -43,6 +46,34 @@ with builtins; let
         };
       }
     ''
+    # lua
+    ''
+      -- Elixir language server
+      lspconfig.elixirls.setup{
+        capabilities = capabilities;
+        on_attach = attach_keymaps,
+        cmd = {'${pkgs.elixir-ls}/bin/language_server.sh'};
+      }
+    ''
+    # lua
+    ''
+      -- Erlang language server
+      lspconfig.erlangls.setup{
+        capabilities = capabilities;
+        on_attach = attach_keymaps,
+        cmd = {'${pkgs.erlang-ls}/bin/erlang_ls'};
+      }
+    ''
+    # lua
+    ''
+      -- eslint language server
+      lspconfig.eslint.setup{
+        capabilities = capabilities;
+        on_attach = attach_keymaps,
+        cmd = {'${pkgs.eslint_d}/bin/eslint_d'};
+      }
+    ''
+    # lua
     ''
       -- Go language server
       lspconfig.gopls.setup{
@@ -51,6 +82,7 @@ with builtins; let
         filetypes = {'gox', 'go'};
       }
     ''
+    # lua
     ''
       -- Haskell language server
       lspconfig.hls.setup{
@@ -58,7 +90,17 @@ with builtins; let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper'};
       }
+      ''
+    # lua
     ''
+      -- HYPR language server hyprls
+      lspconfig.hyprls.setup{
+        capabilities = capabilities;
+        on_attach = attach_keymaps,
+        cmd = {'${pkgs.hyprls}/bin/hyprls'};
+      }
+    ''
+    # lua
     ''
       -- Java language server
       -- workspace setup
@@ -138,6 +180,7 @@ with builtins; let
         filetypes = { "java" };
       }
     ''
+    # lua
     ''
       -- JSON language server
       lspconfig.jsonls.setup{
@@ -146,6 +189,7 @@ with builtins; let
         cmd = {'${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver'};
       }
     ''
+    # lua
     ''
       -- Kotlin language server
       lspconfig.kotlin_language_server.setup{
@@ -154,6 +198,7 @@ with builtins; let
         cmd = {'${pkgs.kotlin-language-server}/bin/kotlin-language-server'};
       }
     ''
+    # lua
     ''
       -- Lua language server
       lspconfig.lua_ls.setup{
@@ -176,6 +221,16 @@ with builtins; let
         };
       }
     ''
+    # lua
+    ''
+      -- Make language server
+      lspconfig.autotools_ls.setup{
+        capabilities = capabilities;
+        on_attach = attach_keymaps,
+        cmd = {'${pkgs.autotools-language-server}/bin/autotools-language-server'};
+      }
+    ''
+    # lua
     ''
       -- Nix language server
       lspconfig.nil_ls.setup{
@@ -189,6 +244,7 @@ with builtins; let
         },
       }
     ''
+    # lua
     ''
       -- Python language server
       lspconfig.pyright.setup{
@@ -197,6 +253,7 @@ with builtins; let
         cmd = {'${pkgs.pyright}/bin/pyright-langserver'};
       }
     ''
+    # lua
     ''
       -- Rust language server
       lspconfig.rust_analyzer.setup{
@@ -205,6 +262,7 @@ with builtins; let
         cmd = {'${pkgs.rust-analyzer}/bin/rust-analyzer'};
       }
     ''
+    # lua
     ''
       -- SQL language server
       local root_dir = require('lspconfig/util').root_pattern('.git', 'flake.nix')(vim.fn.getcwd())
@@ -217,6 +275,16 @@ with builtins; let
         end;
       }
     ''
+    # lua
+    ''
+      -- Svelte language server
+      lspconfig.svelte.setup{
+        capabilities = capabilities;
+        on_attach = attach_keymaps,
+        cmd = {'${pkgs.svelte-language-server}/bin/svelteserver'};
+      }
+    ''
+    # lua
     ''
       -- TailwindCSS language server
       lspconfig.tailwindcss.setup{
@@ -229,6 +297,7 @@ with builtins; let
         capabilities = capabilities;
       }
     ''
+    # lua
     ''
       -- TypeScript language server
       lspconfig.tsserver.setup {
@@ -237,6 +306,7 @@ with builtins; let
         cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" }
       }
     ''
+    # lua
     ''
       -- Vue language server
       lspconfig.vuels.setup {
@@ -245,6 +315,7 @@ with builtins; let
         cmd = { "${pkgs.nodePackages.vls}/bin/vls", "--stdio" }
       }
     ''
+    # lua
     ''
       -- YAML language server
       lspconfig.yamlls.setup{
