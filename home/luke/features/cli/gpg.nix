@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
@@ -12,10 +17,11 @@
   home.packages = lib.optional config.gtk.enable pkgs.gcr;
 
   programs = let
-    fixGpg = #bash
-    ''
-      gpgconf --launch gpg-agent
-    '';
+    fixGpg =
+      #bash
+      ''
+        gpgconf --launch gpg-agent
+      '';
   in {
     # start gpg-agent if its not running or tunneled in
     # SSH does not start it automatically, so we need to avoid having to use a gpg command on system
