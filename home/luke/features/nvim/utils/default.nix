@@ -2,6 +2,7 @@
   imports = [
     ./compiler.nix
     ./dap.nix
+    ./emmet.nix
     ./gitsigns.nix
     ./gx.nix
     ./kommentary.nix
