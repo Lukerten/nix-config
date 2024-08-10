@@ -24,6 +24,7 @@
     ../common/optional/systemd-boot.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
+    ../common/optional/cm4all-vpn.nix
   ];
 
   networking = {

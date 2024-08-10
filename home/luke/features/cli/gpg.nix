@@ -30,7 +30,7 @@
     bash.profileExtra = fixGpg;
     fish.loginShellInit = fixGpg;
     zsh.loginExtra = fixGpg;
-
+    # Use TOFU+PGP trust model
     gpg = {
       enable = true;
       settings = {
@@ -39,9 +39,9 @@
     };
   };
 
+  # Link /run/user/$UID/gnupg to ~/.gnupg-sockets
+  # So that SSH config does not have to know the UID
   systemd.user.services = {
-    # Link /run/user/$UID/gnupg to ~/.gnupg-sockets
-    # So that SSH config does not have to know the UID
     link-gnupg-sockets = {
       Unit = {
         Description = "link gnupg sockets from /run to /home";

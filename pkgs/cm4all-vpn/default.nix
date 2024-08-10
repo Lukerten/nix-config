@@ -2,6 +2,9 @@
   writeShellScriptBin,
   opensc,
 }:
+#TODO: factor out all static strings into variables
+# socat --> ${socat}/bin/socat
+# preferably define using a let in block
 writeShellScriptBin "cm4all-vpn" ''
   #!/bin/bash
   OVPN_VERB=0

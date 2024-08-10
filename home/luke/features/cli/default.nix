@@ -4,7 +4,6 @@
     ./bat.nix
     ./cava.nix
     ./cmatrix.nix
-    ./cm4all-vpn.nix
     ./direnv.nix
     ./dragon.nix
     ./fish.nix

@@ -28,6 +28,7 @@
     ../common/optional/x11-no-suspend.nix
     ../common/optional/quietboot.nix
     ../common/optional/thunar.nix
+    ../common/optional/cm4all-vpn.nix
   ];
 
   system.stateVersion = "23.11";
