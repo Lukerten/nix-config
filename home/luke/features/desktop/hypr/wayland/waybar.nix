@@ -71,7 +71,7 @@ in {
           ])
           ++ ["custom/currentplayer" "custom/player"];
 
-        modules-center = ["clock" "custom/unread-mail"];
+        modules-center = ["clock"];
 
         modules-right = [
           "tray"
@@ -149,7 +149,7 @@ in {
           exec = mkScriptJson {
             deps = lib.optional hyprlandCfg.enable hyprlandCfg.package;
             text = "";
-            tooltip = ''$(grep /etc/os-release PRETTY_NAME | cut -d '"' -f2)'';
+            tooltip = ''$(grep PRETTY_NAME /etc/os-release | cut -d '"' -f2)'';
             class = let
               isFullScreen =
                 if hyprlandCfg.enable
