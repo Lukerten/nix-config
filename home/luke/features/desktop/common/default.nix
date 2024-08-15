@@ -10,7 +10,6 @@
     ./thunderbird.nix
     ./font.nix
     ./gtk.nix
-    ./qt.nix
     ./thunar.nix
   ];
 
@@ -51,4 +50,6 @@
       package = pkgs.stable.nextcloud-client;
     };
   };
+
+  qt.enable = true;
 }

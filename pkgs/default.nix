@@ -4,7 +4,6 @@
   shellcolord = pkgs.callPackage ./shellcolord {};
   trekscii = pkgs.callPackage ./trekscii {};
   compiz = pkgs.callPackage ./compiz {};
-  hyprbars = pkgs.callPackage ./hyprbars {};
 
   # Luke's Custom packages
   cm4all-vpn = pkgs.callPackage ./cm4all-vpn {};

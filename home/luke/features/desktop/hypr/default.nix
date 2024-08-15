@@ -5,10 +5,14 @@
   outputs,
   ...
 }: let
-  rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
-  imports = [../common ./wayland ./basic-binds.nix ./hyprbars.nix];
+  imports = [
+    ../common
+    ../common/wayland
+    ./binds.nix
+    ./hyprbars.nix
+  ];
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
@@ -41,6 +45,7 @@ in {
 
     settings = {
       general = {
+        layout = "hy3";
         gaps_in = 8;
         gaps_out = 12;
         border_size = 2;
@@ -148,92 +153,6 @@ in {
 
       exec = ["${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"];
 
-      bind = let
-        wlogout = lib.getExe pkgs.wlogout;
-        grimblast = lib.getExe pkgs.grimblast;
-        tesseract = lib.getExe pkgs.tesseract;
-        pactl = lib.getExe' pkgs.pulseaudio "pactl";
-        notify-send = lib.getExe' pkgs.libnotify "notify-send";
-        defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
-      in
-        [
-          # Basic binds
-          "SUPERSHIFT,e,exec,${wlogout}"
-          # Program bindings
-          "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
-          "SUPER,e,exec,${defaultApp "text/plain"}"
-          "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
-          # Brightness control (only works if the system has lightd)
-          ",XF86MonBrightnessUp,exec,light -A 10"
-          ",XF86MonBrightnessDown,exec,light -U 10"
-          # Volume
-          ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-          ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-          ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-          "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-          ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-          # Screenshotting
-          ",Print,exec,${grimblast} --notify --freeze copysave output"
-          "SUPER,Print,exec,${grimblast} --notify --freeze copysave area"
-          "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
-        ]
-        ++ (let
-          playerctl = lib.getExe' config.services.playerctld.package "playerctl";
-          playerctld =
-            lib.getExe' config.services.playerctld.package "playerctld";
-        in
-          lib.optionals config.services.playerctld.enable [
-            # Media control
-            ",XF86AudioNext,exec,${playerctl} next"
-            ",XF86AudioPrev,exec,${playerctl} previous"
-            ",XF86AudioPlay,exec,${playerctl} play-pause"
-            ",XF86AudioStop,exec,${playerctl} stop"
-            "ALT,XF86AudioNext,exec,${playerctld} shift"
-            "ALT,XF86AudioPrev,exec,${playerctld} unshift"
-            "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
-          ])
-        ++
-        # Screen lock
-        (let
-          swaylock = lib.getExe config.programs.swaylock.package;
-        in
-          lib.optionals config.programs.swaylock.enable [
-            ",XF86Launch5,exec,${swaylock} -S --grace 2"
-            ",XF86Launch4,exec,${swaylock} -S --grace 2"
-            "SUPER,q,exec,${swaylock} -S --grace 2"
-          ])
-        ++
-        # Notification manager
-        (let
-          makoctl = lib.getExe' config.services.mako.package "makoctl";
-        in
-          lib.optionals config.services.mako.enable [
-            "SUPER,w,exec,${makoctl} dismiss"
-            "SUPERSHIFT,w,exec,${makoctl} restore"
-          ])
-        ++
-        # Launcher
-        (let
-          rofi-menu = lib.getExe config.programs.rofi.launcherScript;
-        in
-          lib.optionals config.programs.rofi.enableLauncher
-          ["SUPER,space,exec,${rofi-menu}"])
-        ++
-        # Clipper
-        (let
-          rofi-clipper = lib.getExe config.programs.rofi.clipperScript;
-        in
-          lib.optionals config.programs.rofi.enableClipper
-          ["SUPER,c,exec,${rofi-clipper}"])
-        ++
-        # Specialisation menu
-        (let
-          rofi-specialisation =
-            lib.getExe config.programs.rofi.specialisationScript;
-        in
-          lib.optionals config.programs.rofi.enableSpecialisation
-          ["SUPER,s,exec,${rofi-specialisation}"]);
-
       monitor = let
         waybarSpace = let
           inherit
@@ -280,10 +199,11 @@ in {
           else "disable"
         }") (config.monitors));
 
-      workspace =
-        map (m: "name:${m.workspace},monitor:${m.name}")
-        (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
+    workspace =
+      map (m: "name:${m.workspace},monitor:${m.name}")
+      (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
+
     # This is order sensitive, so it has to come here.
     extraConfig = ''
       # Passthrough mode (e.g. for VNC)

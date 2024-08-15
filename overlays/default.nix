@@ -55,5 +55,48 @@ in {
     # https://github.com/mdellweg/pass_secret_service/pull/37
     pass-secret-service =
       addPatches prev.pass-secret-service [./pass-secret-service-native.diff];
+
+    qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
+      preFixup =
+        oldAttrs.preFixup
+        +
+        # Fix for https://github.com/NixOS/nixpkgs/issues/168484
+        (let
+          schemaPath = package: "${package}/share/gsettings-schemas/${package.name}";
+        in ''
+          makeWrapperArgs+=(
+            --prefix GIO_EXTRA_MODULES : "${final.lib.getLib final.dconf}/lib/gio/modules"
+            --prefix XDG_DATA_DIRS : ${schemaPath final.gsettings-desktop-schemas}
+            --prefix XDG_DATA_DIRS : ${schemaPath final.gtk3}
+          )
+        '');
+      patches =
+        (oldAttrs.patches or [])
+        ++ [
+          # Repaint tabs when colorscheme changes
+          ./qutebrowser-refresh-tab-colorscheme.patch
+        ];
+      });
+
+    wl-clipboard = addPatches prev.wl-clipboard [./wl-clipboard-secrets.diff];
+
+    pass = addPatches prev.pass [./pass-wlclipboard-secret.diff];
+
+    hydra_unstable =
+      (prev.hydra_unstable.overrideAttrs (_: {
+        version = "2024-05-23";
+        src = final.fetchFromGitHub {
+          owner = "nixos";
+          repo = "hydra";
+          rev = "b3e0d9a8b78d55e5fea394839524f5a24d694230";
+          hash = "sha256-WAJJ4UL3hsqsfZ05cHthjEwItnv7Xy84r2y6lzkBMh8=";
+        };
+        patches = [./hydra-restrict-eval.diff];
+      }))
+      .override {
+        nix = final.nixVersions.nix_2_22;
+      };
+
+    hyprbars = addPatches prev.hyprbars [./hyprbars-color-windowrules.patch];
   };
 }
