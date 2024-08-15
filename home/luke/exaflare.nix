@@ -16,7 +16,8 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  wallpaper = pkgs.wallpapers.red-cityscape-messy;
+  wallpaper = pkgs.wallpapers.raktika-concept;
+  colorscheme.type = "rainbow";
   monitors = [
     {
       name = "DP-2";
