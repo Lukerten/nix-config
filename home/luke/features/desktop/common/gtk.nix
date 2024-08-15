@@ -70,6 +70,8 @@
       '';
     };
 in rec {
+
+  home.packages = [ home.pointerCursor.package];
   gtk = {
     enable = true;
     font = {
@@ -95,6 +97,21 @@ in rec {
     };
   };
 
+  home.pointerCursor = {
+    name = "Numix-Cursor${
+        if config.colorscheme.mode == "dark"
+        then ""
+        else "-Light"
+      }";
+    package = pkgs.numix-cursor-theme;
+    size = 24;
+    gtk.enable = true;
+    x11={
+      enable = true;
+      defaultCursor = "left_ptr";
+    };
+  };
+
   services.xsettingsd = {
     enable = true;
     settings = {
@@ -102,6 +119,5 @@ in rec {
       "Net/IconThemeName" = "${gtk.iconTheme.name}";
     };
   };
-
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 }
