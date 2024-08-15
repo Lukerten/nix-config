@@ -98,12 +98,12 @@ in rec {
   };
 
   home.pointerCursor = {
-    name = "Numix-Cursor${
+    name = "Bibata-Modern-${
         if config.colorscheme.mode == "dark"
-        then ""
-        else "-Light"
+        then "Ice"
+        else "Classic"
       }";
-    package = pkgs.numix-cursor-theme;
+    package = pkgs.bibata-cursors;
     size = 24;
     gtk.enable = true;
     x11={
