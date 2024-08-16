@@ -45,12 +45,15 @@ in {
 
     settings = {
       general = {
-        layout = "hy3";
-        gaps_in = 8;
+        gaps_in = 5;
         gaps_out = 12;
         border_size = 2;
-        "col.active_border" = rgba config.colorscheme.colors.primary "aa";
-        "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
+        "col.active_border" = lib.concatStringsSep " " [
+          "${rgba config.colorscheme.colors.tertiary "ff"}"
+          "${rgba config.colorscheme.colors.primary "ff"}"
+          "45deg"
+        ];
+        "col.inactive_border" = rgba config.colorscheme.colors.surface "00";
       };
       cursor.inactive_timeout = 4;
       group = {
@@ -105,14 +108,14 @@ in {
       ];
 
       decoration = {
-        active_opacity = 1.0;
+        active_opacity = 0.95;
         inactive_opacity = 0.95;
-        fullscreen_opacity = 1.0;
+        fullscreen_opacity = 1.00;
         rounding = 7;
         blur = {
           enabled = true;
           size = 4;
-          passes = 3;
+          passes = 1;
           new_optimizations = true;
           ignore_opacity = true;
           popups = true;

@@ -7,12 +7,12 @@
     enable = true;
     settings = {
       format = let
-        git = "$git_branch$git_commit$git_state$git_status";
+        git = "[$git_branch$git_commit$git_state$git_status](bold blue)";
         cloud = "$aws$gcloud$openstack";
       in ''
         $username$hostname($shlvl)($cmd_duration) $fill ($nix_shell)$custom
         $directory(${git})(- ${cloud}) $fill $time
-        $jobs$character
+        $jobs$character(white)
       '';
 
       fill = {
@@ -24,29 +24,29 @@
       username = {
         format = "[$user]($style)";
         show_always = true;
+        style_user = "bold green";
       };
       hostname = {
-        format = "[@$hostname]($style) ";
+        format = "[@$hostname](bold yellow) ";
         ssh_only = false;
-        style = "bold green";
       };
       shlvl = {
-        format = "[$shlvl]($style) ";
-        style = "bold cyan";
+        format = "[$shlvl](bold red) ";
         threshold = 2;
         repeat = true;
         disabled = false;
       };
-      cmd_duration = {format = "took [$duration]($style) ";};
+      cmd_duration = {format = "took [$duration](bold green) ";};
 
       directory = {
-        format = "[$path]($style)( [$read_only]($read_only_style)) ";
+        format = "[$path ](bold blue)([$read_only](bold red))";
+        style = "bold blue";
       };
       nix_shell = {
-        format = "[($name \\(develop\\) <- )$symbol]($style) ";
+        format = "[($name <- )$symbol]($style) ";
         impure_msg = "";
         symbol = " ";
-        style = "bold red";
+        style = "bold yellow";
       };
       custom = {
         nix_inspect = let
@@ -67,13 +67,13 @@
         error_symbol = "[](bold red)";
         success_symbol = "[](bold green)";
         vimcmd_symbol = "[](bold yellow)";
-        vimcmd_visual_symbol = "[](bold cyan)";
-        vimcmd_replace_symbol = "[](bold purple)";
-        vimcmd_replace_one_symbol = "[](bold purple)";
+        vimcmd_visual_symbol = "[](bold yellow)";
+        vimcmd_replace_symbol = "[](bold yellow)";
+        vimcmd_replace_one_symbol = "[](bold yellow)";
       };
 
       time = {
-        format = "\\[[$time]($style)\\]";
+        format = "\\[[$time](bold blue)\\]";
         disabled = false;
       };
 
