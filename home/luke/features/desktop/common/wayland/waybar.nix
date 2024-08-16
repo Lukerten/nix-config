@@ -75,8 +75,8 @@ in {
 
         modules-right = [
           "tray"
-          "pulseaudio"
           "network"
+          "pulseaudio"
           "cpu"
           "custom/gpu"
           "memory"
@@ -133,11 +133,11 @@ in {
         "sway/window" = {max-length = 20;};
         network = {
           interval = 3;
-          format-wifi = "   {essid}";
+          format-wifi = " ";
           format-ethernet = "󰈁";
           format-disconnected = "";
           tooltip-format = ''
-            {ifname}
+            {ifname} {essid}
             {ipaddr}/{cidr}
             Up: {bandwidthUpBits}
             Down: {bandwidthDownBits}'';
