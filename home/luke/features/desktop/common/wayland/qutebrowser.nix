@@ -46,6 +46,39 @@
     "cm:jira" = "https://jira.cm4all.com/";
     "cm.gitlab" = "https://gitlab.cm4all.com/";
   };
+
+  customStlyeSheet = #scss
+  ''
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track:vertical {
+      background: ${colors.surface};
+      border-left: 1px solid ${colors.surface}
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+      background: ${colors.on_surface};
+      border-left: 1px solid ${colors.surface};
+    }
+
+    ::-webkit-scrollbar-track:horizontal {
+      background: ${colors.on_surface};
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+      background: ${colors.on_surface};
+      border-radius: 4px;
+      box-shadow: inset 0 0 8px ${colors.surface};
+    }
+
+    ::-webkit-scrollbar-corner {
+      background: ${colors.surface};
+    }
+  '';
 in {
 
   xdg.mimeApps.defaultApplications = {
@@ -257,9 +290,13 @@ in {
     };
     extraConfig = ''
       c.tabs.padding = {"bottom": 10, "left": 10, "right": 10, "top": 10}
+      c.content.user_stylesheets = "scrollbar.css"
+      c.scrolling.bar = "overlay"
+      c.scrolling.smooth = True
     '';
   };
 
+  xdg.configFile."qutebrowser/scrollbar.css".text = customStlyeSheet;
   xdg.configFile."qutebrowser/config.py".onChange = lib.mkForce ''
     ${pkgs.procps}/bin/pkill -u $USER -HUP qutebrowser || true
   '';
