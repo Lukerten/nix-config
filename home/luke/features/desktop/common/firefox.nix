@@ -1,32 +1,10 @@
+
 {
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }: let
-  defaultSettings = {
-    "browser.download.panel.shown" = true;
-    "browser.contentblocking.category" = "strict";
-    "browser.newtabPage.activity-stream.improvedsearch.topSiteSearchShortcuts.haveP1inned" = "duckduckgo";
-    "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-    "browser.policies.applied" = true;
-    "browser.loadInBackgr1ound" = true;
-    "browser.tabs.loadInBackgr1ound" = true;
-    "browser.tabs.warnOnClose" = false;
-    "browser.urlbar.placeholderName" = "DuckDuckGo";
-    "browser.urlbar.placeholderName.private" = "DuckDuckGo";
-    "browser.fullscreen.autohide" = false;
-    "datare1porting.healthreport.uploadEnabled" = false;
-    "extensions.formautofill.addresses.enabled" = true;
-    "extensions.formautofill.credit1Cards.enabled" = false;
-    "identity.fxaccounts.enabled" = true;
-    "privacy.trackingprotection.enabled" = true;
-    "privacy.trackingprotection.socialtracking.enabled" = true;
-    "privacy.trackingprotection.fingerprinting.enabled" = true;
-    "signon.remeberSignons" = true;
-  };
-
   defaultExtensions = with pkgs.inputs.firefox-addons; [
     ublock-origin
     adblocker-ultimate
@@ -120,39 +98,90 @@
     "Bing".metaData.hidden = true;
   };
 
-  defaultPolicies = {
-    DisableTelemetry = true;
-    DisableFirefoxStudies = true;
-    EnableTrackingProtection = {
-      Value = true;
-      Locked = true;
-      Cryptomining = true;
-      Fingerprinting = true;
-    };
-    DisablePocket = false;
-    DisableFirefoxAccounts = true;
-    DisableAccounts = false;
-    DisableFirefoxScreenshots = true;
-    OverrideFirstRunPage = "";
-    OverridePostUpdatePage = "";
-    DontCheckDefaultBrowser = true;
-    DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
-    DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
-    SearchBar = "unified"; # alternative: "separate"
-  };
+  settings = {
+        "browser.startup.homepage" = "about:home";
+        "browser.disableResetPrompt" = true;
+        "browser.download.panel.shown" = true;
+        "browser.feeds.showFirstRunUI" = false;
+        "browser.messaging-system.whatsNewPanel.enabled" = false;
+        "browser.rights.3.shown" = true;
+        "browser.shell.checkDefaultBrowser" = false;
+        "browser.shell.defaultBrowserCheckCount" = 1;
+        "browser.startup.homepage_override.mstone" = "ignore";
+        "browser.uitour.enabled" = false;
+        "startup.homepage_override_url" = "";
+        "trailhead.firstrun.didSeeAboutWelcome" = true;
+        "browser.bookmarks.restore_default_bookmarks" = false;
+        "browser.bookmarks.addedImportButton" = true;
+        "browser.download.useDownloadDir" = false;
+        "browser.newtabpage.activity-stream.feeds.topsites" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
+        "browser.newtabpage.blocked" = lib.genAttrs [
+          "4gPpjkxgZzXPVtuEoAL9Ig=="
+          "eV8/WsSLxHadrTL1gAxhug=="
+          "gLv0ja2RYVgxKdp0I5qwvA=="
+          "K00ILysCaEq8+bEqV/3nuw=="
+          "T9nJot5PurhJSy8n038xGA=="
+        ] (_: 1);
+
+        # Disable some telemetry
+        "app.shield.optoutstudies.enabled" = false;
+        "browser.discovery.enabled" = false;
+        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+        "browser.newtabpage.activity-stream.telemetry" = false;
+        "browser.ping-centre.telemetry" = false;
+        "datareporting.healthreport.service.enabled" = false;
+        "datareporting.healthreport.uploadEnabled" = false;
+        "datareporting.policy.dataSubmissionEnabled" = false;
+        "datareporting.sessions.current.clean" = true;
+        "devtools.onboarding.telemetry.logged" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.bhrPing.enabled" = false;
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.firstShutdownPing.enabled" = false;
+        "toolkit.telemetry.hybridContent.enabled" = false;
+        "toolkit.telemetry.newProfilePing.enabled" = false;
+        "toolkit.telemetry.prompted" = 2;
+        "toolkit.telemetry.rejected" = true;
+        "toolkit.telemetry.reportingpolicy.firstRun" = false;
+        "toolkit.telemetry.server" = "";
+        "toolkit.telemetry.shutdownPingSender.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.unifiedIsOptIn" = false;
+        "toolkit.telemetry.updatePing.enabled" = false;
+
+        # Disable fx accounts
+        "identity.fxaccounts.enabled" = false;
+        "signon.rememberSignons" = false;
+        "privacy.trackingprotection.enabled" = true;
+        "dom.security.https_only_mode" = true;
+        "browser.uiCustomization.state" = builtins.toJSON {
+          currentVersion = 20;
+          newElementCount = 5;
+          dirtyAreaCache = ["nav-bar" "PersonalToolbar" "toolbar-menubar" "TabsToolbar" "widget-overflow-fixed-list"];
+          placements = {
+            PersonalToolbar = ["personal-bookmarks"];
+            TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
+            nav-bar = ["back-button" "forward-button" "stop-reload-button" "urlbar-container" "downloads-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action" "reset-pbm-toolbar-button" "unified-extensions-button"];
+            toolbar-menubar = ["menubar-items"];
+            unified-extensions-area = [];
+            widget-overflow-fixed-list = [];
+          };
+          seen = ["save-to-pocket-button" "developer-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action"];
+        };
+      };
 in {
+  programs.browserpass.enable = true;
   programs.firefox = {
     enable = true;
-    policies = defaultPolicies;
-    profiles = {
-      luke = {
-        isDefault = true;
-        id = 0;
-        settings = defaultSettings;
-        extensions = defaultExtensions;
-        search.engines = defaultSearch;
-        search.force = true;
-        search.order = [
+    profiles.luke = {
+      search = {
+        force = true;
+        default = "DuckDuckGo";
+        privateDefault = "DuckDuckGo";
+        engines = defaultSearch;
+        order = [
           "DuckDuckGo"
           "Nix Packages"
           "NixOS Wiki"
@@ -162,33 +191,21 @@ in {
           "Youtube"
         ];
       };
+      bookmarks = {};
+      extensions = with pkgs.inputs.firefox-addons; [
+        ublock-origin
+        browserpass
+      ];
+      bookmarks = {};
+      settings = settings;
     };
   };
 
-  xdg.mimeApps.defaultApplications = {
+  xdg.mimeApps.defaultApplications = lib.mkIf (!config.programs.qutebrowser.enable) {
     "text/html" = ["firefox.desktop"];
     "text/xml" = ["firefox.desktop"];
     "x-scheme-handler/http" = ["firefox.desktop"];
     "x-scheme-handler/https" = ["firefox.desktop"];
-    "x-scheme-handler/ftp" = ["firefox.desktop"];
-    "x-scheme-handler/about" = ["firefox.desktop"];
-    "image/jpeg" = ["firefox.desktop"];
-    "image/png" = ["firefox.desktop"];
-    "image/gif" = ["firefox.desktop"];
-    "image/bmp" = ["firefox.desktop"];
-    "image/webp" = ["firefox.desktop"];
-    "image/svg+xml" = ["firefox.desktop"];
-    "image/x-windows-bmp" = ["firefox.desktop"];
-    "image/x-portable-bitmap" = ["firefox.desktop"];
-    "image/x-portable-graymap" = ["firefox.desktop"];
-    "image/x-portable-pixmap" = ["firefox.desktop"];
-    "image/x-xbitmap" = ["firefox.desktop"];
-    "image/x-xpixmap" = ["firefox.desktop"];
-    "image/x-xwindowdump" = ["firefox.desktop"];
-    "image/tiff" = ["firefox.desktop"];
-    "image/x-icon" = ["firefox.desktop"];
-    "image/vnd.microsoft.icon" = ["firefox.desktop"];
-    "image/vnd.wap.wbmp" = ["firefox.desktop"];
-    "image/x-jng" = ["firefox.desktop"];
   };
 }
+

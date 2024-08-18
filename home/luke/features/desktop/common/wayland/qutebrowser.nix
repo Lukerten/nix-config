@@ -5,16 +5,72 @@
   ...
 }: let
   inherit (config.colorscheme) colors;
+  searchEngines = rec {
+    duckduckgo = "https://duckduckgo.com/?q={}";
+    google = "https://google.com/search?hl=en&q={}";
+    nixospackages = "https://search.nixos.org/packages?query={}";
+    nixoswiki = "https://nixos.wiki/index.php?search={}";
+    wikipedia = "https://de.wikipedia.org/w/index.php?search={}";
+    openstreetmap = "https://www.openstreetmap.org/search?query={}";
+    youtube = "https://www.youtube.com/results?search_query={}";
+
+    # Shortcuts
+    ddg = duckduckgo;
+    g = google;
+    nixpkgs = nixospackages;
+    np = nixospackages;
+    nixwiki = nixoswiki;
+    nw = nixoswiki;
+    wiki = wikipedia;
+    osm = openstreetmap;
+    map = openstreetmap;
+    yt = youtube;
+    DEFAULT = ddg;
+  };
+
+  quickmarks = {
+    "nixos" = "https://nixos.org/";
+    "nixpkgs" = "https://nixos.org/nixpkgs/";
+    "gmail" = "https://mail.google.com/";
+    "calendar" = "https://calendar.google.com/";
+    "github" = "https://github.com/";
+    "gitlab" = "https://gitlab.mbretsch.de/";
+    "fh:gitlab" = "https://git.ai.fh-erfurt.de/";
+    "fh:ecampus" = "https://ecampus.fh-erfurt.de/";
+    "fh:webmail" = "https://fhemail.fh-erfurt.de/";
+    "fh:fsrmail" = "https://group.fh-erfurt.de/";
+    "fh:asana" = "https://app.asana.com/";
+    "fh:nextcloud" = "https://cloud.fh-erfurt.de/";
+    "cm:united" = "https://united-internet.org/";
+    "cm:confluence" = "https://confluence.cm4all.com/";
+    "cm:jira" = "https://jira.cm4all.com/";
+    "cm.gitlab" = "https://gitlab.cm4all.com/";
+  };
 in {
+
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = ["org.qutebrowser.qutebrowser.desktop"];
+    "text/xml" = ["org.qutebrowser.qutebrowser.desktop"];
+    "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
+    "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
+    "x-scheme-handler/qute" = ["org.qutebrowser.qutebrowser.desktop"];
+  };
+
   programs.qutebrowser = {
     enable = true;
     loadAutoconfig = true;
+    searchEngines = searchEngines;
+    quickmarks = quickmarks;
     settings = {
+      url = rec {
+        default_page = "https://start.duckduckgo.com/";
+        start_pages = [default_page];
+      };
       downloads.open_dispatcher = "${lib.getExe pkgs.handlr-regex} open {}";
       editor.command = ["${lib.getExe pkgs.handlr-regex}" "open" "{file}"];
       tabs = {
         show = "multiple";
-        position = "left";
+        position = "top";
         indicator.width = 0;
       };
       fonts = {
@@ -22,10 +78,7 @@ in {
         default_size = "12pt";
       };
       colors = {
-        webpage = {
-          preferred_color_scheme = "auto";
-          bg = colors.surface;
-        };
+        webpage.preferred_color_scheme = "auto";
         completion = {
           fg = colors.on_surface;
           match.fg = colors.primary;
