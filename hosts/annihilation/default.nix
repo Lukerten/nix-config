@@ -19,6 +19,7 @@
     ../common/optional/quietboot.nix
     ../common/optional/regreet.nix
     ../common/optional/thunar.nix
+    ../common/optional/steam.nix
     ../common/optional/systemd-boot.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
