@@ -4,12 +4,8 @@
   ...
 }: {
   imports = [
-    # hardware configuration
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-pc-ssd
-
-    # host specific configuration
     ./hardware-configuration.nix
 
     # common configuration
@@ -18,17 +14,14 @@
 
     # optional configuration
     ../common/optional/bluez.nix
-    ../common/optional/ckb-next.nix
     ../common/optional/cups.nix
     ../common/optional/pipewire.nix
+    ../common/optional/quietboot.nix
     ../common/optional/regreet.nix
-    ../common/optional/steam.nix
+    ../common/optional/thunar.nix
     ../common/optional/systemd-boot.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
-    ../common/optional/quietboot.nix
-    ../common/optional/thunar.nix
-    ../common/optional/cm4all-vpn.nix
   ];
 
   system.stateVersion = "23.11";
@@ -39,7 +32,7 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     binfmt.emulatedSystems = ["aarch64-linux" "i686-linux"];
   };
 

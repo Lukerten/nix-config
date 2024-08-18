@@ -7,10 +7,11 @@
   imports = [
     ./discord.nix
     ./firefox.nix
-    ./thunderbird.nix
     ./font.nix
     ./gtk.nix
+    ./kdeconnect.nix
     ./thunar.nix
+    ./thunderbird.nix
   ];
 
   # Also sets org.freedesktop.appearance color-scheme
@@ -50,6 +51,5 @@
       package = pkgs.stable.nextcloud-client;
     };
   };
-
   qt.enable = true;
 }

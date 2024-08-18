@@ -7,20 +7,20 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
-      ./docker.nix
+      ./cm4all-vpn.nix
       ./fish.nix
       ./font.nix
+      ./gamemode.nix
+      ./kdeconnect.nix
       ./locale.nix
       ./nix-ld.nix
       ./nix.nix
       ./openssh.nix
-      ./prometeus-node-exporter.nix
-      ./systemd-initrd.nix
+      ./podman.nix
       ./sops.nix
       ./steam-hardware.nix
-      ./gamemode.nix
-      ./podman.nix
-      ./tailscale.nix
+      ./systemd-initrd.nix
+      ./upower.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 

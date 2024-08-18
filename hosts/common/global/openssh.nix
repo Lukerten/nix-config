@@ -6,7 +6,6 @@
   ...
 }: let
   hosts = lib.attrNames outputs.nixosConfigurations;
-  hasOptinPersistence = config.environment.persistence ? "/persist";
 in {
   services.openssh = {
     enable = true;

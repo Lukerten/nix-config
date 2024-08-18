@@ -35,10 +35,13 @@
       "--hdr-enabled"
       "--steam"
     ];
-    steam = lib.concatStringsSep " " ["steam" "steam://open/bigpicture"];
+    steam = lib.concatStringsSep " " [
+      "steam"
+      "steam://open/bigpicture"
+    ];
   in
     pkgs.writeTextDir "share/wayland-sessions/steam-sesson.desktop" # ini
-    
+
     ''
       [Desktop Entry]
       Name=Steam Session
@@ -46,11 +49,11 @@
       Type=Application
     '';
 in {
-  home.packages = with pkgs; [
+  home.packages = [
     steam-with-pkgs
     steam-session
-    gamescope
-    mangohud
-    protontricks
+    pkgs.gamescope
+    pkgs.mangohud
+    pkgs.protontricks
   ];
 }
