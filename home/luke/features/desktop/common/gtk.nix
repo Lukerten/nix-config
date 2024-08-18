@@ -47,7 +47,7 @@
           HDR_BTN_FG=${colors.on_secondary_container}
           ACCENT_BG=${colors.primary}
           ACCENT_FG=${colors.on_primary}
-          HDR_BG=${colors.surface_bright}
+          HDR_BG=${colors.surface}
           HDR_FG=${colors.on_surface}
           MATERIA_SURFACE=${colors.surface_bright}
           MATERIA_VIEW=${colors.surface_dim}

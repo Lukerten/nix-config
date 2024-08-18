@@ -11,7 +11,6 @@ in {
     ../common
     ../common/wayland
     ./binds.nix
-    ./hyprbars.nix
   ];
 
   xdg.portal = let
@@ -45,7 +44,7 @@ in {
 
     settings = {
       general = {
-        gaps_in = 5;
+        gaps_in = 8;
         gaps_out = 12;
         border_size = 2;
         "col.active_border" = lib.concatStringsSep " " [
@@ -108,20 +107,20 @@ in {
       ];
 
       decoration = {
-        active_opacity = 0.95;
-        inactive_opacity = 0.95;
+        active_opacity = 0.85;
+        inactive_opacity = 0.85;
         fullscreen_opacity = 1.00;
         rounding = 7;
         blur = {
           enabled = true;
-          size = 4;
-          passes = 1;
+          size = 3;
+          passes = 4;
           new_optimizations = true;
           ignore_opacity = true;
           popups = true;
         };
-        drop_shadow = true;
-        shadow_range = 12;
+        drop_shadow = false;
+        shadow_range = 3;
         shadow_offset = "3 3";
         "col.shadow" = "0x44000000";
         "col.shadow_inactive" = "0x66000000";
