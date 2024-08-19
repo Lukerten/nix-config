@@ -14,6 +14,7 @@
     active:         #00FF00FF;
     urgent:         #FF0000FF;
   '';
+
 in {
   options.programs.rofi = {
     colorscheme = lib.mkOption {
@@ -30,6 +31,11 @@ in {
       * {
         ${cfg.colorscheme}
       }
-    '';
+      '';
+
+    xdg.configFile."rofi/config.rasi".source = ./config.rasi;
+
+    programs.rofi.configPath = ".config/rofi/generated.rasi";
+
   };
 }
