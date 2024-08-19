@@ -47,6 +47,23 @@
     "cm.gitlab" = "https://gitlab.cm4all.com/";
   };
 
+  custom-binds = {
+    normal = {
+      "p" = "spawn --userscript qute-pass";
+      "P" = "spawn --userscript qute-pass --password-only";
+      "<ctrl-v>" = "spawn mpv {url}";
+      "<f1>" = lib.mkMerge [
+        "config-cycle tabs.show never always"
+        "config-cycle statusbar.show in-mode always"
+        "config-cycle scrolling.bar never always"
+      ];
+    };
+    prompt = {
+      "<ctrl-y>" = "prompt-yes";
+      "<ctrl-v>" = "insert-text {primary}";
+    };
+  };
+
   customStlyeSheet = #scss
   ''
     ::-webkit-scrollbar {
@@ -94,6 +111,7 @@ in {
     loadAutoconfig = true;
     searchEngines = searchEngines;
     quickmarks = quickmarks;
+    keyBindings = custom-binds;
     settings = {
       url = rec {
         default_page = "https://start.duckduckgo.com/";
