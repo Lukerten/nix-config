@@ -49,8 +49,8 @@
 
   custom-binds = {
     normal = {
-      "p" = "spawn --userscript qute-pass";
-      "P" = "spawn --userscript qute-pass --password-only";
+      "e" = "spawn --userscript qute-pass";
+      "E" = "spawn --userscript qute-pass --password-only";
       "<ctrl-v>" = "spawn mpv {url}";
       "<f1>" = lib.mkMerge [
         "config-cycle tabs.show never always"
