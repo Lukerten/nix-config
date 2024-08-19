@@ -23,7 +23,7 @@ in {
     };
   };
 
-  imports = [./launcher ./clipper ./specialization];
+  imports = [./launcher ./clipper ./specialization ./window-switcher];
 
   config = lib.mkIf cfg.enable {
     xdg.configFile."rofi/shared/colors.rasi".text = ''

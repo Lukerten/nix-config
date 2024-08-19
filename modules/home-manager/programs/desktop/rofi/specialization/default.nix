@@ -19,6 +19,6 @@ in {
 
   config = lib.mkIf cfg.enableLauncher {
     home.packages = [cfg.specialisationScript];
-    xdg.configFile."rofi/specialisation.rasi".source = ./specialisation.rasi;
+    xdg.configFile."rofi/specialisation.rasi".source = ./theme.rasi;
   };
 }

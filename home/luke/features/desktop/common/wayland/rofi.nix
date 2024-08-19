@@ -21,6 +21,7 @@ in {
     enableLauncher = true;
     enableClipper = true;
     enableSpecialisation = true;
+    enableWindow = true;
   };
 
   services.cliphist.enable = true;

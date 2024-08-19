@@ -19,6 +19,6 @@ in {
 
   config = lib.mkIf cfg.enableLauncher {
     home.packages = [cfg.clipperScript];
-    xdg.configFile."rofi/clipper.rasi".source = ./clipper.rasi;
+    xdg.configFile."rofi/clipper.rasi".source = ./theme.rasi;
   };
 }

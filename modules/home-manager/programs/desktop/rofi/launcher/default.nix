@@ -21,6 +21,6 @@ in {
 
   config = lib.mkIf cfg.enableLauncher {
     home.packages = [cfg.launcherScript];
-    xdg.configFile."rofi/launcher.rasi".source = ./launcher.rasi;
+    xdg.configFile."rofi/launcher.rasi".source = ./theme.rasi;
   };
 }

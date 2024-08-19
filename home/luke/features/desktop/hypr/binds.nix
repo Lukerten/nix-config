@@ -165,6 +165,14 @@
           lib.getExe config.programs.rofi.specialisationScript;
       in
         lib.optionals config.programs.rofi.enableSpecialisation
-        ["SUPER,s,exec,${rofi-specialisation}"]);
+        ["SUPER,s,exec,${rofi-specialisation}"])
+      ++
+      # Window Switcher
+      (let
+        wofi-window-switcher =
+          lib.getExe config.programs.rofi.windowScript;
+      in
+        lib.optionals config.programs.rofi.enableWindow
+        ["SUPER,Tab,exec,${wofi-window-switcher}"]);
   };
 }
