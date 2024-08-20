@@ -16,7 +16,7 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  wallpaper = pkgs.wallpapers.raktika-concept;
+  wallpaper = pkgs.wallpapers.ying-yang-koi;
   colorscheme.type = "rainbow";
   monitors = [
     {
