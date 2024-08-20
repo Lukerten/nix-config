@@ -36,11 +36,7 @@
     deluge.enable = true;
     filezilla.enable = true;
     gimp.enable = true;
-    messager = {
-      whatsapp.enable = true;
-      signal.enable = true;
-      element.enable = true;
-    };
+    messager.whatsapp.enable = true;
     office.enable = true;
     teamspeak.enable = true;
   };
