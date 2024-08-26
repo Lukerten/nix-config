@@ -84,6 +84,19 @@ in {
         description = "Teams package";
       };
     };
+
+    teamspeak = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable Teamspeak";
+      };
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.pkgs.teamspeak_client;
+        description = "Teamspeak package";
+      };
+    };
   };
 
   config.home.packages =
@@ -92,5 +105,6 @@ in {
     ++ lib.optional cfg.slack.enable cfg.slack.package
     ++ lib.optional cfg.element.enable cfg.element.package
     ++ lib.optional cfg.webex.enable cfg.webex.package
-    ++ lib.optional cfg.teams.enable cfg.teams.package;
+    ++ lib.optional cfg.teams.enable cfg.teams.package
+    ++ lib.optional cfg.teamspeak.enable cfg.teamspeak.package;
 }

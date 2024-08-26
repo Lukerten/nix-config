@@ -8,6 +8,5 @@
     ./gimp.nix
     ./messagers.nix
     ./office.nix
-    ./teamspeak.nix
   ];
 }

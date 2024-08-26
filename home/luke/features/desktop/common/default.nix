@@ -26,7 +26,6 @@
 
   programs = {
     discord.enable = true;
-    discord.package = pkgs.stable.vesktop;
     spotify.enable = true;
     obsidian.enable = true;
     obs-studio.enable = true;
@@ -37,16 +36,22 @@
     deluge.enable = true;
     filezilla.enable = true;
     gimp.enable = true;
-    messager.whatsapp.enable = true;
     office.enable = true;
-    teamspeak.enable = true;
     postman.enable = true;
+  };
+
+  programs.messager = {
+    whatsapp.enable = true;
+    signal.enable = true;
+    slack.enable = true;
+    element.enable = true;
+    teamspeak.enable = true;
+    webex.enable = true;
   };
 
   services = {
     nextcloud-client = {
       enable = true;
-      package = pkgs.stable.nextcloud-client;
     };
   };
   qt.enable = true;
