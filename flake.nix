@@ -4,7 +4,7 @@
   inputs = {
     systems.url = "github:nix-systems/default-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:misterio77/impermanence";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -39,6 +39,10 @@
     };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-gl = {
+      url = "github:nix-community/nixgl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     matugen = {
