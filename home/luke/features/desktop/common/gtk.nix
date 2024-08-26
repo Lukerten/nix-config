@@ -47,7 +47,7 @@
           HDR_BTN_FG=${colors.on_secondary_container}
           ACCENT_BG=${colors.primary}
           ACCENT_FG=${colors.on_primary}
-          HDR_BG=${colors.surface}
+          HDR_BG=${colors.surface_bright}
           HDR_FG=${colors.on_surface}
           MATERIA_SURFACE=${colors.surface_bright}
           MATERIA_VIEW=${colors.surface_dim}
@@ -70,8 +70,6 @@
       '';
     };
 in rec {
-
-  home.packages = [ home.pointerCursor.package];
   gtk = {
     enable = true;
     font = {
@@ -95,20 +93,10 @@ in rec {
       }";
       package = pkgs.papirus-icon-theme;
     };
-  };
-
-  home.pointerCursor = {
-    name = "Bibata-Modern-${
-        if config.colorscheme.mode == "dark"
-        then "Ice"
-        else "Classic"
-      }";
-    package = pkgs.bibata-cursors;
-    size = 24;
-    gtk.enable = true;
-    x11={
-      enable = true;
-      defaultCursor = "left_ptr";
+    cursorTheme = {
+      package = pkgs.vimix-cursor-theme;
+      name = "Vimix-Cursors-White";
+      size = 24;
     };
   };
 
@@ -119,5 +107,6 @@ in rec {
       "Net/IconThemeName" = "${gtk.iconTheme.name}";
     };
   };
+
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 }
