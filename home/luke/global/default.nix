@@ -7,25 +7,25 @@
   ...
 }: {
   imports =
-    [../features/cli ../features/nvim]
+    [
+      ../features/cli
+      ../features/nvim
+      ./nixpkgs.nix
+    ]
     ++ (builtins.attrValues outputs.homeManagerModules);
-
-  # Nixpkgs
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
-  };
 
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      experimental-features = ["nix-command" "flakes" "ca-derivations"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+      ];
       warn-dirty = false;
     };
   };
+
   systemd.user.startServices = "sd-switch";
 
   programs = {
@@ -33,13 +33,14 @@
     git.enable = true;
   };
 
-  # Define the user's home directory
   home = {
-    username = lib.mkDefault "luke";
+    username = lib.mkDefault "gabriel";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "23.11";
+    stateVersion = lib.mkDefault "22.05";
     sessionPath = ["$HOME/.local/bin"];
-    sessionVariables = {FLAKE = "$HOME/Documents/NixConfig";};
+    sessionVariables = {
+      FLAKE = "$HOME/Documents/NixConfig";
+    };
   };
 
   colorscheme.mode = lib.mkOverride 1499 "dark";
@@ -47,7 +48,6 @@
     dark.configuration.colorscheme.mode = lib.mkOverride 1498 "dark";
     light.configuration.colorscheme.mode = lib.mkOverride 1498 "light";
   };
-
   home.file = {
     ".colorscheme.json".text = builtins.toJSON config.colorscheme;
   };
@@ -95,5 +95,8 @@
       fi
       ${lib.getExe specialisation} "$theme"
     '';
-  in [specialisation toggle-theme];
+  in [
+    specialisation
+    toggle-theme
+  ];
 }
