@@ -44,7 +44,7 @@ in {
 
     package = lib.mkOption {
       type = with pkgs; lib.types.package;
-      default = pkgs.vesktop;
+      default = pkgs.stable.vesktop;
       description = "The code package to use.";
     };
 
