@@ -6,7 +6,7 @@
 }: {
   imports = [./global ./features/desktop/hypr ./features/pass ./features/games];
 
-  wallpaper = pkgs.wallpapers.street-red-green;
+  wallpaper = pkgs.wallpapers.aenami-rooflines;
   colorscheme.type = "rainbow";
 
   monitors = [
