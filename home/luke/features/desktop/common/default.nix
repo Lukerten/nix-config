@@ -26,6 +26,7 @@
 
   programs = {
     discord.enable = true;
+    discord.package = pkgs.stable.vesktop;
     spotify.enable = true;
     obsidian.enable = true;
     obs-studio.enable = true;
@@ -39,6 +40,7 @@
     messager.whatsapp.enable = true;
     office.enable = true;
     teamspeak.enable = true;
+    postman.enable = true;
   };
 
   services = {
