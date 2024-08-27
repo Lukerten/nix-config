@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./compiler.nix
+    ./dadbod.nix
     ./dap.nix
     ./emmet.nix
     ./gitsigns.nix
