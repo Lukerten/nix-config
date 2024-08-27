@@ -150,7 +150,7 @@
         rofi-menu = lib.getExe config.programs.rofi.launcherScript;
       in
         lib.optionals config.programs.rofi.enableLauncher
-        ["SUPER,space,exec,${rofi-menu}"])
+        ["SUPER,f,exec,${rofi-menu}"])
       ++
       # Clipper
       (let
