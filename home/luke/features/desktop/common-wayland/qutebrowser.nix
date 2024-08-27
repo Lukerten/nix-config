@@ -4,6 +4,8 @@
   lib,
   ...
 }: let
+  defaultPage = "https://start.duckduckgo.com/";
+
   inherit (config.colorscheme) colors;
   searchEngines = rec {
     duckduckgo = "https://duckduckgo.com/?q={}";
@@ -57,43 +59,37 @@
         "config-cycle statusbar.show in-mode always"
         "config-cycle scrolling.bar never always"
       ];
+      "n" = "open -t ${defaultPage}";
     };
     prompt = {
       "<ctrl-y>" = "prompt-yes";
       "<ctrl-v>" = "insert-text {primary}";
+      "n" = "open -t ${defaultPage}";
     };
   };
 
   customStlyeSheet = #scss
   ''
     ::-webkit-scrollbar {
-      width: 4px;
-      height: 8px;
+      width: 6px; // Slightly increased for better usability
+      height: 6px;
     }
-
-    ::-webkit-scrollbar-track:vertical {
-      background: ${colors.surface};
-      border-left: 1px solid ${colors.surface}
+    ::-webkit-scrollbar-track {
+      background-color: ${colors.surface};
+      border-radius: 4px;
     }
-
+    ::-webkit-scrollbar-thumb {
+      background-color: ${colors.on_surface};
+      border-radius: 4px; // Consistent rounding
+    }
     ::-webkit-scrollbar-thumb:vertical {
-      background: ${colors.on_surface};
-      border-left: 1px solid ${colors.surface};
+      box-shadow: inset 0 0 6px ${colors.surface};
     }
-
-    ::-webkit-scrollbar-track:horizontal {
-      background: ${colors.on_surface};
-      border-radius: 4px;
-    }
-
     ::-webkit-scrollbar-thumb:horizontal {
-      background: ${colors.on_surface};
-      border-radius: 4px;
-      box-shadow: inset 0 0 8px ${colors.surface};
+      box-shadow: inset 0 0 6px ${colors.surface};
     }
-
     ::-webkit-scrollbar-corner {
-      background: ${colors.surface};
+      background-color: ${colors.surface};
     }
   '';
 in {
