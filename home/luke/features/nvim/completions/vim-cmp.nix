@@ -21,6 +21,8 @@
           end
 
           local cmp = require'cmp'
+          local cmp_window = require "cmp.config.window"
+          local cmp_mapping = require "cmp.config.mapping"
           local lspkind = require'lspkind'
           cmp.setup({
             snippet = {
@@ -59,9 +61,6 @@
                 end
               end, { 'i', 's' })
             },
-            completion = {
-              completeopt = 'menu,menuone,noinsert',
-            },
             formatting = {
               format = lspkind.cmp_format({
                 mode = "symbol_text",
@@ -74,15 +73,25 @@
               }),
             },
             sources = {
-              { name='otter' },
-              { name='nvim_lsp' },
-              { name='luasnip' },
-              { name='git' },
-              { name='buffer', option = { get_bufnrs = vim.api.nvim_list_bufs }},
+              {
+                name = 'copilot',
+                max_item_count = 3,
+              },
+              {
+                name='nvim_lsp',
+                entry_filter = function(entry, ctx)
+                  local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
+                  if kind == "Snippet" and ctx.prev_context.filetype == "java" then
+                    return false
+                  end
+                  return true
+                end,
+              },
               { name='path' },
             },
-            view = {
-              entries = {name = 'custom', selection_order = 'near_cursor' }
+            window = {
+              completion = cmp_window.bordered(),
+              documentation = cmp_window.bordered(),
             },
           })
         '';

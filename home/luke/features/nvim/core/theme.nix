@@ -10,7 +10,6 @@ in ''
     if exists("syntax_on")
       syntax reset
     endif
-
     hi clear
 
     hi Normal        guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
@@ -86,10 +85,10 @@ in ''
     hi Type          guifg=${c.secondary} guibg=NONE gui=NONE guisp=NONE
     hi Typedef       guifg=${c.secondary} guibg=NONE gui=NONE guisp=NONE
 
-    hi Todo          guifg=${c.surface_variant} guibg=${c.yellow} gui=NONE guisp=NONE
-    hi Done          guifg=${c.surface_variant} guibg=${c.green} gui=NONE guisp=NONE
-    hi Start         guifg=${c.surface_variant} guibg=${c.blue} gui=NONE guisp=NONE
-    hi End           guifg=${c.surface_variant} guibg=${c.magenta} gui=NONE guisp=NONE
+    hi Todo          guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+    hi Done          guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+    hi Start         guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+    hi End           guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
 
     hi DiffAdd      guifg=${c.secondary} guibg=${c.surface} gui=NONE guisp=NONE
     hi DiffChange   guifg=${c.primary_container} guibg=${c.surface} gui=NONE guisp=NONE

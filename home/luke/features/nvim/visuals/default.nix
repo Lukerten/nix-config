@@ -2,11 +2,12 @@
   imports = [
     ./alpha.nix
     ./bufferline.nix
+    ./fidget.nix
     ./ibf.nix
+    ./noice.nix
     ./nvim-tree.nix
     ./statusline.nix
-    ./toggleterm.nix
-    ./noice.nix
+    ./todo.nix
   ];
   programs.neovim.plugins = with pkgs.vimPlugins; [
     {
@@ -25,6 +26,20 @@
         # lua
         ''
           require('nvim-web-devicons').setup{}
+        '';
+    }
+    {
+      plugin = which-key-nvim;
+      type = "lua";
+      config =
+        # lua
+        ''
+          require('which-key').setup{
+            preset = modern,
+            icons = {
+              mappings = false,
+            },
+          }
         '';
     }
   ];
