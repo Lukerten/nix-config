@@ -80,7 +80,7 @@
         # Default applications
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
         "SUPER,e,exec,${defaultApp "text/plain"}"
-        "SUPER,b,exec,${defaultApp "x-scheme-handler/https"}"
+        "SUPER,a,exec,${defaultApp "x-scheme-handler/https"}"
 
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
@@ -150,7 +150,7 @@
         rofi-menu = lib.getExe config.programs.rofi.launcherScript;
       in
         lib.optionals config.programs.rofi.enableLauncher
-        ["SUPER,f,exec,${rofi-menu}"])
+        ["SUPER,d,exec,${rofi-menu}"])
       ++
       # Clipper
       (let
