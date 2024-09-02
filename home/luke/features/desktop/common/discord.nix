@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.discord.enable = true;
+  programs.vesktop.enable = true;
 
   services.arrpc = {
     enable = true;

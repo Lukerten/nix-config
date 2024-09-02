@@ -25,7 +25,6 @@
   xdg.portal.enable = true;
 
   programs = {
-    discord.enable = true;
     spotify.enable = true;
     obsidian.enable = true;
     obs-studio.enable = true;
