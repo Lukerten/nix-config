@@ -4,6 +4,7 @@
   programs.neovim.plugins = [
     pkgs.vimPlugins.lspkind-nvim
     pkgs.vimPlugins.nvim-jdtls
+    pkgs.vimPlugins.phpactor
     {
       plugin = pkgs.vimPlugins.ltex_extra-nvim;
       type = "lua";

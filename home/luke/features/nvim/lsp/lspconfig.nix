@@ -186,7 +186,30 @@ with builtins; let
       lspconfig.jsonls.setup{
         capabilities = capabilities;
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver'};
+        cmd = {'${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver', '--stdio'};
+        root_dir = util.find_git_ancestor,
+        single_file_support = true,
+        init_options = {
+          provideFormatter = true,
+        },
+        filetypes = { 'json', 'jsonc' },
+        docs = {
+          -- this language server config is in VSCode built-in package.json
+          description = [[
+            https://github.com/hrsh7th/vscode-langservers-extracted
+            vscode-json-language-server, a language server for JSON and JSON schema
+
+            ```lua
+            --Enable (broadcasting) snippet capability for completion
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+            require'lspconfig'.jsonls.setup {
+              capabilities = capabilities,
+            }
+            ```
+          ]],
+        },
       }
     ''
     # lua
@@ -241,6 +264,27 @@ with builtins; let
           formatting = {
             command = {"${pkgs.alejandra}/bin/alejandra", "--quiet"},
           },
+        },
+      }
+    ''
+    # lua
+    ''
+      -- PHP language server
+      lspconfig.phpactor.setup{
+        capabilities = capabilities;
+        on_attach = attach_keymaps,
+        cmd = {'${pkgs.phpactor}/bin/phpactor', 'language-server'};
+        filetypes = {'php'};
+        root_dir = function(pattern)
+          local cwd = vim.loop.cwd()
+          local root = util.root_pattern('composer.json', '.git', 'phpactor.json', '.git', '.gitignore')(cwd)
+          return util.path.is_descendant(cwd, root) and cwd or root
+        end;
+        docs = {
+          description = [[
+            https://github.com/phpactor/phpactor
+            Installation: https://phpactor.readthedocs.io/en/master/usage/standalone.html#global-installation
+          ]],
         },
       }
     ''
@@ -334,6 +378,7 @@ in {
         # lua
         ''
           local lspconfig = require('lspconfig')
+          local util = require('lspconfig.util')
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           local attach_keymaps = function(client, bufnr)
             local opts = { noremap=true, silent=true }
@@ -354,7 +399,6 @@ in {
               vim.keymap.set("n", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code", bufnr))
               vim.keymap.set("v", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code",bufnr))
           end
-
 
           -- Add language server with default options
           function add_lsp(server, options)

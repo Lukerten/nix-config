@@ -20,11 +20,19 @@ with builtins; let
       -- Java formatting: google-java-format
       table.insert(ls_sources, null_ls.builtins.formatting.google_java_format.with({
         command = "${pkgs.google-java-format}/bin/google-java-format",
-        filetypes = { "java" },
+        filetypes = { "java"},
         args = {
           "--aosp",
           "--skip-removing-unused-imports",
         },
+      }))
+    ''
+    # lua
+    ''
+      -- PHP formatting: php-cs-fixer
+      table.insert(ls_sources, null_ls.builtins.formatting.phpcsfixer.with({
+        filetypes = { "php" },
+        command = "${pkgs.php83Packages.php-cs-fixer}/bin/php-cs-fixer",
       }))
     ''
     # lua
@@ -67,6 +75,14 @@ with builtins; let
         command = "${pkgs.nodePackages.prettier}/bin/prettier",
       }))
     ''
+    # lua
+    ''
+      -- Nix formatting: alejandra
+      table.insert(ls_sources, null_ls.builtins.formatting.alejandra.with({
+        filetypes = { "nix" },
+        command = "${pkgs.alejandra}/bin/alejandra",
+      }))
+    ''
   ];
 in {
   programs.neovim.plugins = with pkgs.vimPlugins; [
@@ -80,6 +96,8 @@ in {
           local null_helpers = require("null-ls.helpers")
           local null_methods = require("null-ls.methods")
           local ls_sources = {}
+          -- Formatters
+          ${concatMapStringsSep "\n" (s: s) null_ls_formatters}
 
           require('null-ls').setup({
             diagnostics_format = "[#{m}] #{s} (#{c})",
@@ -89,8 +107,6 @@ in {
             on_attach=default_on_attach
           })
 
-          -- Formatters
-          ${concatMapStringsSep "\n" (s: s) null_ls_formatters}
         '';
     }
   ];
