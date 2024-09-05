@@ -75,8 +75,9 @@ in {
 
         modules-right = [
           "tray"
-          "network"
           "pulseaudio"
+          "network"
+          "custom/bluetooth"
           "cpu"
           "custom/gpu"
           "memory"
@@ -163,33 +164,6 @@ in {
           on-click = mkScript {script = "systemctl --user restart waybar";};
         };
 
-        "custom/unread-mail" = {
-          interval = 5;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [pkgs.findutils pkgs.procps];
-            pre = ''
-              count=$(find ~/Mail/*/Inbox/new -type f | wc -l)
-              if pgrep mbsync &>/dev/null; then
-                status="syncing"
-              else
-                if [ "$count" == "0" ]; then
-                  status="read"
-                else
-                  status="unread"
-                fi
-              fi
-            '';
-            text = "$count";
-            alt = "$status";
-          };
-          format = "{icon}  ({})";
-          format-icons = {
-            "read" = "󰇯";
-            "unread" = "󰇮";
-            "syncing" = "󰁪";
-          };
-        };
         "custom/currentplayer" = {
           interval = 2;
           return-type = "json";
@@ -222,13 +196,21 @@ in {
             "chromium" = " ";
           };
         };
-        "custom/rfkill" = {
+
+        "custom/bluetooth" = {
           interval = 1;
-          exec-if = mkScript {
-            deps = [pkgs.util-linux];
-            script = "rfkill | grep '<blocked>'";
+          return-type = "json";
+          exec = mkScriptJson {
+            deps = [pkgs.blueman pkgs.bluez];
+            text = " ";
+            tooltip = "Bluetooth";
+          };
+          on-click = mkScript {
+            deps = [pkgs.blueman];
+            script = "blueman-manager";
           };
         };
+
         "custom/player" = {
           exec-if = mkScript {
             deps = [pkgs.playerctl];
