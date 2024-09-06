@@ -2,10 +2,10 @@
   imports = [
     ./bash.nix
     ./bat.nix
+    ./btop.nix
     ./cava.nix
     ./cmatrix.nix
     ./direnv.nix
-    ./dragon.nix
     ./fish.nix
     ./fzf.nix
     ./gh.nix
@@ -22,6 +22,7 @@
 
   home.packages = with pkgs; [
     comma
+    libnotify
     distrobox
     bc
     bottom
@@ -36,7 +37,6 @@
     timer
     tree
     ltex-ls
-    commitmsg
     nixd
     alejandra
     nvd
@@ -45,7 +45,8 @@
   ];
 
   programs = {
-    youtube-tui.enable = true;
+    dragon.enable = true;
     neofetch.enable = true;
+    youtube-tui.enable = true;
   };
 }
