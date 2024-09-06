@@ -11,22 +11,21 @@
     pkgs.brgenml1lpr
     pkgs.brgenml1cupswrapper
     pkgs.cnijfilter2
-
   ];
 in {
   services.printing = {
-  enable = true;
-  allowFrom = [ "all" ];
-  browsing = true;
-  defaultShared = true;
-  browsedConf = ''
-    BrowseDNSSDSubTypes _cups,_print
-    BrowseLocalProtocols all
-    BrowseRemoteProtocols all
-    CreateIPPPrinterQueues All
-    BrowseProtocols all
+    enable = true;
+    allowFrom = ["all"];
+    browsing = true;
+    defaultShared = true;
+    browsedConf = ''
+      BrowseDNSSDSubTypes _cups,_print
+      BrowseLocalProtocols all
+      BrowseRemoteProtocols all
+      CreateIPPPrinterQueues All
+      BrowseProtocols all
     '';
-  drivers = printing-drivers;
+    drivers = printing-drivers;
   };
 
   services.avahi = {

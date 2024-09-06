@@ -18,13 +18,78 @@ with builtins; let
     # lua
     ''
       -- C/C++ language server
-      local clangd_capabilities = capabilities;
-      clangd_capabilities.textDocument.semanticHighlighting = true;
-      clangd_capabilities.offsetEncoding = {"utf-8"};
+      local function switch_source_header(bufnr)
+        bufnr = util.validate_bufnr(bufnr)
+        local clangd_client = util.get_active_client_by_name(bufnr, 'clangd')
+        local params = { uri = vim.uri_from_bufnr(bufnr) }
+        if clangd_client then
+          clangd_client.request('textDocument/switchSourceHeader', params, function(err, result)
+            if err then
+              error(tostring(err))
+            end
+            if not result then
+              print 'Corresponding file cannot be determined'
+              return
+            end
+            vim.api.nvim_command('edit ' .. vim.uri_to_fname(result))
+          end, bufnr)
+        else
+          print 'method textDocument/switchSourceHeader is not supported by any servers active on the current buffer'
+        end
+      end
+
+      local function symbol_info()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local clangd_client = util.get_active_client_by_name(bufnr, 'clangd')
+        if not clangd_client or not clangd_client.supports_method 'textDocument/symbolInfo' then
+          return vim.notify('Clangd client not found', vim.log.levels.ERROR)
+        end
+        local params = vim.lsp.util.make_position_params()
+        clangd_client.request('textDocument/symbolInfo', params, function(err, res)
+          if err or #res == 0 then
+            -- Clangd always returns an error, there is not reason to parse it
+            return
+          end
+          local container = string.format('container: %s', res[1].containerName) ---@type string
+          local name = string.format('name: %s', res[1].name) ---@type string
+          vim.lsp.util.open_floating_preview({ name, container }, "", {
+            height = 2,
+            width = math.max(string.len(name), string.len(container)),
+            focusable = false,
+            focus = false,
+            border = require('lspconfig.ui.windows').default_options.border or 'single',
+            title = 'Symbol Info',
+          })
+        end, bufnr)
+      end
+
+      local root_files = {
+        '.clangd',
+        '.clang-tidy',
+        '.clang-format',
+        'compile_commands.json',
+        'compile_flags.txt',
+        'configure.ac', -- AutoTools
+      }
+
+      local clangd_capabilities = {
+        textDocument = {
+          completion = {
+            editsNearCursor = true,
+          },
+        },
+        offsetEncoding = { 'utf-8', 'utf-16' },
+      }
+
       lspconfig.clangd.setup{
-        capabilities = clangd_capabilities,
+        cmd = {'${pkgs.clang-tools}/bin/clangd'},
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+        root_dir = function(fname)
+          return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+        end,
+        single_file_support = true,
+        capabilities = default_capabilities,
         on_attach = attach_keymaps,
-        cmd = {"${pkgs.clang-tools}/bin/clangd"};
       }
     ''
     # lua
@@ -90,7 +155,7 @@ with builtins; let
         on_attach = attach_keymaps,
         cmd = {'${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper'};
       }
-      ''
+    ''
     # lua
     ''
       -- HYPR language server hyprls
@@ -223,6 +288,77 @@ with builtins; let
     ''
     # lua
     ''
+      -- LaTeX language server LTex
+      local language_id_mapping = {
+        bib = 'bibtex',
+        plaintex = 'tex',
+        rnoweb = 'rsweave',
+        rst = 'restructuredtext',
+        tex = 'latex',
+        pandoc = 'markdown',
+        text = 'plaintext',
+      }
+
+      local filetypes = {
+        'bib',
+        'gitcommit',
+        'markdown',
+        'org',
+        'plaintex',
+        'rst',
+        'rnoweb',
+        'tex',
+        'pandoc',
+        'quarto',
+        'rmd',
+        'context',
+        'html',
+        'xhtml',
+        'mail',
+        'text',
+      }
+
+      -- Get the language id for a given filetype
+      local function get_language_id(_, filetype)
+        local language_id = language_id_mapping[filetype]
+        if language_id then
+          return language_id
+        else
+          return filetype
+        end
+      end
+
+      local enabled_ids = {}
+      do
+        local enabled_keys = {}
+        for _, ft in ipairs(filetypes) do
+          local id = get_language_id({}, ft)
+          if not enabled_keys[id] then
+            enabled_keys[id] = true
+            table.insert(enabled_ids, id)
+          end
+        end
+      end
+
+      -- actual configuration
+      default_config = {
+        capabilities = capabilities,
+        on_attach = attach_keymaps,
+        cmd = { "${pkgs.ltex-ls}/bin/ltex-ls" },
+        filetypes = filetypes,
+        root_dir = util.find_git_ancestor,
+        single_file_support = true,
+        get_language_id = get_language_id,
+        settings = {
+          ltex = {
+            enabled = enabled_ids,
+            language = "auto",
+          },
+        },
+      },
+    ''
+    # lua
+    ''
       -- Lua language server
       lspconfig.lua_ls.setup{
         capabilities = capabilities;
@@ -314,9 +450,9 @@ with builtins; let
         capabilities = capabilities;
         on_attach = attach_keymaps,
         cmd = { "${pkgs.sqls}/bin/sqls", "-config", string.format("%s/config.yml", root_dir) };
-        root_dir = function(fname)
-          return root_dir
-        end;
+        filetypes = { 'sql', 'mysql' },
+        root_dir = util.root_pattern 'config.yml',
+        single_file_support = true,
       }
     ''
     # lua
@@ -325,20 +461,31 @@ with builtins; let
       lspconfig.svelte.setup{
         capabilities = capabilities;
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.svelte-language-server}/bin/svelteserver'};
+        cmd = {'${pkgs.svelte-language-server}/bin/svelteserver','--stdio'};
+        root_dir = util.root_pattern('package.json', '.git'),
+        filetypes = { 'svelte' },
       }
     ''
     # lua
     ''
       -- TailwindCSS language server
       lspconfig.tailwindcss.setup{
-        cmd = {'${
-        pkgs.nodePackages."@tailwindcss/language-server"
-      }/bin/tailwindcss-language-server'};
+        cmd = {'${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server'};
         filetypes = {'css', 'scss', 'less', 'html', 'vue', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'};
         root_dir = require('lspconfig/util').root_pattern('tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.lua', 'package.json');
         on_attach = attach_keymaps;
         capabilities = capabilities;
+      }
+    ''
+    # lua
+    ''
+      -- TerraForm language server
+      lspconfig.terraformls.setup {
+        capabilities = capabilities,
+        on_attach = attach_keymaps,
+        cmd = { "${pkgs.terraform-ls}/bin/terraform-ls", "serve" },
+        filetypes = { 'terraform', 'terraform-vars' },
+        root_dir = util.root_pattern('.terraform', '.git'),
       }
     ''
     # lua
@@ -354,18 +501,69 @@ with builtins; let
     ''
       -- Vue language server
       lspconfig.vuels.setup {
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = { "${pkgs.nodePackages.vls}/bin/vls", "--stdio" }
+        filetypes = { 'vue' },
+        root_dir = util.root_pattern('package.json', 'vue.config.js'),
+        cmd = { "${pkgs.nodePackages.vls}/bin/vls", "--stdio" },
+        init_options = {
+          config = {
+            vetur = {
+              useWorkspaceDependencies = false,
+              validation = {
+                template = true,
+                style = true,
+                script = true,
+              },
+              completion = {
+                autoImport = false,
+                useScaffoldSnippets = false,
+                tagCasing = 'kebab',
+              },
+              format = {
+                defaultFormatter = {
+                  js = 'none',
+                  ts = 'none',
+                },
+                defaultFormatterOptions = {},
+                scriptInitialIndent = false,
+                styleInitialIndent = false,
+              },
+            },
+            css = {},
+            html = {
+              suggest = {},
+            },
+            javascript = {
+              format = {},
+            },
+            typescript = {
+              format = {},
+            },
+            emmet = {},
+            stylusSupremacy = {},
+          },
+        },
       }
     ''
     # lua
     ''
       -- YAML language server
       lspconfig.yamlls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.yaml-language-server}/bin/yaml-language-server'};
+        filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
+        root_dir = util.find_git_ancestor,
+        cmd = {'${pkgs.yaml-language-server}/bin/yaml-language-server','--stdio'},
+        settings = {
+          -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
+          redhat = { telemetry = { enabled = false } },
+        },
+        docs = {
+          description = [[
+            https://github.com/redhat-developer/yaml-language-server
+          ]],
+        },
       }
     ''
   ];

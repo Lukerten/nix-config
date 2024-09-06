@@ -68,32 +68,32 @@
     };
   };
 
-  customStlyeSheet = #scss
-  ''
-    ::-webkit-scrollbar {
-      width: 6px; // Slightly increased for better usability
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background-color: ${colors.surface};
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: ${colors.on_surface};
-      border-radius: 4px; // Consistent rounding
-    }
-    ::-webkit-scrollbar-thumb:vertical {
-      box-shadow: inset 0 0 6px ${colors.surface};
-    }
-    ::-webkit-scrollbar-thumb:horizontal {
-      box-shadow: inset 0 0 6px ${colors.surface};
-    }
-    ::-webkit-scrollbar-corner {
-      background-color: ${colors.surface};
-    }
-  '';
+  customStlyeSheet =
+    #scss
+    ''
+      ::-webkit-scrollbar {
+        width: 6px; // Slightly increased for better usability
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: ${colors.surface};
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: ${colors.on_surface};
+        border-radius: 4px; // Consistent rounding
+      }
+      ::-webkit-scrollbar-thumb:vertical {
+        box-shadow: inset 0 0 6px ${colors.surface};
+      }
+      ::-webkit-scrollbar-thumb:horizontal {
+        box-shadow: inset 0 0 6px ${colors.surface};
+      }
+      ::-webkit-scrollbar-corner {
+        background-color: ${colors.surface};
+      }
+    '';
 in {
-
   xdg.mimeApps.defaultApplications = {
     "text/html" = ["org.qutebrowser.qutebrowser.desktop"];
     "text/xml" = ["org.qutebrowser.qutebrowser.desktop"];

@@ -3,7 +3,7 @@
   lib,
   pkgs,
   ...
-}:let
+}: let
   flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
   nix = {

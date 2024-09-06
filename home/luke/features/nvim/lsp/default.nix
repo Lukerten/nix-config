@@ -5,22 +5,8 @@
     pkgs.vimPlugins.lspkind-nvim
     pkgs.vimPlugins.nvim-jdtls
     pkgs.vimPlugins.phpactor
-    {
-      plugin = pkgs.vimPlugins.ltex_extra-nvim;
-      type = "lua";
-      config =
-        # lua
-        ''
-          local ltex_extra = require('ltex_extra')
-          add_lsp(lspconfig.ltex, {
-            on_attach = function(client, bufnr)
-              ltex_extra.setup{
-                path = vim.fn.expand("~") .. "/.local/state/ltex"
-              }
-            end
-          })
-        '';
-    }
+    pkgs.vimPlugins.coc-tailwindcss
+    pkgs.vimPlugins.tailwindcss-colors-nvim
     {
       plugin = pkgs.vimPlugins.rust-tools-nvim;
       type = "lua";

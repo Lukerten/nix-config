@@ -95,7 +95,11 @@ in rec {
     };
     cursorTheme = {
       package = pkgs.vimix-cursor-theme;
-      name = "Vimix-Cursors${ if config.colorscheme.mode == "dark" then "-White" else "" }";
+      name = "Vimix-Cursors${
+        if config.colorscheme.mode == "dark"
+        then "-White"
+        else ""
+      }";
       size = 24;
     };
   };

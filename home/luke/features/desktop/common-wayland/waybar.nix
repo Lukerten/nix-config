@@ -76,12 +76,9 @@ in {
         modules-right = [
           "tray"
           "pulseaudio"
+          "battery"
           "network"
           "custom/bluetooth"
-          "cpu"
-          "custom/gpu"
-          "memory"
-          "battery"
           "custom/hostname"
         ];
 

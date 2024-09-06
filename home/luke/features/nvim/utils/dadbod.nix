@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   dadbod-package = pkgs.vimPlugins.vim-dadbod;
   dadbod-ui-package = pkgs.vimPlugins.vim-dadbod-ui;
   dadbod-completion-package = pkgs.vimPlugins.vim-dadbod-completion;
@@ -30,5 +35,4 @@ in {
       config = dadbod-completion-config;
     }
   ];
-
 }

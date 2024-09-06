@@ -76,7 +76,7 @@ in {
           # Repaint tabs when colorscheme changes
           ./qutebrowser-refresh-tab-colorscheme.patch
         ];
-      });
+    });
 
     wl-clipboard = addPatches prev.wl-clipboard [./wl-clipboard-secrets.diff];
 

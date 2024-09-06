@@ -204,9 +204,9 @@ in {
           else "disable"
         }") (config.monitors));
 
-    workspace =
-      map (m: "name:${m.workspace},monitor:${m.name}")
-      (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
+      workspace =
+        map (m: "name:${m.workspace},monitor:${m.name}")
+        (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
 
     # This is order sensitive, so it has to come here.

@@ -1,5 +1,9 @@
-{pkgs, config, lib,...}:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   cfg = config.qt;
 in {
   qt = lib.mkIf cfg.enable {

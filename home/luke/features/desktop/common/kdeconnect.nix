@@ -27,5 +27,4 @@
     indicator = true;
     package = pkgs.kdePackages.kdeconnect-kde;
   };
-
 }

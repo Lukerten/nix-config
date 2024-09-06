@@ -29,7 +29,7 @@
       hostname = {
         format = "[@$hostname]($style) ";
         ssh_only = false;
-        style= "bold yellow";
+        style = "bold yellow";
       };
       shlvl = {
         format = "[$shlvl]($style) ";
