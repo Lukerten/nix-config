@@ -31,6 +31,7 @@
   };
 
   quickmarks = {
+    "home" = defaultPage;
     "nixos" = "https://nixos.org/";
     "nixpkgs" = "https://nixos.org/nixpkgs/";
     "gmail" = "https://mail.google.com/";
@@ -38,16 +39,29 @@
     "github" = "https://github.com/";
     "gitlab" = "https://gitlab.mbretsch.de/";
     "yt" = "https://www.youtube.com/";
-    "fh:gitlab" = "https://git.ai.fh-erfurt.de/";
-    "fh:ecampus" = "https://ecampus.fh-erfurt.de/";
-    "fh:webmail" = "https://fhemail.fh-erfurt.de/";
-    "fh:fsrmail" = "https://group.fh-erfurt.de/";
-    "fh:asana" = "https://app.asana.com/";
-    "fh:nextcloud" = "https://cloud.fh-erfurt.de/";
-    "cm:united" = "https://united-internet.org/";
-    "cm:confluence" = "https://confluence.cm4all.com/";
-    "cm:jira" = "https://jira.cm4all.com/";
-    "cm.gitlab" = "https://gitlab.cm4all.com/";
+    "openai" = "https://chat.openai.com";
+    
+    # FHE Student
+    "fh/gitlab" = "https://git.ai.fh-erfurt.de/";
+    "fh/ecampus" = "https://ecampus.fh-erfurt.de/";
+    "fh/moodle" = "https://moodle.fh-erfurt.de/";
+    "fh/webmail" = "https://fhemail.fh-erfurt.de/";
+
+    # FHE FSR
+    "fh/nextcloud" = "https://cloud.fh-erfurt.de/";
+    "fsr/fsrmail" = "https://group.fh-erfurt.de/";
+    "fsr/asana" = "https://app.asana.com/";
+
+    # CM4all
+    "cm/gitlab" = "https://dev.t8o.de";
+    "cm/mail" = "https://outlook.office365.com/mail/inbox";
+    "cm/confluence" = "https://cm4all.atlassian.net/";
+
+    # United Internet
+    "ui/gitlab" = "https://gitlab.smb.server.lan/";
+    "ui/confluence" = "https://confluence.united-internet.org/";
+    "ui/united" = "https://united-internet.org/";
+    "ui/mail" = "https://mail.google.com/u/1/";
   };
 
   custom-binds = {
@@ -72,17 +86,12 @@
   customStlyeSheet =
     #scss
     ''
-      ::-webkit-scrollbar {
-        width: 6px; // Slightly increased for better usability
-        height: 6px;
-      }
       ::-webkit-scrollbar-track {
-        background-color: ${colors.surface};
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb {
         background-color: ${colors.on_surface};
-        border-radius: 4px; // Consistent rounding
+        border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:vertical {
         box-shadow: inset 0 0 6px ${colors.surface};

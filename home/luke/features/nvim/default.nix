@@ -13,11 +13,13 @@
 
   xdg = {
     desktopEntries = {
-      nvim = {
+      nvim = let
+        TermLaunch = ''${lib.getExe pkgs.handlr-regex} launch "x-scheme-handler/terminal"'';
+      in {
         name = "Neovim";
         genericName = "Text Editor";
         comment = "Edit text files";
-        exec = "nvim %F";
+        exec = "${TermLaunch} nvim %F";
         icon = "nvim";
         mimeType = [
           "text/english"
@@ -33,9 +35,14 @@
           "text/x-tcl"
           "text/x-tex"
           "text/x-lua"
-          "application/x-shellscript"
+          "application/javascript"
+          "application/json"
+          "application/json+ld"
+          "application/yaml"
           "application/toml"
           "application/xml"
+          "application/x-shellscript"
+          "application/x-cmake"
           "application/x-yaml"
           "application/x-tex"
           "application/x-shellscript"
@@ -46,7 +53,7 @@
           "text/x-c"
           "text/x-c++"
         ];
-        terminal = true;
+        terminal = false;
         type = "Application";
         categories = ["Utility" "TextEditor"];
       };

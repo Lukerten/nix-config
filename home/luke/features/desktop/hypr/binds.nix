@@ -85,6 +85,7 @@
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
         "SUPER,e,exec,${defaultApp "text/plain"}"
         "SUPER,a,exec,${defaultApp "x-scheme-handler/https"}"
+        "SUPER,r,exec,${defaultApp "inode/directory"}"
 
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"

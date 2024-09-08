@@ -41,17 +41,22 @@ in {
 
     settings = {
       general = {
-        gaps_in = 15;
-        gaps_out = 20;
+        gaps_in = 8;
+        gaps_out = 12;
         border_size = 2;
-        "col.active_border" = rgba config.colorscheme.colors.primary "aa";
-        "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
+        "col.active_border" = lib.concatStringsSep " " [
+          "${rgba config.colorscheme.colors.tertiary "ff"}"
+          "${rgba config.colorscheme.colors.primary "ff"}"
+          "45deg"
+        ];
+
+        "col.inactive_border" = rgba config.colorscheme.colors.surface "ff";
         allow_tearing = true;
       };
       cursor.inactive_timeout = 4;
       group = {
-        "col.border_active" = rgba config.colorscheme.colors.primary "aa";
-        "col.border_inactive" = rgba config.colorscheme.colors.surface "aa";
+        "col.border_active" = rgba config.colorscheme.colors.primary "ff";
+        "col.border_inactive" = rgba config.colorscheme.colors.surface "ff";
         groupbar.font_size = 11;
       };
       binds = {
@@ -105,14 +110,14 @@ in {
       ];
 
       decoration = {
-        active_opacity = 0.85;
-        inactive_opacity = 0.85;
+        active_opacity = 0.80;
+        inactive_opacity = 0.80;
         fullscreen_opacity = 1.0;
         rounding = 7;
         blur = {
           enabled = true;
-          size = 4;
-          passes = 3;
+          size = 20;
+          passes = 2;
           new_optimizations = true;
           ignore_opacity = true;
           popups = true;

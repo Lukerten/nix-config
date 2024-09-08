@@ -18,8 +18,6 @@
       '';
 
       fill.symbol = " ";
-
-      # Core
       username = {
         format = "[$user]($style)";
         show_always = true;
@@ -39,15 +37,18 @@
       cmd_duration = {
         format = "took [$duration]($style) ";
       };
-
+      time = {
+        format = "[$time]($style)";
+        disabled = false;
+      };
       directory = {
         format = "[$path]($style)( [$read_only]($read_only_style)) ";
       };
       nix_shell = {
-        format = "[($name \\(develop\\) <- )$symbol]($style) ";
+        format = "[($name )$symbol]($style)";
         impure_msg = "";
         symbol = " ";
-        style = "bold red";
+        style = "bold green";
       };
       custom = {
         nix_inspect = {
@@ -57,9 +58,9 @@
             runtimeInputs = with pkgs; [perl gnugrep findutils];
             text = builtins.readFile ./nix-inspect-path.sh;
           });
-          format = "[($output <- )$symbol]($style) ";
-          symbol = " ";
-          style = "bold blue";
+          format = "[($output )$symbol]($style)";
+          symbol =  " ";
+          style = "bold green";
         };
         juju = {
           when = "builtin type -P juju";
@@ -75,17 +76,12 @@
       };
 
       character = {
-        error_symbol = "[~~>](bold red)";
-        success_symbol = "[->>](bold green)";
-        vimcmd_symbol = "[<<-](bold yellow)";
-        vimcmd_visual_symbol = "[<<-](bold cyan)";
-        vimcmd_replace_symbol = "[<<-](bold purple)";
-        vimcmd_replace_one_symbol = "[<<-](bold purple)";
-      };
-
-      time = {
-        format = "\\[[$time]($style)\\]";
-        disabled = false;
+        error_symbol = "[](bold red)";
+        success_symbol = "[](bold green)";
+        vimcmd_symbol = "[](bold yellow)";
+        vimcmd_visual_symbol = "[](bold cyan)";
+        vimcmd_replace_symbol = "[](bold purple)";
+        vimcmd_replace_one_symbol = "[](bold purple)";
       };
 
       # Cloud formatting

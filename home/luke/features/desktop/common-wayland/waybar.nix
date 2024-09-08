@@ -77,6 +77,7 @@ in {
           "tray"
           "pulseaudio"
           "battery"
+          "idle_inhibitor"
           "network"
           "custom/bluetooth"
           "custom/hostname"
@@ -85,13 +86,12 @@ in {
         clock = {
           interval = 1;
           format = "{:%d.%m.%y %H:%M:%S}";
-          format-alt = "{:%Y-%m-%d %H:%M:%S %z}";
+          format-alt = "{:%H:%M:%S}";
           on-click-left = "mode";
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
         };
-
         cpu = {format = "  {usage}%";};
         "custom/gpu" = {
           interval = 5;
@@ -104,7 +104,6 @@ in {
           format = "  {}%";
           interval = 5;
         };
-
         pulseaudio = {
           format-source = "󰍬 {volume}%";
           format-source-muted = "󰍭 0%";
@@ -262,13 +261,18 @@ in {
         padding: 0;
         margin: 0 0.4em;
       }
-
       window#waybar {
         padding: 0;
         border-radius: 0.5em;
         background-color: ${toRGBA colors.surface "0.7"};
         color: ${colors.on_surface};
       }
+      tooltip {
+        color: ${colors.on_surface};
+        background-color: ${toRGBA colors.surface "0.9"};
+        text-shadow: none;
+      }
+
       .modules-left {
         margin-left: -0.65em;
       }
@@ -277,16 +281,12 @@ in {
       }
 
       #workspaces button {
-        background-color: ${colors.surface};
+        background-color: transparent;
         color: ${colors.on_surface};
-        padding-left: 0.4em;
-        padding-right: 0.4em;
-        margin-top: 0.15em;
-        margin-bottom: 0.15em;
-      }
-      #workspaces button.hidden {
-        background-color: ${colors.surface};
-        color: ${colors.on_surface_variant};
+        padding-left: 0.2em;
+        padding-right: 0.2em;
+        margin: 0.15em 0;
+        transition: background-color 0.2s;
       }
       #workspaces button.focused,
       #workspaces button.active {
@@ -307,10 +307,6 @@ in {
         padding-left: 1em;
         margin-right: 0;
         border-radius: 0.5em;
-      }
-      #custom-menu.fullscreen {
-        background-color: ${colors.primary};
-        color: ${colors.on_primary};
       }
       #custom-hostname {
         background-color: ${colors.surface_container};
