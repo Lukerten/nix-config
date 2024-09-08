@@ -5,12 +5,14 @@
   outputs,
   ...
 }: let
+  rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
   imports = [
     ../common
     ../common-wayland
     ./binds.nix
+    ./hyprbars.nix
   ];
 
   xdg.portal = let
@@ -24,10 +26,6 @@ in {
   home.packages = with pkgs; [
     grimblast
     hyprpicker
-    psmisc
-    wlogout
-    ffmpeg_6-full
-    wl-screenrec
   ];
 
   wayland.windowManager.hyprland = {
@@ -44,15 +42,12 @@ in {
 
     settings = {
       general = {
-        gaps_in = 8;
-        gaps_out = 12;
+        gaps_in = 15;
+        gaps_out = 20;
         border_size = 2;
-        "col.active_border" = lib.concatStringsSep " " [
-          "${rgba config.colorscheme.colors.tertiary "ff"}"
-          "${rgba config.colorscheme.colors.primary "ff"}"
-          "45deg"
-        ];
-        "col.inactive_border" = rgba config.colorscheme.colors.surface "00";
+        "col.active_border" = rgba config.colorscheme.colors.primary "aa";
+        "col.inactive_border" = rgba config.colorscheme.colors.surface "aa";
+        allow_tearing = true;
       };
       cursor.inactive_timeout = 4;
       group = {
@@ -60,10 +55,13 @@ in {
         "col.border_inactive" = rgba config.colorscheme.colors.surface "aa";
         groupbar.font_size = 11;
       };
-      binds = {movefocus_cycles_fullscreen = false;};
+      binds = {
+        movefocus_cycles_fullscreen = false;
+      };
       input = {
         kb_layout = "de";
         touchpad.disable_while_typing = false;
+        resolve_binds_by_sym = true;
       };
       dwindle = {
         split_width_multiplier = 1.35;
@@ -78,11 +76,13 @@ in {
       windowrulev2 = let
         sweethome3d-tooltips = "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
         steam = "title:^()$,class:^(steam)$";
+        steamGame = "class:^(steam_app_[0-9]*)$";
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
       in [
         "nofocus, ${sweethome3d-tooltips}"
         "stayfocused, ${steam}"
         "minsize 1 1, ${steam}"
+        "immediate, ${steamGame}"
         "size 100% 110%, ${kdeconnect-pointer}"
         "center, ${kdeconnect-pointer}"
         "nofocus, ${kdeconnect-pointer}"
@@ -92,7 +92,6 @@ in {
         "noborder, ${kdeconnect-pointer}"
         "suppressevent fullscreen, ${kdeconnect-pointer}"
       ];
-
       layerrule = [
         "animation fade,hyprpicker"
         "animation fade,selection"
@@ -109,18 +108,18 @@ in {
       decoration = {
         active_opacity = 0.85;
         inactive_opacity = 0.85;
-        fullscreen_opacity = 1.00;
+        fullscreen_opacity = 1.0;
         rounding = 7;
         blur = {
           enabled = true;
-          size = 3;
-          passes = 4;
+          size = 4;
+          passes = 3;
           new_optimizations = true;
           ignore_opacity = true;
           popups = true;
         };
         drop_shadow = false;
-        shadow_range = 3;
+        shadow_range = 12;
         shadow_offset = "3 3";
         "col.shadow" = "0x44000000";
         "col.shadow_inactive" = "0x66000000";
@@ -160,55 +159,31 @@ in {
 
       monitor = let
         waybarSpace = let
-          inherit
-            (config.wayland.windowManager.hyprland.settings.general)
-            gaps_in
-            gaps_out
-            ;
-          inherit
-            (config.programs.waybar.settings.primary)
-            position
-            height
-            width
-            ;
+          inherit (config.wayland.windowManager.hyprland.settings.general) gaps_in gaps_out;
+          inherit (config.programs.waybar.settings.primary) position height width;
           gap = gaps_out - gaps_in;
         in {
-          top =
-            if (position == "top")
-            then height + gap
-            else 0;
-          bottom =
-            if (position == "bottom")
-            then height + gap
-            else 0;
-          left =
-            if (position == "left")
-            then width + gap
-            else 0;
-          right =
-            if (position == "right")
-            then width + gap
-            else 0;
+          top = if (position == "top") then height + gap else 0;
+          bottom = if (position == "bottom") then height + gap else 0;
+          left = if (position == "left") then width + gap else 0;
+          right = if (position == "right") then width + gap else 0;
         };
       in
         [
-          ",addreserved,${toString waybarSpace.top},${
-            toString waybarSpace.bottom
-          },${toString waybarSpace.left},${toString waybarSpace.right}"
+          ",addreserved,${toString waybarSpace.top},${toString waybarSpace.bottom},${toString waybarSpace.left},${toString waybarSpace.right}"
         ]
-        ++ (map (m: "${m.name},${
-          if m.enabled
-          then "${toString m.width}x${toString m.height}@${
-            toString m.refreshRate
-          },${toString m.x}x${toString m.y},1"
-          else "disable"
-        }") (config.monitors));
+        ++ (map (
+          m: "${m.name},${
+            if m.enabled
+            then "${toString m.width}x${toString m.height}@${toString m.refreshRate},${m.position},1"
+            else "disable"
+          }"
+        ) (config.monitors));
 
-      workspace =
-        map (m: "name:${m.workspace},monitor:${m.name}")
-        (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
+      workspace = map (m: "name:${m.workspace},monitor:${m.name}") (
+        lib.filter (m: m.enabled && m.workspace != null) config.monitors
+      );
     };
-
     # This is order sensitive, so it has to come here.
     extraConfig = ''
       # Passthrough mode (e.g. for VNC)
