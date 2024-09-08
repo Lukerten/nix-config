@@ -16,16 +16,16 @@ in ''
     hi Italic        guifg=${c.on_surface} guibg=${c.surface} gui=italic guisp=NONE
     hi Debug         guifg=${c.error} guibg=${c.surface} gui=NONE guisp=NONE
     hi Directory     guifg=${c.primary} guibg=${c.surface} gui=NONE guisp=NONE
-    hi Error         guifg=${c.error} guibg=${c.error} gui=NONE guisp=NONE
+    hi Error         guifg=${c.error} guibg=${c.surface} gui=NONE guisp=NONE
     hi ErrorMsg      guifg=${c.error} guibg=${c.surface} gui=NONE guisp=NONE
     hi Exception     guifg=${c.error} guibg=${c.surface} gui=NONE guisp=NONE
     hi IncSearch     guifg=${c.primary} guibg=${c.primary} gui=NONE guisp=NONE
-    hi MatchParen    guifg=${c.primary} guibg=${c.primary_container} gui=NONE guisp=NONE
+    hi MatchParen    guifg=${c.primary} guibg=${c.surface} gui=NONE guisp=NONE
     hi Macro         guifg=${c.primary} guibg=${c.surface} gui=NONE guisp=NONE
     hi Search        guifg=${c.primary} guibg=${c.primary} gui=NONE guisp=NONE
     hi ModeMsg       guifg=${c.secondary} guibg=${c.surface} gui=NONE guisp=NONE
     hi MoreMsg       guifg=${c.secondary} guibg=${c.surface} gui=NONE guisp=NONE
-    hi Substitute    guifg=${c.secondary} guibg=${c.secondary} gui=NONE guisp=NONE
+    hi Substitute    guifg=${c.secondary} guibg=${c.surface} gui=NONE guisp=NONE
     hi Folded        guifg=${c.tertiary} guibg=${c.surface} gui=NONE guisp=NONE
     hi FoldColumn    guifg=${c.tertiary} guibg=${c.surface} gui=NONE guisp=NONE
     hi Question      guifg=${c.tertiary} guibg=${c.surface} gui=NONE guisp=NONE
@@ -33,7 +33,7 @@ in ''
     hi TooLong       guifg=${c.error} guibg=${c.surface} gui=NONE guisp=NONE
     hi Underlined    guifg=${c.error} guibg=NONE gui=underline guisp=NONE
     hi VisualNOS     guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
-    hi Visual        guifg=NONE guibg=${c.tertiary_container} gui=NONE guisp=NONE
+    hi Visual        guifg=NONE guibg=NONE gui=NONE guisp=NONE
     hi WarningMsg    guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
     hi WildMenu      guifg=${c.primary} guibg=${c.primary} gui=NONE guisp=NONE
     hi Title         guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE

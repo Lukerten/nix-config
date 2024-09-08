@@ -52,7 +52,7 @@
       tesseract = lib.getExe pkgs.tesseract;
       pactl = lib.getExe' pkgs.pulseaudio "pactl";
       notify-send = lib.getExe' pkgs.libnotify "notify-send";
-      defaultApp = type: "${lib.getExe pkgs.handlr} launch ${type}";
+      defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
     in
       [
         "SUPERSHIFT,q,killactive"

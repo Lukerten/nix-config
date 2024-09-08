@@ -1372,5 +1372,17 @@
     "ext": "jpeg",
     "id": "iXUmNW0",
     "sha256": "09h22fcga7qdqzzgsjicyh40ghhm2vf8l5lbdds12s4xkrvgck3p"
+  },
+  {
+    "name": "live-beyond-the-darkness",
+    "ext": "mp4",
+    "id": "HepXVB8",
+    "sha256": "1588cbnj8yvb8gr58v20v7zdwadk0vqakcxvrxysjn0qabknpnxs"
+  },
+  {
+    "name": "city-night-sky",
+    "ext": "jpeg",
+    "id": "TvB4vWt",
+    "sha256": "11z0dmvd71zrgq7q1gd4g5wfyn5051ng857232mv9dla308za810"
   }
 ]

@@ -21,6 +21,7 @@
   ];
 
   home.packages = with pkgs; [
+    handlr-regex
     comma
     libnotify
     distrobox
