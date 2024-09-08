@@ -14,9 +14,9 @@
       vim-toml
       vim-syntax-shakespeare
       gemini-vim-syntax
+      mermaid-vim
       kotlin-vim
       haskell-vim
-      mermaid-vim
       pgsql-vim
       vim-terraform
       vim-jsx-typescript
@@ -43,6 +43,9 @@
               highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
+                disable = function(lang, bufnr)
+                  return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1048576
+                end
               },
             }
           '';

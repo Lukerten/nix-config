@@ -10,11 +10,14 @@ in {
   programs.neovim.extraConfig =
     # vim
     ''
-        "Use system clipboard
-        set clipboard=unnamedplus
+      "Use system clipboard
+      set clipboard=unnamedplus
 
       "Source colorscheme
       source ${color}
+
+      "I hate vims folding
+      set nofoldenable
 
       "Lets us easily trigger completion from binds
       set wildcharm=<tab>
@@ -48,6 +51,24 @@ in {
 
       "disable line wrap
       set nowrap
+
+      "Loclist
+      nmap <space>l :lwindow<cr>
+      nmap [l :lprev<cr>
+      nmap ]l :lnext<cr>
+
+      nmap <space>L :lhistory<cr>
+      nmap [L :lolder<cr>
+      nmap ]L :lnewer<cr>
+
+      "Quickfix
+      nmap <space>q :cwindow<cr>
+      nmap [q :cprev<cr>
+      nmap ]q :cnext<cr>
+
+      nmap <space>Q :chistory<cr>
+      nmap [Q :colder<cr>
+      nmap ]Q :cnewer<cr>
     '';
 
   programs.neovim.extraLuaConfig =

@@ -288,77 +288,6 @@ with builtins; let
     ''
     # lua
     ''
-      -- LaTeX language server LTex
-      local language_id_mapping = {
-        bib = 'bibtex',
-        plaintex = 'tex',
-        rnoweb = 'rsweave',
-        rst = 'restructuredtext',
-        tex = 'latex',
-        pandoc = 'markdown',
-        text = 'plaintext',
-      }
-
-      local filetypes = {
-        'bib',
-        'gitcommit',
-        'markdown',
-        'org',
-        'plaintex',
-        'rst',
-        'rnoweb',
-        'tex',
-        'pandoc',
-        'quarto',
-        'rmd',
-        'context',
-        'html',
-        'xhtml',
-        'mail',
-        'text',
-      }
-
-      -- Get the language id for a given filetype
-      local function get_language_id(_, filetype)
-        local language_id = language_id_mapping[filetype]
-        if language_id then
-          return language_id
-        else
-          return filetype
-        end
-      end
-
-      local enabled_ids = {}
-      do
-        local enabled_keys = {}
-        for _, ft in ipairs(filetypes) do
-          local id = get_language_id({}, ft)
-          if not enabled_keys[id] then
-            enabled_keys[id] = true
-            table.insert(enabled_ids, id)
-          end
-        end
-      end
-
-      -- actual configuration
-      default_config = {
-        capabilities = capabilities,
-        on_attach = attach_keymaps,
-        cmd = { "${pkgs.ltex-ls}/bin/ltex-ls" },
-        filetypes = filetypes,
-        root_dir = util.find_git_ancestor,
-        single_file_support = true,
-        get_language_id = get_language_id,
-        settings = {
-          ltex = {
-            enabled = enabled_ids,
-            language = "auto",
-          },
-        },
-      },
-    ''
-    # lua
-    ''
       -- Lua language server
       lspconfig.lua_ls.setup{
         capabilities = capabilities;
@@ -430,16 +359,120 @@ with builtins; let
       lspconfig.pyright.setup{
         capabilities = capabilities;
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.pyright}/bin/pyright-langserver'};
+        cmd = {'${pkgs.pyright}/bin/pyright-langserver', '--stdio'};
+        filetypes = { 'python' },
+        root_dir = function(fname)
+          return util.root_pattern(unpack(root_files))(fname)
+        end,
+        single_file_support = true,
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = 'openFilesOnly',
+            },
+          },
+        },
+      }
+
+      lspconfig.pylsp.setup{
+        cmd = { '${pkgs.python312Packages.python-lsp-server}/bin/pylsp' },
+        filetypes = { 'python' },
+        root_dir = function(fname)
+          local root_files = {
+            'pyproject.toml',
+            'setup.py',
+            'setup.cfg',
+            'requirements.txt',
+            'Pipfile',
+          }
+          return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+        end,
+        single_file_support = true,
       }
     ''
     # lua
     ''
       -- Rust language server
+      local function reload_workspace(bufnr)
+        bufnr = util.validate_bufnr(bufnr)
+        local clients = util.get_lsp_clients { bufnr = bufnr, name = 'rust_analyzer' }
+        for _, client in ipairs(clients) do
+          vim.notify 'Reloading Cargo Workspace'
+          client.request('rust-analyzer/reloadWorkspace', nil, function(err)
+            if err then
+              error(tostring(err))
+            end
+            vim.notify 'Cargo workspace reloaded'
+          end, 0)
+        end
+      end
+
+      local function is_library(fname)
+        local user_home = util.path.sanitize(vim.env.HOME)
+        local cargo_home = os.getenv 'CARGO_HOME' or util.path.join(user_home, '.cargo')
+        local registry = util.path.join(cargo_home, 'registry', 'src')
+        local git_registry = util.path.join(cargo_home, 'git', 'checkouts')
+
+        local rustup_home = os.getenv 'RUSTUP_HOME' or util.path.join(user_home, '.rustup')
+        local toolchains = util.path.join(rustup_home, 'toolchains')
+
+        for _, item in ipairs { toolchains, registry, git_registry } do
+          if util.path.is_descendant(item, fname) then
+            local clients = util.get_lsp_clients { name = 'rust_analyzer' }
+            return #clients > 0 and clients[#clients].config.root_dir or nil
+          end
+        end
+      end
+
       lspconfig.rust_analyzer.setup{
         capabilities = capabilities;
         on_attach = attach_keymaps,
         cmd = {'${pkgs.rust-analyzer}/bin/rust-analyzer'};
+        filetypes = { 'rust' },
+        single_file_support = true,
+        root_dir = function(fname)
+          local reuse_active = is_library(fname)
+          if reuse_active then
+            return reuse_active
+          end
+
+          local cargo_crate_dir = util.root_pattern 'Cargo.toml'(fname)
+          local cargo_workspace_root
+
+          if cargo_crate_dir ~= nil then
+            local cmd = {
+              'cargo',
+              'metadata',
+              '--no-deps',
+              '--format-version',
+              '1',
+              '--manifest-path',
+              util.path.join(cargo_crate_dir, 'Cargo.toml'),
+            }
+
+            local result = async.run_command(cmd)
+
+            if result and result[1] then
+              result = vim.json.decode(table.concat(result, ""))
+              if result['workspace_root'] then
+                cargo_workspace_root = util.path.sanitize(result['workspace_root'])
+              end
+            end
+          end
+
+          return cargo_workspace_root
+            or cargo_crate_dir
+            or util.root_pattern 'rust-project.json'(fname)
+            or util.find_git_ancestor(fname)
+        end,
+        before_init = function(init_params, config)
+          -- See https://github.com/rust-lang/rust-analyzer/blob/eb5da56d839ae0a9e9f50774fa3eb78eb0964550/docs/dev/lsp-extensions.md?plain=1#L26
+          if config.settings and config.settings['rust-analyzer'] then
+            init_params.initializationOptions = config.settings['rust-analyzer']
+          end
+        end,
       }
     ''
     # lua
@@ -577,39 +610,28 @@ in {
         ''
           local lspconfig = require('lspconfig')
           local util = require('lspconfig.util')
+          local async = require 'lspconfig.async'
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           local attach_keymaps = function(client, bufnr)
             local opts = { noremap=true, silent=true }
             -- Keymaps
-              vim.keymap.set("n", "<space>Lgc", "<cmd> lua vim.lsp.buf.declaration()<cr>",default_opts("Go to declaration", bufnr))
-              vim.keymap.set("n", "<space>Lgd", "<cmd> lua vim.lsp.buf.definition()<cr>",default_opts("Go to definition", bufnr))
-              vim.keymap.set("n", "<space>Lgt", "<cmd> lua vim.lsp.buf.type_definition()<cr>",default_opts("Go to type definition", bufnr))
-              vim.keymap.set("n", "<space>Lgr", "<cmd> lua vim.lsp.buf.references()<cr>",default_opts("Go to references", bufnr))
-              vim.keymap.set("n", "<space>Lgn", "<cmd> lua vim.lsp.diagnostic.goto_next()<cr>",default_opts("next diagnostic", bufnr))
-              vim.keymap.set("n", "<space>Lgp", "<cmd> lua vim.lsp.diagnostic.goto_prev()<cr>",default_opts("previous diagnostic", bufnr))
-              vim.keymap.set("n", "<space>Lgi", "<cmd> lua vim.lsp.buf.implementation()<cr>",default_opts("Go to implementation", bufnr))
-              vim.keymap.set("n", "<space>Lwa", "<cmd> lua vim.lsp.buf.add_workspace_folder()<cr>",default_opts("Add workspace folder", bufnr))
-              vim.keymap.set("n", "<space>Lwr", "<cmd> lua vim.lsp.buf.remove_workspace_folder()<cr>",default_opts("Remove workspace folder", bufnr))
-              vim.keymap.set("n", "<space>Lwl", "<cmd> lua vim.lsp.buf.list_workspace_folders()<cr>",default_opts("List workspace folders", bufnr))
-              vim.keymap.set("n", "<space>Lh" , "<cmd> lua vim.lsp.buf.hover()<cr>",default_opts("Hover Documentation", bufnr))
-              vim.keymap.set("n", "<space>Ls" , "<cmd> lua vim.lsp.buf.signature_help()<cr>",default_opts("Signature help", bufnr))
-              vim.keymap.set("n", "<space>r"  , "<cmd> lua vim.lsp.buf.rename()<cr>",default_opts("Rename", bufnr))
-              vim.keymap.set("n", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code", bufnr))
-              vim.keymap.set("v", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code",bufnr))
-          end
-
-          -- Add language server with default options
-          function add_lsp(server, options)
-            if not options["cmd"] then
-              options["cmd"] = server["document_config"]["default_config"]["cmd"]
-            end
-            if not options["capabilities"] then
-              options["capabilities"] = require("cmp_nvim_lsp").default_capabilities()
-            end
-
-            if vim.fn.executable(options["cmd"][1]) == 1 then
-              server.setup(options)
-            end
+            vim.lsp.inlay_hint.enable(true)
+            vim.keymap.set("n", "<space>Lgc", "<cmd> lua vim.lsp.buf.declaration()<cr>",default_opts("Go to declaration", bufnr))
+            vim.keymap.set("n", "<space>Lgd", "<cmd> lua vim.lsp.buf.definition()<cr>",default_opts("Go to definition", bufnr))
+            vim.keymap.set("n", "<space>Lgt", "<cmd> lua vim.lsp.buf.type_definition()<cr>",default_opts("Go to type definition", bufnr))
+            vim.keymap.set("n", "<space>Lgr", "<cmd> lua vim.lsp.buf.references()<cr>",default_opts("Go to references", bufnr))
+            vim.keymap.set("n", "<space>Lgn", "<cmd> lua vim.lsp.diagnostic.goto_next()<cr>",default_opts("next diagnostic", bufnr))
+            vim.keymap.set("n", "<space>Lgp", "<cmd> lua vim.lsp.diagnostic.goto_prev()<cr>",default_opts("previous diagnostic", bufnr))
+            vim.keymap.set("n", "<space>Lgi", "<cmd> lua vim.lsp.buf.implementation()<cr>",default_opts("Go to implementation", bufnr))
+            vim.keymap.set("n", "<space>Lwa", "<cmd> lua vim.lsp.buf.add_workspace_folder()<cr>",default_opts("Add workspace folder", bufnr))
+            vim.keymap.set("n", "<space>Lwr", "<cmd> lua vim.lsp.buf.remove_workspace_folder()<cr>",default_opts("Remove workspace folder", bufnr))
+            vim.keymap.set("n", "<space>Lwl", "<cmd> lua vim.lsp.buf.list_workspace_folders()<cr>",default_opts("List workspace folders", bufnr))
+            vim.keymap.set("n", "<space>Lh" , "<cmd> lua vim.lsp.buf.hover()<cr>",default_opts("Hover Documentation", bufnr))
+            vim.keymap.set("n", "<space>Ls" , "<cmd> lua vim.lsp.buf.signature_help()<cr>",default_opts("Signature help", bufnr))
+            vim.keymap.set("n", "<space>r"  , "<cmd> lua vim.lsp.buf.rename()<cr>",default_opts("Rename", bufnr))
+            vim.keymap.set("n", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code", bufnr))
+            vim.keymap.set("v", "<space>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code",bufnr))
+            vim.keymap.set("n", "<space>i", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle inlay hint" })
           end
 
           -- Add all language servers

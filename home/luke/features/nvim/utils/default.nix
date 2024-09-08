@@ -8,7 +8,6 @@
     ./gx.nix
     ./kommentary.nix
     ./oil.nix
-    ./lazygit.nix
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
