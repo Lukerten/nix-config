@@ -18,7 +18,6 @@
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
     ../common/optional/regreet.nix
-    ../common/optional/thunar.nix
     ../common/optional/steam.nix
     ../common/optional/systemd-boot.nix
     ../common/optional/wireshark.nix

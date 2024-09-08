@@ -37,6 +37,7 @@
     "calendar" = "https://calendar.google.com/";
     "github" = "https://github.com/";
     "gitlab" = "https://gitlab.mbretsch.de/";
+    "yt" = "https://www.youtube.com/";
     "fh:gitlab" = "https://git.ai.fh-erfurt.de/";
     "fh:ecampus" = "https://ecampus.fh-erfurt.de/";
     "fh:webmail" = "https://fhemail.fh-erfurt.de/";
@@ -121,8 +122,8 @@ in {
         indicator.width = 0;
       };
       fonts = {
-        default_family = config.fontProfiles.regular.family;
-        default_size = "12pt";
+        default_family = config.fontProfiles.regular.name;
+        default_size = "${toString config.fontProfiles.regular.size}pt";
       };
       colors = {
         webpage.preferred_color_scheme = "auto";

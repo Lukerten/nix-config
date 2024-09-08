@@ -9,7 +9,6 @@
       inputs.home-manager.nixosModules.home-manager
       ./cm4all-vpn.nix
       ./fish.nix
-      ./font.nix
       ./gamemode.nix
       ./kdeconnect.nix
       ./locale.nix
@@ -24,13 +23,11 @@
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs outputs;};
-    backupFileExtension = "backup";
+  home-manager.useGlobalPkgs = true;
+  home-manager.extraSpecialArgs = {
+    inherit inputs outputs;
   };
-
-  environment.systemPackages = with pkgs; [pciutils xorg.xrandr lshw killall];
-
+  
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {allowUnfree = true;};
@@ -38,9 +35,9 @@
 
   # Fix for qt6 plugins
   # TODO: maybe upstream this?
-
-  environment.profileRelativeSessionVariables = {
+    environment.profileRelativeSessionVariables = {
     QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];
   };
+  hardware.enableRedistributableFirmware = true;
   services.pcscd.enable = true;
 }

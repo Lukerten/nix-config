@@ -22,7 +22,7 @@ in {
       base0A = "${rmHash colors.inverse_primary}"; # col 3  --> YELLOW
       base0D = "${rmHash colors.on_primary_fixed_variant}"; # col 4  --> BLUE
       base0E = "${rmHash colors.tertiary}"; # col 5  --> MAGENTA
-      base0C = "${rmHash colors.on_secondary_container}"; # col 6  --> CYAN
+      base0C = "${rmHash colors.secondary}"; # col 6  --> CYAN
       base09 = "${rmHash colors.error}"; # error
       base0F = "${rmHash colors.error_container}"; # error alt
     };

@@ -55,27 +55,29 @@
     self,
     nixpkgs,
     home-manager,
+    systems,
     ...
   } @ inputs: let
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
-    systems = ["x86_64-linux" "aarch64-linux"];
-    forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (system:
-      import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
+    forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+    );
   in {
     inherit lib;
-    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     nixosModules = import ./modules/nixos;
     homeManagerModules = import ./modules/home-manager;
     templates = import ./templates;
     overlays = import ./overlays {inherit inputs outputs;};
     hydraJobs = import ./hydra.nix {inherit inputs outputs;};
+    packages = forEachSystem (pkgs: import ./pkgs {inherit pkgs;});
     devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
-    formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+    formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     # NixOS configuration entrypoint
     nixosConfigurations = {
@@ -96,15 +98,15 @@
     homeConfigurations = {
       #  # Main Laptop configuration
       "luke@annihilation" = lib.homeManagerConfiguration {
-        modules = [./home/luke/annihilation.nix];
-        pkgs = pkgsFor."x86_64-linux";
+        modules = [./home/luke/annihilation.nix ./home/luke/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
       # Home Desktop configuration
       "luke@exaflare" = lib.homeManagerConfiguration {
-        modules = [./home/luke/exaflare.nix];
-        pkgs = pkgsFor."x86_64-linux";
+        modules = [./home/luke/exaflare.nix ./home/luke/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
     };

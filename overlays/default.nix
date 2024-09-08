@@ -3,21 +3,25 @@
   inputs,
 }: let
   addPatches = pkg: patches:
-    pkg.overrideAttrs
-    (oldAttrs: {patches = (oldAttrs.patches or []) ++ patches;});
+    pkg.overrideAttrs (oldAttrs: {
+      patches = (oldAttrs.patches or []) ++ patches;
+    });
 in {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
   # 'inputs.${flake}.legacyPackages.${pkgs.system}'
   flake-inputs = final: _: {
-    inputs = builtins.mapAttrs (_: flake: let
-      legacyPackages = (flake.legacyPackages or {}).${final.system} or {};
-      packages = (flake.packages or {}).${final.system} or {};
-    in
-      if legacyPackages != {}
-      then legacyPackages
-      else packages)
-    inputs;
+    inputs =
+      builtins.mapAttrs (
+        _: flake: let
+          legacyPackages = (flake.legacyPackages or {}).${final.system} or {};
+          packages = (flake.packages or {}).${final.system} or {};
+        in
+          if legacyPackages != {}
+          then legacyPackages
+          else packages
+      )
+      inputs;
   };
 
   # Adds pkgs.stable == inputs.nixpkgs-stable.legacyPackages.${pkgs.system}
@@ -29,12 +33,8 @@ in {
   additions = final: prev:
     import ../pkgs {pkgs = final;}
     // {
-      formats =
-        (prev.formats or {})
-        // import ../pkgs/formats {pkgs = final;};
-      vimPlugins =
-        (prev.vimPlugins or {})
-        // import ../pkgs/vim-plugins {pkgs = final;};
+      formats = (prev.formats or {}) // import ../pkgs/formats {pkgs = final;};
+      vimPlugins = (prev.vimPlugins or {}) // import ../pkgs/vim-plugins {pkgs = final;};
     };
 
   # Modifies existing packages
@@ -42,19 +42,21 @@ in {
     vimPlugins =
       prev.vimPlugins
       // {
-        vim-numbertoggle =
-          addPatches prev.vimPlugins.vim-numbertoggle
-          [./vim-numbertoggle-command-mode.patch];
+        vim-numbertoggle = addPatches prev.vimPlugins.vim-numbertoggle [
+          ./vim-numbertoggle-command-mode.patch
+        ];
+        ltex_extra-nvim = addPatches prev.vimPlugins.ltex_extra-nvim [
+          ./ltex-change-lang-command.diff
+        ];
       };
 
     # https://github.com/NixOS/nixpkgs/pull/303472
-    gns3-server = prev.gns3-server.overrideAttrs (oldAttrs: {
-      makeWrapperArgs = ["--suffix PATH : ${final.lib.makeBinPath [final.util-linux]}"];
+    gns3-server = prev.gns3-server.overrideAttrs (_: {
+      makeWrapperArgs = [ "--suffix PATH : ${final.lib.makeBinPath [ final.util-linux ]}" ];
     });
 
     # https://github.com/mdellweg/pass_secret_service/pull/37
-    pass-secret-service =
-      addPatches prev.pass-secret-service [./pass-secret-service-native.diff];
+    pass-secret-service = addPatches prev.pass-secret-service [./pass-secret-service-native.diff];
 
     qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
       preFixup =
@@ -82,21 +84,8 @@ in {
 
     pass = addPatches prev.pass [./pass-wlclipboard-secret.diff];
 
-    hydra_unstable =
-      (prev.hydra_unstable.overrideAttrs (_: {
-        version = "2024-05-23";
-        src = final.fetchFromGitHub {
-          owner = "nixos";
-          repo = "hydra";
-          rev = "b3e0d9a8b78d55e5fea394839524f5a24d694230";
-          hash = "sha256-WAJJ4UL3hsqsfZ05cHthjEwItnv7Xy84r2y6lzkBMh8=";
-        };
-        patches = [./hydra-restrict-eval.diff];
-      }))
-      .override {
-        nix = final.nixVersions.nix_2_22;
-      };
-
-    hyprbars = addPatches prev.hyprbars [./hyprbars-color-windowrules.patch];
+    hydra_unstable = prev.hydra_unstable.overrideAttrs (_: {
+      patches = [./hydra-restrict-eval.diff];
+    });
   };
 }

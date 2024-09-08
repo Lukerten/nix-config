@@ -10,7 +10,6 @@
     ./font.nix
     ./gtk.nix
     ./kdeconnect.nix
-    ./thunar.nix
     ./thunderbird.nix
   ];
 

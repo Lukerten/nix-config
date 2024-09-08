@@ -1,20 +1,44 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (config.colorscheme) colors harmonized;
 in {
+  home.packages = [
+    (
+      pkgs.writeShellScriptBin "xterm" ''
+        ${lib.getExe config.programs.kitty.package} "$@"
+      ''
+    )
+  ];
+  # I prefer to use ssh -M explicitly, thanks.
+  xdg.configFile."kitty/ssh.conf".text = ''
+    share_connections no
+  '';
   xdg.mimeApps = {
-    associations.added = {"x-scheme-handler/terminal" = "kitty.desktop";};
-    defaultApplications = {"x-scheme-handler/terminal" = "kitty.desktop";};
+    associations.added = {
+      "x-scheme-handler/terminal" = "kitty.desktop";
+    };
+    defaultApplications = {
+      "x-scheme-handler/terminal" = "kitty.desktop";
+    };
   };
+  home.sessionVariables.NIX_INSPECT_EXCLUDE = "kitty ncurses imagemagick";
   programs.kitty = {
     enable = true;
     font = {
-      name = config.fontProfiles.monospace.family;
-      size = 12;
+      inherit (config.fontProfiles.monospace) name size;
+    };
+    keybindings = {
+      "ctrl+enter" = "send_text normal clone-in-kitty --type os-window\\r";
     };
     settings = {
-      shell_integration = "no-rc";
+      editor = config.home.sessionVariables.EDITOR;
+      shell_integration = "no-rc"; # I prefer to do it manually
       scrollback_lines = 4000;
-      scrollback_pager_history_size = 2048;
+      scrollback_pager_history_size = 100000;
       window_padding_width = 15;
       foreground = "${colors.on_surface}";
       background = "${colors.surface}";
@@ -31,19 +55,19 @@ in {
       tab_bar_background = "${colors.surface_bright}";
       color0 = "${colors.surface}";
       color1 = "${harmonized.red}";
-      color2 = "${harmonized.green}";
-      color3 = "${harmonized.yellow}";
-      color4 = "${harmonized.blue}";
-      color5 = "${harmonized.magenta}";
-      color6 = "${harmonized.cyan}";
+      color2 = "${colors.primary}";
+      color3 = "${colors.inverse_primary}";
+      color4 = "${colors.on_primary_fixed_variant}";
+      color5 = "${colors.tertiary}";
+      color6 = "${colors.secondary}";
       color7 = "${colors.on_surface}";
       color8 = "${colors.outline}";
       color9 = "${harmonized.red}";
-      color10 = "${harmonized.green}";
-      color11 = "${harmonized.yellow}";
-      color12 = "${harmonized.blue}";
-      color13 = "${harmonized.magenta}";
-      color14 = "${harmonized.cyan}";
+      color10 = "${colors.primary}";
+      color11 = "${colors.inverse_primary}";
+      color12 = "${colors.on_primary_fixed_variant}";
+      color13 = "${colors.tertiary}";
+      color14 = "${colors.secondary}";
       color15 = "${colors.surface_dim}";
       color16 = "${harmonized.orange}";
       color17 = "${colors.error}";

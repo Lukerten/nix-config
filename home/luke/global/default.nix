@@ -10,7 +10,6 @@
     [
       ../features/cli
       ../features/nvim
-      ./nixpkgs.nix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

@@ -9,5 +9,4 @@
   programs = import ./programs;
   services = import ./services;
   system = import ./system;
-  qt = import ./qt;
 }

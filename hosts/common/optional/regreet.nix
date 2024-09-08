@@ -33,7 +33,7 @@ in {
     cursorTheme = {
       inherit (lukeCfg.gtk.cursorTheme) name package;
     };
-    font.name = lukeCfg.fontProfiles.regular.family;
+    font = lukeCfg.fontProfiles.regular;
     settings.background = {
       path = lukeCfg.wallpaper;
       fit = "Cover";
