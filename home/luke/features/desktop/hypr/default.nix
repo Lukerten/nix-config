@@ -33,7 +33,6 @@ in {
     package = pkgs.hyprland.override {wrapRuntimeDeps = false;};
     systemd = {
       enable = true;
-      # Same as default, but stop graphical-session too
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
@@ -51,10 +50,10 @@ in {
       };
       cursor.inactive_timeout = 4;
       group = {
-        "col.border_active" = rgba config.colorscheme.colors.surface "ff";
+        "col.border_active" = rgba config.colorscheme.colors.primary "ff";
         "col.border_inactive" = rgba config.colorscheme.colors.surface "ff";
         "col.border_locked_active" = rgba config.colorscheme.colors.primary "ff";
-        "col.border_locked_inactive" = rgba config.colorscheme.colors.tertiary "ff";
+        "col.border_locked_inactive" = rgba config.colorscheme.colors.surface "ff";
         groupbar = {
           height = 16;
           font_size = 12;
