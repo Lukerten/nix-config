@@ -7,7 +7,6 @@
   ...
 }: let
   commonDeps = with pkgs; [coreutils gnugrep systemd];
-  # Function to simplify making waybar outputs
   mkScript = {
     name ? "script",
     deps ? [],
@@ -18,7 +17,7 @@
       text = script;
       runtimeInputs = commonDeps ++ deps;
     });
-  # Specialized for JSON outputs
+
   mkScriptJson = {
     name ? "script",
     deps ? [],
@@ -47,13 +46,13 @@
   swayCfg = config.wayland.windowManager.sway;
   hyprlandCfg = config.wayland.windowManager.hyprland;
 in {
-  # Let it try to start a few more times
   systemd.user.services.waybar = {Unit.StartLimitBurst = 30;};
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
       mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
     });
+
     systemd.enable = true;
     settings = {
       primary = {
@@ -62,6 +61,7 @@ in {
         height = 40;
         margin = "6";
         position = "top";
+
         modules-left =
           ["custom/menu"]
           ++ (lib.optionals swayCfg.enable ["sway/workspaces" "sway/mode"])
@@ -71,7 +71,8 @@ in {
           ])
           ++ ["custom/currentplayer" "custom/player"];
 
-        modules-center = ["clock"];
+        modules-center = [
+        ];
 
         modules-right = [
           "tray"
@@ -80,13 +81,14 @@ in {
           "idle_inhibitor"
           "network"
           "custom/bluetooth"
-          "custom/hostname"
+          "clock"
         ];
 
+        # Modules
         clock = {
           interval = 1;
-          format = "{:%d.%m.%y %H:%M:%S}";
-          format-alt = "{:%H:%M:%S}";
+          format = "{:%H:%M:%S}";
+          format-alt ="{:%d.%m.%y %H:%M:%S}";
           on-click-left = "mode";
           tooltip-format = ''
             <big>{:%Y %B}</big>
@@ -132,7 +134,7 @@ in {
           interval = 3;
           format-wifi = " ";
           format-ethernet = "󰈁";
-          format-disconnected = "";
+          format-disconnected = "󱘖";
           tooltip-format = ''
             {ifname} {essid}
             {ipaddr}/{cidr}
@@ -205,6 +207,7 @@ in {
             deps = [pkgs.blueman];
             script = "blueman-manager";
           };
+
         };
 
         "custom/player" = {
@@ -242,6 +245,10 @@ in {
             script = "playerctl shuffle";
           };
         };
+        "hyprland/workspaces" = {
+          on-click = "activate";
+          sort-by-number = true;
+        };
       };
     };
     # Cheatsheet:
@@ -272,7 +279,6 @@ in {
         background-color: ${toRGBA colors.surface "0.9"};
         text-shadow: none;
       }
-
       .modules-left {
         margin-left: -0.65em;
       }
@@ -294,12 +300,6 @@ in {
         color: ${colors.on_primary};
       }
 
-      #clock {
-        padding-right: 1em;
-        padding-left: 1em;
-        border-radius: 0.5em;
-      }
-
       #custom-menu {
         background-color: ${colors.surface_container};
         color: ${colors.primary};
@@ -308,7 +308,9 @@ in {
         margin-right: 0;
         border-radius: 0.5em;
       }
-      #custom-hostname {
+
+      #clock {
+        font-family: ${config.fontProfiles.monospace.name};
         background-color: ${colors.surface_container};
         color: ${colors.primary};
         padding-right: 1em;
