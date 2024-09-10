@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.programs.messager;
+  cfg = config.programs;
 in {
-  options.programs.messager = {
+  options.programs= {
     whatsapp = {
       enable = lib.mkOption {
         type = lib.types.bool;

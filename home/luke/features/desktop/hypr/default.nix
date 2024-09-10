@@ -96,7 +96,6 @@ in {
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
       in [
         "nofocus, ${sweethome3d-tooltips}"
-        "stayfocused, ${steam}"
         "minsize 1 1, ${steam}"
         "immediate, ${steamGame}"
         "size 100% 110%, ${kdeconnect-pointer}"

@@ -1,10 +1,19 @@
 {
   imports = [
     ./rofi
-    ./audio.nix
+    ./audacity.nix
+    ./audioctrl.nix
+    ./blender.nix
     ./code.nix
+    ./deluge.nix
+    ./filezilla.nix
+    ./gimp.nix
+    ./krita.nix
+    ./messagers.nix
     ./obsidian.nix
+    ./office.nix
     ./postman.nix
+    ./resolve.nix
     ./spotify.nix
     ./vesktop.nix
   ];

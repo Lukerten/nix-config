@@ -27,7 +27,7 @@
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
   };
-  
+
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {allowUnfree = true;};
@@ -38,6 +38,22 @@
     environment.profileRelativeSessionVariables = {
     QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];
   };
+
   hardware.enableRedistributableFirmware = true;
   services.pcscd.enable = true;
+
+  security.pam.loginLimits = [
+    {
+      domain = "@wheel";
+      item = "nofile";
+      type = "soft";
+      value = "524288";
+    }
+    {
+      domain = "@wheel";
+      item = "nofile";
+      type = "hard";
+      value = "1048576";
+    }
+  ];
 }

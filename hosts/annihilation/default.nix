@@ -18,7 +18,6 @@
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
     ../common/optional/regreet.nix
-    ../common/optional/steam.nix
     ../common/optional/systemd-boot.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
@@ -35,7 +34,10 @@
   };
 
   hardware = {
-    graphics.enable = true;
+    graphics = {
+      enable =true;
+      enable32Bit = true;
+    };
     bluetooth.enable = true;
     uinput.enable = true;
     enableAllFirmware = true;
