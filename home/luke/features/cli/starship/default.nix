@@ -59,7 +59,7 @@
             text = builtins.readFile ./nix-inspect-path.sh;
           });
           format = "[($output )$symbol]($style)";
-          symbol =  " ";
+          symbol = " ";
           style = "bold green";
         };
         juju = {

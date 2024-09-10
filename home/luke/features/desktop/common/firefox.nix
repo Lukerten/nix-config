@@ -1,19 +1,24 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: let
-  defaultExtensions = with pkgs.inputs.firefox-addons; [
+  # Firefox extensions
+  # see https://gitlab.com/rycee/nur-expressions/-/tree/master/pkgs/firefox-addons
+  extensions = with pkgs.inputs.firefox-addons; [
     ublock-origin
     adblocker-ultimate
-    joplin-web-clipper
-    keepassxc-browser
-    react-devtools
-    reduxdevtools
+    browserpass
   ];
 
-  defaultSearch = {
+  devextensions = with pkgs.inputs.firefox-addons; [
+    react-devtools
+    reduxdevtools
+    angular-devtools
+    web-developer
+  ];
+
+  engines = {
     "Nix Packages" = {
       urls = [
         {
@@ -117,6 +122,7 @@
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
     "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
     "browser.newtabpage.blocked" = lib.genAttrs [
+      "26UbzFJ7qT9/4DhodHKA1Q=="
       "4gPpjkxgZzXPVtuEoAL9Ig=="
       "eV8/WsSLxHadrTL1gAxhug=="
       "gLv0ja2RYVgxKdp0I5qwvA=="
@@ -149,58 +155,59 @@
     "toolkit.telemetry.unified" = false;
     "toolkit.telemetry.unifiedIsOptIn" = false;
     "toolkit.telemetry.updatePing.enabled" = false;
-
-    # Disable fx accounts
     "identity.fxaccounts.enabled" = false;
     "signon.rememberSignons" = false;
     "privacy.trackingprotection.enabled" = true;
     "dom.security.https_only_mode" = true;
-    "browser.uiCustomization.state" = builtins.toJSON {
-      currentVersion = 20;
-      newElementCount = 5;
-      dirtyAreaCache = ["nav-bar" "PersonalToolbar" "toolbar-menubar" "TabsToolbar" "widget-overflow-fixed-list"];
-      placements = {
-        PersonalToolbar = ["personal-bookmarks"];
-        TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
-        nav-bar = ["back-button" "forward-button" "stop-reload-button" "urlbar-container" "downloads-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action" "reset-pbm-toolbar-button" "unified-extensions-button"];
-        toolbar-menubar = ["menubar-items"];
-        unified-extensions-area = [];
-        widget-overflow-fixed-list = [];
-      };
-      seen = ["save-to-pocket-button" "developer-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action"];
-    };
   };
 in {
   programs.browserpass.enable = true;
   programs.firefox = {
     enable = true;
-    profiles.luke = {
-      search = {
-        force = true;
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
-        engines = defaultSearch;
-        order = [
-          "DuckDuckGo"
-          "Nix Packages"
-          "NixOS Wiki"
-          "Wikipedia (de)"
-          "Wikipedia (en)"
-          "Openstreetmap"
-          "Youtube"
-        ];
+    profiles = {
+      luke = {
+        search = {
+          force = true;
+          default = "DuchDuckGo";
+          privateDefault = "DuckDuckGo";
+          order = [
+            "DuckDuckGo"
+            "Nix Packages"
+            "NixOS Wiki"
+            "Wikipedia (de)"
+            "Wikipedia (en)"
+            "Openstreetmap"
+            "Youtube"
+          ];
+          engines = engines;
+        };
+        extensions = extensions;
+        settings = settings;
+        id = 0;
       };
-      bookmarks = {};
-      extensions = with pkgs.inputs.firefox-addons; [
-        ublock-origin
-        browserpass
-      ];
-      bookmarks = {};
-      settings = settings;
+      # TODO: addd Dev Profile
+      dev = {
+        search = {
+          force = true;
+          default = "DuchDuckGo";
+          privateDefault = "DuckDuckGo";
+          order = [
+            "DuckDuckGo"
+            "Nix Packages"
+            "NixOS Wiki"
+            "Wikipedia (de)"
+            "Wikipedia (en)"
+            "Openstreetmap"
+            "Youtube"
+          ];
+        };
+        extensions = devextensions;
+        settings = settings;
+        id = 1;
+      };
     };
   };
-
-  xdg.mimeApps.defaultApplications = lib.mkIf (!config.programs.qutebrowser.enable) {
+  xdg.mimeApps.defaultApplications = {
     "text/html" = ["firefox.desktop"];
     "text/xml" = ["firefox.desktop"];
     "x-scheme-handler/http" = ["firefox.desktop"];

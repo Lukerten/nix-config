@@ -40,7 +40,7 @@
     "gitlab" = "https://gitlab.mbretsch.de/";
     "yt" = "https://www.youtube.com/";
     "openai" = "https://chat.openai.com";
-    
+
     # FHE Student
     "fh/gitlab" = "https://git.ai.fh-erfurt.de/";
     "fh/ecampus" = "https://ecampus.fh-erfurt.de/";

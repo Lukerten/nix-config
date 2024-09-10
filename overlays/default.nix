@@ -52,7 +52,7 @@ in {
 
     # https://github.com/NixOS/nixpkgs/pull/303472
     gns3-server = prev.gns3-server.overrideAttrs (_: {
-      makeWrapperArgs = [ "--suffix PATH : ${final.lib.makeBinPath [ final.util-linux ]}" ];
+      makeWrapperArgs = ["--suffix PATH : ${final.lib.makeBinPath [final.util-linux]}"];
     });
 
     # https://github.com/mdellweg/pass_secret_service/pull/37

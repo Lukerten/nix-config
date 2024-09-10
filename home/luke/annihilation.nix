@@ -18,6 +18,5 @@
       primary = true;
       workspace = "1";
     }
-
   ];
 }
