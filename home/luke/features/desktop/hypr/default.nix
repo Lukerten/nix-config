@@ -12,6 +12,7 @@ in {
     ../common
     ../common-wayland
     ./binds.nix
+    ./hyprbars.nix
   ];
 
   xdg.portal = let
@@ -44,20 +45,30 @@ in {
         gaps_in = 8;
         gaps_out = 12;
         border_size = 2;
-        "col.active_border" = lib.concatStringsSep " " [
-          "${rgba config.colorscheme.colors.tertiary "ff"}"
-          "${rgba config.colorscheme.colors.primary "ff"}"
-          "45deg"
-        ];
-
+        "col.active_border" = rgba config.colorscheme.colors.primary "ff";
         "col.inactive_border" = rgba config.colorscheme.colors.surface "ff";
         allow_tearing = true;
       };
       cursor.inactive_timeout = 4;
       group = {
-        "col.border_active" = rgba config.colorscheme.colors.primary "ff";
+        "col.border_active" = rgba config.colorscheme.colors.surface "ff";
         "col.border_inactive" = rgba config.colorscheme.colors.surface "ff";
-        groupbar.font_size = 11;
+        "col.border_locked_active" = rgba config.colorscheme.colors.primary "ff";
+        "col.border_locked_inactive" = rgba config.colorscheme.colors.tertiary "ff";
+        groupbar = {
+          height = 16;
+          font_size = 12;
+          gradients = true;
+          text_color = rgb config.colorscheme.colors.surface;
+          "col.active" = rgba config.colorscheme.colors.primary "88";
+          "col.inactive" = rgba config.colorscheme.colors.tertiary "88";
+          "col.locked_active" = rgba config.colorscheme.colors.primary "88";
+          "col.locked_inactive" = rgba config.colorscheme.colors.tertiary "88";
+        };
+      };
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_fingers = 2;
       };
       binds = {
         movefocus_cycles_fullscreen = false;
@@ -76,6 +87,8 @@ in {
         close_special_on_empty = true;
         focus_on_activate = true;
         new_window_takes_over_fullscreen = 2;
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
       };
       windowrulev2 = let
         sweethome3d-tooltips = "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";

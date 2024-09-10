@@ -178,6 +178,6 @@
           lib.getExe config.programs.rofi.windowScript;
       in
         lib.optionals config.programs.rofi.enableWindow
-        ["SUPER,Tab,exec,${wofi-window-switcher}"]);
+        ["SUPERCONTROL,Tab,exec,${wofi-window-switcher}"]);
   };
 }
