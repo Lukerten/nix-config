@@ -1,0 +1,1 @@
+{hardware.yubikey.enable = true;}

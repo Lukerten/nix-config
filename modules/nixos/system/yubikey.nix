@@ -4,23 +4,21 @@
   pkgs,
   ...
 }: let
-  cfg = config.programs.cm4all-vpn;
+  cfg = config.hardware.yubikey;
 in {
-  options.programs.cm4all-vpn = {
+  options.hardware.yubikey = {
     enable = lib.mkEnableOption "Enable the cm4all-vpn utils";
     default = false;
   };
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      cm4all-vpn
+      debianutils
+      opensc
       socat
       yubico-piv-tool
       yubikey-manager
-      which
-      debianutils
       yubikey-agent
-      opensc
       (openvpn.override {
         pkcs11Support = true;
         pkcs11helper = pkgs.pkcs11helper;

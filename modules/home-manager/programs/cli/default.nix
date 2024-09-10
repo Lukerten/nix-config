@@ -1,1 +1,1 @@
-{imports = [./neofetch ./pass ./dragon.nix ./xpo.nix ./youtube-tui.nix];}
+{imports = [./neofetch ./pass ./cm4all-vpn.nix ./dragon.nix ./xpo.nix ./youtube-tui.nix];}

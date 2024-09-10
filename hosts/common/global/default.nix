@@ -7,7 +7,6 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
-      ./cm4all-vpn.nix
       ./fish.nix
       ./gamemode.nix
       ./kdeconnect.nix
@@ -20,6 +19,7 @@
       ./steam-hardware.nix
       ./systemd-initrd.nix
       ./upower.nix
+      ./yubikey.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 

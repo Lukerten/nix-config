@@ -48,6 +48,7 @@
   programs = {
     dragon.enable = true;
     neofetch.enable = true;
+    cm4all-vpn.enable = true;
     youtube-tui.enable = true;
   };
 }
