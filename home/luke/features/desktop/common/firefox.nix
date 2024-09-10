@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   lib,
   ...
 }: let
@@ -207,10 +208,10 @@ in {
       };
     };
   };
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = ["firefox.desktop"];
-    "text/xml" = ["firefox.desktop"];
-    "x-scheme-handler/http" = ["firefox.desktop"];
-    "x-scheme-handler/https" = ["firefox.desktop"];
-  };
+
+  # if qutebrowser is installed, do not set firefox as the default browser
+  xdg.mimeApps.defaultApplications = lib.mkIf (config.programs.qutebrowser.enable == false) {
+    "x-scheme-handler/http" = "qutebrowser.desktop";
+    "x-scheme-handler/https" = "qutebrowser.desktop";
+  }; 
 }
