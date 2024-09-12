@@ -213,5 +213,5 @@ in {
   xdg.mimeApps.defaultApplications = lib.mkIf (config.programs.qutebrowser.enable == false) {
     "x-scheme-handler/http" = "qutebrowser.desktop";
     "x-scheme-handler/https" = "qutebrowser.desktop";
-  }; 
+  };
 }

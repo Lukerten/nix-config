@@ -88,7 +88,7 @@ in {
         clock = {
           interval = 1;
           format = "{:%H:%M:%S}";
-          format-alt ="{:%d.%m.%y %H:%M:%S}";
+          format-alt = "{:%d.%m.%y %H:%M:%S}";
           on-click-left = "mode";
           tooltip-format = ''
             <big>{:%Y %B}</big>
@@ -207,7 +207,6 @@ in {
             deps = [pkgs.blueman];
             script = "blueman-manager";
           };
-
         };
 
         "custom/player" = {

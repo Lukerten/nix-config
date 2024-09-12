@@ -58,9 +58,9 @@ in {
           height = 16;
           font_size = 12;
           gradients = true;
-          text_color = rgb config.colorscheme.colors.surface;
+          text_color = rgb config.colorscheme.colors.on_surface;
           "col.active" = rgba config.colorscheme.colors.primary "88";
-          "col.inactive" = rgba config.colorscheme.colors.tertiary "88";
+          "col.inactive" = rgba config.colorscheme.colors.surface "88";
           "col.locked_active" = rgba config.colorscheme.colors.primary "88";
           "col.locked_inactive" = rgba config.colorscheme.colors.tertiary "88";
         };
