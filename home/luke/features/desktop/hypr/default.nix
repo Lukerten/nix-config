@@ -26,6 +26,7 @@ in {
   home.packages = with pkgs; [
     grimblast
     hyprpicker
+    hyprland-protocols
   ];
 
   wayland.windowManager.hyprland = {

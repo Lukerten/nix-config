@@ -164,6 +164,7 @@
 in {
   programs.browserpass.enable = true;
   programs.firefox = {
+    package = pkgs.stable.firefox;
     enable = true;
     profiles = {
       luke = {
