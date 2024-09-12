@@ -26,7 +26,6 @@
     libnotify
     distrobox
     bc
-    bottom
     eza
     zip
     unzip
