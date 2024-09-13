@@ -136,9 +136,8 @@
         swaylock = lib.getExe config.programs.swaylock.package;
       in
         lib.optionals config.programs.swaylock.enable [
-          ",XF86Launch5,exec,${swaylock} -S --grace 2"
-          ",XF86Launch4,exec,${swaylock} -S --grace 2"
-          "SUPER,q,exec,${swaylock} -S --grace 2"
+          "SUPER,backspace,exec,${swaylock} -S --grace 2 --grace-no-mouse"
+          "SUPER,XF86Calculator,exec,${swaylock} -S --grace 2 --grace-no-mouse"
         ])
       ++
       # Notification manager
