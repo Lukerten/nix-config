@@ -17,7 +17,7 @@ in {
 
   xdg.portal = let
     hyprland = config.wayland.windowManager.hyprland.package;
-    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+    xdph = pkgs.stable.xdg-desktop-portal-hyprland.override {inherit hyprland;};
   in {
     extraPortals = [xdph];
     configPackages = [hyprland];
@@ -231,6 +231,18 @@ in {
       submap=passthrough
       bind=SUPER,P,submap,reset
       submap=reset
+
+      # environment
+      env = XDG_CURRENT_DESKTOP=Hyprland
+      env = XDG_SESSION_TYPE,wayland
+      env = XDG_SESSION_DESKTOP,Hyprland
+      env = QT_QPA_PLATFORM,wayland
+      env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+      env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+      env = GDK_BACKEND,wayland,x11,*
+      env = QT_QPA_PLATFORM,wayland;xcb
+      env = SDL_VIDEODRIVER,wayland
+      env = CLUTTER_BACKEND,wayland
     '';
   };
 }
