@@ -11,6 +11,7 @@
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
+    hunk-nvim
     nui-nvim
     popup-nvim
     vim-illuminate

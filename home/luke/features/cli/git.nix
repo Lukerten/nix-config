@@ -29,6 +29,6 @@ in {
     userEmail = "lc.brendgen@gmail.com";
     extraConfig = {init.defaultBranch = "main";};
     lfs.enable = true;
-    ignores = [".direnv" "result"];
+    ignores = [".direnv" "result" ".jj"];
   };
 }
