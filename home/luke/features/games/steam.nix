@@ -18,7 +18,6 @@
         libkrb5
         keyutils
         gamescope
-        mangohud
       ];
   };
 
@@ -41,7 +40,7 @@
     ];
   in
     pkgs.writeTextDir "share/wayland-sessions/steam-sesson.desktop" # ini
-    
+
     ''
       [Desktop Entry]
       Name=Steam Session
@@ -53,7 +52,6 @@ in {
     steam-with-pkgs
     steam-session
     pkgs.gamescope
-    pkgs.mangohud
     pkgs.protontricks
   ];
 }
