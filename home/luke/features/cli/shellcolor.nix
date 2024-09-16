@@ -18,11 +18,11 @@ in {
       base06 = "${rmHash colors.on_background}"; # fg alt 2
       base07 = "${rmHash colors.shadow}"; # bright fg
       base08 = "${rmHash colors.error}"; # col 1  --> RED
-      base0A = "${rmHash colors.tertiary}"; # col 3  --> YELLOW
+      base0A = "${rmHash colors.inverse_primary}"; # col 3  --> YELLOW
       base0B = "${rmHash colors.primary}"; # col 2  --> GREEN
-      base0D = "${rmHash colors.tertiary_fixed}"; # col 4  --> BLUE
-      base0E = "${rmHash colors.primary_fixed}"; # col 5  --> MAGENTA
-      base0C = "${rmHash colors.secondary}"; # col 6  --> CYAN
+      base0D = "${rmHash colors.secondary}"; # col 4  --> BLUE
+      base0E = "${rmHash colors.tertiary}"; # col 5  --> MAGENTA
+      base0C = "${rmHash colors.tertiary_fixed_dim}"; # col 6  --> CYAN
       base09 = "${rmHash colors.error}"; # error
       base0F = "${rmHash colors.error_container}"; # error alt
     };
