@@ -1384,5 +1384,89 @@
     "ext": "jpeg",
     "id": "TvB4vWt",
     "sha256": "11z0dmvd71zrgq7q1gd4g5wfyn5051ng857232mv9dla308za810"
+  },
+  {
+    "name": "rocket-launch",
+    "ext": "jpeg",
+    "id": "pVB033g",
+    "sha256": "0h3cf7amjwwrjyv76cs2hwxv5ni9svz345rzakr42hrb8lzwwj9q"
+  },
+  {
+    "name": "blood-cave",
+    "ext": "jpeg",
+    "id": "pg60Uaw",
+    "sha256": "1bv4vailp8wasg8rrdjmrwr6ignw4v26zf6aw688z8qvp583c2kv"
+  },
+  {
+    "name": "sandy-stairs-red",
+    "ext": "jpeg",
+    "id": "hEhYAj3",
+    "sha256": "09lpkly48q8a1vw3akl3pj85id5bfmhvzry8vh92vs8gs5br9014"
+  },
+  {
+    "name": "red-sea-spire-planet",
+    "ext": "jpeg",
+    "id": "4EGC7DK",
+    "sha256": "1zv1d2ff10lbhas6bn9brasvcgkaqbh5icxw2wf8qrnm7qrgyckh"
+  },
+  {
+    "name": "classic-vaporwave",
+    "ext": "jpeg",
+    "id": "vDaEvdX",
+    "sha256": "0ji5pdsbl3qsdqp2d90qwsl9dgw923wg3yqzjs6vq0009k6fq6hg"
+  },
+  {
+    "name": "red-blue-space-nebula",
+    "ext": "jpeg",
+    "id": "Zz0eeWZ",
+    "sha256": "0zjq4azsq94ziq1sv27qz7x7i9cwcc8awpm6ks2w005fjh34znpp"
+  },
+  {
+    "name": "purple-planet-space",
+    "ext": "jpeg",
+    "id": "zO3msjU",
+    "sha256": "1kx7q6wd7psfd9vw19chal4d5ln3jdj3c3r5413c41q5wmfvv6l9"
+  },
+  {
+    "name": "ffxiv-heavensward-ishgard",
+    "ext": "jpeg",
+    "id": "7kPoRB3",
+    "sha256": "1syr4n53ki19y7jlm52kkymbg7sc0pazhk1xgmyhr1prp1a5jipq"
+  },
+  {
+    "name": "ffxiv-arr-limsa",
+    "ext": "jpeg",
+    "id": "xV1tRJo",
+    "sha256": "1m9dflwha610gawgp86pllm7isy2f8azw9alq8gq0zklc8szy3l3"
+  },
+  {
+    "name": "ffxiv-arr-kotl",
+    "ext": "jpeg",
+    "id": "OmN29YG",
+    "sha256": "08pki3f22r4y326q4xj42cm24ynwkva25m1cjh7adsl0lvlmdpry"
+  },
+  {
+    "name": "ffxiv-stormblood-kugane",
+    "ext": "jpeg",
+    "id": "ZyeG8zO",
+    "sha256": "13zk7hikl5c919fkgxqn166g64ycizparmivms08x0y5n41z4qws"
+  },
+  {
+    "name": "ffxiv-shadowbringers-lakeland",
+    "ext": "jpeg",
+    "id": "qRGwgx4",
+    "sha256": "146209qrdx32pdyaha8fygldxzysbjh6pff6fw86gk39xl8ha2w4"
+  },
+  {
+    "name": "ffxiv-shadowbringers-arm-areng",
+    "ext": "jpeg",
+    "id": "H3oshrE",
+    "sha256": "0q8jw6w6ax6q0xh6fwjrfp6c1kmdjc37cckpy1lzbqfxnd60nywm"
+  },
+  {
+    "name": "ffxiv-shadowbringers-amauroth",
+    "ext": "jpeg",
+    "id": "VILlr5r",
+    "sha256": "14ahjzj3m5c4k632g6jqwf9y3qwh8kqz1m6krlbd5vhgrak8kl0n"
   }
 ]

@@ -16,7 +16,7 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  wallpaper = pkgs.wallpapers.aenami-timeless;
+  wallpaper = pkgs.wallpapers.blue-red-sky-clouds;
   monitors = [
     {
       name = "DP-2";

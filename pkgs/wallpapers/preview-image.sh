@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p jq curl json_pp
+#!nix-shell -i bash -p jq curl
 
 clientid="501d56d2805f6ec"
 image_name=$1

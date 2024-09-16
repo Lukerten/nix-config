@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p jq curl json_pp
+#!nix-shell -i bash -p jq curl
 
 clientid="501d56d2805f6ec"
 image="$(echo "$1" | rev | cut -d '/' -f1 | rev | cut -d '.' -f1)"
@@ -18,7 +18,7 @@ new_entry=$(jq -n \
     '{"name": $name, "ext": $ext, "id": $id, "sha256": $sha256}')
 
 echo "Adding $name to list.json"
-echo $new_entry | json_pp
+echo $new_entry | jq
 
 jq --argjson new_entry "$new_entry" '. += [$new_entry]' list.json > temp.json && mv temp.json list.json
 
