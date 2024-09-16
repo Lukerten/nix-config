@@ -16,7 +16,7 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  wallpaper = pkgs.wallpapers.minimalist-purple-desert;
+  wallpaper = pkgs.wallpapers.aenami-timeless;
   monitors = [
     {
       name = "DP-2";

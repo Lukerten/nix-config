@@ -6,7 +6,7 @@
 }: {
   imports = [./global ./features/desktop/hypr ./features/pass ./features/games];
 
-  wallpaper = pkgs.wallpapers.aenami-eternity;
+  wallpaper = pkgs.wallpapers.vaporwave-mountain;
 
   monitors = [
     {

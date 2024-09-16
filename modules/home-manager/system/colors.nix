@@ -31,7 +31,7 @@ in {
     };
     type = mkOption {
       type = types.enum (pkgs.generateColorscheme null null).schemeTypes;
-      default = "fruit-salad";
+      default = "fidelity";
     };
 
     generatedDrv = mkOption {
