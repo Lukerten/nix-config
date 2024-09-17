@@ -324,4 +324,9 @@ in {
   xdg.configFile."qutebrowser/config.py".onChange = lib.mkForce ''
     ${pkgs.procps}/bin/pkill -u $USER -HUP qutebrowser || true
   '';
+
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
+    "text/xml" = [ "org.qutebrowser.qutebrowser.desktop" ];
+  };
 }

@@ -210,9 +210,10 @@ in {
     };
   };
 
-  # if qutebrowser is installed, do not set firefox as the default browser
-  xdg.mimeApps.defaultApplications = lib.mkIf (config.programs.qutebrowser.enable == false) {
-    "x-scheme-handler/http" = "qutebrowser.desktop";
-    "x-scheme-handler/https" = "qutebrowser.desktop";
+  xdg.mimeApps.defaultApplications = let
+      hasQutebrowser = !config.programs.qutebrowser.enable;
+    in lib.mkIf hasQutebrowser {
+    "x-scheme-handler/http" = [ "firefox.desktop" ];
+    "x-scheme-handler/https" = [ "firefox.desktop" ];
   };
 }

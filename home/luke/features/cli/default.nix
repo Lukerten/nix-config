@@ -21,27 +21,26 @@
   ];
 
   home.packages = with pkgs; [
-    handlr-regex
-    comma
-    libnotify
-    distrobox
-    bc
-    eza
-    zip
-    unzip
-    ripgrep
-    fd
-    httpie
-    diffsitter
-    jq
-    timer
-    tree
-    ltex-ls
-    nixd
-    alejandra
-    nvd
-    nix-output-monitor
-    nh
+    comma             # Install and run programs by adding a , in front
+    distrobox         # Nice escape hatch, integrates docker images with my environment
+
+    bc                # Calculator
+    ncdu              # TUI disk usage
+    eza               # Better ls
+    zip               # Compression
+    unzip             # Decompression
+    ripgrep           # Search using better grep
+    fd                # Find using better find
+    httpie            # Better curl
+    diffsitter        # Better diff
+    jq                # JSON processor and pretty printer
+    timer             # Timer
+    tree              # Directory tree
+
+    # Nix Stuff:
+    alejandra         # default nix formatter
+    nix-diff          # differ
+    nh                # home-manager & nixos wrapper
   ];
 
   programs = {

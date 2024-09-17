@@ -1,4 +1,9 @@
-{pkgs,lib,config, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./gammastep.nix
     ./imv.nix
@@ -27,7 +32,8 @@
 
   xdg.portal.extraPortals = let
     hyprlandMode = !config.wayland.windowManager.hyprland.enable;
-  in lib.mkIf hyprlandMode [
-    pkgs.xdg-desktop-portal-wlr
-  ];
+  in
+    lib.mkIf hyprlandMode [
+      pkgs.xdg-desktop-portal-wlr
+    ];
 }

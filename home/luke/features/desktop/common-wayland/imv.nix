@@ -1,4 +1,4 @@
-{config,...}:{
+{config, ...}: {
   programs.imv = {
     enable = true;
     settings = {
@@ -28,14 +28,14 @@
   };
 
   xdg.mimeApps.defaultApplications = {
-    "image/jpeg" = [ "imv.desktop" ];
-    "image/png" = [ "imv.desktop" ];
-    "image/gif" = [ "imv.desktop" ];
-    "image/bmp" = [ "imv.desktop" ];
-    "image/svg+xml" = [ "imv.desktop" ];
-    "image/tiff" = [ "imv.desktop" ];
-    "image/x-xcf" = [ "imv.desktop" ];
-    "image/x-xbitmap" = [ "imv.desktop" ];
-    "image/x-xpixmap" = [ "imv.desktop" ];
+    "image/jpeg" = ["imv.desktop"];
+    "image/png" = ["imv.desktop"];
+    "image/gif" = ["imv.desktop"];
+    "image/bmp" = ["imv.desktop"];
+    "image/svg+xml" = ["imv.desktop"];
+    "image/tiff" = ["imv.desktop"];
+    "image/x-xcf" = ["imv.desktop"];
+    "image/x-xbitmap" = ["imv.desktop"];
+    "image/x-xpixmap" = ["imv.desktop"];
   };
 }
