@@ -8,6 +8,7 @@
     ./gx.nix
     ./kommentary.nix
     ./oil.nix
+    ./toggleterm.nix
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [

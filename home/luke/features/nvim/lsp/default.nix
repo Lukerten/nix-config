@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   imports = [./lspconfig.nix ./null-ls.nix ./trouble.nix];
 
-  programs.neovim.plugins = [
-    pkgs.vimPlugins.lspkind-nvim
-    pkgs.vimPlugins.nvim-jdtls
-    pkgs.vimPlugins.phpactor
-    pkgs.vimPlugins.coc-tailwindcss
-    pkgs.vimPlugins.tailwindcss-colors-nvim
-    pkgs.vimPlugins.ltex_extra-nvim
+  programs.neovim.plugins = with pkgs.vimPlugins; [
+    lspkind-nvim
+    nvim-jdtls
+    phpactor
+    coc-tailwindcss
+    tailwindcss-colors-nvim
+    ltex_extra-nvim
   ];
 }

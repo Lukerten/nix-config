@@ -51,24 +51,6 @@ in {
 
       "disable line wrap
       set nowrap
-
-      "Loclist
-      nmap <space>l :lwindow<cr>
-      nmap [l :lprev<cr>
-      nmap ]l :lnext<cr>
-
-      nmap <space>L :lhistory<cr>
-      nmap [L :lolder<cr>
-      nmap ]L :lnewer<cr>
-
-      "Quickfix
-      nmap <space>q :cwindow<cr>
-      nmap [q :cprev<cr>
-      nmap ]q :cnext<cr>
-
-      nmap <space>Q :chistory<cr>
-      nmap [Q :colder<cr>
-      nmap ]Q :cnewer<cr>
     '';
 
   programs.neovim.extraLuaConfig =
@@ -80,10 +62,6 @@ in {
 
       function default_opts( desc )
         return { noremap = true, silent = true, desc = desc }
-      end
-
-      function default_opts( desc, buffnr )
-        return { noremap = true, silent = true, desc = desc, buffer = buffnr }
       end
 
       add_sign("DiagnosticSignError", "󰅚 ")
@@ -98,8 +76,8 @@ in {
       vim.keymap.set("n", "<C-Down>", "<C-e>", default_opts("Scroll down"))
 
       -- Buffers
-      vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>", { desc = "Next buffer", noremap=true, silent=true })
-      vim.keymap.set("n", "<C-h>", "<cmd>bprev<cr>", { desc = "Previous buffer",noremap=true, silent=true })
+      vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>",default_opts("Next buffer"))
+      vim.keymap.set("n", "<C-h>", "<cmd>bprev<cr>",default_opts("Previous buffer"))
     '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [

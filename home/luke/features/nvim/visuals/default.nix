@@ -8,6 +8,7 @@
     ./nvim-tree.nix
     ./statusline.nix
     ./todo.nix
+    ./which-key.nix
   ];
   programs.neovim.plugins = with pkgs.vimPlugins; [
     {
@@ -26,20 +27,6 @@
         # lua
         ''
           require('nvim-web-devicons').setup{}
-        '';
-    }
-    {
-      plugin = which-key-nvim;
-      type = "lua";
-      config =
-        # lua
-        ''
-          require('which-key').setup{
-            preset = modern,
-            icons = {
-              mappings = false,
-            },
-          }
         '';
     }
   ];

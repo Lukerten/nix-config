@@ -12,7 +12,7 @@ with builtins; let
       lspconfig.bashls.setup{
         capabilities = capabilities;
         on_attach = attach_keymaps,
-       cmd = {'${pkgs.bash-language-server}/bin/bash-language-server'};
+        cmd = {'${pkgs.bash-language-server}/bin/bash-language-server'};
       }
     ''
     # lua
@@ -613,8 +613,6 @@ in {
           local async = require 'lspconfig.async'
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           local attach_keymaps = function(client, bufnr)
-            local opts = { noremap=true, silent=true }
-            -- Keymaps
             vim.lsp.inlay_hint.enable(true)
             vim.keymap.set("n", "<space>Lgc", "<cmd> lua vim.lsp.buf.declaration()<cr>",default_opts("Go to declaration", bufnr))
             vim.keymap.set("n", "<space>Lgd", "<cmd> lua vim.lsp.buf.definition()<cr>",default_opts("Go to definition", bufnr))
