@@ -35,6 +35,7 @@
     "nixos" = "https://nixos.org/";
     "nixpkgs" = "https://nixos.org/nixpkgs/";
     "gmail" = "https://mail.google.com/";
+    "outlook" = "https://outlook.office365.com/mail/inbox";
     "calendar" = "https://calendar.google.com/";
     "github" = "https://github.com/";
     "gitlab" = "https://gitlab.mbretsch.de/";
@@ -54,14 +55,13 @@
 
     # CM4all
     "cm/gitlab" = "https://dev.t8o.de";
-    "cm/mail" = "https://outlook.office365.com/mail/inbox";
+    "cm/openstack" = "https://os.t8o.de";
     "cm/confluence" = "https://cm4all.atlassian.net/";
 
     # United Internet
     "ui/gitlab" = "https://gitlab.smb.server.lan/";
     "ui/confluence" = "https://confluence.united-internet.org/";
     "ui/united" = "https://united-internet.org/";
-    "ui/mail" = "https://mail.google.com/u/1/";
   };
 
   custom-binds = {
