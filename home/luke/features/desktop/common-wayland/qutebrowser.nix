@@ -47,11 +47,12 @@
     "fh/ecampus" = "https://ecampus.fh-erfurt.de/";
     "fh/moodle" = "https://moodle.fh-erfurt.de/";
     "fh/webmail" = "https://fhemail.fh-erfurt.de/";
+    "fh/nextcloud" = "https://cloud.fh-erfurt.de/";
 
     # FHE FSR
-    "fh/nextcloud" = "https://cloud.fh-erfurt.de/";
     "fsr/fsrmail" = "https://group.fh-erfurt.de/";
     "fsr/asana" = "https://app.asana.com/";
+    "fsr/dbl-tool" = "https://fh-erfurt.biccloud.de";
 
     # CM4all
     "cm/gitlab" = "https://dev.t8o.de";
@@ -326,7 +327,10 @@ in {
   '';
 
   xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
-    "text/xml" = [ "org.qutebrowser.qutebrowser.desktop" ];
+    "text/html" = ["org.qutebrowser.qutebrowser.desktop"];
+    "text/xml" = ["org.qutebrowser.qutebrowser.desktop"];
+    "application/xhtml+xml" = ["org.qutebrowser.qutebrowser.desktop"];
+    "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
+    "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
   };
 }
