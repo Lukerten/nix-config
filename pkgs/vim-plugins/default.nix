@@ -5,4 +5,5 @@
   mermaid-vim = pkgs.callPackage ./mermaid-vim {};
   hunk-nvim = pkgs.callPackage ./hunk-nvim {};
   nvim-femaco = pkgs.callPackage ./nvim-femaco {};
+  remote-nvim = pkgs.callPackage ./remote-nvim {};
 }

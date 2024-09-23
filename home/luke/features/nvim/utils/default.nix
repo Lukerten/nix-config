@@ -8,6 +8,7 @@
     ./gx.nix
     ./kommentary.nix
     ./oil.nix
+    ./remote-nvim.nix
     ./toggleterm.nix
   ];
 

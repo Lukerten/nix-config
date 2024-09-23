@@ -97,6 +97,19 @@ in {
         description = "Teamspeak package";
       };
     };
+
+    threema-desktop = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable Threema";
+      };
+      package = lib.mkOption {
+        type = lib.types.package;
+        default = pkgs.threema-desktop;
+        description = "Threema messager package";
+      };
+    };
   };
 
   config.home.packages =
@@ -106,5 +119,6 @@ in {
     ++ lib.optional cfg.element.enable cfg.element.package
     ++ lib.optional cfg.webex.enable cfg.webex.package
     ++ lib.optional cfg.teams.enable cfg.teams.package
-    ++ lib.optional cfg.teamspeak.enable cfg.teamspeak.package;
+    ++ lib.optional cfg.teamspeak.enable cfg.teamspeak.package
+    ++ lib.optional cfg.threema-desktop.enable cfg.threema-desktop.package;
 }
