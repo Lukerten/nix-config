@@ -76,7 +76,8 @@ in {
       input = {
         kb_layout = "de";
         touchpad.disable_while_typing = false;
-        resolve_binds_by_sym = true;
+        # Currently this is Borked
+        # resolve_binds_by_sym = true;
       };
       dwindle = {
         split_width_multiplier = 1.35;
