@@ -11,7 +11,7 @@
   swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
 
   isLocked = "${pgrep} -x ${swaylock}";
-  lockTime = 20 * 60; # TODO: configurable desktop (20 min)/laptop (5 min)
+  lockTime = 5 * 60; # TODO: configurable desktop (20 min)/laptop (5 min)
 
   # Makes two timeouts: one for when the screen is not locked (lockTime+timeout) and one for when it is.
   afterLockTimeout = {
@@ -37,7 +37,7 @@ in {
       [
         {
           timeout = lockTime;
-          command = "${swaylock} -i ${config.wallpaper} --daemonize --grace 15";
+          command = "${swaylock} -i ${config.wallpaper} --daemonize --grace 15 --grace-no-mouse";
         }
       ]
       ++
