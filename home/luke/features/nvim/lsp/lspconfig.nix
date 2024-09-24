@@ -524,7 +524,7 @@ with builtins; let
     # lua
     ''
       -- TypeScript language server
-      lspconfig.tsserver.setup {
+      lspconfig.ts_ls.setup {
         capabilities = capabilities;
         on_attach = attach_keymaps,
         cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" }
