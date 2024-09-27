@@ -2,17 +2,16 @@
 {
   programs.tmux = {
     enable = true;
-    tmuxp.enable = true;
-    tmuxinator.enable = true;
-    clock24 = true;
-    keyMode = "vi";
+    shortcut = "a";
+    baseIndex = 1;
     newSession = true;
-    mouse = true;
-    resizeAmount = 15;
+    escapeTime = 0;
+    secureSocket = false;
     plugins = with pkgs; [
       tmuxPlugins.cpu
       tmuxPlugins.battery
       tmuxPlugins.net-speed
+      tmuxPlugins.better-mouse-mode
       {
         plugin = tmuxPlugins.pass;
         extraConfig = ''
@@ -60,17 +59,26 @@
         '';
       }
     ];
-
-    extraConfig = ''
-      setw -g monitor-activity on
-      set -g default-terminal "screen-256color"
-      set -g prefix C-a
-      unbind-key C-b
-      bind-key C-a send-prefix
-      set -g visual-activity on
-      set -g status-justify centre
-    '';
   };
+
+  programs.tmate = {
+    enable = true;
+  };
+
+  home.packages = [
+    # Open tmux for current project.
+    (pkgs.writeShellApplication {
+      name = "pux";
+      runtimeInputs = [ pkgs.tmux ];
+      text = ''
+        PRJ="''$(zoxide query -i)"
+        echo "Launching tmux for ''$PRJ"
+        set -x
+        cd "''$PRJ" && \
+          exec tmux -S "''$PRJ".tmux attach
+      '';
+    })
+  ];
 
   xdg.desktopEntries.tmux = {
     name = "Tmux Session";

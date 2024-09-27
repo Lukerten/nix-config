@@ -58,12 +58,6 @@
             filters = {
               dotfiles = false,
               custom = {
-                ".direnv",
-                ".node_modules",
-                ".classpath",
-                ".factorypath",
-                ".project",
-                ".settings",
               },
             },
           }

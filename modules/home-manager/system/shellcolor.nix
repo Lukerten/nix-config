@@ -29,6 +29,13 @@ in {
         Whether to enable Zsh integration.
       '';
     };
+    enableNushellIntegration = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = ''
+        Whether to enable Nushell integration.
+      '';
+    };
     enableFishIntegration = lib.mkOption {
       default = true;
       type = lib.types.bool;

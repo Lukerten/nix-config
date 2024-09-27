@@ -105,14 +105,6 @@
       }
     '';
 in {
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = ["org.qutebrowser.qutebrowser.desktop"];
-    "text/xml" = ["org.qutebrowser.qutebrowser.desktop"];
-    "x-scheme-handler/http" = ["org.qutebrowser.qutebrowser.desktop"];
-    "x-scheme-handler/https" = ["org.qutebrowser.qutebrowser.desktop"];
-    "x-scheme-handler/qute" = ["org.qutebrowser.qutebrowser.desktop"];
-  };
-
   programs.qutebrowser = {
     enable = true;
     loadAutoconfig = true;
@@ -322,10 +314,6 @@ in {
   };
 
   xdg.configFile."qutebrowser/scrollbar.css".text = customStlyeSheet;
-  xdg.configFile."qutebrowser/config.py".onChange = lib.mkForce ''
-    ${pkgs.procps}/bin/pkill -u $USER -HUP qutebrowser || true
-  '';
-
   xdg.mimeApps.defaultApplications = {
     "text/html" = ["org.qutebrowser.qutebrowser.desktop"];
     "text/xml" = ["org.qutebrowser.qutebrowser.desktop"];
