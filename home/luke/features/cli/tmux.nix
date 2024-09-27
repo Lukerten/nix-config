@@ -12,53 +12,66 @@
       tmuxPlugins.battery
       tmuxPlugins.net-speed
       tmuxPlugins.better-mouse-mode
-      {
-        plugin = tmuxPlugins.pass;
-        extraConfig = ''
-          set @pass-key b
-          set @pass-copy-to-clipboard on
-        '';
-      }
-      {
-        plugin = tmuxPlugins.tilish;
-        extraConfig = ''
-          set @tilish-default 'main-vertical'
-        '';
-      }
-      {
-        plugin = tmuxPlugins.resurrect;
-        extraConfig = ''
-          set @resurrect-strategy-nvim 'session'";
-        '';
-      }
-      {
-        plugin = tmuxPlugins.continuum;
-        extraConfig = ''
-          set @continuum-restore 'on'
-          set @continuum-save-interval '60' # minutes
-        '';
-      }
-      {
-        plugin = tmuxPlugins.power-theme;
-        extraConfig = ''
-          set @plugin 'wfxr/tmux-power'
-          set @plugin 'wfxr/tmux-net-speed'
-          set @tmux_power_theme 'everforest'
-          set @tmux_power_date_icon '󰎁'
-          set @tmux_power_time_icon '󰥔'
-          set @tmux_power_user_icon ''
-          set @tmux_power_session_icon ''
-          set @tmux_power_show_upload_speed    true
-          set @tmux_power_show_download_speed  true
-          set @tmux_power_show_web_reachable   true
-          set @tmux_power_right_arrow_icon     ''
-          set @tmux_power_left_arrow_icon      ''
-          set @tmux_power_upload_speed_icon    '󰕒'
-          set @tmux_power_download_speed_icon  '󰇚'
-          set @tmux_power_prefix_highlight_pos 'R'
-        '';
-      }
     ];
+    extraConfig = ''
+      set -g default-terminal "xterm-256color"
+      set -ga terminal-overrides ",*256col*:Tc"
+      set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+      set-environment -g COLORTERM "truecolor"
+
+      # Keybindings
+      bind | split-window -h -c "#{pane_current_path}"
+      bind - split-window -v -c "#{pane_current_path}"
+      bind c new-window -c "#{pane_current_path}"
+      bind r source-file ~/config/.tmux.conf
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
+
+      # Styling
+      set -g visual-activity off
+      set -g visual-bell off
+      set -g visual-silence off
+      setw -g monitor-activity off
+      set -g bell-action none
+      setw -g clock-mode-colour colour1
+      setw -g mode-style 'fg=colour1 bg=colour18 bold'
+      set -g pane-border-style 'fg=colour1'
+      set -g pane-active-border-style 'fg=colour3'
+
+      # statusbar
+      setw -g clock-mode-colour yellow
+      setw -g mode-style 'fg=black bg=red bold'
+
+      # panes
+      set -g pane-border-style 'fg=red'
+      set -g pane-active-border-style 'fg=yellow'
+
+      # statusbar
+      set -g status-position bottom
+      set -g status-justify left
+      set -g status-style 'fg=red'
+
+      set -g status-left '#{?client_prefix,#[fg=green],#[fg=red]} '
+      set -g status-left-length 10
+
+
+      set -g status-right-style 'fg=black bg=yellow'
+      set -g status-right '#[reverse]#[noreverse]%Y-%m-%d %H:%M#[reverse]#[noreverse]'
+
+      setw -g window-status-current-style 'fg=black bg=red'
+      setw -g window-status-current-format '#[reverse]#[noreverse]#I #W #F#[reverse]#[noreverse]'
+
+      setw -g window-status-style 'fg=red bg=black'
+      setw -g window-status-separator '|'
+      setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F '
+
+      setw -g window-status-bell-style 'fg=yellow bg=red bold'
+
+      # messages
+      set -g message-style 'fg=yellow bg=black bold'
+    '';
   };
 
   programs.tmate = {
