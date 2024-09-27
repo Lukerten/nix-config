@@ -34,10 +34,15 @@ in {
     cik = mkIf hasKitty "clone-in-kitty --type os-window";
     vi = vim;
     v = vim;
+    e = vim;
     ck = cik;
-    e = "nvim";
     g = "git";
-    ls = "ls -a";
+    la = "ls -a";
+    ll = "ls -l";
+    lla = "ls -la";
+    lal = "ls -la";
+    l = "ls";
+    lg = "ls | grep";
   };
 
   # Extra Terminal Utilities
