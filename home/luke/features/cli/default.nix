@@ -17,25 +17,25 @@
     ./screen.nix
     ./shellcolor.nix
     ./ssh.nix
-    ./starship
+    ./tmux.nix
   ];
 
   home.packages = with pkgs; [
-    comma             # Install and run programs by adding a , in front
-    distrobox         # Nice escape hatch, integrates docker images with my environment
-
-    bc                # Calculator
-    ncdu              # TUI disk usage
-    eza               # Better ls
-    zip               # Compression
-    unzip             # Decompression
-    ripgrep           # Search using better grep
-    fd                # Find using better find
-    httpie            # Better curl
-    diffsitter        # Better diff
-    jq                # JSON processor and pretty printer
-    timer             # Timer
-    tree              # Directory tree
+    comma # Install and run programs by adding a , in front
+    distrobox # Nice escape hatch, integrates docker images with my environment
+    run # Run commands and invoke small scripts
+    bc # Calculator
+    ncdu # TUI disk usage
+    eza # Better ls
+    zip # Compression
+    unzip # Decompression
+    ripgrep # Search using better grep
+    fd # Find using better find
+    httpie # Better curl
+    diffsitter # Better diff
+    jq # JSON processor and pretty printer
+    timer # Timer
+    tree # Directory tree
 
     # Nix Stuff:
     alejandra         # default nix formatter
