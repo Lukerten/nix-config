@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  imports = [./lutris.nix ./steam.nix ./prism.nix ./mangohud.nix];
+  imports = [./steam.nix ./prism.nix ./emulators.nix];
 }
