@@ -4,7 +4,7 @@
   ...
 }: let
   defaultSettings = {
-    "general.useragent.locale" = "de-DE";
+    "general.useragent.locale" = "en-US";
     "mail.server.default.check_all_folders_for_new" = true;
     "mail.server.default.delete_model" = 2;
     "mail.server.default.directory-rel" = "[ProfD]Mail";

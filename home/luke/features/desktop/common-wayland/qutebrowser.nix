@@ -52,7 +52,7 @@
     # FHE FSR
     "fsr/fsrmail" = "https://group.fh-erfurt.de/";
     "fsr/asana" = "https://app.asana.com/";
-    "fsr/dbl-tool" = "https://fh-erfurt.biccloud.de";
+    "fsr/dbl-tool" = "https://fh-erfurt.biccloud.de?idpHint=manual";
 
     # CM4all
     "cm/gitlab" = "https://dev.t8o.de";

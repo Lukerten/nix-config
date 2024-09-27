@@ -23,6 +23,8 @@
 
   xdg.portal.enable = true;
 
+  home.sessionVariables.XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
+
   programs = {
     audacity.enable = true;
     audioctrl.enable = true;
