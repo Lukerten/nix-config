@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.programs.xivlauncher;
+  cfg = config.programs.xivLauncher;
 in {
-  options.programs.xivlauncher = {
+  options.programs.xivLauncher = {
     enable = lib.mkEnableOption "xivlauncher";
 
     package = lib.mkOption {

@@ -36,7 +36,7 @@ in {
         enable = lib.mkDefault cfg.enablePrismLauncher;
         installAdditionalJDK = lib.mkDefault true;
       };
-      xivlauncher.enable = lib.mkDefault cfg.enableXIVLauncher;
+      xivLauncher.enable = lib.mkDefault cfg.enableXIVLauncher;
     };
     suits = {
       emulators.enable = lib.mkDefault cfg.enableEmulators;

@@ -14,7 +14,7 @@
   archetypes = {
     gaming.enable = true;
   };
-  programs.XIVLauncher.enable = false;
+  programs.xivLauncher.enable = false;
 
   wallpaper = pkgs.wallpapers.blue-red-sky-clouds;
   monitors = [
