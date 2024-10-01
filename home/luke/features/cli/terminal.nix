@@ -27,22 +27,15 @@ in {
     snrs = "nixos-rebuild --flake . switch";
     hm = "home-manager --flake .";
     hms = "home-manager --flake . switch";
-    s = mkIf hasSpecialisationCli "specialisation";
-    exa = mkIf hasExa "eza";
-    vim = mkIf hasNeovim "nvim";
-    grep = mkIf hasRipgrep "rg";
     cik = mkIf hasKitty "clone-in-kitty --type os-window";
+    s = mkIf hasSpecialisationCli "specialisation";
+    grep = mkIf hasRipgrep "rg";
+    vim = mkIf hasNeovim "nvim";
     vi = vim;
     v = vim;
-    e = vim;
-    ck = cik;
-    g = "git";
-    la = "ls -a";
     ll = "ls -l";
-    lla = "ls -la";
-    lal = "ls -la";
+    la = "ls -la";
     l = "ls";
-    lg = "ls | grep";
   };
 
   # Extra Terminal Utilities
@@ -65,5 +58,20 @@ in {
     nix-diff # differ
     nh # home-manager & nixos wrapper
   ];
+  programs = {
+    bat = {
+      enable = true;
+      config = {theme = "base16";};
+    };
+    bash.enable = true;
+    cm4all-vpn.enable = true;
+    fzf = {
+      enable = true;
+      defaultOptions = ["--color 16"];
+    };
+    jq.enable = true;
+    pfetch.enable = true;
+    zoxide.enable = true;
+  };
 }
 
