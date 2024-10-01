@@ -1,20 +1,20 @@
 {
   pkgs,
-  config,
-  lib,
   ...
 }: {
   imports = [
     ./global
     ./features/desktop/hypr
-    ./features/pass
-    ./features/games
-    ./features/games/ffxiv.nix
   ];
 
   # ------ |--------| ------
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
+
+  archetypes = {
+    gaming.enable = true;
+  };
+  programs.XIVLauncher.enable = false;
 
   wallpaper = pkgs.wallpapers.blue-red-sky-clouds;
   monitors = [

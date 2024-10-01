@@ -1,10 +1,8 @@
 {
   pkgs,
-  config,
-  lib,
   ...
 }: {
-  imports = [./global ./features/desktop/hypr ./features/pass ./features/games];
+  imports = [./global ./features/desktop/hypr];
 
   wallpaper = pkgs.wallpapers.vaporwave-mountain;
 

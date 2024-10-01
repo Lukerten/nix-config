@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.programs.mgba;
+  cfg = config.programs.mGBA;
 in {
-  options.programs.mgba = {
+  options.programs.mGBA = {
     enable = lib.mkEnableOption "mgba";
 
     package = lib.mkOption {
