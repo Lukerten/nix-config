@@ -17,10 +17,9 @@ $env.config = {
     sync_on_enter: true,
   },
 }
-
-$env.PROMPT_INDICATOR = {|| "> " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| "> " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| "| " }
-$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
+$env.PROMPT_INDICATOR = ""
+$env.PROMPT_INDICATOR_VI_INSERT = ""
+$env.PROMPT_INDICATOR_VI_NORMAL = ""
+$env.PROMPT_MULTILINE_INDICATOR = ""
 $env.KITTY_SHELL_INTEGRATION = "enabled"
 
