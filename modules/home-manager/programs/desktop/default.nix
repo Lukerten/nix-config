@@ -15,6 +15,7 @@
     ./postman.nix
     ./resolve.nix
     ./spotify.nix
+    ./thunar.nix
     ./vesktop.nix
   ];
 }

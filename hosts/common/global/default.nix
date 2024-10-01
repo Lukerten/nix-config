@@ -18,6 +18,7 @@
       ./sops.nix
       ./steam-hardware.nix
       ./systemd-initrd.nix
+      ./thunar.nix
       ./upower.nix
       ./yubikey.nix
     ]

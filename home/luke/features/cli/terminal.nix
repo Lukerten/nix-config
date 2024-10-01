@@ -71,6 +71,7 @@ in {
     };
     jq.enable = true;
     pfetch.enable = true;
+    ranger.enable = true;
     zoxide.enable = true;
   };
 }

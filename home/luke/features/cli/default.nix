@@ -10,7 +10,6 @@
     ./nix-index.nix
     ./nushell.nix
     ./pass.nix
-    ./ranger.nix
     ./shellcolor.nix
     ./ssh.nix
     ./starship.nix

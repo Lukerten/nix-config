@@ -24,8 +24,6 @@
     ../common/optional/x11-no-suspend.nix
   ];
 
-  system.stateVersion = "23.11";
-
   networking = {
     hostName = "exaflare";
     networkmanager.enable = true;
@@ -56,4 +54,6 @@
     dconf.enable = true;
     light.enable = true;
   };
+
+  system.stateVersion = "24.05";
 }
