@@ -3,8 +3,8 @@
     enable = true;
     settings = {
       format = let
-        hostInfo = "$username$hostname($shlvl)($time)($nix_shell)\${custom.nix_inspect}";
-        localInfo = "$directory($git_branch$git_commit$git_state$git_status)($aws$gcloud$openstack)(\${custom.juju})";
+        hostInfo = "$username$hostname($shlvl)($time)($nix_shell)";
+        localInfo = "$directory($git_branch$git_commit$git_state$git_status)($aws$gcloud$openstack)";
         prompt = "$jobs$character";
       in ''
         ${hostInfo}
@@ -32,39 +32,11 @@
         format = "[$path]($style)( [$read_only]($read_only_style)) ";
       };
       nix_shell = {
-        format = "[$symbol($name )]($style)";
+        format = "[$symbol$name]($style)";
         impure_msg = "";
         symbol = " ";
         style = "bold blue";
       };
-      custom =let
-        nix-inspect = builtins.readFile ./starship/nix-inspect.sh;
-        juju-prompt = builtins.readFile ./starship/juju-prompt.sh;
-      in {
-        nix_inspect = {
-          when = "test -z $IN_NIX_SHELL";
-          command = lib.getExe (pkgs.writeShellApplication {
-            name = "nix-inspect";
-            runtimeInputs = with pkgs; [perl gnugrep findutils];
-            text = nix-inspect;
-          });
-          format = "[$symbol($output)]($style)";
-          symbol = " ";
-          style = "bold blue";
-        };
-        juju = {
-          when = "builtin type -P juju";
-          command = lib.getExe (pkgs.writeShellApplication {
-            name = "juju-prompt";
-            runtimeInputs = [pkgs.yq];
-            text = juju-prompt;
-          });
-          format = "on [$symbol($output)]($style)";
-          symbol = " ";
-          style = "bold fg:208";
-        };
-      };
-
       character = {
         error_symbol = "[](bold red)";
         success_symbol = "[](bold green)";
