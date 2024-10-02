@@ -4,7 +4,6 @@
     ./audacity.nix
     ./audioctrl.nix
     ./blender.nix
-    ./code.nix
     ./deluge.nix
     ./filezilla.nix
     ./gimp.nix

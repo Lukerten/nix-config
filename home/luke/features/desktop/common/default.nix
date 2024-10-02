@@ -30,7 +30,6 @@
     audacity.enable = true;
     audioctrl.enable = true;
     blender.enable = true;
-    code.enable = true;
     deluge.enable = true;
     filezilla.enable = true;
     gimp.enable = true;
