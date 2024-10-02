@@ -10,9 +10,9 @@
         };
         padding = {
           x = 15;
-          y = 0;
+          y = 15;
         };
-        dynamic_padding = true;
+        dynamic_padding = false;
         dynamic_title = true;
         decorations = "None";
       };
@@ -49,6 +49,54 @@
       selection = {
         semantic_escape_chars = ",│`|:\"' ()[]{}<>\t";
         save_to_clipboard = true;
+      };
+      colors = let
+        inherit (config.colorscheme) colors harmonized;
+      in {
+        primary = {
+          foreground = "${colors.on_surface}";
+          background = "${colors.surface}";
+          dim_foreground = "${colors.on_surface_variant}";
+          bright_foreground = "${colors.on_surface_variant}";
+        };
+        search = {
+          matches = {
+            foreground = "${colors.surface}";
+            background = "${colors.tertiary}";
+          };
+          focused_match = {
+            foreground = "${colors.surface}";
+            background = "${colors.primary}";
+          };
+        };
+        hints = {
+          start = {
+            foreground = "${colors.surface}";
+            background = "${colors.tertiary}";
+          };
+          end = {
+            foreground = "${colors.surface}";
+            background = "${colors.tertiary}";
+          };
+        };
+        line_indicator = {
+            foreground = "${colors.surface}";
+            background = "${colors.primary}";
+        };
+        footer_bar = {
+          foreground = "${colors.on_surface}";
+          background = "${colors.surface}";
+        };
+        normal = {
+          black = "${colors.surface}";
+          red = "${harmonized.red}";
+          green = "${harmonized.green}";
+          yellow = "${harmonized.yellow}";
+          blue = "${harmonized.blue}";
+          magenta = "${harmonized.magenta}";
+          cyan = "${harmonized.cyan}";
+          white = "${colors.on_surface}";
+        };
       };
     };
   };

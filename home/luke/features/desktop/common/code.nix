@@ -34,10 +34,10 @@
       leonardssh.vscord
     ];
     userSettings = let
-      inherit (config.colorscheme) colors harmonized;
       fontMonospace = config.fontProfiles.monospace.name;
       fontRegular = config.fontProfiles.regular.name;
     in {
+      "window.menuBarVisibility" = "hidden";
       "extensions.autoCheckUpdates"= false;
       "editor.fontFamily"= "'${fontMonospace}', 'monospace', monospace";
       "editor.codeLensFontFamily"=  "'${fontMonospace}', 'monospace', monospace";
@@ -63,7 +63,9 @@
       "workbench.colorTheme"= "Catppuccin Mocha";
       "workbench.iconTheme"= "catppuccin-mocha";
       "workbench.statusBar.visible" = false;
-      "workbench.colorCustomizations"= {
+      "workbench.colorCustomizations"= let
+        inherit (config.colorscheme) colors harmonized;
+      in {
         "[Catppuccin Mocha]"= {
           "selection.background"= "${colors.surface}";
           "textCodeBlock.background"= "${colors.surface}";

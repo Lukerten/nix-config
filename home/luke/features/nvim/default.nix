@@ -19,7 +19,7 @@
         name = "Neovim";
         genericName = "Text Editor";
         comment = "Edit text files";
-        exec = "${TermLaunch} nvim %F";
+        exec = "nvim %F";
         icon = "nvim";
         mimeType = [
           "text/english"
@@ -52,7 +52,7 @@
           "text/x-c"
           "text/x-c++"
         ];
-        terminal = false;
+        terminal = true;
         type = "Application";
         categories = ["Utility" "TextEditor"];
       };
