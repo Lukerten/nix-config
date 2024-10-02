@@ -17,7 +17,7 @@ in {
 
     config_string = lib.mkOption {
       type = with lib.types; nullOr str;
-      default = "ascii title os kernel uptime shell de palette";
+      default = "ascii title os kernel de shell editor palette";
       description = "The pfetch config string";
     };
   };

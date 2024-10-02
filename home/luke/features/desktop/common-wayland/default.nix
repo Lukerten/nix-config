@@ -7,7 +7,6 @@
   imports = [
     ./gammastep.nix
     ./imv.nix
-    ./kitty.nix
     ./mako.nix
     ./qutebrowser.nix
     ./rofi.nix
