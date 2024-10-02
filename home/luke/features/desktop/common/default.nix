@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./code.nix
     ./discord.nix
     ./firefox.nix
     ./font.nix
@@ -49,10 +50,10 @@
     webex.enable = true;
     vesktop.enable = true;
   };
-
   services = {
     nextcloud-client = {
       enable = true;
+      startInBackground = true;
     };
   };
   qt.enable = true;
