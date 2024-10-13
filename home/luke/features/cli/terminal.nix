@@ -8,10 +8,12 @@
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasRipgrep = hasPackage "ripgrep";
-  hasExa = hasPackage "eza";
+  hasEza = hasPackage "eza";
   hasSpecialisationCli = hasPackage "specialisation";
+  hasAwsCli = hasPackage "awscli2";
   hasNeovim = config.programs.neovim.enable;
-  hasKitty = config.programs.kitty.enable;
+  hasEmacs = config.programs.emacs.enable;
+  hasNeomutt = config.programs.neomutt.enable;
 in {
   home.shellAliases = rec {
     jqless = "jq -C | less -r";
@@ -27,12 +29,18 @@ in {
     snrs = "nixos-rebuild --flake . switch";
     hm = "home-manager --flake .";
     hms = "home-manager --flake . switch";
-    cik = mkIf hasKitty "clone-in-kitty --type os-window";
-    s = mkIf hasSpecialisationCli "specialisation";
     grep = mkIf hasRipgrep "rg";
+    s = mkIf hasSpecialisationCli "specialisation";
+    ls = mkIf hasEza "eza";
+    exa = ls;
+    e = mkIf hasEmacs "emacsclient -t";
     vim = mkIf hasNeovim "nvim";
     vi = vim;
     v = vim;
+    mutt = mkIf hasNeomutt "neomutt";
+    m = mutt;
+    aws-switch = mkIf hasAwsCli "export AWS_PROFILE=(aws configure list-profiles | fzf)";
+    awssw = aws-switch;
     ll = "ls -l";
     la = "ls -la";
     l = "ls";
@@ -59,11 +67,11 @@ in {
     nh # home-manager & nixos wrapper
   ];
   programs = {
+    bash.enable = true;
     bat = {
       enable = true;
       config = {theme = "base16";};
     };
-    bash.enable = true;
     cm4all-vpn.enable = true;
     fzf = {
       enable = true;

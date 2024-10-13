@@ -1,3 +1,16 @@
+def create_title [] {
+  let prefix = if SSH_TTY in $env {$"[(hostname | str replace -r "\\..*" "")] "}
+  let path = pwd | str replace $env.HOME "~"
+  ([$prefix, $path] | str join)
+}
+
+$env.PROMPT_COMMAND = { }
+$env.PROMPT_COMMAND_RIGHT = { }
+$env.PROMPT_INDICATOR = {|| "> " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| "> " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| "| " }
+$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
+
 $env.config = {
   edit_mode: vi,
   show_banner: false,
@@ -16,10 +29,10 @@ $env.config = {
   history: {
     sync_on_enter: true,
   },
+  hooks: {
+    pre_prompt: [{
+      print -n $"(ansi title)(create_title)(ansi st)"
+    }]
+  }
 }
-$env.PROMPT_INDICATOR = ""
-$env.PROMPT_INDICATOR_VI_INSERT = ""
-$env.PROMPT_INDICATOR_VI_NORMAL = ""
-$env.PROMPT_MULTILINE_INDICATOR = ""
 $env.KITTY_SHELL_INTEGRATION = "enabled"
-

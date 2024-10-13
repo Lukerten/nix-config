@@ -4,13 +4,9 @@
     settings = {
       live_config_reload = true;
       window = {
-        dimensions = {
-          columns = 74;
-          lines = 26;
-        };
         padding = {
-          x = 15;
-          y = 15;
+          x = 24;
+          y = 26;
         };
         dynamic_padding = false;
         dynamic_title = true;
@@ -20,23 +16,21 @@
         history = 4000;
         multiplier = 3;
       };
-      font = let
-        fontMonospace = config.fontProfiles.monospace.name;
-      in {
+      font = {
         normal = {
-          family = "${fontMonospace}";
-          style = "Regular";
+          family = config.fontProfiles.monospace.name;
+          style = "Medium";
         };
         italic = {
-          family = "${fontMonospace}";
+          family = config.fontProfiles.monospace.name;
           style = "Italic";
         };
         bold = {
-          family = "${fontMonospace}";
+          family = config.fontProfiles.monospace.name;
           style = "Bold";
         };
         bold_italic = {
-          family = "${fontMonospace}";
+          family = config.fontProfiles.monospace.name;
           style = "Bold Italic";
         };
         size = 12;
@@ -52,7 +46,7 @@
       };
       colors = let
         inherit (config.colorscheme) colors harmonized;
-      in {
+      in rec {
         primary = {
           foreground = "${colors.on_surface}";
           background = "${colors.surface}";
@@ -97,6 +91,7 @@
           cyan = "${harmonized.cyan}";
           white = "${colors.on_surface}";
         };
+        bright = normal;
       };
     };
   };

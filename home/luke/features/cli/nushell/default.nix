@@ -2,8 +2,8 @@
   programs.nushell = {
     enable = true;
     inherit (config.home) shellAliases;
-    envFile.source = ./nushell/env.nu;
-    extraConfig = builtins.readFile ./nushell/config.nu;
+    envFile.source = ./env.nu;
+    extraConfig = builtins.readFile ./config.nu;
   };
   programs.carapace = {
     enable = true;

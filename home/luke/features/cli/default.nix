@@ -1,18 +1,16 @@
 {pkgs, ...}: {
   imports = [
-    ./btop.nix
+    ./fish
+    ./nushell
     ./direnv.nix
-    ./fish.nix
     ./gh.nix
     ./git.nix
     ./gpg.nix
     ./jujutsu.nix
     ./nix-index.nix
-    ./nushell.nix
     ./pass.nix
     ./shellcolor.nix
     ./ssh.nix
-    ./starship.nix
     ./terminal.nix
     ./tmux.nix
   ];

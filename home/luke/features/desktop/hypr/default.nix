@@ -95,6 +95,7 @@ in {
         steam = "title:^()$,class:^(steam)$";
         steamGame = "class:^(steam_app_[0-9]*)$";
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
+        xembedsniproxy = "class:^()$,title:^()$,xwayland:1,floating:1";
       in [
         "nofocus, ${sweethome3d-tooltips}"
         "minsize 1 1, ${steam}"
@@ -103,6 +104,10 @@ in {
         "center, ${kdeconnect-pointer}"
         "nofocus, ${kdeconnect-pointer}"
         "noblur, ${kdeconnect-pointer}"
+        "noblur, ${xembedsniproxy}"
+        "opacity 0, ${xembedsniproxy}"
+        "workspace special, ${xembedsniproxy}"
+        "noinitialfocus, ${xembedsniproxy}"
         "noanim, ${kdeconnect-pointer}"
         "noshadow, ${kdeconnect-pointer}"
         "noborder, ${kdeconnect-pointer}"
