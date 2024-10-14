@@ -2,6 +2,7 @@
   imports = [
     ./fish
     ./nushell
+    ./starship
     ./direnv.nix
     ./gh.nix
     ./git.nix
