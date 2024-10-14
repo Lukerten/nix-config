@@ -300,7 +300,7 @@ in {
       }
 
       #custom-menu {
-        background-color: ${colors.surface_container};
+        background-color: ${colors.surface};
         color: ${colors.primary};
         padding-right: 1.5em;
         padding-left: 1em;
@@ -310,7 +310,7 @@ in {
 
       #clock {
         font-family: ${config.fontProfiles.monospace.name};
-        background-color: ${colors.surface_container};
+        background-color: ${colors.surface};
         color: ${colors.primary};
         padding-right: 1em;
         padding-left: 1em;

@@ -41,8 +41,8 @@ in {
 
     settings = {
       general = {
-        gaps_in = 8;
-        gaps_out = 12;
+        gaps_in = 10;
+        gaps_out = 20;
         border_size = 2;
         "col.active_border" = rgba config.colorscheme.colors.primary "ff";
         "col.inactive_border" = rgba config.colorscheme.colors.surface "ff";
