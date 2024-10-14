@@ -8,7 +8,6 @@
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasRipgrep = hasPackage "ripgrep";
-  hasEza = hasPackage "eza";
   hasSpecialisationCli = hasPackage "specialisation";
   hasAwsCli = hasPackage "awscli2";
   hasNeovim = config.programs.neovim.enable;
@@ -31,8 +30,6 @@ in {
     hms = "home-manager --flake . switch";
     grep = mkIf hasRipgrep "rg";
     s = mkIf hasSpecialisationCli "specialisation";
-    ls = mkIf hasEza "eza";
-    exa = ls;
     e = mkIf hasEmacs "emacsclient -t";
     vim = mkIf hasNeovim "nvim";
     vi = vim;
@@ -52,7 +49,6 @@ in {
     distrobox # Nice escape hatch, integrates docker images with my environment
     dnsutils # dig
     ncdu # TUI disk usage
-    eza # Better ls
     zip # Compression
     unzip # Decompression
     ripgrep # Search using better grep
