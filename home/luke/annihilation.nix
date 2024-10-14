@@ -4,7 +4,9 @@
 }: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = pkgs.wallpapers.vaporwave-mountain;
+  wallpaper = pkgs.wallpapers.oldschool-trams;
+
+  programs.steam.enable = true;
 
   monitors = [
     {

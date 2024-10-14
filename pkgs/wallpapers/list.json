@@ -1468,5 +1468,47 @@
     "ext": "jpeg",
     "id": "VILlr5r",
     "sha256": "14ahjzj3m5c4k632g6jqwf9y3qwh8kqz1m6krlbd5vhgrak8kl0n"
+  },
+  {
+    "name": "oldschool-trams",
+    "ext": "jpeg",
+    "id": "has5Wdg",
+    "sha256": "1ncy2pkf8vn79pa4yasvf5apvnd8yavxdh7f2qb5d12qypjsbwh1"
+  },
+  {
+    "name": "red-blue-sea",
+    "ext": "jpeg",
+    "id": "IbwnMqD",
+    "sha256": "0xcbxrqy9n3bvp1gh6b9s9jgbh8xnm0y8r63zmkq72j3d931fzf5"
+  },
+  {
+    "name": "cyberpunk-city-neo",
+    "ext": "jpeg",
+    "id": "IwLUsgF",
+    "sha256": "1vvlq878pjw6f784ggbrl4a5hp67cq3gyig8rq5cbgw3b40yp7v7"
+  },
+  {
+    "name": "minimal-landscape-morning",
+    "ext": "jpeg",
+    "id": "3kGbLxr",
+    "sha256": "141h9b2si912n7aqfd1dq8iwyqhz6zl5p2z7880i09kdjf44xnrv"
+  },
+  {
+    "name": "minimal-landscape-night",
+    "ext": "jpeg",
+    "id": "Kbpcov0",
+    "sha256": "1zv0vwmri95cb7bfw8xy8drjiwn8zd5n8zjx16whybjwf1a8db1q"
+  },
+  {
+    "name": "nostalgic-windmill",
+    "ext": "jpeg",
+    "id": "Appqt3c",
+    "sha256": "0pmckjfdcq5zmw56vxy52gg4qk2byr9bblqq0znhhb4gzf7868i5"
+  },
+  {
+    "name": "night-storefront",
+    "ext": "jpeg",
+    "id": "AU8zG6U",
+    "sha256": "1yvdqbca92raa6k6aw9ykr5722qwf21gjy87hpzgbyy8vq4ngx0c"
   }
 ]
