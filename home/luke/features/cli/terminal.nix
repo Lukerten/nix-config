@@ -50,6 +50,7 @@ in {
   home.packages = with pkgs; [
     comma # Install and run programs by adding a , in front
     distrobox # Nice escape hatch, integrates docker images with my environment
+    dnsutils # dig
     ncdu # TUI disk usage
     eza # Better ls
     zip # Compression
@@ -66,21 +67,5 @@ in {
     nix-diff # differ
     nh # home-manager & nixos wrapper
   ];
-  programs = {
-    bash.enable = true;
-    bat = {
-      enable = true;
-      config = {theme = "base16";};
-    };
-    cm4all-vpn.enable = true;
-    fzf = {
-      enable = true;
-      defaultOptions = ["--color 16"];
-    };
-    jq.enable = true;
-    pfetch.enable = true;
-    ranger.enable = true;
-    zoxide.enable = true;
-  };
 }
 
