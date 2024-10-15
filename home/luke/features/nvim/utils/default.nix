@@ -10,6 +10,7 @@
     ./oil.nix
     ./remote-nvim.nix
     ./toggleterm.nix
+    ./vimwiki.nix
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
