@@ -6,8 +6,6 @@
 
   wallpaper = pkgs.wallpapers.oldschool-trams;
 
-  programs.steam.enable = true;
-
   monitors = [
     {
       name = "eDP-1";
