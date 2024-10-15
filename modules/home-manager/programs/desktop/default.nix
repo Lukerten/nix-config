@@ -7,6 +7,7 @@
     ./deluge.nix
     ./filezilla.nix
     ./gimp.nix
+    ./gns3-ui.nix
     ./krita.nix
     ./messagers.nix
     ./obsidian.nix

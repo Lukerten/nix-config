@@ -35,6 +35,7 @@
     deluge.enable = true;
     filezilla.enable = true;
     gimp.enable = true;
+    gns3-ui.enable = true;
     krita.enable = true;
     obsidian.enable = true;
     obs-studio.enable = true;
