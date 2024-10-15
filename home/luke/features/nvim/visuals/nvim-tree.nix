@@ -58,6 +58,8 @@
             filters = {
               dotfiles = false,
               custom = {
+                ".obsidian",
+                ".trash",
               },
             },
           }
