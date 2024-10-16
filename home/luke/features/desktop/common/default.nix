@@ -42,6 +42,7 @@
     office.enable = true;
     postman.enable = true;
     spotify.enable = true;
+    unity.enable = true;
 
     # Messagers
     whatsapp.enable = true;

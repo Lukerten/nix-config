@@ -16,6 +16,7 @@
     ./resolve.nix
     ./spotify.nix
     ./thunar.nix
+    ./unity.nix
     ./vesktop.nix
   ];
 }
