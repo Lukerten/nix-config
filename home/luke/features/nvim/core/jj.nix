@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  jj-vim = pkgs.writeTextDir "syntax/jj.vim" (jjConfig);
+  jj-vim = pkgs.writeTextDir "syntax/jj.vim" jjConfig;
 
   jjConfig = ''
     if exists('b:current_syntax')
@@ -26,11 +26,8 @@
     hi def link jjDiffAdded diffAdded
     hi def link jjDiffRemoved diffRemoved
   '';
-    in {
-      programs.neovim.plugins = [
-        jj-vim
-      ];
-
-
-    }
-
+in {
+  programs.neovim.plugins = [
+    jj-vim
+  ];
+}

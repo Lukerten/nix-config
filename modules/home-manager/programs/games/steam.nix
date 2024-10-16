@@ -40,6 +40,7 @@
     ];
   in
     pkgs.writeTextDir "share/wayland-sessions/steam-session.desktop" # ini
+    
     ''
       [Desktop Entry]
       Name=Steam Session
@@ -89,9 +90,21 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = [
       cfg.package
-      (if cfg.withSession then cfg.SessionPackage else null)
-      (if cfg.withGamescope then cfg.GamescopePackage else null)
-      (if cfg.withProtontricks then cfg.ProtontricksPackage else null)
+      (
+        if cfg.withSession
+        then cfg.SessionPackage
+        else null
+      )
+      (
+        if cfg.withGamescope
+        then cfg.GamescopePackage
+        else null
+      )
+      (
+        if cfg.withProtontricks
+        then cfg.ProtontricksPackage
+        else null
+      )
     ];
   };
 }

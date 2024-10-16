@@ -1,4 +1,9 @@
-{config, pkgs, lib, ...}: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.programs.thunar;
 in {
   options.programs.thunar = {
@@ -16,7 +21,8 @@ in {
     };
   };
   config = lib.mkIf cfg.enable (
-    let package = cfg.package.override { thunarPlugins = cfg.plugins; };
+    let
+      package = cfg.package.override {thunarPlugins = cfg.plugins;};
     in {
       home.packages = [package];
     }

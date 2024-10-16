@@ -1,4 +1,8 @@
-{config, lib, ...}:let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.archetypes.gaming;
 in {
   options.archetypes.gaming = {

@@ -1,5 +1,9 @@
-{pkgs, config,lib, ...}:
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   programs.tmux = {
     enable = true;
     shortcut = "a";
@@ -82,7 +86,7 @@
     # Open tmux for current project.
     (pkgs.writeShellApplication {
       name = "pux";
-      runtimeInputs = [ pkgs.tmux ];
+      runtimeInputs = [pkgs.tmux];
       text = ''
         PRJ="''$(zoxide query -i)"
         echo "Launching tmux for ''$PRJ"

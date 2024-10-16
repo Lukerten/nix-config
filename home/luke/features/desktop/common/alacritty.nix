@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}:{
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   programs.alacritty = {
     enable = true;
     settings = {
@@ -74,8 +79,8 @@
           };
         };
         line_indicator = {
-            foreground = "${colors.surface}";
-            background = "${colors.primary}";
+          foreground = "${colors.surface}";
+          background = "${colors.primary}";
         };
         footer_bar = {
           foreground = "${colors.on_surface}";

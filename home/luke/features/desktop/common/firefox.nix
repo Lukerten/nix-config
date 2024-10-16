@@ -211,9 +211,10 @@ in {
   };
 
   xdg.mimeApps.defaultApplications = let
-      hasQutebrowser = !config.programs.qutebrowser.enable;
-    in lib.mkIf hasQutebrowser {
-    "x-scheme-handler/http" = [ "firefox.desktop" ];
-    "x-scheme-handler/https" = [ "firefox.desktop" ];
-  };
+    hasQutebrowser = !config.programs.qutebrowser.enable;
+  in
+    lib.mkIf hasQutebrowser {
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+    };
 }

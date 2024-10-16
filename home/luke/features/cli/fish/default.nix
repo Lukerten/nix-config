@@ -16,4 +16,3 @@
     interactiveShellInit = lib.readFile ./interactive-init.fish;
   };
 }
-

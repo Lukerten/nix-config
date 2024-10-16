@@ -64,4 +64,3 @@ in {
     nh # home-manager & nixos wrapper
   ];
 }
-

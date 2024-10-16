@@ -1,9 +1,6 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   package = pkgs.vimPlugins.vimwiki;
-  config = 
+  config =
     #lua
     ''
       vim.g.vimwiki_list = {{

@@ -1,5 +1,9 @@
-{config,lib, ...}: let
-inherit (lib) mkIf;
+{
+  config,
+  lib,
+  ...
+}: let
+  inherit (lib) mkIf;
   homeCfgs = config.home-manager.users;
   lukeCfg = homeCfgs.luke;
   hasThunar = mkIf lukeCfg.programs.thunar.enable true;

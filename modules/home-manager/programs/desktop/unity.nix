@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.programs.unity;
-  defaultUnity =  pkgs.unityhub;
+  defaultUnity = pkgs.unityhub;
 in {
   options.programs.unity = {
     enable = lib.mkEnableOption "unity";

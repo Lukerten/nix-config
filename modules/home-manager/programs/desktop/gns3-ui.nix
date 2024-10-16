@@ -11,7 +11,7 @@ in {
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.gns3-gui ;
+      default = pkgs.gns3-gui;
       description = "The gns3UI package to use.";
     };
   };

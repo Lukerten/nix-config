@@ -23,7 +23,12 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [cfg.package]
-    ++ (if cfg.installAdditionalJDK then [pkgs.jdk8] else []);
+    home.packages =
+      [cfg.package]
+      ++ (
+        if cfg.installAdditionalJDK
+        then [pkgs.jdk8]
+        else []
+      );
   };
 }

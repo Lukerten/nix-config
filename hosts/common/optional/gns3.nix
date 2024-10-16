@@ -1,4 +1,9 @@
-{config, pkgs, lib, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   services.gns3-server = {
     enable = true;
     settings.Server = {
@@ -11,7 +16,7 @@
     vpcs.enable = true;
   };
 
-  users.groups.gns3 = { };
+  users.groups.gns3 = {};
   users.users.gns3 = {
     group = "gns3";
     isSystemUser = true;
@@ -23,13 +28,14 @@
     NoNewPrivileges = lib.mkForce false;
     RestrictSUIDSGID = lib.mkForce false;
     PrivateUsers = lib.mkForce false;
-    DeviceAllow = [
-      "/dev/net/tun rw"
-      "/dev/net/tap rw"
-    ] ++ lib.optionals config.virtualisation.libvirtd.enable [
-      "/dev/kvm"
-    ];
+    DeviceAllow =
+      [
+        "/dev/net/tun rw"
+        "/dev/net/tap rw"
+      ]
+      ++ lib.optionals config.virtualisation.libvirtd.enable [
+        "/dev/kvm"
+      ];
     UMask = lib.mkForce "0022";
   };
 }
-

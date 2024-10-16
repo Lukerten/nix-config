@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   config = {
     color_theme = "Default";
     theme_background = false;

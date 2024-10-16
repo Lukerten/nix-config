@@ -1,7 +1,8 @@
 {pkgs, ...}: let
   package = pkgs.vimPlugins.remote-nvim;
-  config = #lua
-  ''
+  config =
+    #lua
+    ''
       utils = require("remote-nvim.utils")
       constants = require("remote-nvim.constants")
       require("remote-nvim").setup{
@@ -99,6 +100,5 @@ in {
       type = "lua";
       config = config;
     }
-
   ];
 }

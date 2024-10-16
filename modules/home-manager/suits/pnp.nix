@@ -1,4 +1,8 @@
-{config, lib, ...}:let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.suits.pnp;
 in {
   options.suits.pnp = {
@@ -9,7 +13,6 @@ in {
       default = true;
       description = "Enable Fultimator.";
     };
-
   };
   config = lib.mkIf cfg.enable {
     programs = {

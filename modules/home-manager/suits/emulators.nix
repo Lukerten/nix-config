@@ -1,4 +1,8 @@
-{config, lib, ...}:let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.suits.emulators;
 in {
   options.suits.emulators = {
