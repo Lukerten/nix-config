@@ -21,6 +21,7 @@
     ../common/optional/regreet.nix
     ../common/optional/remote-hosts.nix
     ../common/optional/systemd-boot.nix
+    ../common/optional/virtualbox.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
   ];

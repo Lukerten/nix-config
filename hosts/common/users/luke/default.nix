@@ -25,6 +25,7 @@ in {
         "openrazer"
         "libvirtd"
         "deluge"
+        "vboxusers"
       ];
 
     hashedPasswordFile = config.sops.secrets.luke-password.path;
