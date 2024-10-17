@@ -356,26 +356,6 @@ with builtins; let
     # lua
     ''
       -- Python language server
-      lspconfig.pyright.setup{
-        capabilities = capabilities;
-        on_attach = attach_keymaps,
-        cmd = {'${pkgs.pyright}/bin/pyright-langserver', '--stdio'};
-        filetypes = { 'python' },
-        root_dir = function(fname)
-          return util.root_pattern(unpack(root_files))(fname)
-        end,
-        single_file_support = true,
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = 'openFilesOnly',
-            },
-          },
-        },
-      }
-
       lspconfig.pylsp.setup{
         cmd = { '${pkgs.python312Packages.python-lsp-server}/bin/pylsp' },
         filetypes = { 'python' },
@@ -390,6 +370,20 @@ with builtins; let
           return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
         end,
         single_file_support = true,
+        settings = {
+          pylsp = {
+            plugins = {
+              ruff = {
+                severities = { ["F401"] = "W" }
+              }
+            },
+          },
+          capabilities = {
+            experimental = {
+              inlayHintProvider = true,
+            }
+          },
+        },
       }
     ''
     # lua
