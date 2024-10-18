@@ -22,19 +22,9 @@ in {
         hostname = "gox-lucasb.os.intern.cm-ag";
         user = "debian";
         identityFile = "${home}/.ssh/id_Lucas.Brendgen.rsa";
-        forwardAgent = true;
-      };
-      "smb-server" = {
-        hostname = "*.smb-server";
         forwardAgent = false;
-        identityFile = "${home}/.ssh/id_Lucas.Brendgen.rsa";
       };
-      "t8o.de" = {
-        hostname = "*.t8o.de";
-        forwardAgent = false;
-        identityFile = "${home}/.ssh/id_Lucas.Brendgen.rsa";
-      };
-      "hye-fhe" = {
+      "hye-fherfurt" = {
         hostname = "hye.ai.fh-erfurt.de";
         user = "lucasb";
         identityFile = "${home}/.ssh/id_fsr.Lucas.Brendgen.rsa";
