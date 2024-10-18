@@ -1,11 +1,10 @@
 {
   pkgs,
-  config,
-  lib,
   ...
 }: {
   programs.tmux = {
     enable = true;
+    pmux.enable = true;
     shortcut = "a";
     baseIndex = 1;
     newSession = true;
@@ -76,35 +75,5 @@
       # messages
       set -g message-style 'fg=yellow bg=black bold'
     '';
-  };
-
-  programs.tmate = {
-    enable = true;
-  };
-
-  home.packages = [
-    # Open tmux for current project.
-    (pkgs.writeShellApplication {
-      name = "pux";
-      runtimeInputs = [pkgs.tmux];
-      text = ''
-        PRJ="''$(zoxide query -i)"
-        echo "Launching tmux for ''$PRJ"
-        set -x
-        cd "''$PRJ" && \
-          exec tmux -S "''$PRJ".tmux attach
-      '';
-    })
-  ];
-
-  xdg.desktopEntries.tmux = {
-    name = "Tmux Session";
-    genericName = "Terminal Multiplexer";
-    comment = "Terminal Multiplexer";
-    exec = "tmux new-session -A -s default";
-    icon = "utilities-terminal";
-    terminal = true;
-    type = "Application";
-    categories = ["Utility" "TerminalEmulator"];
   };
 }

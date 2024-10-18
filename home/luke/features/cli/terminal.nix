@@ -11,7 +11,6 @@
   hasSpecialisationCli = hasPackage "specialisation";
   hasAwsCli = hasPackage "awscli2";
   hasNeovim = config.programs.neovim.enable;
-  hasEmacs = config.programs.emacs.enable;
   hasNeomutt = config.programs.neomutt.enable;
 in {
   home.shellAliases = rec {
@@ -30,7 +29,6 @@ in {
     hms = "home-manager --flake . switch";
     grep = mkIf hasRipgrep "rg";
     s = mkIf hasSpecialisationCli "specialisation";
-    e = mkIf hasEmacs "emacsclient -t";
     vim = mkIf hasNeovim "nvim";
     vi = vim;
     v = vim;
@@ -38,6 +36,7 @@ in {
     m = mutt;
     aws-switch = mkIf hasAwsCli "export AWS_PROFILE=(aws configure list-profiles | fzf)";
     awssw = aws-switch;
+    lg = "lazygit";
     ll = "ls -l";
     la = "ls -la";
     l = "ls";
@@ -61,6 +60,9 @@ in {
     tree # Directory tree
     alejandra # default nix formatter
     nix-diff # differ
+    nix-health # health checker
     nh # home-manager & nixos wrapper
+    nix-index # index nix packages
+    just # justfile
   ];
 }

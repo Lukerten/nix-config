@@ -9,6 +9,8 @@
 
   # Personal scripts
   xpo = pkgs.callPackage ./xpo {};
+  pvim = pkgs.callPackage ./pvim {};
+  pmux = pkgs.callPackage ./pmux {};
   plymouth-spinner-monochrome = pkgs.callPackage ./plymouth-spinner-monochrome {};
 
   # My wallpaper collection
