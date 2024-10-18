@@ -18,11 +18,12 @@
       toYAML = pkgs.lib.generators.toYAML {};
     in
       toYAML {
-        nh = "bash";
-        hyprctl = "bash";
-        pass = "bash";
-        nix = "bash";
-        man = "bash";
+        nh = "fish";
+        hyprctl = "fish";
+        pass = "fish";
+        nix = "fish";
+        man = "fish";
+        juju = "bash";
       };
   };
 }
