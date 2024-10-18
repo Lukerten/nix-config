@@ -5,9 +5,13 @@
 }: {
   programs.fish = {
     enable = true;
-    shellAbbrs = config.home.shellAliases;
-    shellAliases = {
-      clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
+    shellAbbrs = let
+      hasEza = lib.mkIf config.programs.eza.enable;
+    in config.home.shellAliases // {
+      ls = hasEza "exa";
+      la = hasEza "exa -la";
+      ll = hasEza "exa -l";
+      lla = hasEza "exa -la";
     };
     functions = {
       fish_greeting = "";
