@@ -14,18 +14,21 @@ in {
     extraGroups =
       ["wheel" "video" "audio"]
       ++ ifTheyExist [
-        "minecraft"
-        "network"
-        "wireshark"
-        "i2c"
-        "mysql"
-        "docker"
-        "podman"
-        "git"
-        "openrazer"
-        "libvirtd"
         "deluge"
+        "docker"
+        "git"
+        "gns3"
+        "i2c"
+        "libvirtd"
+        "lxd"
+        "minecraft"
+        "mysql"
+        "network"
+        "openrazer"
+        "plugdev"
+        "podman"
         "vboxusers"
+        "wireshark"
       ];
 
     hashedPasswordFile = config.sops.secrets.luke-password.path;

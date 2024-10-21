@@ -15,6 +15,7 @@
     # optional configuration
     ../common/optional/bluez.nix
     ../common/optional/cups.nix
+    ../common/optional/docker.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
     ../common/optional/regreet.nix
