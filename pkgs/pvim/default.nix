@@ -2,7 +2,7 @@
   lib,
   writeShellApplication,
   zoxide,
-  neovim
+  neovim,
 }:
 (writeShellApplication {
   name = "pvim";

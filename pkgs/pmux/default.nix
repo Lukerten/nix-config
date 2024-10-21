@@ -2,7 +2,7 @@
   lib,
   writeShellApplication,
   zoxide,
-  tmux
+  tmux,
 }:
 (writeShellApplication {
   name = "pmux";
@@ -14,7 +14,8 @@
     cd "''$PRJ" && \
       exec tmux -S "''$PRJ".tmux attach
   '';
-}) // {
+})
+// {
   meta = with lib; {
     licenses = licenses.mit;
     platforms = platforms.all;

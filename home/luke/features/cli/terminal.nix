@@ -47,6 +47,7 @@ in {
     comma # Install and run programs by adding a , in front
     distrobox # Nice escape hatch, integrates docker images with my environment
     dnsutils # dig
+    extra-container # Run declarative containers without full system rebuilds
     ncdu # TUI disk usage
     zip # Compression
     unzip # Decompression

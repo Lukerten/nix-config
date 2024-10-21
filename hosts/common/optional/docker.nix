@@ -1,4 +1,4 @@
-{pkgs, ...}: let 
+{pkgs, ...}: let
   docker-stopall = pkgs.writeShellScriptBin "docker-stopall" ''
     container_list=$(docker ps -q)
     if [ -n "$container_list" ]; then
@@ -10,11 +10,11 @@
     fi
     printf "All containers have stopped\n"
   '';
-in{
+in {
   virtualisation.docker = {
     enable = true;
   };
-    environment.systemPackages = [
+  environment.systemPackages = [
     docker-stopall
   ];
 }

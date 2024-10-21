@@ -49,7 +49,7 @@
     };
   in {
     desktopEntries = {
-      nvim ={
+      nvim = {
         name = "Neovim";
         genericName = "Text Editor";
         comment = "Edit text files";
