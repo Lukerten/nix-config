@@ -9,6 +9,7 @@ pkgs.mkShell {
   hardeningDisable = ["all"];
   name = "python";
   buildInputs = with pkgs; [
+    gnomake
     poetry
   ];
 

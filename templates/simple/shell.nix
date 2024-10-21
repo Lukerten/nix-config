@@ -7,11 +7,9 @@
 }:
 pkgs.mkShell {
   hardeningDisable = ["all"];
-  name = "C-Env";
+  name = "Simple-Env";
   buildInputs = with pkgs; [
     gnumake
-
-    clang-tools
   ];
 
   shellHook = "";

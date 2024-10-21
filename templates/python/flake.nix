@@ -30,7 +30,7 @@
         '';
       };
     });
-  devShells =
+    devShells =
       forAllSystem
       (system: {default = pkgsFor.${system}.callPackage ./shell.nix {};});
   };

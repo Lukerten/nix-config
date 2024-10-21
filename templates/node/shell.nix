@@ -9,8 +9,7 @@ in
     nativeBuildInputs =
       [(npxAlias "tsc") (npxAlias "tsserver")]
       ++ (oa.nativeBuildInputs or []);
-
     shellHook = ''
-      npm install
+      pnpm install
     '';
   })
