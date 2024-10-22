@@ -10,17 +10,28 @@ in {
     package = pkgs.nixVersions.nix_2_22;
 
     settings = {
-      trusted-users = ["root" "@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       auto-optimise-store = lib.mkDefault true;
-      experimental-features = ["nix-command" "flakes" "ca-derivations"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+      ];
       warn-dirty = false;
-      system-features = ["kvm" "big-parallel" "nixos-test"];
-      flake-registry = ""; # Disable global flake registry
+      system-features = [
+        "kvm"
+        "big-parallel"
+        "nixos-test"
+      ];
+      flake-registry = "";
     };
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than +3d";
+      options = "--delete-older-than +3";
     };
 
     # Add each flake input as a registry and nix_path
