@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = pkgs.wallpapers.oldschool-trams;
+  wallpaper = pkgs.wallpapers.minimal-landscape-night;
 
   monitors = [
     {
