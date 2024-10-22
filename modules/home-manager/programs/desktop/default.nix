@@ -1,6 +1,7 @@
 {
   imports = [
     ./rofi
+    ./android-studio.nix
     ./audacity.nix
     ./audioctrl.nix
     ./blender.nix

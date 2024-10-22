@@ -29,6 +29,7 @@
   home.sessionVariables.XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
 
   programs = {
+    android-studio.enable = true;
     audacity.enable = true;
     audioctrl.enable = true;
     blender.enable = true;
