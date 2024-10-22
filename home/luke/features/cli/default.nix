@@ -2,7 +2,6 @@
   imports = [
     ./fish
     ./nushell
-    ./starship
     ./direnv.nix
     ./gh.nix
     ./git.nix
@@ -10,7 +9,6 @@
     ./jujutsu.nix
     ./nix-index.nix
     ./pass.nix
-    ./shellcolor.nix
     ./ssh.nix
     ./terminal.nix
     ./tmux.nix
@@ -32,6 +30,7 @@
     jq.enable = true;
     pfetch.enable = true;
     ranger.enable = true;
+    ripgrep.enable = true;
     zoxide.enable = true;
   };
 }

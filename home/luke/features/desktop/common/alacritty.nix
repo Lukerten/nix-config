@@ -50,7 +50,7 @@
         save_to_clipboard = true;
       };
       colors = let
-        inherit (config.colorscheme) colors harmonized;
+        inherit (config.colorscheme) colors;
       in rec {
         primary = {
           foreground = "${colors.on_surface}";
@@ -87,16 +87,20 @@
           background = "${colors.surface}";
         };
         normal = {
-          black = "${colors.surface}";
-          red = "${harmonized.red}";
-          green = "${harmonized.green}";
-          yellow = "${harmonized.yellow}";
-          blue = "${harmonized.blue}";
-          magenta = "${harmonized.magenta}";
-          cyan = "${harmonized.cyan}";
-          white = "${colors.on_surface}";
+          black = colors.surface_dim;
+          white = colors.on_surface;
+          red = colors.error;
+          green = colors.primary;
+          yellow = colors.inverse_primary;
+          blue = colors.secondary;
+          magenta = colors.tertiary_container;
+          cyan = colors.tertiary;
         };
-        bright = normal;
+        bright =
+          normal
+          // {
+            black = config.colorscheme.colors.on_surface_variant;
+          };
       };
     };
   };
@@ -108,7 +112,6 @@
       "x-scheme-handler/terminal" = "Alacritty.desktop";
     };
   };
-  home.sessionVariables.NIX_INSPECT_EXCLUDE = "alacritty ncurses imagemagick fzy nix-index";
   home.packages = [
     (
       pkgs.writeShellScriptBin "xterm" ''
