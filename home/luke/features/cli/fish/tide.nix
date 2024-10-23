@@ -72,7 +72,7 @@
         set -x tide_pwd_icon ""
         set -x tide_pwd_icon_home ""
         set -x tide_pwd_icon_unwritable ""
-        set -x tide_pwd_markers .bzr .citc .git .hg .node-version .python-version .ruby-version .shorten_folder_marker .svn .terraform bun.lockb Cargo.toml composer.json CVS go.mod package.json build.zig
+        set -x tide_pwd_markers .bzr .citc .git .hg .node-version .python-version .ruby-version .shorten_folder_marker .svn .terraform bun.lockb Cargo.toml composer.json CVS go.mod package.json build.zig .editorconfig .env .envrc .gitattributes .gitignore .hgignore .npmignore .nvmrc .pulumi .ruby-gemset .ruby-version .terraform-version .tool-versions .version .versionrc .versions .vmrc .vscode .yarnrc .zig
 
         set -x tide_cmd_duration_bg_color "normal"
         set -x tide_cmd_duration_color "brblack"
