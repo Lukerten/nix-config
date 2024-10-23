@@ -18,10 +18,10 @@
       ''
         set -x tide_character_color "brgreen"
         set -x tide_character_color_failure "brred"
-        set -x tide_character_icon ">"
-        set -x tide_character_vi_icon_default "<"
-        set -x tide_character_vi_icon_replace "|"
-        set -x tide_character_vi_icon_visual "V"
+        set -x tide_character_icon ""
+        set -x tide_character_vi_icon_default ""
+        set -x tide_character_vi_icon_replace ""
+        set -x tide_character_vi_icon_visual "󰮾"
 
         set -x tide_status_bg_color "normal"
         set -x tide_status_bg_color_failure "normal"
@@ -48,31 +48,30 @@
         set -x tide_prompt_color_separator_same_color "brblack"
         set -x tide_prompt_icon_connection "─"
         set -x tide_prompt_min_cols "34"
-        set -x tide_prompt_pad_items "true"
+        set -x tide_prompt_pad_items "false"
         set -x tide_prompt_transient_enabled "false"
 
         set -x tide_left_prompt_frame_enabled "true"
         set -x tide_left_prompt_items pwd git newline character
-        set -x tide_left_prompt_prefix ""
-        set -x tide_left_prompt_separator_diff_color ""
-        set -x tide_left_prompt_separator_same_color ""
-        set -x tide_left_prompt_suffix ""
+        set -x tide_left_prompt_prefix " "
+        set -x tide_left_prompt_separator_diff_color " "
+        set -x tide_left_prompt_separator_same_color " "
+        set -x tide_left_prompt_suffix " "
 
         set -x tide_right_prompt_frame_enabled "false"
         set -x tide_right_prompt_items status cmd_duration context jobs direnv time newline bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws juju nix3_shell crystal elixir zig
-        set -x tide_right_prompt_prefix ""
-        set -x tide_right_prompt_separator_diff_color ""
-        set -x tide_right_prompt_separator_same_color ""
-        set -x tide_right_prompt_suffix ""
+        set -x tide_right_prompt_prefix " "
+        set -x tide_right_prompt_separator_diff_color " "
+        set -x tide_right_prompt_separator_same_color " "
+        set -x tide_right_prompt_suffix " "
 
         set -x tide_pwd_bg_color "normal"
         set -x tide_pwd_color_anchors "brcyan"
         set -x tide_pwd_color_dirs "cyan"
         set -x tide_pwd_color_truncated_dirs "magenta"
-        set -x tide_pwd_icon ""
+        set -x tide_pwd_icon ""
         set -x tide_pwd_icon_home ""
         set -x tide_pwd_icon_unwritable ""
-        set -x tide_pwd_markers .bzr .citc .git .hg .node-version .python-version .ruby-version .shorten_folder_marker .svn .terraform bun.lockb Cargo.toml composer.json CVS go.mod package.json build.zig .editorconfig .env .envrc .gitattributes .gitignore .hgignore .npmignore .nvmrc .pulumi .ruby-gemset .ruby-version .terraform-version .tool-versions .version .versionrc .versions .vmrc .vscode .yarnrc .zig
 
         set -x tide_cmd_duration_bg_color "normal"
         set -x tide_cmd_duration_color "brblack"
@@ -103,7 +102,7 @@
         set -x tide_git_color_stash "brgreen"
         set -x tide_git_color_untracked "brblue"
         set -x tide_git_color_upstream "brgreen"
-        set -x tide_git_icon ""
+        set -x tide_git_icon ""
         set -x tide_git_truncation_length "24"
         set -x tide_git_truncation_strategy ""
 
