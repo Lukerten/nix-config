@@ -13,7 +13,7 @@
   };
   programs.xivLauncher.enable = false;
 
-  wallpaper = pkgs.wallpapers.minimal-landscape-morning;
+  wallpaper = pkgs.wallpapers.neon-city;
   monitors = [
     {
       name = "DP-2";

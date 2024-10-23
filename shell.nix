@@ -1,7 +1,6 @@
 # Shell for bootstrapping flake-enabled nix and other tooling
 {
   pkgs ?
-  # If pkgs is not defined, instanciate nixpkgs from locked commit
   let
     lock =
       (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
@@ -13,7 +12,16 @@
     import nixpkgs {overlays = [];},
   ...
 }: {
-  default = pkgs.mkShell {
+  default = let
+    add_wallpaper = pkgs.writeShellApplication {
+      name = "add_wallpaper";
+      text = builtins.readFile ./pkgs/wallpapers/single_image.sh;
+    };
+    get_wallpaper = pkgs.writeShellApplication {
+      name = "get_wallpaper";
+      text = builtins.readFile ./pkgs/wallpapers/preview-image.sh;
+    };
+  in pkgs.mkShell {
     NIX_CONFIG = "extra-experimental-features = nix-command flakes ca-derivations";
     nativeBuildInputs = with pkgs; [
       nix
@@ -23,6 +31,8 @@
       ssh-to-age
       gnupg
       age
+      get_wallpaper
+      add_wallpaper
     ];
   };
 }
