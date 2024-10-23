@@ -33,6 +33,7 @@
             dashboard.button( "f", "  Find files"          , ":Telescope find_files <CR>"),
             dashboard.button( "F", "󱎸  Find text"           , ":Telescope live_grep <CR>"),
             dashboard.button( "r", "  Recently used files" , ":Telescope oldfiles <CR>"),
+            dashboard.button( "w", "  Open VimWiki"        , ":VimwikiIndex <CR>"),
             dashboard.button( "d", "  Open DB UI"          , ":DBUIToggle <CR>"),
           }
 
