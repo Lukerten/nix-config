@@ -78,6 +78,42 @@ in {
       -- Buffers
       vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>",default_opts("Next buffer"))
       vim.keymap.set("n", "<C-h>", "<cmd>bprev<cr>",default_opts("Previous buffer"))
+
+      -- Make
+      vim.api.nvim_set_keymap('n', '<space>m', ':make', { noremap = true, desc = 'Make' })
+
+      -- Loclist
+      vim.api.nvim_set_keymap('n', '<space>l', ':lwindow<cr>', default_opts('Open loclist window' ))
+      vim.api.nvim_set_keymap('n', '[l', ':lprev<cr>', default_opts('Previous loclist item' ))
+      vim.api.nvim_set_keymap('n', ']l', ':lnext<cr>', default_opts('Next loclist item' ))
+
+      vim.api.nvim_set_keymap('n', '<space>Ll', ':lhistory<cr>', default_opts('Open loclist history' ))
+      vim.api.nvim_set_keymap('n', '[L', ':lolder<cr>', default_opts('Older loclist history' ))
+      vim.api.nvim_set_keymap('n', ']L', ':lnewer<cr>', default_opts('Newer loclist history' ))
+
+      -- Quickfix
+      vim.api.nvim_set_keymap('n', '<space>q', ':cwindow<cr>', default_opts('Open quickfix window' ))
+      vim.api.nvim_set_keymap('n', '[q', ':cprev<cr>', default_opts( 'Previous quickfix item' ))
+      vim.api.nvim_set_keymap('n', ']q', ':cnext<cr>', default_opts('Next quickfix item' ))
+
+      vim.api.nvim_set_keymap('n', '<space>Lq', ':chistory<cr>', default_opts('Open quickfix history' ))
+      vim.api.nvim_set_keymap('n', '[Q', ':colder<cr>', default_opts('Older quickfix history' ))
+      vim.api.nvim_set_keymap('n', ']Q', ':cnewer<cr>', default_opts('Newer quickfix history' ))
+
+      -- Diagnostic
+      vim.keymap.set("n", "<space>d", vim.diagnostic.open_float, default_opts("Floating diagnostic" ))
+      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, default_opts("Previous diagnostic" ))
+      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, default_opts("Next diagnostic" ))
+      vim.keymap.set("n", "gl", vim.diagnostic.setloclist, default_opts("Diagnostics on loclist" ))
+      vim.keymap.set("n", "gq", vim.diagnostic.setqflist, default_opts( "Diagnostics on quickfix" ))
+
+      vim.diagnostic.config({
+        virtual_text = false
+      })
+
+      -- Show line diagnostics automatically in hover window
+      vim.o.updatetime = 250
+      vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
     '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
