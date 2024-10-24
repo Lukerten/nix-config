@@ -14,6 +14,7 @@
     ./kdeconnect.nix
     ./thunar.nix
     ./thunderbird.nix
+    ./vesktop.nix
   ];
 
   # Also sets org.freedesktop.appearance color-scheme
@@ -25,27 +26,30 @@
     else "default";
 
   xdg.portal.enable = true;
-
   home.sessionVariables.XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
 
   programs = {
-    android-studio.enable = true;
-    audacity.enable = true;
     audioctrl.enable = true;
-    blender.enable = true;
-    deluge.enable = true;
-    filezilla.enable = true;
-    gimp.enable = true;
-    gns3-ui.enable = true;
-    krita.enable = true;
+
     obsidian.enable = true;
     obs-studio.enable = true;
-    office.enable = true;
     postman.enable = true;
     spotify.enable = true;
+
+    # Productivity
+    # TODO: Create a suite for productivity
+    blender.enable = true;
+    gimp.enable = true;
+    krita.enable = true;
+    audacity.enable = true;
+    office.enable = true;
+
+    # Game Engines
+    # TODO: Create a suite for game engines
     unity.enable = true;
 
     # Messagers
+    # TODO: Create a suite for messagers
     whatsapp.enable = true;
     signal.enable = true;
     slack.enable = true;
@@ -53,6 +57,8 @@
     teamspeak.enable = true;
     webex.enable = true;
     vesktop.enable = true;
+
+
   };
   services = {
     nextcloud-client = {
