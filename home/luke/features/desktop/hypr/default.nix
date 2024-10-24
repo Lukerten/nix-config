@@ -39,30 +39,40 @@ in {
       ];
     };
 
-    settings = {
+    settings = let
+      primary = rgba config.colorscheme.colors.primary "ff";
+      secondary = rgba config.colorscheme.colors.secondary "ff";
+      tertiary = rgba config.colorscheme.colors.tertiary "ff";
+      surface= rgba config.colorscheme.colors.surface "ff";
+      on_surface = rgba config.colorscheme.colors.on_surface "ff";
+
+      active_border = "${primary} ${tertiary} 100deg";
+      inactive_border = "${surface}";
+    in {
       general = {
-        gaps_in = 10;
-        gaps_out = 20;
+        gaps_in = 8;
+        gaps_out = 16;
         border_size = 2;
-        "col.active_border" = rgba config.colorscheme.colors.primary "ff";
-        "col.inactive_border" = rgba config.colorscheme.colors.surface "ff";
+        resize_on_border = true;
         allow_tearing = true;
+        "col.active_border" = active_border;
+        "col.inactive_border" = inactive_border;
       };
       cursor.inactive_timeout = 4;
       group = {
-        "col.border_active" = rgba config.colorscheme.colors.primary "ff";
-        "col.border_inactive" = rgba config.colorscheme.colors.surface "ff";
-        "col.border_locked_active" = rgba config.colorscheme.colors.primary "ff";
-        "col.border_locked_inactive" = rgba config.colorscheme.colors.surface "ff";
+        "col.border_active" = active_border;
+        "col.border_inactive" = inactive_border;
+        "col.border_locked_active" = active_border;
+        "col.border_locked_inactive" = inactive_border;
         groupbar = {
           height = 16;
           font_size = 12;
           gradients = true;
-          text_color = rgb config.colorscheme.colors.on_surface;
-          "col.active" = rgba config.colorscheme.colors.primary "88";
-          "col.inactive" = rgba config.colorscheme.colors.surface "88";
-          "col.locked_active" = rgba config.colorscheme.colors.primary "88";
-          "col.locked_inactive" = rgba config.colorscheme.colors.tertiary "88";
+          text_color = on_surface;
+          "col.active" = primary;
+          "col.inactive" = surface;
+          "col.locked_active" = tertiary;
+          "col.locked_inactive" = surface;
         };
       };
       gestures = {
@@ -75,8 +85,6 @@ in {
       input = {
         kb_layout = "de";
         touchpad.disable_while_typing = false;
-        # Currently this is Borked
-        # resolve_binds_by_sym = true;
       };
       dwindle = {
         split_width_multiplier = 1.35;
@@ -126,20 +134,22 @@ in {
         "noanim,wallpaper"
       ];
 
-      decoration = {
-        active_opacity = 0.80;
-        inactive_opacity = 0.80;
-        fullscreen_opacity = 1.0;
-        rounding = 7;
+      decoration = let
+        opacity_inactive_ = 0.80;
+        opacity_active = 0.80;
+        opacity_fullscreen = 1.0;
+      in {
+        active_opacity = opacity_inactive_;
+        inactive_opacity = opacity_active;
+        fullscreen_opacity = opacity_fullscreen;
+        rounding = 4;
+        drop_shadow = false;
         blur = {
           enabled = true;
-          size = 20;
-          passes = 2;
-          new_optimizations = true;
-          ignore_opacity = true;
+          size = 6;
+          passes = 4;
           popups = true;
         };
-        drop_shadow = false;
         shadow_range = 12;
         shadow_offset = "3 3";
         "col.shadow" = "0x44000000";

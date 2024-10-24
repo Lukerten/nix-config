@@ -9,7 +9,7 @@
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 
   hyprbars =
-    (pkgs.hyprbars.override {
+    (pkgs.hyprlandPlugins.hyprbars.override {
       hyprland = config.wayland.windowManager.hyprland.package;
     })
     .overrideAttrs
