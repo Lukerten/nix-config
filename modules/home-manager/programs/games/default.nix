@@ -6,6 +6,7 @@
     ./mgba.nix
     ./prismlauncher.nix
     ./steam.nix
+    ./wine.nix
     ./xivlauncher.nix
   ];
 }
