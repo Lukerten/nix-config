@@ -8,11 +8,6 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  archetypes = {
-    gaming.enable = true;
-  };
-  programs.xivLauncher.enable = false;
-
   wallpaper = pkgs.wallpapers.neon-city;
   monitors = [
     {
