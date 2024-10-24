@@ -19,11 +19,6 @@ in {
       default = true;
       description = "Enable MelonDS.";
     };
-    enableLime3DS = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Enable Lime3DS.";
-    };
     enableMgba = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -34,7 +29,6 @@ in {
     programs = {
       dolphin.enable = lib.mkDefault cfg.enableDolphin;
       melonDS.enable = lib.mkDefault cfg.enableMelonDS;
-      lime3DS.enable = lib.mkDefault cfg.enableLime3DS;
       mGBA.enable = lib.mkDefault cfg.enableMgba;
     };
   };
