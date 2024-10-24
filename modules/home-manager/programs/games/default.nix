@@ -1,10 +1,10 @@
 {
   imports = [
     ./dolphin.nix
-    ./fultimator-desktop.nix
+    ./fultimatordesktop.nix
     ./melonDS.nix
     ./mgba.nix
-    ./prism.nix
+    ./prismlauncher.nix
     ./steam.nix
     ./xivlauncher.nix
   ];

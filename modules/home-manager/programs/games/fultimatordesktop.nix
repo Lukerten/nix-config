@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.programs.fultimator-desktop;
+  cfg = config.programs.fultimatorDesktop;
 in {
-  options.programs.fultimator-desktop = {
+  options.programs.fultimatorDesktop = {
     enable = lib.mkEnableOption "fultimator-desktop";
 
     package = lib.mkOption {

@@ -4,10 +4,10 @@
   lib,
   ...
 }: let
-  cfg = config.programs.prism-launcher;
+  cfg = config.programs.prismLauncher;
 in {
-  options.programs.prism-launcher = {
-    enable = lib.mkEnableOption "prism-launcher";
+  options.programs.prismLauncher = {
+    enable = lib.mkEnableOption "prismLauncher";
 
     package = lib.mkOption {
       type = lib.types.package;

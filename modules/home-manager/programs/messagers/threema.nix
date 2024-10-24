@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.programs.threema-desktop;
-in { 
-  options.programs.threema-desktop = {
+  cfg = config.programs.threema;
+in {
+  options.programs.threema = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;

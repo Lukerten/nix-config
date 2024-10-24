@@ -2,6 +2,7 @@
   imports = [
     ./global
     ./features/desktop/hypr
+    ./features/games
   ];
 
   # ------ |--------| ------

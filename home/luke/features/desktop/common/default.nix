@@ -12,6 +12,7 @@
     ./font.nix
     ./gtk.nix
     ./kdeconnect.nix
+    ./qt.nix
     ./thunar.nix
     ./thunderbird.nix
     ./vesktop.nix
@@ -28,43 +29,16 @@
   xdg.portal.enable = true;
   home.sessionVariables.XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
 
+  suits = {
+    messagers.minimal.enable = true;
+    productivity.notes.enable = true;
+  };
   programs = {
     audioctrl.enable = true;
-
-    obsidian.enable = true;
-    obs-studio.enable = true;
-    postman.enable = true;
     spotify.enable = true;
-
-    # Productivity
-    # TODO: Create a suite for productivity
-    blender.enable = true;
-    gimp.enable = true;
-    krita.enable = true;
-    audacity.enable = true;
-    office.enable = true;
-
-    # Game Engines
-    # TODO: Create a suite for game engines
-    unity.enable = true;
-
-    # Messagers
-    # TODO: Create a suite for messagers
-    whatsapp.enable = true;
-    signal.enable = true;
-    slack.enable = true;
-    element.enable = true;
-    teamspeak.enable = true;
-    webex.enable = true;
-    vesktop.enable = true;
-
-
   };
-  services = {
-    nextcloud-client = {
-      enable = true;
-      startInBackground = true;
-    };
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
   };
-  qt.enable = true;
 }

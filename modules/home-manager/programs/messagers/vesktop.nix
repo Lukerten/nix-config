@@ -10,13 +10,11 @@
 in {
   options.programs.vesktop = {
     enable = mkEnableOption "discord";
-
     package = mkOption {
       type = types.package;
       default = pkgs.stable.vesktop;
       description = "The code package to use.";
     };
-
     customCss = {
       enable = mkOption {
         type = types.bool;

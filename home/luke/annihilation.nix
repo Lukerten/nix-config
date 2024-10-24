@@ -3,6 +3,12 @@
 
   wallpaper = pkgs.wallpapers.zabrocki-future-city;
 
+  suits = {
+    dev.appdev.enable = true;
+    dev.gamedev.enable = true;
+    dev.network.enable = true;
+  };
+
   monitors = [
     {
       name = "eDP-1";
