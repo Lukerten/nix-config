@@ -15,8 +15,6 @@ in {
       "plugin:touch_gestures" = {
         sensitivity = 4.0;
         workspace_swipe_fingers = 3;
-        # possible values: l, r, u, or d
-        # to disable it set it to anything else
         workspace_swipe_edge = "d";
         long_press_delay = 400;
         edge_margin = 10;

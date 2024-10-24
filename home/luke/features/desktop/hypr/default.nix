@@ -5,14 +5,25 @@
   outputs,
   ...
 }: let
+  opacity_inactive = 0.80;
+  opacity_active = 0.80;
+  opacity_fullscreen = 1.0;
+
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
+
+  primary = rgb config.colorscheme.colors.primary;
+  tertiary = rgb config.colorscheme.colors.tertiary;
+  surface= rgb config.colorscheme.colors.surface;
+  on_surface = rgb config.colorscheme.colors.on_surface;
+  primary_alpha = rgba config.colorscheme.colors.primary "cc";
+  tertiary_alpha = rgba config.colorscheme.colors.tertiary "cc";
+  surface_alpha = rgba config.colorscheme.colors.surface "cc";
 in {
   imports = [
     ../common
     ../common-wayland
     ./binds.nix
-    ./hyprbars.nix
     ./hyprgrass.nix
   ];
 
@@ -41,18 +52,12 @@ in {
     };
 
     settings = let
-      primary = rgba config.colorscheme.colors.primary "ff";
-      secondary = rgba config.colorscheme.colors.secondary "ff";
-      tertiary = rgba config.colorscheme.colors.tertiary "ff";
-      surface= rgba config.colorscheme.colors.surface "ff";
-      on_surface = rgba config.colorscheme.colors.on_surface "ff";
-
-      active_border = "${primary} ${tertiary} 100deg";
+      active_border = "${primary} ${tertiary} ${primary} 45deg";
       inactive_border = "${surface}";
     in {
       general = {
-        gaps_in = 8;
-        gaps_out = 16;
+        gaps_in = 5;
+        gaps_out = 10;
         border_size = 2;
         resize_on_border = true;
         allow_tearing = true;
@@ -70,10 +75,10 @@ in {
           font_size = 12;
           gradients = true;
           text_color = on_surface;
-          "col.active" = primary;
-          "col.inactive" = surface;
-          "col.locked_active" = tertiary;
-          "col.locked_inactive" = surface;
+          "col.active" = primary_alpha;
+          "col.inactive" = surface_alpha;
+          "col.locked_active" = tertiary_alpha;
+          "col.locked_inactive" = surface_alpha;
         };
       };
       gestures = {
@@ -136,12 +141,8 @@ in {
         "noanim,wallpaper"
       ];
 
-      decoration = let
-        opacity_inactive_ = 0.80;
-        opacity_active = 0.80;
-        opacity_fullscreen = 1.0;
-      in {
-        active_opacity = opacity_inactive_;
+      decoration = {
+        active_opacity = opacity_inactive;
         inactive_opacity = opacity_active;
         fullscreen_opacity = opacity_fullscreen;
         rounding = 4;
@@ -177,6 +178,7 @@ in {
           "layersOut,1,3,easeinback,slide"
           "windowsOut,1,3,easeinback,slide"
           "border,1,3,easeout"
+          "borderangle, 1, 100, easeout , loop"
           "fadeDim,1,3,easeinout"
           "fadeShadow,1,3,easeinout"
           "fadeSwitch,1,3,easeinout"
