@@ -29,6 +29,10 @@ in {
     stable = inputs.nixpkgs-stable.legacyPackages.${final.system};
   };
 
+  nix-gaming = final: _: {
+    nix-gaming = inputs.nix-gaming.packages.${final.system};
+  };
+
   # Adds my custom packages
   additions = final: prev:
     import ../pkgs {pkgs = final;}
