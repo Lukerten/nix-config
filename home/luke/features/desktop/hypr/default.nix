@@ -22,7 +22,7 @@
 in {
   imports = [
     ../common
-    ../common-wayland
+    ../common/wayland
     ./binds.nix
     ./hyprgrass.nix
   ];
