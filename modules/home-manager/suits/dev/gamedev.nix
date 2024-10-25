@@ -14,5 +14,10 @@ in {
     unity.enable = mkDefault true;
     godot.enable = mkDefault true;
     blender.enable = mkDefault true;
+    vscode.enable = mkDefault true;
+  };
+
+  config.xdg.mimeApps.defaultApplications = {
+    "text/x-csharp" = "code.desktop";
   };
 }

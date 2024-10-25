@@ -23,7 +23,6 @@
     "text/x-c" = "nvim.desktop";
     "text/x-c++" = "nvim.desktop";
     "text/x-csrc" = "nvim.desktop";
-    "text/x-csharp" = "nvim.desktop";
     "text/x-c++hdr" = "nvim.desktop";
     "text/x-c++src" = "nvim.desktop";
     "text/x-tex" = "nvim.desktop";

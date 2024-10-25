@@ -41,6 +41,7 @@
       fontMonospace = config.fontProfiles.monospace.name;
       fontRegular = config.fontProfiles.regular.name;
     in {
+      "editor.minimap.renderCharacters" = false;
       "window.menuBarVisibility" = "hidden";
       "extensions.autoCheckUpdates" = false;
       "editor.fontFamily" = "'${fontMonospace}', 'monospace', monospace";
@@ -61,8 +62,6 @@
         "zsh"
         "fish"
         "nu"
-        "shellcolor"
-        "shellcolord"
       ];
       "workbench.colorTheme" = "Catppuccin Mocha";
       "workbench.iconTheme" = "catppuccin-mocha";
