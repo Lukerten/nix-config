@@ -47,11 +47,6 @@
     enableAllFirmware = true;
   };
 
-  security = {
-    polkit.enable = true;
-    rtkit.enable = true;
-  };
-
   programs = {
     adb.enable = true;
     dconf.enable = true;

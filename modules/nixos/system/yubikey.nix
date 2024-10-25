@@ -4,25 +4,29 @@
   pkgs,
   ...
 }: let
+  inherit (lib) mkEnableOption mkIf mkOption types;
   cfg = config.hardware.yubikey;
 in {
   options.hardware.yubikey = {
-    enable = lib.mkEnableOption "Enable the cm4all-vpn utils";
-    default = false;
+    enable = mkEnableOption "Enable yubikey utils";
+
+    yubikeyManager = mkOption {
+      type = types.package;
+      default = pkgs.yubikey-manager;
+      description = "The package to install for yubikey management";
+    };
+
+    yubikeyPiv = mkOption {
+      type = types.package;
+      default = pkgs.yubico-piv-tool;
+      description = "The package to install for yubikey piv";
+    };
   };
 
-  config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      debianutils
-      opensc
-      socat
-      yubico-piv-tool
-      yubikey-manager
-      yubikey-agent
-      (openvpn.override {
-        pkcs11Support = true;
-        pkcs11helper = pkgs.pkcs11helper;
-      })
+  config = mkIf cfg.enable {
+    environment.systemPackages = [ 
+      cfg.yubikeyManager
+      cfg.yubikeyPiv
     ];
   };
 }

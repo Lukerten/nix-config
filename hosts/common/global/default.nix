@@ -41,8 +41,6 @@
   };
 
   hardware.enableRedistributableFirmware = true;
-  services.pcscd.enable = true;
-
   security.pam.loginLimits = [
     {
       domain = "@wheel";
