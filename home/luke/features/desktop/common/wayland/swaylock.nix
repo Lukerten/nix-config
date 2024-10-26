@@ -1,11 +1,13 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
+  inherit (lib) mkIf;
   inherit (config.colorscheme) colors;
 in {
-  programs.swaylock = {
+  programs.swaylock = mkIf (! config.services.hypridle.enable) {
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {

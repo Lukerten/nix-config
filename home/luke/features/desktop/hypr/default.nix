@@ -25,6 +25,8 @@ in {
     ../common/wayland
     ./binds.nix
     ./hyprgrass.nix
+    ./hypridle.nix
+    ./hyprlock.nix
     ./hyprpaper.nix
   ];
 
