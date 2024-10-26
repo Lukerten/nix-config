@@ -25,6 +25,7 @@ in {
     ../common/wayland
     ./binds.nix
     ./hyprgrass.nix
+    ./hyprpaper.nix
   ];
 
   xdg.portal = let
@@ -188,7 +189,6 @@ in {
       };
 
       exec = [
-        "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
         "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       ];
 
