@@ -15,5 +15,5 @@ in {
       description = "The gns3UI package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = lib.mkIf cfg.enable { environment.systemPackages = [cfg.package];};
 }

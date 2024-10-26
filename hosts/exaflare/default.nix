@@ -24,6 +24,8 @@
     ../common/optional/systemd-boot.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
+
+    ../common/optional/gns3.nix
   ];
 
   networking = {

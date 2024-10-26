@@ -11,7 +11,6 @@ in {
   };
 
   config.programs = mkIf cfg.enable {
-    gns3-ui.enable = mkDefault true;
     filezilla.enable = mkDefault true;
   };
 }
