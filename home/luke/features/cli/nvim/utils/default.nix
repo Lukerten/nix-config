@@ -4,7 +4,6 @@
     ./dadbod.nix
     ./dap.nix
     ./emmet.nix
-    ./gitsigns.nix
     ./gx.nix
     ./kommentary.nix
     ./oil.nix

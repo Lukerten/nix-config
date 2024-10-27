@@ -11,6 +11,13 @@
               interval = 1000,
               follow_files = true
             },
+            signs = {
+              add = { text = '+' },
+              change = { text = '~' },
+              delete = { text = '_' },
+              topdelete = { text = '‾' },
+              changedelete = { text = '~' },
+            },
             attach_to_untracked = true,
             current_line_blame = false,
             current_line_blame_opts = {

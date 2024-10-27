@@ -3,6 +3,7 @@
     ./alpha.nix
     ./bufferline.nix
     ./fidget.nix
+    ./gitsigns.nix
     ./ibf.nix
     ./noice.nix
     ./nvim-tree.nix
