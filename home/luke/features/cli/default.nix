@@ -2,6 +2,7 @@
   imports = [
     ./fish
     ./nushell
+    ./nvim
     ./direnv.nix
     ./gh.nix
     ./git.nix
