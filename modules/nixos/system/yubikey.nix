@@ -24,7 +24,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ 
+    environment.systemPackages = [
       cfg.yubikeyManager
       cfg.yubikeyPiv
     ];

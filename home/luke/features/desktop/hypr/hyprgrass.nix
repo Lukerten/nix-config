@@ -6,7 +6,7 @@
   ...
 }: let
   hyprgrass = pkgs.hyprlandPlugins.hyprgrass.override {
-      hyprland = config.wayland.windowManager.hyprland.package;
+    hyprland = config.wayland.windowManager.hyprland.package;
   };
 in {
   wayland.windowManager.hyprland = {

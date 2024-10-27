@@ -76,14 +76,16 @@ in {
             --prefix XDG_DATA_DIRS : ${schemaPath final.gtk3}
           )
         '');
-    patches =
-      (oldAttrs.patches or [])
-      ++ [ ./qutebrowser-refresh-tab-colorscheme.patch ];
+      patches =
+        (oldAttrs.patches or [])
+        ++ [./qutebrowser-refresh-tab-colorscheme.patch];
     });
 
-    libsForQt5 = prev.libsForQt5 // {
-      qtstyleplugins = addPatches prev.libsForQt5.qtstyleplugins [./qtstyleplugins-gtk3-key.patch];
-    };
+    libsForQt5 =
+      prev.libsForQt5
+      // {
+        qtstyleplugins = addPatches prev.libsForQt5.qtstyleplugins [./qtstyleplugins-gtk3-key.patch];
+      };
 
     wl-clipboard = addPatches prev.wl-clipboard [./wl-clipboard-secrets.diff];
     pass = addPatches prev.pass [./pass-wlclipboard-secret.diff];

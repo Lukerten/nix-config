@@ -1,11 +1,11 @@
-  {
+{
   config,
   pkgs,
   lib,
   ...
 }: let
   cfg = config.programs.signal;
-in { 
+in {
   options.programs.signal = {
     enable = lib.mkOption {
       type = lib.types.bool;

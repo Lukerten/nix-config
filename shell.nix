@@ -1,7 +1,6 @@
 # Shell for bootstrapping flake-enabled nix and other tooling
 {
-  pkgs ?
-  let
+  pkgs ? let
     lock =
       (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
     nixpkgs = fetchTarball {
@@ -21,18 +20,19 @@
       name = "get_wallpaper";
       text = builtins.readFile ./pkgs/wallpapers/preview-image.sh;
     };
-  in pkgs.mkShell {
-    NIX_CONFIG = "extra-experimental-features = nix-command flakes ca-derivations";
-    nativeBuildInputs = with pkgs; [
-      nix
-      home-manager
-      git
-      sops
-      ssh-to-age
-      gnupg
-      age
-      get_wallpaper
-      add_wallpaper
-    ];
-  };
+  in
+    pkgs.mkShell {
+      NIX_CONFIG = "extra-experimental-features = nix-command flakes ca-derivations";
+      nativeBuildInputs = with pkgs; [
+        nix
+        home-manager
+        git
+        sops
+        ssh-to-age
+        gnupg
+        age
+        get_wallpaper
+        add_wallpaper
+      ];
+    };
 }

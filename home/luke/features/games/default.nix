@@ -8,6 +8,4 @@
     prismLauncher.enable = true;
     wine.enable = true;
   };
-
-
 }

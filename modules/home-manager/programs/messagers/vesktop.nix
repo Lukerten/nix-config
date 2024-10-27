@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkEnableOption mkOption mkIf types;
   inherit (config.colorschemes) colors harmonized;
-  cfg = config.programs.vesktop; 
+  cfg = config.programs.vesktop;
 in {
   options.programs.vesktop = {
     enable = mkEnableOption "discord";

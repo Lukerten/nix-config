@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.programs.slack;
-in { 
+in {
   options.programs.slack = {
     enable = lib.mkOption {
       type = lib.types.bool;

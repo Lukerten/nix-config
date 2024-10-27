@@ -36,6 +36,10 @@
       settings = {
         trust-model = "tofu+pgp";
       };
+      scdaemonSettings = {
+        reader-port = "Yubico Yubi";
+        disable-ccid = false;
+      };
     };
   };
 

@@ -1,11 +1,11 @@
- {
+{
   config,
   pkgs,
   lib,
   ...
 }: let
   cfg = config.programs.webex;
-in { 
+in {
   options.programs.webex = {
     enable = lib.mkOption {
       type = lib.types.bool;

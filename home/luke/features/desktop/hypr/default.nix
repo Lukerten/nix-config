@@ -14,7 +14,7 @@
 
   primary = rgb config.colorscheme.colors.primary;
   tertiary = rgb config.colorscheme.colors.tertiary;
-  surface= rgb config.colorscheme.colors.surface;
+  surface = rgb config.colorscheme.colors.surface;
   on_surface = rgb config.colorscheme.colors.on_surface;
   primary_alpha = rgba config.colorscheme.colors.primary "cc";
   tertiary_alpha = rgba config.colorscheme.colors.tertiary "cc";

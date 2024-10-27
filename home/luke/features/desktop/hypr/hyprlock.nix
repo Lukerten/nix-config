@@ -1,5 +1,8 @@
-{ config, lib,... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (config.colorscheme) colors harmonized;
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
   foreground = rgba colors.on_surface "ff";
@@ -31,7 +34,7 @@ in {
         vibrancy_darkness = 0.0;
       };
 
-      label = [ 
+      label = [
         {
           monitor = primaryMonitorName;
           text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
@@ -67,26 +70,28 @@ in {
           valign = "center";
         }
       ];
-      input-field = [{
-        monitor = primaryMonitorName;
-        size = "300, 60";
-        outline_thickness = 2;
-        dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
-        dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
-        dots_center = true;
-        outer_color = "rgba(255,255,255,0)";
-        inner_color = background;
-        font_color = accent;
-        fail_color = red;
-        check_color = yellow;
-        fade_on_empty = false;
-        font_family = font + "Bold";
-        placeholder_text = "Enter Password";
-        hide_input = false;
-        position = "0, -250";
-        halign = "center";
-        valign = "center";
-      }];
+      input-field = [
+        {
+          monitor = primaryMonitorName;
+          size = "300, 60";
+          outline_thickness = 2;
+          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true;
+          outer_color = "rgba(255,255,255,0)";
+          inner_color = background;
+          font_color = accent;
+          fail_color = red;
+          check_color = yellow;
+          fade_on_empty = false;
+          font_family = font + "Bold";
+          placeholder_text = "Enter Password";
+          hide_input = false;
+          position = "0, -250";
+          halign = "center";
+          valign = "center";
+        }
+      ];
     };
   };
 }

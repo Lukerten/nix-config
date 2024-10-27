@@ -11,7 +11,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs = {
       element.enable = lib.mkDefault true;
-      vesktop.enable = lib.mkDefault true; 
+      vesktop.enable = lib.mkDefault true;
     };
   };
 }
