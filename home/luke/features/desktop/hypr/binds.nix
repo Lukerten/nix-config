@@ -130,15 +130,6 @@
         )
         directions)
       ++
-      # Screen lock
-      (let
-        swaylock = lib.getExe config.programs.swaylock.package;
-      in
-        lib.optionals config.programs.swaylock.enable [
-          "SUPER,backspace,exec,${swaylock} -S --grace 2 --grace-no-mouse"
-          "SUPER,XF86Calculator,exec,${swaylock} -S --grace 2 --grace-no-mouse"
-        ])
-      ++
       # Notification manager
       (let
         makoctl = lib.getExe' config.services.mako.package "makoctl";
@@ -176,6 +167,14 @@
           lib.getExe config.programs.rofi.windowScript;
       in
         lib.optionals config.programs.rofi.enableWindow
-        ["SUPERCONTROL,Tab,exec,${wofi-window-switcher}"]);
+        ["SUPERCONTROL,Tab,exec,${wofi-window-switcher}"])
+      ++ (let
+        hyprlock = lib.getExe config.programs.hyprlock.package;
+      in
+        lib.optionals config.programs.hyprlock.enable
+        [
+          "SUPER,backspace,exec,${hyprlock}"
+          "SUPER,XF86Calculator,exec,${hyprlock}"
+        ]);
   };
 }
