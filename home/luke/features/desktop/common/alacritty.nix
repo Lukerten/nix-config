@@ -7,7 +7,6 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      live_config_reload = true;
       window = {
         padding = {
           x = 24;
