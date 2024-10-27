@@ -19,6 +19,7 @@
     popup-nvim
     vim-illuminate
     nvim-notify
+    vim-numbertoggle
     {
       plugin = vim-bbye;
       type = "lua";
