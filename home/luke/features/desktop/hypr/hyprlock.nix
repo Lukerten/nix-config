@@ -47,7 +47,7 @@ in {
         }
         {
           monitor = primaryMonitorName;
-          text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
+          text = ''cmd[update:1000] echo -e "$(date +"%A, %d %B %Y")"'';
           color = foreground;
           font_size = 28;
           font_family = font + " Bold";
