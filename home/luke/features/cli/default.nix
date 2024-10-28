@@ -22,7 +22,6 @@
       enable = true;
       config = {theme = "base16";};
     };
-    cm4all-vpn.enable = true;
     eza.enable = true;
     fzf = {
       enable = true;

@@ -20,7 +20,6 @@
       ./systemd-initrd.nix
       ./thunar.nix
       ./upower.nix
-      ./yubikey.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 
@@ -41,6 +40,7 @@
   };
 
   hardware.enableRedistributableFirmware = true;
+  services.pcscd.enable = true;
   security.pam.loginLimits = [
     {
       domain = "@wheel";

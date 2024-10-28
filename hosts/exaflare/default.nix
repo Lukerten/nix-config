@@ -16,7 +16,7 @@
     # optional configuration
     ../common/optional/bluez.nix
     ../common/optional/cups.nix
-    ../common/optional/docker.nix
+    ../common/optional/cm4all-vpn.nix
     ../common/optional/pipewire.nix
     ../common/optional/quietboot.nix
     ../common/optional/regreet.nix
@@ -24,8 +24,6 @@
     ../common/optional/systemd-boot.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
-
-    ../common/optional/gns3.nix
   ];
 
   networking = {
