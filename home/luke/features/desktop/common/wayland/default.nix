@@ -28,11 +28,4 @@
     GDK_BACKEND = "wayland";
     XDG_SESSION_TYPE = "wayland";
   };
-
-  xdg.portal.extraPortals = let
-    hyprlandMode = !config.wayland.windowManager.hyprland.enable;
-  in
-    lib.mkIf hyprlandMode [
-      pkgs.xdg-desktop-portal-wlr
-    ];
 }
