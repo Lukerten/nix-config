@@ -311,15 +311,6 @@ with builtins; let
     ''
     # lua
     ''
-      -- Make language server
-      lspconfig.autotools_ls.setup{
-        capabilities = capabilities;
-        on_attach = attach_keymaps,
-        cmd = {'${pkgs.autotools-language-server}/bin/autotools-language-server'};
-      }
-    ''
-    # lua
-    ''
       -- Nix language server
       lspconfig.nil_ls.setup{
         capabilities = capabilities,
