@@ -10,8 +10,7 @@
         ignore_whitespace = true,
       })
 
-      vim.keymap.set("n", "<space>c", "<Plug>kommentary_line_default", {})
-      vim.keymap.set("v", "<space>c", "<Plug>kommentary_visual_default", {})
+      vim.keymap.set("v", "<space>c", "<Plug>kommentary_visual_default", default_opts("Comment Lines"))
     '';
 in {
   programs.neovim.plugins = [

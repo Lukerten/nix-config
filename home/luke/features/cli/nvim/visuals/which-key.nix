@@ -19,7 +19,6 @@
         mode = { "n" },
         { "<space>a", desc = "Ask Copilot"},
         { "<space>b", desc = "Search"},
-        { "<space>c", desc = "Comment Line"},
         { "<space>e", desc = "Open Files"},
         { "<space>f", desc = "Format"},
         { "<space>g", desc = "Grep"},
