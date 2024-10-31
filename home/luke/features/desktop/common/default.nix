@@ -7,7 +7,6 @@
   imports = [
     ./alacritty.nix
     ./code.nix
-    ./discord.nix
     ./firefox.nix
     ./font.nix
     ./gtk.nix
