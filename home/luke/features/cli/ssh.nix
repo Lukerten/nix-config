@@ -36,13 +36,13 @@ in {
       "gox-lucasb" = {
         hostname = "gox-lucasb.os.intern.cm-ag";
         user = "debian";
-        identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas.Brendgen";
+        identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_cm";
         forwardAgent = false;
       };
       "hye-fherfurt" = {
         hostname = "hye.ai.fh-erfurt.de";
         user = "lucasb";
-        identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas.Brendgen";
+        identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_fhe";
         forwardAgent = false;
       };
     };
