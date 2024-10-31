@@ -76,11 +76,15 @@
         "config-cycle scrolling.bar never always"
       ];
       "n" = "open -t ${defaultPage}";
+      "<ctrl-g>" = "mode-enter passthrough";
     };
     prompt = {
       "<ctrl-y>" = "prompt-yes";
       "<ctrl-v>" = "insert-text {primary}";
       "n" = "open -t ${defaultPage}";
+    };
+    passthrough = {
+      "<ctrl-g>" = "mode-leave";
     };
   };
 
