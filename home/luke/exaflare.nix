@@ -9,7 +9,7 @@
   # | D1 | |   D2   | | D3 |
   # ------ |--------| ------
 
-  wallpaper = pkgs.wallpapers.neon-city;
+  wallpaper = pkgs.wallpapers.aestetic-deer;
   monitors = [
     {
       name = "DP-2";

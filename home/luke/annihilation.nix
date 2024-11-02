@@ -1,13 +1,15 @@
 {pkgs, ...}: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = pkgs.wallpapers.zabrocki-future-city;
+  wallpaper = pkgs.wallpapers.anime-death;
 
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;
     dev.network.enable = true;
   };
+
+  programs.steam.enable = true;
 
   monitors = [
     {
