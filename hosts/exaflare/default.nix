@@ -14,7 +14,7 @@
     ../common/users/luke
 
     # optional configuration
-    ../common/optional/bluez.nix
+    ../common/optional/bluetooth.nix
     ../common/optional/cups.nix
     ../common/optional/cm4all-vpn.nix
     ../common/optional/gamemode.nix

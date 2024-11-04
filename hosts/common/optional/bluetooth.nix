@@ -12,10 +12,4 @@
       KernelExperimental = "true";
     };
   };
-  services.blueman.enable = true;
-  environment.systemPackages = with pkgs; [
-    bluez5-experimental
-    bluez-tools
-    bluez-alsa
-  ];
 }

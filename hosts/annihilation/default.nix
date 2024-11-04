@@ -13,7 +13,7 @@
     ../common/users/luke
 
     # optional configuration
-    ../common/optional/bluez.nix
+    ../common/optional/bluetooth.nix
     ../common/optional/cm4all-vpn.nix
     ../common/optional/cups.nix
     ../common/optional/docker.nix
@@ -41,7 +41,6 @@
       enable = true;
       enable32Bit = true;
     };
-    bluetooth.enable = true;
     uinput.enable = true;
     enableAllFirmware = true;
   };
@@ -50,6 +49,10 @@
     adb.enable = true;
     dconf.enable = true;
     light.enable = true;
+  };
+
+  services = {
+    blueman.enable = true;
   };
 
   system.stateVersion = "24.05";
