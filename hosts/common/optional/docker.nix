@@ -16,5 +16,6 @@ in {
   };
   environment.systemPackages = [
     docker-stopall
+    pkgs.docker-compose
   ];
 }
