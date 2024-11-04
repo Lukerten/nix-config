@@ -4,6 +4,7 @@
     ./cli
     ./dev
     ./games
+    ./hypr
     ./images
     ./messagers
     ./productivity
