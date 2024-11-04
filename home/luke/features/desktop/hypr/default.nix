@@ -22,7 +22,7 @@
 in {
   imports = [
     ../common
-    ../common/wayland
+    ../wayland
     ./binds.nix
     ./hyprgrass.nix
     ./hypridle.nix
@@ -38,11 +38,11 @@ in {
     configPackages = [hyprland];
   };
 
-  home.packages = with pkgs; [
-    grimblast
-    hyprpicker
-    hyprland-protocols
-  ];
+  programs = {
+    hyprpicker.enable = true;
+    hyprshot.enable =true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland.override {wrapRuntimeDeps = false;};

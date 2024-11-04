@@ -36,8 +36,10 @@
     audioctrl.enable = true;
     spotify.enable = true;
   };
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
+  services={
+    batsignal.enable = true;
+    blueman-applet.enable = true;
+    network-manager-applet.enable = true;
+    nextcloud-client.enable = true;
   };
 }

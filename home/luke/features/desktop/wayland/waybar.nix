@@ -76,11 +76,9 @@ in {
 
         modules-right = [
           "tray"
+          "idle_inhibitor"
           "pulseaudio"
           "battery"
-          "idle_inhibitor"
-          "network"
-          "custom/bluetooth"
           "clock"
         ];
 
@@ -115,7 +113,7 @@ in {
           on-click = lib.getExe pkgs.pavucontrol;
         };
         idle_inhibitor = {
-          format = "{icon}";
+          format = "{icon} ";
           format-icons = {
             activated = "󰒳";
             deactivated = "󰒲";
@@ -192,20 +190,6 @@ in {
             "sublimemusic" = " ";
             "kdeconnect" = "󰄡 ";
             "chromium" = " ";
-          };
-        };
-
-        "custom/bluetooth" = {
-          interval = 1;
-          return-type = "json";
-          exec = mkScriptJson {
-            deps = [pkgs.blueman pkgs.bluez];
-            text = " ";
-            tooltip = "Bluetooth";
-          };
-          on-click = mkScript {
-            deps = [pkgs.blueman];
-            script = "blueman-manager";
           };
         };
 

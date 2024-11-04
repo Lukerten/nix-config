@@ -48,10 +48,8 @@
       };
 
       wlogout = lib.getExe pkgs.wlogout;
-      grimblast = lib.getExe pkgs.grimblast;
-      tesseract = lib.getExe pkgs.tesseract;
+      hyprshot = lib.getExe pkgs.hyprshot;
       pactl = lib.getExe' pkgs.pulseaudio "pactl";
-      notify-send = lib.getExe' pkgs.libnotify "notify-send";
       defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
     in
       [
@@ -98,9 +96,9 @@
         ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
 
         # Screenshotting
-        ",Print,exec,${grimblast} --notify --freeze copysave output"
-        "SUPER,Print,exec,${grimblast} --notify --freeze copysave area"
-        "ALT,Print,exec,${grimblast} --freeze save area - | ${tesseract} - - | wl-copy && ${notify-send} -t 3000 'OCR result copied to buffer'"
+        ",Print,exec,${hyprshot} -z -o $XDG_SCREENSHOTS_DIR -m active"
+        "SUPER,Print,exec,${hyprshot} -z -o $XDG_SCREENSHOTS_DIR -m region"
+        "ALT,Print,exec,${hyprshot} -z -o $XDG_SCREENSHOTS_DIR -m window"
       ]
       ++
       # Change workspace

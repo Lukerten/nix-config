@@ -30,7 +30,7 @@ in {
         name = "Neovim";
         genericName = "Text Editor";
         comment = "Edit text files";
-        exec = "${getExe pkgs.handlr-regex} launch \"x-scheme-handler/terminal\" -- -e nvim %F";
+        exec = "nvim %F";
         icon = "nvim";
         mimeType = [
           "text/english"
@@ -64,7 +64,7 @@ in {
           "application/x-perl"
           "application/x-lua"
         ];
-        terminal = false;
+        terminal = true;
         type = "Application";
       };
     in
