@@ -41,7 +41,7 @@ in {
       };
       "hye-fherfurt" = {
         hostname = "hye.ai.fh-erfurt.de";
-        user = "lucasb";
+        user = "student";
         identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_fhe";
         forwardAgent = false;
       };
