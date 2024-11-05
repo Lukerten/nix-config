@@ -11,6 +11,12 @@
 
   programs.steam.enable = true;
 
+  services = {
+    batsignal.enable = true;
+    blueman-applet.enable = true;
+    network-manager-applet.enable = true;
+  };
+
   monitors = [
     {
       name = "eDP-1";

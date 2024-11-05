@@ -37,9 +37,6 @@
     spotify.enable = true;
   };
   services={
-    batsignal.enable = true;
-    blueman-applet.enable = true;
-    network-manager-applet.enable = true;
     nextcloud-client.enable = true;
   };
 }
