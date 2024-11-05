@@ -236,7 +236,7 @@ in {
           if m.enabled
           then "${toString m.width}x${toString m.height}@${
             toString m.refreshRate
-          },${toString m.x}x${toString m.y},1"
+          },${toString m.x}x${toString m.y} , 1, transform, ${toString m.orientation}"
           else "disable"
         }") (config.monitors));
 
