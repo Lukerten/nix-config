@@ -10,7 +10,7 @@
       window = {
         padding = {
           x = 24;
-          y = 26;
+          y = 0;
         };
         dynamic_padding = false;
         dynamic_title = true;
@@ -54,7 +54,7 @@
         primary = {
           foreground = "${colors.on_surface}";
           background = "${colors.surface}";
-          dim_foreground = "${colors.on_surface_variant}";
+          dim_foreground = "${colors.outline}";
           bright_foreground = "${colors.on_surface_variant}";
         };
         search = {
@@ -103,6 +103,8 @@
       };
     };
   };
+
+  # add terminal scheme handler
   xdg.mimeApps = {
     associations.added = {
       "x-scheme-handler/terminal" = "Alacritty.desktop";
@@ -111,11 +113,16 @@
       "x-scheme-handler/terminal" = "Alacritty.desktop";
     };
   };
-  home.packages = [
-    (
-      pkgs.writeShellScriptBin "xterm" ''
-        ${lib.getExe config.programs.alacritty.package} "$@"
-      ''
-    )
-  ];
+
+  # add xterm wrapper
+  home = {
+    sessionVariables.NIX_INSPECT_EXCLUDE = "alacritty ncurses imagemagick fzy nix-index";
+    packages = [
+      (
+        pkgs.writeShellScriptBin "xterm" ''
+          ${lib.getExe config.programs.alacritty.package} "$@"
+        ''
+      )
+    ];
+  };
 }

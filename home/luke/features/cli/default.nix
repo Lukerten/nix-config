@@ -3,6 +3,7 @@
     ./fish
     ./nushell
     ./nvim
+    ./starship
     ./direnv.nix
     ./gh.nix
     ./git.nix

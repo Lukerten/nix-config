@@ -11,7 +11,7 @@
   # |   | |------| |------|
   # -----
 
-  wallpaper = pkgs.wallpapers.aestetic-deer;
+  wallpaper = pkgs.wallpapers.funky-red-cyan-landscape;
   monitors = [
     {
       name = "DP-3";

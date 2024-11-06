@@ -3,7 +3,6 @@
   config,
   ...
 }: {
-  imports = [./tide.nix];
   programs.fish = let
     hasEza = lib.mkIf config.programs.eza.enable;
     hasNeovim = config.programs.neovim.enable;
