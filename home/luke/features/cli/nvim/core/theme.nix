@@ -257,25 +257,6 @@ in ''
     let g:terminal_color_background = "${c.surface}"
     let g:terminal_color_foreground = "${c.on_surface}"
 
-    let g:terminal_color_0  = "${c.tertiary}"
-    let g:terminal_color_1  = "${c.error}"
-    let g:terminal_color_2 = "${c.primary}"
-    let g:terminal_color_3 = "${c.inverse_primary}"
-    let g:terminal_color_4 = "${c.error}"
-    let g:terminal_color_5 = "${c.tertiary_container}"
-    let g:terminal_color_6 = "${c.tertiary}"
-    let g:terminal_color_7 = "${c.error_container}"
-    let g:terminal_color_8  = "${c.tertiary}"
-    let g:terminal_color_9  = "${c.error}"
-    let g:terminal_color_10 = "${c.primary}"
-    let g:terminal_color_11 = "${c.inverse_primary}"
-    let g:terminal_color_12 = "${c.error}"
-    let g:terminal_color_13 = "${c.tertiary_container}"
-    let g:terminal_color_14 = "${c.tertiary}"
-    let g:terminal_color_15 = "${c.error_container}"
-
-    hi NvimTreeNormal        guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
-  hi CmpItemAbbr            guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
     hi CmpItemAbbrDeprecated  guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE
     hi CmpItemAbbrMatch       guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
     hi CmpItemAbbrMatchFuzzy  guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
