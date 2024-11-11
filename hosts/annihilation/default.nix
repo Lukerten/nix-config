@@ -22,6 +22,7 @@
     ../common/optional/regreet.nix
     ../common/optional/remote-hosts.nix
     ../common/optional/systemd-boot.nix
+    ../common/optional/thunar.nix
     ../common/optional/wireshark.nix
     ../common/optional/x11-no-suspend.nix
   ];

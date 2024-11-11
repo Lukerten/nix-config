@@ -9,19 +9,16 @@
 in {
   programs.rofi = {
     enable = true;
+    launcher.enable = true;
     package = pkgs.rofi-wayland;
-    colorscheme = ''
-      background:     #${rmHash colors.surface}FF;
-      background-alt: #${rmHash colors.surface_variant}FF;
-      foreground:     #${rmHash colors.on_surface}FF;
-      selected:       #${rmHash colors.primary}FF;
-      active:         #${rmHash colors.secondary}FF;
-      urgent:         #${rmHash colors.error_container}FF;
-    '';
-    enableLauncher = true;
-    enableClipper = true;
-    enableSpecialisation = true;
-    enableWindow = true;
+    colorscheme = {
+      background = rmHash colors.surface;
+      background-alt = rmHash colors.surface_variant;
+      foreground = rmHash colors.on_surface;
+      selected = rmHash colors.primary;
+      active = rmHash colors.secondary;
+      urgent = rmHash colors.error_container;
+    };
   };
 
   services.cliphist.enable = true;

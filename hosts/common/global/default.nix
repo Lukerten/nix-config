@@ -18,7 +18,6 @@
       ./sops.nix
       ./steam-hardware.nix
       ./systemd-initrd.nix
-      ./thunar.nix
       ./upower.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);

@@ -139,34 +139,13 @@
       ++
       # Launcher
       (let
-        rofi-menu = lib.getExe config.programs.rofi.launcherScript;
+        rofi-menu = lib.getExe config.programs.rofi.launcher.script;
       in
-        lib.optionals config.programs.rofi.enableLauncher
+        lib.optionals config.programs.rofi.launcher.enable
         ["SUPER,d,exec,${rofi-menu}"])
       ++
-      # Clipper
+      # Hyprlock
       (let
-        rofi-clipper = lib.getExe config.programs.rofi.clipperScript;
-      in
-        lib.optionals config.programs.rofi.enableClipper
-        ["SUPER,c,exec,${rofi-clipper}"])
-      ++
-      # Specialisation menu
-      (let
-        rofi-specialisation =
-          lib.getExe config.programs.rofi.specialisationScript;
-      in
-        lib.optionals config.programs.rofi.enableSpecialisation
-        ["SUPER,s,exec,${rofi-specialisation}"])
-      ++
-      # Window Switcher
-      (let
-        wofi-window-switcher =
-          lib.getExe config.programs.rofi.windowScript;
-      in
-        lib.optionals config.programs.rofi.enableWindow
-        ["SUPERCONTROL,Tab,exec,${wofi-window-switcher}"])
-      ++ (let
         hyprlock = lib.getExe config.programs.hyprlock.package;
       in
         lib.optionals config.programs.hyprlock.enable

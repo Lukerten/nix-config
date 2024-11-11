@@ -175,21 +175,21 @@ in {
         ];
 
         animation = [
-          "fadeIn,1,3,easeout"
-          "fadeLayersIn,1,3,easeoutback"
-          "layersIn,1,3,easeoutback,slide"
-          "windowsIn,1,3,easeoutback,slide"
-          "fadeLayersOut,1,3,easeinback"
-          "fadeOut,1,3,easein"
-          "layersOut,1,3,easeinback,slide"
-          "windowsOut,1,3,easeinback,slide"
-          "border,1,3,easeout"
+          "fadeIn,1,2,easeout"
+          "fadeLayersIn,1,2,easeout"
+          "layersIn,1,2,easeout,slide"
+          "windowsIn,1,2,easeout,slide"
+          "fadeLayersOut,1,2,easein"
+          "fadeOut,1,2,easein"
+          "layersOut,1,2,easeinback,slide"
+          "windowsOut,1,2,easeinback,slide"
+          "border,1,2,easeout"
           "borderangle, 1, 100, easeout , loop"
-          "fadeDim,1,3,easeinout"
-          "fadeShadow,1,3,easeinout"
-          "fadeSwitch,1,3,easeinout"
-          "windowsMove,1,3,easeoutback"
-          "workspaces,1,2.6,easeoutback,slide"
+          "fadeDim,1,2,easeinout"
+          "fadeShadow,1,2,easeinout"
+          "fadeSwitch,1,2,easeinout"
+          "windowsMove,1,2,easeout"
+          "workspaces,1,2.6,easeout,slide"
         ];
       };
 
