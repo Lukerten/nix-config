@@ -94,7 +94,10 @@ in {
       };
       input = {
         kb_layout = "de";
-        touchpad.disable_while_typing = false;
+        touchpad = {
+          disable_while_typing = true;
+          natural_scroll = true;
+        };
       };
       dwindle = {
         split_width_multiplier = 1.35;
