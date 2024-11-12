@@ -41,7 +41,7 @@ in {
   };
 
   home-manager.users.luke =
-    import ../../../../home/luke/${config.networking.hostName}.nix;
+    import ../../../home/luke/${config.networking.hostName}.nix;
 
   services.geoclue2.enable = true;
   security.pam.services = {swaylock = {};};

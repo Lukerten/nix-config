@@ -83,13 +83,13 @@
     nixosConfigurations = {
       # Main Laptop configuration
       annihilation = lib.nixosSystem {
-        modules = [./hosts/annihilation];
+        modules = [./hosts/systems/annihilation];
         specialArgs = {inherit inputs outputs;};
       };
 
       # Home Desktop configuration
       exaflare = lib.nixosSystem {
-        modules = [./hosts/exaflare];
+        modules = [./hosts/systems/exaflare];
         specialArgs = {inherit inputs outputs;};
       };
     };

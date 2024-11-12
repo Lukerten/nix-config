@@ -9,22 +9,22 @@
     ./hardware-configuration.nix
 
     # common configuration
-    ../common/global
-    ../common/users/luke
+    ../../global
+    ../../users/luke
 
     # optional configuration
-    ../common/optional/bluetooth.nix
-    ../common/optional/cm4all-vpn.nix
-    ../common/optional/cups.nix
-    ../common/optional/docker.nix
-    ../common/optional/pipewire.nix
-    ../common/optional/quietboot.nix
-    ../common/optional/regreet.nix
-    ../common/optional/remote-hosts.nix
-    ../common/optional/systemd-boot.nix
-    ../common/optional/thunar.nix
-    ../common/optional/wireshark.nix
-    ../common/optional/x11-no-suspend.nix
+    ../../optional/bluetooth.nix
+    ../../optional/cm4all-vpn.nix
+    ../../optional/cups.nix
+    ../../optional/docker.nix
+    ../../optional/pipewire.nix
+    ../../optional/quietboot.nix
+    ../../optional/regreet.nix
+    ../../optional/remote-hosts.nix
+    ../../optional/systemd-boot.nix
+    ../../optional/thunar.nix
+    ../../optional/wireshark.nix
+    ../../optional/x11-no-suspend.nix
   ];
 
   networking = {

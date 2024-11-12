@@ -4,17 +4,17 @@ keys:
     - &annihilation age1242kck29d7z36a5qewzxeyn3crrujp306qd0nwv7fnx4aadnq5rs339nfv
 
 creation_rules:
-  - path_regex: hosts/exaflare/secrets.ya?ml
+  - path_regex: hosts/secrets.ya?ml
     key_groups:
       - age:
         - *exaflare
 
-  - path_regex: hosts/annihilation/secrets.ya?ml
+  - path_regex: hosts/secrets.ya?ml
     key_groups:
       - age:
         - *annihilation
 
-  - path_regex: hosts/common/secrets.ya?ml
+  - path_regex: hosts/secrets.ya?ml
     key_groups:
       - age:
         - *exaflare
