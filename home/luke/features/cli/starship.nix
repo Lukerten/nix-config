@@ -70,17 +70,17 @@
       custom = {
         upper = {
           when = "true";
-          format = "╭─";
+          format = "[╭─]($style)";
           style = "white";
         };
         middle = {
           when = "true";
-          format = "├─";
+          format = "[├─]($style)";
           style = "white";
         };
         lower = {
           when = "true";
-          format = "╰─";
+          format = "[╰─]($style)";
           style = "white";
         };
       };
