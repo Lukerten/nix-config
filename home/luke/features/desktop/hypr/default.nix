@@ -24,6 +24,7 @@ in {
     ../common
     ../wayland
     ./binds.nix
+    ./hyprbar.nix
     ./hyprgrass.nix
     ./hypridle.nix
     ./hyprlock.nix
@@ -184,7 +185,6 @@ in {
           "layersOut,1,2,easeinback,slide"
           "windowsOut,1,2,easeinback,slide"
           "border,1,2,easeout"
-          "borderangle, 1, 100, easeout , loop"
           "fadeDim,1,2,easeinout"
           "fadeShadow,1,2,easeinout"
           "fadeSwitch,1,2,easeinout"
