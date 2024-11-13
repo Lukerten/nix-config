@@ -3,7 +3,6 @@
     ./fish
     ./nushell
     ./nvim
-    ./starship
     ./direnv.nix
     ./gh.nix
     ./git.nix
@@ -12,6 +11,7 @@
     ./nix-index.nix
     ./pass.nix
     ./ssh.nix
+    ./starship.nix
     ./terminal.nix
     ./tmux.nix
   ];

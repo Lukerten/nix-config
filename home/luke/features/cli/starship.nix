@@ -6,14 +6,11 @@
       format = let
         lower = "\${custom.lower}";
         upper = "\${custom.upper}";
-        middle = "\${custom.middle}";
-        hostInfo = "$username$hostname";
-        nixInfo = "($nix_shell)\${custom.nix_inspect}";
-        systemInfo = "($shlvl)$battery$time";
+        systemInfo = "($shlvl)$nix_shell$battery$time";
         locationInfo = "$directory($git_branch$git_commit$git_state$git_status)";
         prompt = "$jobs$character";
       in ''
-        ${upper} ${locationInfo}$fill ${systemInfo} ${nixInfo}
+        ${upper} ${locationInfo}$fill ${systemInfo}
         ${lower} ${prompt}
       '';
 
@@ -71,17 +68,6 @@
         vimcmd_replace_one_symbol = "[](bold purple)";
       };
       custom = {
-        nix_inspect = {
-          when = "test -z $IN_NIX_SHELL";
-          command = lib.getExe (pkgs.writeShellApplication {
-            name = "nix-inspect";
-            runtimeInputs = with pkgs; [perl gnugrep findutils];
-            text = builtins.readFile ./nix-inspect.sh;
-          });
-          format = "[($output) $symbol]($style)";
-          symbol = " ";
-          style = "bold blue";
-        };
         upper = {
           when = "true";
           format = "╭─";
