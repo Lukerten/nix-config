@@ -153,18 +153,22 @@ in {
         inactive_opacity = opacity_active;
         fullscreen_opacity = opacity_fullscreen;
         rounding = 4;
-        drop_shadow = false;
         blur = {
           enabled = true;
           size = 6;
           passes = 4;
           popups = true;
         };
-        shadow_range = 12;
-        shadow_offset = "3 3";
-        "col.shadow" = "0x44000000";
-        "col.shadow_inactive" = "0x66000000";
+        shadow = {
+          enabled = false;
+          range = 12;
+          color = "0x44000000";
+          color_inactive = "0x66000000";
+          offset = "3 3";
+          scale = 6;
+        };
       };
+
       animations = {
         enabled = true;
         bezier = [
