@@ -49,6 +49,10 @@
       url = "github:misterio77/matugen/overridable-systems";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim = {
+      url = "github:Lukerten/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
