@@ -258,6 +258,8 @@
           "nixpkgs"
         ],
         "plugins-alpha-nvim": "plugins-alpha-nvim",
+        "plugins-bbye": "plugins-bbye",
+        "plugins-bufferline": "plugins-bufferline",
         "plugins-cmp-buffer": "plugins-cmp-buffer",
         "plugins-cmp-dap": "plugins-cmp-dap",
         "plugins-cmp-nvim-lsp": "plugins-cmp-nvim-lsp",
@@ -274,11 +276,11 @@
         "plugins-gitsigns-nvim": "plugins-gitsigns-nvim",
         "plugins-glow-nvim": "plugins-glow-nvim",
         "plugins-indent-blankline": "plugins-indent-blankline",
+        "plugins-kommentary": "plugins-kommentary",
         "plugins-lazygit": "plugins-lazygit",
         "plugins-lsp-signature": "plugins-lsp-signature",
         "plugins-lspkind": "plugins-lspkind",
         "plugins-lualine": "plugins-lualine",
-        "plugins-luatab": "plugins-luatab",
         "plugins-noice": "plugins-noice",
         "plugins-notify": "plugins-notify",
         "plugins-nui": "plugins-nui",
@@ -309,14 +311,15 @@
         "plugins-trouble": "plugins-trouble",
         "plugins-undotree": "plugins-undotree",
         "plugins-vim-vsnip": "plugins-vim-vsnip",
+        "plugins-vimwiki": "plugins-vimwiki",
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1731711522,
-        "narHash": "sha256-YTPytmm/mQi65Myb3NdX4+X+Q9YSQLX7SRiQmOmQ+50=",
+        "lastModified": 1731844831,
+        "narHash": "sha256-EYlpi+tRpFdCVbHzO2e0dGiqYyyuzYzwaOXYtpVdPKE=",
         "owner": "Lukerten",
         "repo": "nixvim",
-        "rev": "4be311e3229885fe15bfdd59ec3db1deb1cb1a8b",
+        "rev": "60c88c26494e06c527b82c86150c6ba20c2da8ab",
         "type": "github"
       },
       "original": {
@@ -545,6 +548,38 @@
       "original": {
         "owner": "goolord",
         "repo": "alpha-nvim",
+        "type": "github"
+      }
+    },
+    "plugins-bbye": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1520078493,
+        "narHash": "sha256-xJMZQ/27TgwAnvPVH1fjF6SLOA9jvXmbfcwV0NZ1kTY=",
+        "owner": "moll",
+        "repo": "vim-bbye",
+        "rev": "25ef93ac5a87526111f43e5110675032dbcacf56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "moll",
+        "repo": "vim-bbye",
+        "type": "github"
+      }
+    },
+    "plugins-bufferline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729768480,
+        "narHash": "sha256-MpSX8a51Avc9O1XxfWIDOVLiqD7omwAFIwSa02oXNs0=",
+        "owner": "akinsho",
+        "repo": "nvim-bufferline.lua",
+        "rev": "5cc447cb2b463cb499c82eaeabbed4f5fa6a0a44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "nvim-bufferline.lua",
         "type": "github"
       }
     },
@@ -804,6 +839,22 @@
         "type": "github"
       }
     },
+    "plugins-kommentary": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701264889,
+        "narHash": "sha256-lpa3o42jieVKqs+ZCU8HBqWsoqoc53JKMmCNmIJ0rH0=",
+        "owner": "b3nj5m1n",
+        "repo": "kommentary",
+        "rev": "d5a111a3bc4109a8f913a5863c9092b3b3801482",
+        "type": "github"
+      },
+      "original": {
+        "owner": "b3nj5m1n",
+        "repo": "kommentary",
+        "type": "github"
+      }
+    },
     "plugins-lazygit": {
       "flake": false,
       "locked": {
@@ -865,22 +916,6 @@
       "original": {
         "owner": "hoob3rt",
         "repo": "lualine.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-luatab": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1720020287,
-        "narHash": "sha256-urV+cNpw3my6Un5j2L/2rkxQ8fyXmaLUd7J5NFih2oA=",
-        "owner": "alvarosevilla95",
-        "repo": "luatab.nvim",
-        "rev": "7bc6e0f6957fbaa93c98529f2cf28052329002e0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "alvarosevilla95",
-        "repo": "luatab.nvim",
         "type": "github"
       }
     },
@@ -1361,6 +1396,22 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "vim-vsnip",
+        "type": "github"
+      }
+    },
+    "plugins-vimwiki": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1728878868,
+        "narHash": "sha256-O85nZUWxIKm0gFILAkWH9WqfVcEbnbxR56grqMmum3A=",
+        "owner": "vimwiki",
+        "repo": "vimwiki",
+        "rev": "72792615e739d0eb54a9c8f7e0a46a6e2407c9e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vimwiki",
+        "repo": "vimwiki",
         "type": "github"
       }
     },
