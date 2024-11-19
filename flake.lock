@@ -306,6 +306,7 @@
         "plugins-session": "plugins-session",
         "plugins-sqls-nvim": "plugins-sqls-nvim",
         "plugins-telescope": "plugins-telescope",
+        "plugins-telescope-project": "plugins-telescope-project",
         "plugins-theme": "plugins-theme",
         "plugins-todo": "plugins-todo",
         "plugins-trouble": "plugins-trouble",
@@ -315,11 +316,11 @@
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1731844831,
-        "narHash": "sha256-EYlpi+tRpFdCVbHzO2e0dGiqYyyuzYzwaOXYtpVdPKE=",
+        "lastModified": 1732040841,
+        "narHash": "sha256-yFj8jnP/k4B3z5X9yRxzLYgn7Y6EkjCToTAosQLsaIc=",
         "owner": "Lukerten",
         "repo": "nixvim",
-        "rev": "60c88c26494e06c527b82c86150c6ba20c2da8ab",
+        "rev": "535d2cb71c8c6f01fc87797ec77c2dcff46350de",
         "type": "github"
       },
       "original": {
@@ -1316,6 +1317,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-telescope-project": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732031064,
+        "narHash": "sha256-4zQw3oXTo9++BckNBMoYheOpFPLQ/Klm94wVk06kuZs=",
+        "owner": "nvim-telescope",
+        "repo": "telescope-project.nvim",
+        "rev": "34dfa6daa88c132e9e297ff5bd515801a8195eeb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-telescope",
+        "repo": "telescope-project.nvim",
         "type": "github"
       }
     },
