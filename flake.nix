@@ -21,7 +21,6 @@
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
     nh = {
       url = "github:viperml/nh";
