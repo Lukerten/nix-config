@@ -20,6 +20,11 @@
       name = "get_wallpaper";
       text = builtins.readFile ./pkgs/wallpapers/preview-image.sh;
     };
+    check_wallpaper = pkgs.writeShellApplication {
+      name = "check_wallpaper";
+      text = builtins.readFile ./pkgs/wallpapers/check-list.sh;
+    };
+
   in
     pkgs.mkShell {
       NIX_CONFIG = "extra-experimental-features = nix-command flakes ca-derivations";
@@ -33,6 +38,7 @@
         age
         get_wallpaper
         add_wallpaper
+        check_wallpaper
       ];
     };
 }
