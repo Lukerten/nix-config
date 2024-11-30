@@ -258,7 +258,6 @@
           "nixpkgs"
         ],
         "plugins-alpha-nvim": "plugins-alpha-nvim",
-        "plugins-async": "plugins-async",
         "plugins-bbye": "plugins-bbye",
         "plugins-bufferline": "plugins-bufferline",
         "plugins-cmp-buffer": "plugins-cmp-buffer",
@@ -305,24 +304,22 @@
         "plugins-remote-nvim": "plugins-remote-nvim",
         "plugins-rust-tools": "plugins-rust-tools",
         "plugins-sqls-nvim": "plugins-sqls-nvim",
-        "plugins-statuscolumn": "plugins-statuscolumn",
         "plugins-telescope": "plugins-telescope",
         "plugins-telescope-project": "plugins-telescope-project",
         "plugins-theme": "plugins-theme",
         "plugins-todo": "plugins-todo",
         "plugins-trouble": "plugins-trouble",
-        "plugins-ufo": "plugins-ufo",
         "plugins-undotree": "plugins-undotree",
         "plugins-vim-vsnip": "plugins-vim-vsnip",
         "plugins-vimwiki": "plugins-vimwiki",
         "plugins-which-key": "plugins-which-key"
       },
       "locked": {
-        "lastModified": 1732125841,
-        "narHash": "sha256-ZgtrRQI+ENyscLbxJfgCB0nMUOo4hXfy8rFAxkCOrcY=",
+        "lastModified": 1732979084,
+        "narHash": "sha256-4J4pK0/ZE3fVAdxSkclwVncYVTYngBUq7cbmQ62EEn4=",
         "owner": "Lukerten",
         "repo": "nixvim",
-        "rev": "43f68913b3f6d5d008d4ae2580c52f956f551844",
+        "rev": "1185fbcd51d8c3a624f0eaa4d884892ef5eac4a3",
         "type": "github"
       },
       "original": {
@@ -551,22 +548,6 @@
       "original": {
         "owner": "goolord",
         "repo": "alpha-nvim",
-        "type": "github"
-      }
-    },
-    "plugins-async": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1722813441,
-        "narHash": "sha256-9eM66brPjiFlY64vmBetRYrKnpDyN7+/URMm4GsGimA=",
-        "owner": "kevinhwang91",
-        "repo": "promise-async",
-        "rev": "119e8961014c9bfaf1487bf3c2a393d254f337e2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kevinhwang91",
-        "repo": "promise-async",
         "type": "github"
       }
     },
@@ -1306,22 +1287,6 @@
         "type": "github"
       }
     },
-    "plugins-statuscolumn": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731016911,
-        "narHash": "sha256-nNw1zx80+cASWUovQ13FEDLPl7ipcilY3m4ISevrNgM=",
-        "owner": "luukvbaal",
-        "repo": "statuscol.nvim",
-        "rev": "8822f76e105549620ef9c0d96e7b95aedf14c490",
-        "type": "github"
-      },
-      "original": {
-        "owner": "luukvbaal",
-        "repo": "statuscol.nvim",
-        "type": "github"
-      }
-    },
     "plugins-telescope": {
       "flake": false,
       "locked": {
@@ -1399,22 +1364,6 @@
       "original": {
         "owner": "folke",
         "repo": "trouble.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-ufo": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731301886,
-        "narHash": "sha256-yHLQ3J91phhWqhxn+JiRm8gUErU1roi8oj3wrY9jEP0=",
-        "owner": "kevinhwang91",
-        "repo": "nvim-ufo",
-        "rev": "c070ee849bfedb2ed778f60419a1eae8c8544be8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kevinhwang91",
-        "repo": "nvim-ufo",
         "type": "github"
       }
     },
