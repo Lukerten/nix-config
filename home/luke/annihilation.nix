@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = pkgs.wallpapers.anime-death;
-
+  wallpaper = pkgs.wallpapers.japanese-temple;
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;

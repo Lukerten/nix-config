@@ -9,7 +9,7 @@
   # |  D1  | |  D2  | |  D3  |
   # |------| |------| |------|
 
-  wallpaper = pkgs.wallpapers.funky-red-cyan-landscape;
+  wallpaper = pkgs.wallpapers.arknights-kaltsit;
   monitors = [
     {
       name = "DP-2";
