@@ -114,10 +114,10 @@ in {
             border-radius:      ${border-align};
 
             /** Color Name Aliases **/
-            handle-colour:               var(selected);
-            background-colour:           var(background);
-            border-colour:               var(active);
-            foreground-colour:           var(foreground);
+            handle-color:               var(selected);
+            background-color:           var(background);
+            border-color:               var(active);
+            foreground-color:           var(foreground);
             alternate-background:        var(background-alt);
             normal-background:           var(background);
             normal-foreground:           var(foreground);

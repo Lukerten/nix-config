@@ -60,7 +60,7 @@
           SEL_BG=${colors.primary}
         EOF
 
-        echo "Changing colours:"
+        echo "Changing colors:"
         ./change_color.sh -o ${name} /build/gtk-colors -i False -t "$out/share/themes"
         chmod 555 -R .
       '';

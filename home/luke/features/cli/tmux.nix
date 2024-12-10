@@ -35,13 +35,13 @@
       set -g visual-silence off
       setw -g monitor-activity off
       set -g bell-action none
-      setw -g clock-mode-colour colour1
-      setw -g mode-style 'fg=colour1 bg=colour18 bold'
-      set -g pane-border-style 'fg=colour1'
-      set -g pane-active-border-style 'fg=colour3'
+      setw -g clock-mode-color color1
+      setw -g mode-style 'fg=color1 bg=color18 bold'
+      set -g pane-border-style 'fg=color1'
+      set -g pane-active-border-style 'fg=color3'
 
       # statusbar
-      setw -g clock-mode-colour yellow
+      setw -g clock-mode-color yellow
       setw -g mode-style 'fg=black bg=red bold'
 
       # panes
