@@ -56,7 +56,7 @@ in {
     };
 
     settings = let
-      active_border = "${primary} ${tertiary} ${primary} 45deg";
+      active_border = "${primary}";
       inactive_border = "${surface}";
     in {
       general = {
