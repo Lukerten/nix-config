@@ -88,78 +88,82 @@ in {
       };
     };
   };
-
   config = lib.mkIf cfg.enable {
-    xdg.configFile."rofi/shared/theme.rasi".text = let
-      rmHash = lib.removePrefix "#";
-      r = toString cfg.border.radius;
-      border-align = if cfg.align == "center" then "${r}px" else border-align-dir;
-      border-align-dir = ''${border-align-single "west" "south"} ${border-align-single "south" "east"}  ${border-align-single "east" "north"} ${border-align-single "north" "west"}'';
-      border-align-single = dir1: dir2: if cfg.align == dir1 || cfg.align == dir2 then "${r}px" else "0px";
-    in # rasi
-      ''
-        * {
-          font:               "${cfg.fontProfile.name} ${toString cfg.fontProfile.size}";
-          wallpaper-width:    url("${cfg.wallpaper}", width);
-          wallpaper-height:   url("${cfg.wallpaper}", height);
-          background:         #${rmHash cfg.colorscheme.background}FF;
-          background-alt:     #${rmHash cfg.colorscheme.background-alt}FF;
-          foreground:         #${rmHash cfg.colorscheme.foreground}FF;
-          selected:           #${rmHash cfg.colorscheme.selected}FF;
-          active:             #${rmHash cfg.colorscheme.active}FF;
-          urgent:             #${rmHash cfg.colorscheme.urgent}FF;
-          border-color:       #${rmHash cfg.border.color}FF;
-          border-radius:      ${border-align};
+    programs.rofi.configPath = "$XDG_CONFIG_HOME/rofi/fallback.rasi";
+    xdg.configFile = {
+      "rofi/config.rasi".source = lib.mkForce ./default.rasi;
+      "rofi/shared/theme.rasi".text = let
+        rmHash = lib.removePrefix "#";
+        r = toString cfg.border.radius;
+        border-align = if cfg.align == "center" then "${r}px" else border-align-dir;
+        border-align-dir = ''${border-align-single "west" "south"} ${border-align-single "south" "east"}  ${border-align-single "east" "north"} ${border-align-single "north" "west"}'';
+        border-align-single = dir1: dir2: if cfg.align == dir1 || cfg.align == dir2 then "${r}px" else "0px";
+      in # rasi
+        ''
+          * {
+            font:               "${cfg.fontProfile.name} ${toString cfg.fontProfile.size}";
+            wallpaper-width:    url("${cfg.wallpaper}", width);
+            wallpaper-height:   url("${cfg.wallpaper}", height);
+            background:         #${rmHash cfg.colorscheme.background}FF;
+            background-alt:     #${rmHash cfg.colorscheme.background-alt}FF;
+            foreground:         #${rmHash cfg.colorscheme.foreground}FF;
+            selected:           #${rmHash cfg.colorscheme.selected}FF;
+            active:             #${rmHash cfg.colorscheme.active}FF;
+            urgent:             #${rmHash cfg.colorscheme.urgent}FF;
+            border-color:       #${rmHash cfg.border.color}FF;
+            border-radius:      ${border-align};
 
-          /** Color Name Aliases **/
-          handle-colour:               var(selected);
-          background-colour:           var(background);
-          foreground-colour:           var(foreground);
-          alternate-background:        var(background-alt);
-          normal-background:           var(background);
-          normal-foreground:           var(foreground);
-          urgent-background:           var(urgent);
-          urgent-foreground:           var(background);
-          active-background:           var(active);
-          active-foreground:           var(background);
-          selected-normal-background:  var(selected);
-          selected-normal-foreground:  var(background);
-          selected-urgent-background:  var(active);
-          selected-urgent-foreground:  var(background);
-          selected-active-background:  var(urgent);
-          selected-active-foreground:  var(background);
-          alternate-normal-background: var(background);
-          alternate-normal-foreground: var(foreground);
-          alternate-urgent-background: var(urgent);
-          alternate-urgent-foreground: var(background);
-          alternate-active-background: var(active);
-          alternate-active-foreground: var(background);
-        }
+            /** Color Name Aliases **/
+            handle-colour:               var(selected);
+            background-colour:           var(background);
+            border-colour:               var(active);
+            foreground-colour:           var(foreground);
+            alternate-background:        var(background-alt);
+            normal-background:           var(background);
+            normal-foreground:           var(foreground);
+            urgent-background:           var(urgent);
+            urgent-foreground:           var(background);
+            active-background:           var(active);
+            active-foreground:           var(background);
+            selected-normal-background:  var(selected);
+            selected-normal-foreground:  var(background);
+            selected-urgent-background:  var(active);
+            selected-urgent-foreground:  var(background);
+            selected-active-background:  var(urgent);
+            selected-active-foreground:  var(background);
+            alternate-normal-background: var(background);
+            alternate-normal-foreground: var(foreground);
+            alternate-urgent-background: var(urgent);
+            alternate-urgent-foreground: var(background);
+            alternate-active-background: var(active);
+            alternate-active-foreground: var(background);
+          }
 
-        window {
-            transparency:                "real";
-            location:                    ${cfg.align};
-            anchor:                      ${cfg.align};
-            fullscreen:                  false;
-            width:                       1200px;
-            x-offset:                    0px;
-            y-offset:                    0px;
-            enabled:                     true;
-            cursor:                      "default";
-            border-radius:               @border-radius;
-            background-color:            @background;
-        }
+          window {
+              transparency:                "real";
+              location:                    ${cfg.align};
+              anchor:                      ${cfg.align};
+              fullscreen:                  false;
+              width:                       1200px;
+              x-offset:                    0px;
+              y-offset:                    0px;
+              enabled:                     true;
+              cursor:                      "default";
+              border-radius:               @border-radius;
+              background-color:            @background;
+          }
 
-        mainbox {
-            enabled:                     true;
-            spacing:                     0px;
-            margin:                      0px;
-            padding:                     0px;
-            border:                      0px solid;
-            border-radius:               @border-radius;
-            border-color:                @border-color;
-            background-color:            transparent;
-        }
-      '';
+          mainbox {
+              enabled:                     true;
+              spacing:                     0px;
+              margin:                      0px;
+              padding:                     0px;
+              border:                      0px solid;
+              border-radius:               @border-radius;
+              border-color:                @border-color;
+              background-color:            transparent;
+          }
+        '';
+    };
   };
 }
