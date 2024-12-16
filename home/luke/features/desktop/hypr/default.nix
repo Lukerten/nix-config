@@ -41,6 +41,7 @@ in {
   };
 
   programs = {
+    museeks.enable = true;
     hyprpicker.enable = true;
     hyprshot.enable =true;
   };

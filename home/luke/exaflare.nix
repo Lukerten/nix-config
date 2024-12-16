@@ -10,6 +10,7 @@
   # |------| |------| |------|
 
   wallpaper = lib.mkDefault pkgs.wallpapers.aenami-house-clouds;
+
   monitors = [
     {
       name = "DP-2";

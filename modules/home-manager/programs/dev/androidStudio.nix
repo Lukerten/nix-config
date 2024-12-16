@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.programs.androidStudio;
+  displayName = "Android Studio";
   pname = "android-studio";
 in {
   options.programs.androidStudio = {
@@ -29,7 +30,7 @@ in {
     # i just override it with a new one
     xdg.desktopEntries = lib.mkIf cfg.DesktopEntry {
       android-studio = {
-        name = "Android Studio";
+        name = displayName;
         comment = "Official Android IDE";
         exec = pname;
         icon = pname;

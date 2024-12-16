@@ -8,6 +8,7 @@
     ./gammastep.nix
     ./imv.nix
     ./mako.nix
+    ./mpv.nix
     ./qutebrowser.nix
     ./rofi.nix
     ./swayidle.nix
