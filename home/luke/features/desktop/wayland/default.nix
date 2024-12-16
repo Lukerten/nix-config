@@ -18,6 +18,7 @@
 
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [wf-recorder wl-clipboard];
+  services.cliphist.enable = true;
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;

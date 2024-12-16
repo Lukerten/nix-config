@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   imports = [
     ./global
     ./features/desktop/hypr
@@ -9,7 +9,7 @@
   # |  D1  | |  D2  | |  D3  |
   # |------| |------| |------|
 
-  wallpaper = pkgs.wallpapers.arknights-kaltsit;
+  wallpaper = lib.mkDefault pkgs.wallpapers.aenami-house-clouds;
   monitors = [
     {
       name = "DP-2";

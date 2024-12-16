@@ -29,6 +29,7 @@ in {
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./wallpaper.nix
   ];
 
   xdg.portal = let

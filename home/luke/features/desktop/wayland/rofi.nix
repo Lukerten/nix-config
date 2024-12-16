@@ -20,6 +20,4 @@ in {
       urgent = rmHash colors.error_container;
     };
   };
-
-  services.cliphist.enable = true;
 }

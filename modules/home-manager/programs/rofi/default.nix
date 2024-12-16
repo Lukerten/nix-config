@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -6,7 +7,7 @@
   cfg = config.programs.rofi;
 in {
   imports = [
-    ./launcher.nix
+    ./functions.nix
   ];
 
   options.programs.rofi = {

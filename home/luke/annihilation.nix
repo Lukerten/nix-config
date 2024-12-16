@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = pkgs.wallpapers.japanese-temple;
+  wallpaper = lib.mkDefault pkgs.wallpapers.aenami-window-cat;
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;
