@@ -1,8 +1,17 @@
 {
   pkgs,
+  config,
+  lib,
   ...
 }: {
-  home.packages = with pkgs; [lazygit xclip neovim nodejs-slim];
+  imports = [./completions ./core ./lsp ./treesitter ./telescope ./utils ./visuals];
+
+  home.sessionVariables.EDITOR = "nvim";
+  home.packages = with pkgs; [lazygit xclip];
+  programs.neovim = {
+    enable = true;
+    pvim.enable = true;
+  };
 
   xdg.mimeApps.defaultApplications = {
     "text/english" = "nvim.desktop";

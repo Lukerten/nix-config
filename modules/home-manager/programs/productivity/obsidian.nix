@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  inherit (config.colorscheme) colors harmonized;
+  inherit (config.colorscheme) colors;
   cfg = config.programs.obsidian;
 in {
   options.programs.obsidian = {

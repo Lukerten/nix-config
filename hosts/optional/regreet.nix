@@ -5,35 +5,34 @@
   ...
 }: let
   homeCfgs = config.home-manager.users;
-  homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
+  homeSharePaths = lib.mapAttrsToList (_: version: "${version.home.path}/share") homeCfgs;
   vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
 
   lukeCfg = homeCfgs.luke;
 
-  sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${
-    pkgs.writeText "kiosk.config" ''
-      output * bg #000000 solid_color
-      xwayland disable
-      input "type:touchpad" {
-        tap enabled
-      }
-      exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
-    ''
-  }";
+  sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
+    output * bg #000000 solid_color
+    xwayland disable
+    input "type:touchpad" {
+      tap enabled
+    }
+    exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
+  ''}";
 in {
   users.extraUsers.greeter = {
     # For caching and such
     home = "/tmp/greeter-home";
     createHome = true;
   };
+
   programs.regreet = {
     enable = true;
     iconTheme = lukeCfg.gtk.iconTheme;
     theme = lukeCfg.gtk.theme;
+    font = lukeCfg.fontProfiles.regular;
     cursorTheme = {
       inherit (lukeCfg.gtk.cursorTheme) name package;
     };
-    font = lukeCfg.fontProfiles.regular;
     settings.background = {
       path = lukeCfg.wallpaper;
       fit = "Cover";

@@ -6,7 +6,7 @@
 }: let
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
-  inherit (config.colorscheme) colors harmonized;
+  inherit (config.colorscheme) colors;
   inherit (config.fontProfiles) regular;
   customCSS = # scss
     ''
@@ -22,10 +22,10 @@
       --font: '${regular.name}';
       --corner-text: 'Midnight';
 
-      --online-indicator: ${harmonized.green};
-      --dnd-indicator: ${harmonized.red};
-      --idle-indicator: ${harmonized.yellow};
-      --streaming-indicator: ${harmonized.magenta};
+      --online-indicator: ${colors.green};
+      --dnd-indicator: ${colors.red};
+      --idle-indicator: ${colors.yellow};
+      --streaming-indicator: ${colors.magenta};
 
       --accent-1: ${colors.primary};
       --accent-2: ${colors.primary};

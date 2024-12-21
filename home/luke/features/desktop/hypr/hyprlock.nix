@@ -3,13 +3,13 @@
   lib,
   ...
 }: let
-  inherit (config.colorscheme) colors harmonized;
+  inherit (config.colorscheme) colors;
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
   foreground = rgba colors.on_surface "ff";
   accent = rgba colors.primary "ff";
   background = rgba colors.surface "aa";
-  red = rgba harmonized.red "ff";
-  yellow = rgba harmonized.yellow "ff";
+  red = rgba colors.red "ff";
+  yellow = rgba colors.yellow "ff";
   primaryMonitor = lib.lists.last (builtins.filter (m: m.primary) config.monitors);
   primaryMonitorName = primaryMonitor.name;
   imageStr = toString config.wallpaper;

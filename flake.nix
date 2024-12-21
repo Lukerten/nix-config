@@ -2,22 +2,12 @@
   description = "Lukes NixOS configuration";
 
   inputs = {
-    systems.url = "github:nix-systems/default-linux";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    systems.url = "github:nix-systems/default-linux";
     hardware.url = "github:nixos/nixos-hardware";
-    impermanence.url = "github:misterio77/impermanence";
     nix-colors.url = "github:misterio77/nix-colors";
 
-    nix = {
-      url = "github:nixos/nix/2.21-maintenance";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
-    hydra = {
-      url = "github:nixos/hydra";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-      inputs.nix.follows = "nix";
-    };
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,10 +32,6 @@
     };
     nix-gl = {
       url = "github:nix-community/nixgl";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    matugen = {
-      url = "github:misterio77/matugen/overridable-systems";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {

@@ -2,13 +2,13 @@
   imports = [
     ./fish
     ./nushell
+    ./nvim
     ./direnv.nix
     ./gh.nix
     ./git.nix
     ./gpg.nix
     ./jujutsu.nix
     ./nix-index.nix
-    ./nvim.nix
     ./pass.nix
     ./ssh.nix
     ./starship.nix

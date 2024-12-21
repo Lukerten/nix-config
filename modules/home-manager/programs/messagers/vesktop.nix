@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkEnableOption mkOption mkIf types;
-  inherit (config.colorschemes) colors harmonized;
+  inherit (config.colorschemes) colors;
   cfg = config.programs.vesktop;
 in {
   options.programs.vesktop = {

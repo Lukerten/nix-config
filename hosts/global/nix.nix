@@ -8,7 +8,6 @@
 in {
   nix = {
     package = pkgs.nixVersions.nix_2_22;
-
     settings = {
       trusted-users = [
         "root"

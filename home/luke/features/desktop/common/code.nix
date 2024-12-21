@@ -67,7 +67,7 @@
       "workbench.iconTheme" = "catppuccin-mocha";
       "workbench.statusBar.visible" = false;
       "workbench.colorCustomizations" = let
-        inherit (config.colorscheme) colors harmonized;
+        inherit (config.colorscheme) colors;
       in {
         "[Catppuccin Mocha]" = {
           "selection.background" = "${colors.surface}";
@@ -115,10 +115,10 @@
           "sideBarTitle.background" = "${colors.surface}";
           "sideBarTitle.foreground" = "${colors.primary}";
           "minimap.background" = "${colors.surface}";
-          "minimap.findMatchHighlight" = "${harmonized.blue}";
-          "minimap.selectionHighlight" = "${harmonized.cyan}";
-          "minimap.errorHighlight" = "${harmonized.red}";
-          "minimap.warningHighlight" = "${harmonized.yellow}";
+          "minimap.findMatchHighlight" = "${colors.blue}";
+          "minimap.selectionHighlight" = "${colors.cyan}";
+          "minimap.errorHighlight" = "${colors.red}";
+          "minimap.warningHighlight" = "${colors.yellow}";
           "editorGroup.dropBackground" = "${colors.primary}";
           "editorGroupHeader.tabsBackground" = "${colors.surface}";
           "editorGroupHeader.tabsBorder" = "${colors.primary}";
@@ -162,7 +162,7 @@
           "statusBar.noFolderBackground" = "${colors.surface}";
           "statusBar.noFolderForeground" = "${colors.primary}";
           "statusBar.debuggingBackground" = "${colors.surface}";
-          "statusBar.debuggingForeground" = "${harmonized.red}";
+          "statusBar.debuggingForeground" = "${colors.red}";
           "statusBarItem.activeBackground" = "${colors.surface}";
           "statusBarItem.hoverBackground" = "${colors.surface}";
           "statusBarItem.prominentForeground" = "${colors.surface}";

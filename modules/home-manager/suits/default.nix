@@ -7,7 +7,6 @@
 
     # Games
     ./games/emulators.nix
-    ./games/pnp.nix
 
     # Messagers
     ./messagers/minimal.nix

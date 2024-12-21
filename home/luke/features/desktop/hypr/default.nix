@@ -24,12 +24,9 @@ in {
     ../common
     ../wayland
     ./binds.nix
-    ./hyprbar.nix
-    ./hyprgrass.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    ./wallpaper.nix
   ];
 
   xdg.portal = let
@@ -120,6 +117,8 @@ in {
         steamGame = "class:^(steam_app_[0-9]*)$";
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
         xembedsniproxy = "class:^()$,title:^()$,xwayland:1,floating:1";
+        wineTray ="class:^(explorer.exe)$";
+        rsiLauncher ="class:^(rsi launcher.exe)$";
       in [
         "nofocus, ${sweethome3d-tooltips}"
         "minsize 1 1, ${steam}"
@@ -136,6 +135,8 @@ in {
         "noshadow, ${kdeconnect-pointer}"
         "noborder, ${kdeconnect-pointer}"
         "suppressevent fullscreen, ${kdeconnect-pointer}"
+        "workspace special, ${wineTray}"
+        "tile, ${rsiLauncher}"
       ];
       layerrule = [
         "animation fade,hyprpicker"
