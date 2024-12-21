@@ -4,7 +4,6 @@
   trekscii = pkgs.callPackage ./trekscii {};
   lyrics = pkgs.python3Packages.callPackage ./lyrics {};
   cm4all-vpn = pkgs.callPackage ./cm4all-vpn {};
-  fultimator-desktop = pkgs.callPackage ./fultimator-desktop {};
 
   # Personal scripts
   xpo = pkgs.callPackage ./xpo {};
