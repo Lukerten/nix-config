@@ -16,7 +16,6 @@
     ../../optional/bluetooth.nix
     ../../optional/cm4all-vpn.nix
     ../../optional/cups.nix
-    ../../optional/docker.nix
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
     ../../optional/regreet.nix

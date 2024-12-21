@@ -17,7 +17,6 @@
     ../../optional/bluetooth.nix
     ../../optional/cups.nix
     ../../optional/cm4all-vpn.nix
-    ../../optional/docker.nix
     ../../optional/gamemode.nix
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
