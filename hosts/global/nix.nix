@@ -1,13 +1,11 @@
 {
   inputs,
   lib,
-  pkgs,
   ...
 }: let
   flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
   nix = {
-    package = pkgs.nixVersions.nix_2_22;
     settings = {
       trusted-users = [
         "root"
