@@ -17,17 +17,17 @@
       }
       wk.add({
         mode = { "n" },
-        { "<space>a", desc = "Ask Copilot"},
-        { "<space>b", desc = "Search"},
-        { "<space>e", desc = "Open Files"},
-        { "<space>f", desc = "Format"},
-        { "<space>g", desc = "Grep"},
-        { "<space>h", desc = "Home"},
-        { "<space>i", desc = "Toggle Inlay Hint", hidden = true },
-        { "<space>n", desc = "new File"},
-        { "<space>r", desc = "Rename"},
-        { "<space>s", desc = "Search Files"},
-        { "<space>t", desc = "Open Terminal"},
+        { "<leader>a", desc = "Ask Copilot"},
+        { "<leader>b", desc = "Search"},
+        { "<leader>e", desc = "Open Files"},
+        { "<leader>f", desc = "Format"},
+        { "<leader><space>", desc = "Grep"},
+        { "<leader>h", desc = "Home"},
+        { "<leader>i", desc = "Toggle Inlay Hint", hidden = true },
+        { "<leader>n", desc = "new File"},
+        { "<leader>r", desc = "Rename"},
+        { "<leader>s", desc = "Search Files"},
+        { "<leader>t", desc = "Open Terminal"},
       })
     '';
 in {

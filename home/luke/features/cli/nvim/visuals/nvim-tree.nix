@@ -58,15 +58,14 @@
             filters = {
               dotfiles = false,
               custom = {
-                ".obsidian",
                 ".trash",
               },
             },
           }
 
-          vim.keymap.set("n", "<space>e", "<cmd>NvimTreeToggle<cr>",default_opts("Toggle NvimTree"))
-          vim.keymap.set("n", "<space>Er", "<cmd>NvimTreeRefresh<cr>",default_opts("Refresh NvimTree"))
-          vim.keymap.set("n", "<space>Ef", "<cmd>NvimTreeFindFile<cr>",default_opts("Find File in NvimTree"))
+          vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>",default_opts("Toggle NvimTree"))
+          vim.keymap.set("n", "<leader>Er", "<cmd>NvimTreeRefresh<cr>",default_opts("Refresh NvimTree"))
+          vim.keymap.set("n", "<leader>Ef", "<cmd>NvimTreeFindFile<cr>",default_opts("Find File in NvimTree"))
         '';
     }
   ];

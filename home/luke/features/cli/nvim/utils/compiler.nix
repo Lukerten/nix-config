@@ -14,7 +14,7 @@
       compiler.setup();
 
       vim.api.nvim_set_keymap('n', '<F6>', "<cmd>CompilerOpen<cr>", default_opts("Open Runner"))
-      vim.api.nvim_set_keymap('n', '<space>c', "<cmd>CompilerOpen<cr>", default_opts("Open Runner"))
+      vim.api.nvim_set_keymap('n', '<leader>c', "<cmd>CompilerOpen<cr>", default_opts("Open Runner"))
       -- Redo last selected option
       vim.api.nvim_set_keymap('n', '<S-F6>',
           "<cmd>CompilerStop<cr>"

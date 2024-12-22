@@ -35,13 +35,13 @@
             require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
           end
 
-          vim.keymap.set({ 'n', 'v' }, '<space>Cc', '<cmd>CopilotChatToggle<cr>',default_opts("CopilotChat - Toggle"))
-          vim.keymap.set({ 'n', 'v' }, '<space>Ce', '<cmd>CopilotChatExplain<cr>',default_opts("CopilotChat - Explain"))
-          vim.keymap.set({ 'n', 'v' }, '<space>Ct', '<cmd>CopilotChatTests<cr>',default_opts("CopilotChat - Tests"))
-          vim.keymap.set({ 'n', 'v' }, '<space>Cf', '<cmd>CopilotChatFixDiagnostic<cr>',default_opts("CopilotChat - Fix Diagnostic"))
-          vim.keymap.set({ 'n', 'v' }, '<space>Cr', '<cmd>CopilotChatReset<cr>',default_opts("CopilotChat - Reset"))
-          vim.keymap.set({ 'n', 'v' }, '<space>Ca', '<cmd>lua copilot_chat_action()<cr>',default_opts("CopilotChat - Actions"))
-          vim.keymap.set({ 'n', 'v' }, '<space>a' , '<cmd>lua copilot_chat()<cr>', default_opts("Ask Coppilot"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cc', '<cmd>CopilotChatToggle<cr>',default_opts("CopilotChat - Toggle"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>Ce', '<cmd>CopilotChatExplain<cr>',default_opts("CopilotChat - Explain"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>Ct', '<cmd>CopilotChatTests<cr>',default_opts("CopilotChat - Tests"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cf', '<cmd>CopilotChatFixDiagnostic<cr>',default_opts("CopilotChat - Fix Diagnostic"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cr', '<cmd>CopilotChatReset<cr>',default_opts("CopilotChat - Reset"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>Ca', '<cmd>lua copilot_chat_action()<cr>',default_opts("CopilotChat - Actions"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>a' , '<cmd>lua copilot_chat()<cr>', default_opts("Ask Coppilot"))
 
           -- Autocommand to map 'q' to close buffer when filetype is copilot-chat
           vim.cmd([[

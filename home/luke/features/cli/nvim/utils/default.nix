@@ -1,14 +1,11 @@
 {pkgs, ...}: {
   imports = [
     ./compiler.nix
-    ./dadbod.nix
     ./dap.nix
-    ./emmet.nix
     ./gx.nix
     ./kommentary.nix
+    ./obsidian.nix
     ./oil.nix
-    ./remote-nvim.nix
-    ./toggleterm.nix
     ./vimwiki.nix
   ];
 
@@ -19,6 +16,15 @@
     vim-illuminate
     nvim-notify
     vim-numbertoggle
+    {
+      plugin = lazygit-nvim;
+      type = "lua";
+      config =
+        # lua
+        ''
+          vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGit<CR>', { silent = true })
+        '';
+    }
     {
       plugin = vim-bbye;
       type = "lua";

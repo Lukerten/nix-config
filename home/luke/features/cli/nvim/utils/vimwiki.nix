@@ -9,7 +9,7 @@
         ext = 'md',
         diary_rel_path = 'private/Diary'
       }}
-      vim.api.nvim_set_keymap("n", "<space>w", ":VimwikiIndex<CR>", default_opts("Open Wiki"))
+      vim.api.nvim_set_keymap("n", "<leader>w", ":VimwikiIndex<CR>", default_opts("Open Wiki"))
     '';
 in {
   programs.neovim.plugins = [

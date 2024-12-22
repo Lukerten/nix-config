@@ -24,7 +24,7 @@
         },
       }
 
-      vim.keymap.set("n", "<space>n", "<cmd>Oil<CR>", default_opts("create new Files"))
+      vim.keymap.set("n", "<leader>n", "<cmd>Oil<CR>", default_opts("create new Files"))
     '';
 in {
   programs.neovim.plugins = [

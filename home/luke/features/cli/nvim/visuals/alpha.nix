@@ -44,7 +44,7 @@
           }
 
           alpha.setup(dashboard.opts)
-          vim.keymap.set("n", "<space>h", ":Alpha<CR>", default_opts("open Dashboard"))
+          vim.keymap.set("n", "<leader>h", ":Alpha<CR>", default_opts("open Dashboard"))
         '';
     }
   ];

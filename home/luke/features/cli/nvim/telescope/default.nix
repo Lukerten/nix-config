@@ -20,17 +20,17 @@
         },
       }
     }
-    vim.keymap.set("n", "<space>s", "<cmd>Telescope find_files<cr>", default_opts("Search files"))
-    vim.keymap.set("n", "<space>g", "<cmd>Telescope live_grep<cr>", default_opts("Live grep"))
-    vim.keymap.set("n", "<space>Sh", "<cmd>Telescope help_tags<cr>", default_opts("Help tags"))
-    vim.keymap.set("n", "<space>Sm", "<cmd>Telescope man_pages<cr>", default_opts("Man Pages"))
-    vim.keymap.set("n", "<space>So", "<cmd>Telescope oldfiles<cr>", default_opts("Old files"))
-    vim.keymap.set("n", "<space>Sr", "<cmd>Telescope registers<cr>", default_opts("Registers"))
-    vim.keymap.set("n", "<space>Sk", "<cmd>Telescope keymaps<cr>", default_opts("Keymaps"))
-    vim.keymap.set("n", "<space>Sc", "<cmd>Telescope commands<cr>", default_opts("Commands"))
-    vim.keymap.set("n", "<space>SGs", "<cmd>Telescope git_status<cr>",default_opts("Git Status"))
-    vim.keymap.set("n", "<space>SGb", "<cmd>Telescope git_branches<cr>",default_opts("Git Branches"))
-    vim.keymap.set("n", "<space>SGc", "<cmd>Telescope git_commits<cr>",default_opts("Git Commits"))
+    vim.keymap.set("n", "<leader>s", "<cmd>Telescope find_files<cr>", default_opts("Search files"))
+    vim.keymap.set("n", "<leader><space>", "<cmd>Telescope live_grep<cr>", default_opts("Live grep"))
+    vim.keymap.set("n", "<leader>Sh", "<cmd>Telescope help_tags<cr>", default_opts("Help tags"))
+    vim.keymap.set("n", "<leader>Sm", "<cmd>Telescope man_pages<cr>", default_opts("Man Pages"))
+    vim.keymap.set("n", "<leader>So", "<cmd>Telescope oldfiles<cr>", default_opts("Old files"))
+    vim.keymap.set("n", "<leader>Sr", "<cmd>Telescope registers<cr>", default_opts("Registers"))
+    vim.keymap.set("n", "<leader>Sk", "<cmd>Telescope keymaps<cr>", default_opts("Keymaps"))
+    vim.keymap.set("n", "<leader>Sc", "<cmd>Telescope commands<cr>", default_opts("Commands"))
+    vim.keymap.set("n", "<leader>SGs", "<cmd>Telescope git_status<cr>",default_opts("Git Status"))
+    vim.keymap.set("n", "<leader>SGb", "<cmd>Telescope git_branches<cr>",default_opts("Git Branches"))
+    vim.keymap.set("n", "<leader>SGc", "<cmd>Telescope git_commits<cr>",default_opts("Git Commits"))
   '';
 
   # Project.nvim
