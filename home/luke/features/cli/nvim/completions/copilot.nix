@@ -1,16 +1,30 @@
 {pkgs, ...}: {
   programs.neovim.plugins = with pkgs.vimPlugins; [
     {
-      plugin = copilot-vim;
+      plugin = copilot-lua;
       type = "lua";
       config =
         # lua
         ''
-          require("copilot").setup()
-
-          -- Setup Copilot to use <C-a> to accept Completions, remove TAB mapping
-          vim.g.copilot_no_tab_map = true
-          vim.api.nvim_set_keymap("i", "<C-a>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+          require("copilot").setup({
+            panel = { enabled = false },
+            inline_suggestion = false,
+            suggestion = {
+              enabled = false,
+              keymap = {
+                accept = "<C-a>",
+              },
+            },
+          })
+        '';
+    }
+    {
+      plugin = copilot-cmp;
+      type = "lua";
+      config =
+        # lua
+        ''
+          require("copilot_cmp").setup()
         '';
     }
     {
@@ -20,6 +34,7 @@
         # lua
         ''
           require("CopilotChat").setup({
+            context = "buffers",
             window = {
               layout = "vertical",
               title = "Copilot Chat",
@@ -27,7 +42,10 @@
           })
 
           function _G.copilot_chat()
-            require("CopilotChat").ask(vim.fn.input("Chat: "), { selection = require("CopilotChat.select").buffer })
+            local input = vim.fn.input("Quick Chat: ")
+            if input ~= "" then
+              require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+            end
           end
 
           function _G.copilot_chat_action()
@@ -35,13 +53,19 @@
             require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
           end
 
-          vim.keymap.set({ 'n', 'v' }, '<leader>Cc', '<cmd>CopilotChatToggle<cr>',default_opts("CopilotChat - Toggle"))
-          vim.keymap.set({ 'n', 'v' }, '<leader>Ce', '<cmd>CopilotChatExplain<cr>',default_opts("CopilotChat - Explain"))
-          vim.keymap.set({ 'n', 'v' }, '<leader>Ct', '<cmd>CopilotChatTests<cr>',default_opts("CopilotChat - Tests"))
-          vim.keymap.set({ 'n', 'v' }, '<leader>Cf', '<cmd>CopilotChatFixDiagnostic<cr>',default_opts("CopilotChat - Fix Diagnostic"))
-          vim.keymap.set({ 'n', 'v' }, '<leader>Cr', '<cmd>CopilotChatReset<cr>',default_opts("CopilotChat - Reset"))
-          vim.keymap.set({ 'n', 'v' }, '<leader>Ca', '<cmd>lua copilot_chat_action()<cr>',default_opts("CopilotChat - Actions"))
-          vim.keymap.set({ 'n', 'v' }, '<leader>a' , '<cmd>lua copilot_chat()<cr>', default_opts("Ask Coppilot"))
+          vim.keymap.set({ 'n', 'v' }, '<leader>Co', '<cmd>CopilotChatToggle<cr>', { silent = true, noremap = true, desc = "CopilotChat - Toggle" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Ce', '<cmd>CopilotChatExplain<cr>', { silent = true, noremap = true, desc = "CopilotChat - Explain code" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cg', '<cmd>CopilotChatCommit<cr>', { silent = true, noremap = true, desc = "CopilotChat - Write commit message for the change" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Ct', '<cmd>CopilotChatTests<cr>', { silent = true, noremap = true, desc = "CopilotChat - Generate tests" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cf', '<cmd>CopilotChatFixDiagnostic<cr>', { silent = true, noremap = true, desc = "CopilotChat - Fix diagnostic" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cr', '<cmd>CopilotChatReset<cr>', { silent = true, noremap = true, desc = "CopilotChat - Reset chat history and clear buffer" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Co', '<cmd>CopilotChatOptimize<cr>', { silent = true, noremap = true, desc = "CopilotChat - Optimize selected code" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cd', '<cmd>CopilotChatDocs<cr>', { silent = true, noremap = true, desc = "CopilotChat - Add docs on selected code" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cp', '<cmd>CopilotChatReview<cr>', { silent = true, noremap = true, desc = "CopilotChat - Review selected code" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cs', '<cmd>CopilotChatStop<cr>', { silent = true, noremap = true, desc = "CopilotChat - Stop current window output" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Ca', '<cmd>lua copilot_chat_action()<cr>', { silent = true, noremap = true, desc = "CopilotChat - Select action" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>Cc', '<cmd>lua copilot_chat()<cr>', { silent = true, noremap = true, desc = "CopilotChat - Ask a question" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>a', '<cmd>lua copilot_chat()<cr>', { silent = true, noremap = true, desc = " Ask Copilot" })
 
           -- Autocommand to map 'q' to close buffer when filetype is copilot-chat
           vim.cmd([[
@@ -49,16 +73,6 @@
               autocmd!
               autocmd FileType copilot-chat nnoremap <buffer> q :q<CR>
               autocmd FileType copilot-chat inoremap <buffer> q <ESC>:q<CR>
-            augroup END
-          ]])
-
-          -- Autocommand to submit a new chat message when pressing Enter while in
-          -- copilot chat buffer
-          vim.cmd([[
-            augroup CopilotChat
-              autocmd!
-              autocmd FileType copilot-chat nnoremap <buffer> <CR> :lua copilot_chat()<CR>
-              autocmd FileType copilot-chat inoremap <buffer> <CR> <ESC>:lua copilot_chat()<CR>
             augroup END
           ]])
         '';

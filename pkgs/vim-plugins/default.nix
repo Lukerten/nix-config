@@ -6,4 +6,6 @@
   hunk-nvim = pkgs.callPackage ./hunk-nvim {};
   nvim-femaco = pkgs.callPackage ./nvim-femaco {};
   remote-nvim = pkgs.callPackage ./remote-nvim {};
+  copilot-cmp = pkgs.callPackage ./copilot-cmp {};
+  copilot-lua = pkgs.callPackage ./copilot-lua {};
 }
