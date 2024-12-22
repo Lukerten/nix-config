@@ -24,33 +24,33 @@ in {
 
       "Tabs
       set tabstop=2 "2 char-wide tab
-      set expandtab "Use spaces
       set softtabstop=0 "Use same length as 'tabstop'
       set shiftwidth=0 "Use same length as 'tabstop'
-
-      "4 char-wide overrides
-      augroup four_space_tab
-        autocmd!
-        autocmd FileType markdown,text,mediawiki,plaintext,conf,ini,log setlocal tabstop=4 softtabstop=4 shiftwidth=4
-      augroup END
-
-      "Set tera to use htmldjango syntax
-      augroup tera_htmldjango
-        autocmd!
-        autocmd BufRead,BufNewFile *.tera setfiletype htmldjango
-      augroup END
-
-      "Fix nvim size according to terminal
-      "(https://github.com/neovim/neovim/issues/11330)
-      augroup fix_size
-        autocmd VimEnter * silent exec "!kill -s SIGWINCH" getpid()
-      augroup END
+      set expandtab "Use spaces
 
       "Line numbers
       set number
 
       "disable line wrap
       set nowrap
+    
+      "Highlight search
+      set cmdheight=1
+
+      "Timouts
+      set updatetime=1
+      set shortmess+=c
+      set tm=500
+      set hidden
+
+      "Disable swap and backup files
+      set noswapfile
+      set nobackup
+      set nowritebackup
+
+      "Disable Bell"
+      set noerrorbells
+      set novisualbell
 
       "set Leader Key to space
       let mapleader=" "
@@ -141,6 +141,11 @@ in {
       -- Show line diagnostics automatically in hover window
       vim.o.updatetime = 250
       vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+      -- Move line up and down
+      vim.api.nvim_set_keymap('n', 'K', '<cmd>m .-2<CR>==', { noremap = true, silent = true, desc = 'Move line up' })
+      vim.api.nvim_set_keymap('n', 'J', '<cmd>m .+1<CR>==', { noremap = true, silent = true, desc = 'Move line down' })
+
     '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
