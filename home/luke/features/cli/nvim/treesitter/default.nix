@@ -37,18 +37,30 @@
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
         config =
-          # lua
-          ''
-            require('nvim-treesitter.configs').setup{
-              highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-                disable = function(lang, bufnr)
-                  return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1048576
-                end
+        # lua
+        ''
+          vim.opt.conceallevel = 2
+
+          require'nvim-treesitter.configs'.setup {
+            highlight = {
+              enable = true,
+              disable = {},
+            },
+
+            auto_install = false,
+            ensure_installed = {},
+
+            incremental_selection = {
+              enable = true,
+              keymaps = {
+                init_selection = "gnn",
+                node_incremental = "grn",
+                scope_incremental = "grc",
+                node_decremental = "grm",
               },
             }
-          '';
+          }
+        '';
       }
     ];
   };
