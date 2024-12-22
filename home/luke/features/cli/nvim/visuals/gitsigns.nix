@@ -40,7 +40,7 @@
               end
 
               -- actions
-              map('n', '<leader>gb', function() gs.blame_line{full=true} end)
+              map('n', '<leader>b', function() gs.blame_line{full=true} end)
 
               -- Text objects
               map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

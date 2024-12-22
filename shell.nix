@@ -24,7 +24,6 @@
       name = "check_wallpaper";
       text = builtins.readFile ./pkgs/wallpapers/check-list.sh;
     };
-
   in
     pkgs.mkShell {
       NIX_CONFIG = "extra-experimental-features = nix-command flakes ca-derivations";

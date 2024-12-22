@@ -33,7 +33,7 @@ in {
 
       "disable line wrap
       set nowrap
-    
+
       "Highlight search
       set cmdheight=1
 
@@ -149,7 +149,6 @@ in {
     '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
-    vim-table-mode
     editorconfig-nvim
     vim-surround
     {

@@ -13,7 +13,6 @@
     # lua
     ''
       require('gx').setup{}
-      vim.keymap.set("n", "<leader>b", ":Browse<cr>", default_opts("Browse Selection"))
       vim.keymap.set("v", "<leader>b", ":Browse<cr>", default_opts("Browse Selection"))
     '';
 in {

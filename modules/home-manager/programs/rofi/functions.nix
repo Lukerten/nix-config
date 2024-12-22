@@ -6,8 +6,7 @@
 }: let
   cfg = config.programs.rofi;
   inherit (lib) mkIf mkOption mkEnableOption types;
-in
-{
+in {
   options.programs.rofi = {
     launcher = let
       rofi-theme = ./launcher.rasi;

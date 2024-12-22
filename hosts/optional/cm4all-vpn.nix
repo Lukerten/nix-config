@@ -1,4 +1,8 @@
-{pkgs, lib,...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   security = {
     polkit.enable = true;
     rtkit.enable = true;

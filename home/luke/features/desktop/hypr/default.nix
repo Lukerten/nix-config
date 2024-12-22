@@ -40,7 +40,7 @@ in {
   programs = {
     museeks.enable = true;
     hyprpicker.enable = true;
-    hyprshot.enable =true;
+    hyprshot.enable = true;
   };
 
   wayland.windowManager.hyprland = {
@@ -117,8 +117,8 @@ in {
         steamGame = "class:^(steam_app_[0-9]*)$";
         kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
         xembedsniproxy = "class:^()$,title:^()$,xwayland:1,floating:1";
-        wineTray ="class:^(explorer.exe)$";
-        rsiLauncher ="class:^(rsi launcher.exe)$";
+        wineTray = "class:^(explorer.exe)$";
+        rsiLauncher = "class:^(rsi launcher.exe)$";
       in [
         "nofocus, ${sweethome3d-tooltips}"
         "minsize 1 1, ${steam}"

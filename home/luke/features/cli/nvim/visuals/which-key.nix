@@ -18,7 +18,6 @@
       wk.add({
         mode = { "n" },
         { "<leader>a", desc = "Ask Copilot"},
-        { "<leader>b", desc = "Search"},
         { "<leader>e", desc = "Open Files"},
         { "<leader>f", desc = "Format"},
         { "<leader><space>", desc = "Grep"},

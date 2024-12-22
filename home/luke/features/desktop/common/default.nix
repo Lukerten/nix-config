@@ -36,7 +36,7 @@
     audioctrl.enable = true;
     spotify.enable = true;
   };
-  services={
+  services = {
     nextcloud-client.enable = true;
   };
 }

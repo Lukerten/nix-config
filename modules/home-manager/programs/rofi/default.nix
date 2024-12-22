@@ -32,7 +32,7 @@ in {
     };
 
     align = lib.mkOption {
-      type = lib.types.enum [ "north" "east" "south" "west" ];
+      type = lib.types.enum ["north" "east" "south" "west"];
       default = "south";
       description = "Align for rofi";
     };
@@ -96,10 +96,17 @@ in {
       "rofi/shared/theme.rasi".text = let
         rmHash = lib.removePrefix "#";
         r = toString cfg.border.radius;
-        border-align = if cfg.align == "center" then "${r}px" else border-align-dir;
+        border-align =
+          if cfg.align == "center"
+          then "${r}px"
+          else border-align-dir;
         border-align-dir = ''${border-align-single "west" "south"} ${border-align-single "south" "east"}  ${border-align-single "east" "north"} ${border-align-single "north" "west"}'';
-        border-align-single = dir1: dir2: if cfg.align == dir1 || cfg.align == dir2 then "${r}px" else "0px";
-      in # rasi
+        border-align-single = dir1: dir2:
+          if cfg.align == dir1 || cfg.align == dir2
+          then "${r}px"
+          else "0px";
+      in
+        # rasi
         ''
           * {
             font:               "${cfg.fontProfile.name} ${toString cfg.fontProfile.size}";

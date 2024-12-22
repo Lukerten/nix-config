@@ -22,7 +22,7 @@
         default_opts("Rerun last configuration"))
 
       -- Toggle compiler results
-      vim.api.nvim_set_keymap('n', '<S-F7>', "<cmd>CompilerToggleResults<cr>", default_opts("Toggle results"))
+      vim.api.nvim_set_keymap('n', '<F5>', "<cmd>CompilerToggleResults<cr>", default_opts("Toggle results"))
     '';
 in {
   programs.neovim = {

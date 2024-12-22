@@ -1,5 +1,10 @@
-{pkgs, lib, config, ...}: {
-colorscheme.source = config.wallpaper;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  colorscheme.source = config.wallpaper;
   specialisation = lib.mkForce (
     lib.mapAttrs (n: w: {configuration.wallpaper = w;}) {
       inherit
