@@ -51,6 +51,10 @@ in {
       "Disable Bell"
       set noerrorbells
       set novisualbell
+      
+      "Split Right and Below
+      set splitright
+      set splitbelow
 
       "set Leader Key to space
       let mapleader=" "
