@@ -9,7 +9,7 @@ in {
   users.mutableUsers = false;
   users.users.luke = {
     isNormalUser = true;
-    shell = pkgs.nushell;
+    shell = pkgs.fish;
     home = "/home/luke";
     extraGroups =
       ["wheel" "video" "audio"]
@@ -33,6 +33,15 @@ in {
 
     hashedPasswordFile = config.sops.secrets.luke-password.path;
     packages = [pkgs.home-manager];
+  };
+
+  programs.fish = {
+    enable = true;
+    vendor = {
+      completions.enable = true;
+      config.enable = true;
+      functions.enable = true;
+    };
   };
 
   sops.secrets.luke-password = {

@@ -10,11 +10,14 @@
   hasRipgrep = hasPackage "ripgrep";
   hasSpecialisationCli = hasPackage "specialisation";
   hasAwsCli = hasPackage "awscli2";
+  hasLazygit = hasPackage "lazygit";
   hasNeovim = config.programs.neovim.enable;
   hasNeomutt = config.programs.neomutt.enable;
+  hasEza = config.programs.eza.enable;
+  hasBat = config.programs.bat.enable;
+  hasTmux = config.programs.tmux.enable;
 in {
   home.shellAliases = rec {
-    jqless = "jq -C | less -r";
     n = "nix";
     ns = "nix shell";
     nsn = "nix shell nixpkgs#";
@@ -27,19 +30,64 @@ in {
     snrs = "nixos-rebuild --flake . switch";
     hm = "home-manager --flake .";
     hms = "home-manager --flake . switch";
+    size = "du -sh";
+    cp = "cp -i";
+    mkdir = "mkdir -p";
+    df = "df -h";
+    free = "free -h";
+    du = "du -sh";
+    susu = "sudo su";
+    op = "xdg-open";
+    del = "rm -rf";
+    sdel = "sudo rm -rf";
+    null = "/dev/null";
+    jqless = "jq -C | less -r";
+    psf = "ps -aux | grep";
+    lsf = "ls | grep";
+    search = "sudo fd . '/' | grep";
+    shut = "sudo shutdown -h now";
+    tssh = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
+    socks = "ssh -D 1337 -q -C -N";
     grep = mkIf hasRipgrep "rg";
+    lg = mkIf hasLazygit "lazygit";
+    ls = mkIf hasEza "exa --icons --tree --level=1 -a";
+    ll = mkIf hasEza "exa --icons --tree --level=1 -la";
+    la = mkIf hasEza "exa --icons --tree --level=1 -a";
+    lt = mkIf hasEza "exa --icons --tree --level=5 -a";
+    l = ls;
+    tree = lt;
+    cat = mkIf hasBat "bat";
+    tmux = mkIf hasTmux "tmux -u";
+    tua = mkIf hasTmux "tmux a -t";
+    tu = tmux;
+    ta = tua;
     s = mkIf hasSpecialisationCli "specialisation";
     vim = mkIf hasNeovim "nvim";
-    vi = vim;
-    v = vim;
     mutt = mkIf hasNeomutt "neomutt";
+    v = vim;
+    vi = vim;
     m = mutt;
     aws-switch = mkIf hasAwsCli "export AWS_PROFILE=(aws configure list-profiles | fzf)";
     awssw = aws-switch;
-    lg = "lazygit";
-    ll = "ls -l";
-    la = "ls -la";
-    l = "ls";
+  };
+
+  programs = {
+    btop.enable = true;
+    bash.enable = true;
+    bat = {
+      enable = true;
+      config = {theme = "base16";};
+    };
+    eza.enable = true;
+    fzf = {
+      enable = true;
+      defaultOptions = ["--color 16"];
+    };
+    jq.enable = true;
+    pfetch.enable = true;
+    ranger.enable = true;
+    ripgrep.enable = true;
+    zoxide.enable = true;
   };
 
   # Extra Terminal Utilities
@@ -58,7 +106,6 @@ in {
     httpie # Better curl
     diffsitter # Better diff
     timer # Timer
-    tree # Directory tree
     alejandra # default nix formatter
     nix-diff # differ
     nix-health # health checker

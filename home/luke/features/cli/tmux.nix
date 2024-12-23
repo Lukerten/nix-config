@@ -1,12 +1,12 @@
 {pkgs, ...}: {
   programs.tmux = {
     enable = true;
-    pmux.enable = true;
-    shortcut = "a";
+    shortcut = "o";
     baseIndex = 1;
-    newSession = true;
     escapeTime = 0;
-    secureSocket = false;
+    historyLimit = 10000;
+    keyMode = "vi";
+    terminal = "screen-256color";
     plugins = with pkgs; [
       tmuxPlugins.cpu
       tmuxPlugins.battery
@@ -14,20 +14,62 @@
       tmuxPlugins.better-mouse-mode
     ];
     extraConfig = ''
-      set -g default-terminal "xterm-256color"
-      set -ga terminal-overrides ",*256col*:Tc"
-      set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
-      set-environment -g COLORTERM "truecolor"
+      # Allow mouse interaction
+      set-option -g mouse on
 
-      # Keybindings
-      bind | split-window -h -c "#{pane_current_path}"
-      bind - split-window -v -c "#{pane_current_path}"
-      bind c new-window -c "#{pane_current_path}"
-      bind r source-file ~/config/.tmux.conf
-      bind -n M-Left select-pane -L
-      bind -n M-Right select-pane -R
-      bind -n M-Up select-pane -U
-      bind -n M-Down select-pane -D
+      bind C-e send-keys 'vi .' Enter
+
+      # enable true colors
+      set-option -sa terminal-overrides ',*:RGB'
+      set-option -ga terminal-overrides ',*:Tc'
+
+      # more space to bottom row
+      setw -g pane-border-status bottom
+      setw -g pane-border-format ""
+      # TODO set color with color generator
+      #set -g pane-active-border-style bg=default,fg=brightblack
+
+      # disable repetition
+      set-option -g repeat-time 0
+
+      # renumbers windows once one is killed
+      set-option -g renumber-windows on
+
+      # Activity Monitoring
+      setw -g monitor-activity off
+      set -g visual-activity off
+
+      set-option -g set-titles on
+      set-option -g set-titles-string '#T - #W'
+
+      # all input in all panes synchronizes
+      bind p set-window-option synchronize-panes
+
+      # only useful if not using NixOS
+      #bind r source-file ~/.tmux.conf
+
+      # pane movement shortcuts
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+
+      # Resize pane shortcuts
+      bind -r C-k select-window -t :-
+      bind -r C-j select-window -t :+
+
+      bind C-u killp
+
+      # Resize pane shortcuts
+      bind -r H resize-pane -L 10
+      bind -r J resize-pane -D 10
+      bind -r K resize-pane -U 10
+      bind -r L resize-pane -R 10
+
+      # split window and fix path for tmux 1.9
+      bind n split-window -h -c "#{pane_current_path}"
+      bind y split-window -v -c "#{pane_current_path}"
+
 
       # Styling
       set -g visual-activity off

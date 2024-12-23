@@ -4,36 +4,43 @@
   ...
 }: {
   programs.fish = let
-    hasEza = lib.mkIf config.programs.eza.enable;
     hasNeovim = config.programs.neovim.enable;
     hasRipgrep = config.programs.ripgrep.enable;
     inherit (lib) mkIf;
   in {
     enable = true;
-    shellAbbrs =
-      config.home.shellAliases
-      // {
-        ls = hasEza "exa";
-        la = hasEza "exa -la";
-        ll = hasEza "exa -l";
-        lla = hasEza "exa -la";
-      };
+    shellAbbrs = config.home.shellAliases;
     functions = {
       fish_greeting = "";
       nvimrg = mkIf (hasNeovim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
-      up-or-search = lib.readFile ./up-or-search.fish;
-      nix-inspect =
-        /*
-        fish
-        */
+      nix-inspect = # fish
         ''
           set -s PATH | grep "PATH\[.*/nix/store" | cut -d '|' -f2 |  grep -v -e "-man" -e "-terminfo" | perl -pe 's:^/nix/store/\w{32}-([^/]*)/bin$:\1:' | sort | uniq
-        '';
+          '';
+      up-or-search = #fish
+      ''
+        if commandline --search-mode
+            commandline -f history-search-backward
+            return
+        end
+        if commandline --paging-mode
+            commandline -f up-line
+            return
+        end
+
+        set -l lineno (commandline -L)
+
+        switch $lineno
+            case 1
+                commandline -f history-search-backward
+                # Here we go
+                history merge
+            case '*'
+                commandline -f up-line
+        end
+      '';
     };
-    interactiveShellInit =
-      /*
-      fish
-      */
+    interactiveShellInit = # fish
       ''
         bind \ee edit_command_buffer
 
