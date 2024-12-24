@@ -116,7 +116,6 @@
 
   # add xterm wrapper
   home = {
-    sessionVariables.NIX_INSPECT_EXCLUDE = "alacritty ncurses imagemagick fzy nix-index";
     packages = [
       (
         pkgs.writeShellScriptBin "xterm" ''
