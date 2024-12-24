@@ -9,8 +9,8 @@
     ./nix-index.nix
     ./pass.nix
     ./ssh.nix
+    ./starship.nix
     ./terminal.nix
-    ./tide.nix
     ./tmux.nix
   ];
 }
