@@ -90,7 +90,7 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    programs.rofi.configPath = "$XDG_CONFIG_HOME/rofi/fallback.rasi";
+    programs.rofi.configPath = ".config/rofi/fallback.rasi";
     xdg.configFile = {
       "rofi/config.rasi".source = lib.mkForce ./default.rasi;
       "rofi/shared/theme.rasi".text = let
