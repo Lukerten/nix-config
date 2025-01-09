@@ -15,42 +15,42 @@ in {
           local generatedTheme = {
             normal = {
               gui = 'bold',
-              a = { fg = '${colors.surface}', bg = '${colors.blue}'},
+              a = { fg = '${colors.surface}', bg = '${colors.primary}'},
               b = { fg = '${colors.on_surface}', bg = '${colors.surface_variant}'},
               c = { fg = '${colors.on_surface}', bg = '${colors.surface}'},
             },
 
             insert = {
               gui = 'bold',
-              a = { fg = '${colors.surface}', bg = '${colors.green}'},
+              a = { fg = '${colors.surface}', bg = '${colors.secondary}'},
               b = { fg = '${colors.on_surface}', bg = '${colors.surface_variant}'},
               c = { fg = '${colors.on_surface}', bg = '${colors.surface}'},
             },
 
             visual = {
               gui = 'bold',
-              a = { fg = '${colors.surface}', bg = '${colors.magenta}'},
+              a = { fg = '${colors.surface}', bg = '${colors.tertiary}'},
               b = { fg = '${colors.on_surface}', bg = '${colors.surface_variant}'},
               c = { fg = '${colors.on_surface}', bg = '${colors.surface}'},
             },
 
             replace = {
               gui = 'bold',
-              a = { fg = '${colors.surface}', bg = '${colors.red}'},
+              a = { fg = '${colors.surface}', bg = '${colors.primary_container}'},
               b = { fg = '${colors.on_surface}', bg = '${colors.surface_variant}'},
               c = { fg = '${colors.on_surface}', bg = '${colors.surface}'},
             },
 
             command = {
               gui = 'bold',
-              a = { fg = '${colors.surface}', bg = '${colors.yellow}'},
+              a = { fg = '${colors.surface}', bg = '${colors.secondary}'},
               b = { fg = '${colors.on_surface}', bg = '${colors.surface_variant}'},
               c = { fg = '${colors.on_surface}', bg = '${colors.surface}'},
             },
 
             inactive = {
               gui = 'bold',
-              a = { fg = '${colors.surface}', bg = '${colors.blue}'},
+              a = { fg = '${colors.surface}', bg = '${colors.outline}'},
               b = { fg = '${colors.on_surface}', bg = '${colors.surface_variant}'},
               c = { fg = '${colors.on_surface}', bg = '${colors.surface}'},
             },
