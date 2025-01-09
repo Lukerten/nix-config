@@ -403,41 +403,98 @@ with builtins; let
     # lua
     ''
       -- Python language server
-      lspconfig.pyright.setup{
-        capabilities = capabilities;
-        on_attach = default_on_attach;
-        cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"}
+      local root_files = {
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+        'Pipfile',
+        'pyrightconfig.json',
+        '.git',
       }
 
-      lspconfig.pylsp.setup{
-        cmd = { '${pkgs.python312Packages.python-lsp-server}/bin/pylsp' },
+      local function organize_imports()
+        local params = {
+          command = 'pyright.organizeimports',
+          arguments = { vim.uri_from_bufnr(0) },
+        }
+
+        local clients = util.get_lsp_clients {
+          bufnr = vim.api.nvim_get_current_buf(),
+          name = 'pyright',
+        }
+        for _, client in ipairs(clients) do
+          client.request('workspace/executeCommand', params, nil, 0)
+        end
+      end
+
+      local function set_python_path(path)
+        local clients = util.get_lsp_clients {
+          bufnr = vim.api.nvim_get_current_buf(),
+          name = 'pyright',
+        }
+        for _, client in ipairs(clients) do
+          if client.settings then
+            client.settings.python = vim.tbl_deep_extend('force', client.settings.python, { pythonPath = path })
+          else
+            client.config.settings = vim.tbl_deep_extend('force', client.config.settings, { python = { pythonPath = path } })
+          end
+          client.notify('workspace/didChangeConfiguration', { settings = nil })
+        end
+      end
+
+      lspconfig.pyright.setup{
+        cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"},
         filetypes = { 'python' },
         root_dir = function(fname)
-          local root_files = {
-            'pyproject.toml',
-            'setup.py',
-            'setup.cfg',
-            'requirements.txt',
-            'Pipfile',
-          }
-          return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+          return util.root_pattern(unpack(root_files))(fname)
         end,
         single_file_support = true,
         settings = {
-          pylsp = {
-            plugins = {
-              ruff = {
-                severities = { ["F401"] = "W" }
-              }
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = 'openFilesOnly',
             },
           },
-          capabilities = {
-            experimental = {
-              inlayHintProvider = true,
-            }
+        },
+        docs = {
+          description = [[
+            https://github.com/microsoft/pyright
+
+            `pyright`, a static type checker and language server for python
+          ]],
+        },
+        commands = {
+          PyrightOrganizeImports = {
+            organize_imports,
+            description = 'Organize Imports',
+          },
+          PyrightSetPythonPath = {
+            set_python_path,
+            description = 'Reconfigure pyright with the provided python path',
+            nargs = 1,
+            complete = 'file',
           },
         },
+        on_new_config = function(config, root_dir)
+          local env = vim.trim(vim.fn.system('cd "' .. root_dir .. '"; poetry env info -p 2>/dev/null'))
+          if string.len(env) > 0 then
+            config.settings.python.pythonPath = env .. '/bin/python'
+          end
+        end
       }
+
+      lspconfig.pyright.before_init = function(params, config)
+        local Path = require "plenary.path"
+        local venv = Path:new((config.root_dir:gsub("/", Path.path.sep)), ".venv")
+        if venv:joinpath("bin"):is_dir() then
+          config.settings.python.pythonPath = tostring(venv:joinpath("bin", "python"))
+        else
+          config.settings.python.pythonPath = tostring(venv:joinpath("Scripts", "python.exe"))
+        end
+      end
     ''
     # lua
     ''
