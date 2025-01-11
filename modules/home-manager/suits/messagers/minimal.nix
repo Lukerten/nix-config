@@ -12,6 +12,7 @@ in {
     programs = {
       element.enable = lib.mkDefault true;
       vesktop.enable = lib.mkDefault true;
+      slack.enable = lib.mkDefault true;
     };
   };
 }
