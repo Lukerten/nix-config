@@ -19,6 +19,7 @@ in {
       vesktop.enable = lib.mkDefault true;
       webex.enable = lib.mkDefault true;
       whatsapp.enable = lib.mkDefault true;
+      zoom.enable = lib.mkDefault true;
     };
   };
 }
