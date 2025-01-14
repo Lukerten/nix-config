@@ -112,32 +112,35 @@ in {
         disable_splash_rendering = true;
       };
       windowrulev2 = let
-        sweethome3d-tooltips = "title:^(win[0-9])$,class:^(com-eteks-sweethome3d-SweetHome3DBootstrap)$";
-        steam = "title:^()$,class:^(steam)$";
-        steamGame = "class:^(steam_app_[0-9]*)$";
-        kdeconnect-pointer = "class:^(kdeconnect.daemon)$";
-        xembedsniproxy = "class:^()$,title:^()$,xwayland:1,floating:1";
-        wineTray = "class:^(explorer.exe)$";
-        rsiLauncher = "class:^(rsi launcher.exe)$";
-      in [
-        "nofocus, ${sweethome3d-tooltips}"
-        "minsize 1 1, ${steam}"
-        "immediate, ${steamGame}"
-        "size 100% 110%, ${kdeconnect-pointer}"
-        "center, ${kdeconnect-pointer}"
-        "nofocus, ${kdeconnect-pointer}"
-        "noblur, ${kdeconnect-pointer}"
-        "noblur, ${xembedsniproxy}"
-        "opacity 0, ${xembedsniproxy}"
-        "workspace special, ${xembedsniproxy}"
-        "noinitialfocus, ${xembedsniproxy}"
-        "noanim, ${kdeconnect-pointer}"
-        "noshadow, ${kdeconnect-pointer}"
-        "noborder, ${kdeconnect-pointer}"
-        "suppressevent fullscreen, ${kdeconnect-pointer}"
-        "workspace special, ${wineTray}"
-        "tile, ${rsiLauncher}"
-      ];
+        sweethome3d-tooltips = "title:win[0-9],class:com-eteks-sweethome3d-SweetHome3DBootstrap";
+        xembedsniproxy = "class:,title:,xwayland:1,floating:1";
+        steam = "title:,class:steam";
+        steamGame = "class:steam_app_[0-9]*";
+        kdeconnect-pointer = "class:org.kdeconnect.daemon";
+        wineTray ="class:explorer.exe";
+        rsiLauncher ="class:rsi launcher.exe";
+      in
+        [
+          "nofocus, ${sweethome3d-tooltips}"
+          "stayfocused, ${steam}"
+          "minsize 1 1, ${steam}"
+          "immediate, ${steamGame}"
+          "size 100% 100%, ${kdeconnect-pointer}"
+          "float, ${kdeconnect-pointer}"
+          "nofocus, ${kdeconnect-pointer}"
+          "noblur, ${kdeconnect-pointer}"
+          "noanim, ${kdeconnect-pointer}"
+          "noshadow, ${kdeconnect-pointer}"
+          "noborder, ${kdeconnect-pointer}"
+          "plugin:hyprbars:nobar, ${kdeconnect-pointer}"
+          "suppressevent fullscreen, ${kdeconnect-pointer}"
+          "noblur, ${xembedsniproxy}"
+          "opacity 0, ${xembedsniproxy}"
+          "workspace special silent, ${xembedsniproxy}"
+          "noinitialfocus, ${xembedsniproxy}"
+          "workspace special silent, ${wineTray}"
+          "tile, ${rsiLauncher}"
+        ];
       layerrule = [
         "animation fade,hyprpicker"
         "animation fade,selection"
@@ -176,26 +179,24 @@ in {
         enabled = true;
         bezier = [
           "easein,0.1, 0, 0.5, 0"
-          "easeinback,0.35, 0, 0.95, -0.3"
           "easeout,0.5, 1, 0.9, 1"
-          "easeoutback,0.35, 1.35, 0.65, 1"
           "easeinout,0.45, 0, 0.55, 1"
         ];
 
         animation = [
-          "fadeIn,1,2,easeout"
-          "fadeLayersIn,1,2,easeout"
-          "layersIn,1,2,easeout,slide"
-          "windowsIn,1,2,easeout,slide"
-          "fadeLayersOut,1,2,easein"
-          "fadeOut,1,2,easein"
-          "layersOut,1,2,easeinback,slide"
-          "windowsOut,1,2,easeinback,slide"
-          "border,1,2,easeout"
-          "fadeDim,1,2,easeinout"
-          "fadeShadow,1,2,easeinout"
-          "fadeSwitch,1,2,easeinout"
-          "windowsMove,1,2,easeout"
+          "fadeIn,1,3,easeout"
+          "fadeLayersIn,1,3,easeout"
+          "layersIn,1,3,easeout,slide"
+          "windowsIn,1,3,easeout,slide"
+          "fadeLayersOut,1,3,easein"
+          "fadeOut,1,3,easein"
+          "layersOut,1,3,easein,slide"
+          "windowsOut,1,3,easein,slide"
+          "border,1,3,easeout"
+          "fadeDim,1,3,easeinout"
+          "fadeShadow,1,3,easeinout"
+          "fadeSwitch,1,3,easeinout"
+          "windowsMove,1,3,easeout"
           "workspaces,1,2.6,easeout,slide"
         ];
       };
