@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, pkgs, ...}: let
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
 in {
@@ -13,6 +9,7 @@ in {
       editor = {
         color-modes = true;
         line-number = "relative";
+        bufferline = "multiple";
         indent-guides.render = true;
         cursor-shape = {
           normal = "block";
