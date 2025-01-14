@@ -7,14 +7,11 @@
   inherit (lib) mkIf;
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
   hasPackage = name: lib.any (x: x == name) packageNames;
-  hasRipgrep = hasPackage "ripgrep";
   hasSpecialisationCli = hasPackage "specialisation";
   hasAwsCli = hasPackage "awscli2";
   hasLazygit = hasPackage "lazygit";
   hasNeovim = config.programs.neovim.enable;
   hasNeomutt = config.programs.neomutt.enable;
-  hasEza = config.programs.eza.enable;
-  hasBat = config.programs.bat.enable;
   hasTmux = config.programs.tmux.enable;
 in {
   home.shellAliases = rec {
@@ -32,20 +29,9 @@ in {
     hms = "home-manager --flake . switch";
     susu = "sudo su";
     op = "xdg-open";
-    del = "rm -rf";
-    sdel = "sudo rm -rf";
-    null = "/dev/null";
     jqless = "jq -C | less -r";
     shut = "sudo shutdown -h now";
-    grep = mkIf hasRipgrep "rg";
     lg = mkIf hasLazygit "lazygit";
-    ls = mkIf hasEza "exa --icons -a";
-    ll = mkIf hasEza "exa --icons -la";
-    la = mkIf hasEza "exa --icons -a";
-    lt = mkIf hasEza "exa --icons --tree -a";
-    l = ls;
-    tree = lt;
-    cat = mkIf hasBat "bat";
     tmux = mkIf hasTmux "tmux -u";
     tua = mkIf hasTmux "tmux a -t";
     tu = tmux;

@@ -9,7 +9,7 @@ in {
   users.mutableUsers = false;
   users.users.luke = {
     isNormalUser = true;
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
     home = "/home/luke";
     extraGroups =
       ["wheel" "video" "audio"]

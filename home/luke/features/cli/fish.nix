@@ -4,12 +4,25 @@
   ...
 }: {
   programs.fish = let
+    hasBat = config.programs.bat.enable;
+    hasEza = config.programs.eza.enable;
     hasNeovim = config.programs.neovim.enable;
     hasRipgrep = config.programs.ripgrep.enable;
     inherit (lib) mkIf;
   in {
     enable = true;
-    shellAbbrs = config.home.shellAliases;
+    shellAbbrs = let
+      extraAliases = rec {
+        grep = mkIf hasRipgrep "rg";
+        cat = mkIf hasBat "bat";
+        ls = mkIf hasEza "exa --icons --tree --level=1 -a";
+        ll = mkIf hasEza "exa --icons --tree --level=1 -la";
+        la = mkIf hasEza "exa --icons --tree --level=1 -a";
+        lt = mkIf hasEza "exa --icons --tree -a";
+        l = ls;
+        tree = lt;
+      };
+    in config.home.shellAliases // extraAliases;
     functions = {
       fish_greeting = "";
       nvimrg = mkIf (hasNeovim && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
