@@ -1,5 +1,6 @@
 {
   imports = [
+    ./nushell
     ./direnv.nix
     ./fish.nix
     ./gh.nix

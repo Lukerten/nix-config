@@ -7,6 +7,7 @@
   imports = [./completions ./core ./lsp ./treesitter ./telescope ./utils ./visuals];
 
   home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables.COLORTERM = "truecolor";
   home.packages = with pkgs; [lazygit xclip];
   programs.neovim = {
     enable = true;
