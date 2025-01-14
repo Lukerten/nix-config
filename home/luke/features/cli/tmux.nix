@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.tmux = {
     enable = true;
-    shortcut = "o";
+    shortcut = "a";
     baseIndex = 1;
     escapeTime = 0;
     historyLimit = 10000;
@@ -24,7 +24,7 @@
       set-option -ga terminal-overrides ',*:Tc'
 
       # more space to bottom row
-      setw -g pane-border-status bottom
+      setw -g pane-border-status top
       setw -g pane-border-format ""
       # TODO set color with color generator
       #set -g pane-active-border-style bg=default,fg=brightblack
@@ -91,7 +91,7 @@
       set -g pane-active-border-style 'fg=yellow'
 
       # statusbar
-      set -g status-position bottom
+      set -g status-position top
       set -g status-justify left
       set -g status-style 'fg=red'
 
@@ -115,4 +115,15 @@
       set -g message-style 'fg=yellow bg=black bold'
     '';
   };
+    xdg.desktopEntries = {
+      tmux = {
+        name = "Tmux";
+        genericName = "Terminal Multiplexer";
+        comment = "Terminal Multiplexer";
+        exec = "tmux";
+        icon = "tmux";
+        terminal = true;
+        type = "Application";
+      };
+    };
 }

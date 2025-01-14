@@ -9,8 +9,8 @@
     settings = {
       window = {
         padding = {
-          x = 24;
-          y = 0;
+          x = 20;
+          y = 20;
         };
         dynamic_padding = false;
         dynamic_title = true;
