@@ -9,8 +9,6 @@
   imports =
     [
       ../features/cli
-      ../features/nvim
-      ../features/helix
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

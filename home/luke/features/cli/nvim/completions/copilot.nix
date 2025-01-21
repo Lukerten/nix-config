@@ -7,10 +7,10 @@
         # lua
         ''
           require("copilot").setup({
-            panel = { enabled = false },
-            inline_suggestion = false,
+            panel = { enabled = true },
+            inline_suggestion = true,
             suggestion = {
-              enabled = false,
+              enabled = true,
               keymap = {
                 accept = "<C-a>",
               },

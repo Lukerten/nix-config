@@ -5,10 +5,6 @@
   outputs,
   ...
 }: let
-  opacity_inactive = 0.80;
-  opacity_active = 0.80;
-  opacity_fullscreen = 1.0;
-
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 
@@ -24,9 +20,14 @@ in {
     ../common
     ../wayland
     ./binds.nix
-    ./hypridle.nix
-    ./hyprlock.nix
-    ./hyprpaper.nix
+    ./decorations.nix
+    ./windowrules.nix
+
+    # Plugins
+    ./plugin/hyprgrass.nix
+    ./plugin/hypridle.nix
+    ./plugin/hyprlock.nix
+    ./plugin/hyprpaper.nix
   ];
 
   xdg.portal = let
@@ -36,6 +37,8 @@ in {
     extraPortals = [xdph];
     configPackages = [hyprland];
   };
+
+  home.packages = with pkgs;[hyprland-qtutils];
 
   programs = {
     museeks.enable = true;
@@ -111,96 +114,6 @@ in {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
       };
-      windowrulev2 = let
-        sweethome3d-tooltips = "title:win[0-9],class:com-eteks-sweethome3d-SweetHome3DBootstrap";
-        xembedsniproxy = "class:,title:,xwayland:1,floating:1";
-        steam = "title:,class:steam";
-        steamGame = "class:steam_app_[0-9]*";
-        kdeconnect-pointer = "class:org.kdeconnect.daemon";
-        wineTray ="class:explorer.exe";
-        rsiLauncher ="class:rsi launcher.exe";
-      in
-        [
-          "nofocus, ${sweethome3d-tooltips}"
-          "stayfocused, ${steam}"
-          "minsize 1 1, ${steam}"
-          "immediate, ${steamGame}"
-          "size 100% 100%, ${kdeconnect-pointer}"
-          "float, ${kdeconnect-pointer}"
-          "nofocus, ${kdeconnect-pointer}"
-          "noblur, ${kdeconnect-pointer}"
-          "noanim, ${kdeconnect-pointer}"
-          "noshadow, ${kdeconnect-pointer}"
-          "noborder, ${kdeconnect-pointer}"
-          "plugin:hyprbars:nobar, ${kdeconnect-pointer}"
-          "suppressevent fullscreen, ${kdeconnect-pointer}"
-          "noblur, ${xembedsniproxy}"
-          "opacity 0, ${xembedsniproxy}"
-          "workspace special silent, ${xembedsniproxy}"
-          "noinitialfocus, ${xembedsniproxy}"
-          "workspace special silent, ${wineTray}"
-          "tile, ${rsiLauncher}"
-        ];
-      layerrule = [
-        "animation fade,hyprpicker"
-        "animation fade,selection"
-        "animation fade,waybar"
-        "blur,waybar"
-        "ignorezero,waybar"
-        "blur,notifications"
-        "ignorezero,notifications"
-        "blur,rofi"
-        "ignorezero,rofi"
-        "noanim,wallpaper"
-      ];
-
-      decoration = {
-        active_opacity = opacity_inactive;
-        inactive_opacity = opacity_active;
-        fullscreen_opacity = opacity_fullscreen;
-        rounding = 4;
-        blur = {
-          enabled = true;
-          size = 6;
-          passes = 4;
-          popups = true;
-        };
-        shadow = {
-          enabled = false;
-          range = 12;
-          color = "0x44000000";
-          color_inactive = "0x66000000";
-          offset = "3 3";
-          scale = 6;
-        };
-      };
-
-      animations = {
-        enabled = true;
-        bezier = [
-          "easein,0.1, 0, 0.5, 0"
-          "easeout,0.5, 1, 0.9, 1"
-          "easeinout,0.45, 0, 0.55, 1"
-        ];
-
-        animation = [
-          "fadeIn,1,3,easeout"
-          "fadeLayersIn,1,3,easeout"
-          "layersIn,1,3,easeout,slide"
-          "windowsIn,1,3,easeout,slide"
-          "fadeLayersOut,1,3,easein"
-          "fadeOut,1,3,easein"
-          "layersOut,1,3,easein,slide"
-          "windowsOut,1,3,easein,slide"
-          "border,1,3,easeout"
-          "fadeDim,1,3,easeinout"
-          "fadeShadow,1,3,easeinout"
-          "fadeSwitch,1,3,easeinout"
-          "windowsMove,1,3,easeout"
-          "workspaces,1,2.6,easeout,slide"
-        ];
-      };
-
       exec = [
         "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       ];

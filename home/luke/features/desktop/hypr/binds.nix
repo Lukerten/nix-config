@@ -99,6 +99,10 @@
         ",Print,exec,${hyprshot} -z -o $XDG_SCREENSHOTS_DIR -m active"
         "SUPER,Print,exec,${hyprshot} -z -o $XDG_SCREENSHOTS_DIR -m region"
         "ALT,Print,exec,${hyprshot} -z -o $XDG_SCREENSHOTS_DIR -m window"
+
+        # Change Workspace using Right and Left
+        "SUPER,right,workspace, -1"
+        "SUPER,left,workspace, +1"
       ]
       ++
       # Change workspace
