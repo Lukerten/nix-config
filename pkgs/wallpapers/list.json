@@ -672,6 +672,12 @@
     "sha256": "195zxqs30apvz6mn4pbsnx67f2k8kvm25ahaqbqbqgcjhxqs816y"
   },
   {
+    "name": "back-alley",
+    "id": "HGrQEal",
+    "ext": "jpeg",
+    "sha256": "1f61q59kr00b714gwxq2js3y3d0wqscl2xygfag48gwhxi9qlx8q"
+  },
+  {
     "name": "beach-light-blue",
     "id": "sPf8X00",
     "ext": "jpeg",
@@ -1224,6 +1230,12 @@
     "sha256": "09fa27z03vs9wijl76pvg7niybc1799hhsr4973jqydirqrj550p"
   },
   {
+    "name": "icy-sun",
+    "id": "BX7eaVZ",
+    "ext": "jpeg",
+    "sha256": "09ah30g1q28i5b0apwq23hfsncwkpinlc0m6bwdb8scsgjj7z61r"
+  },
+  {
     "name": "industrial-city",
     "id": "A8MHbWc",
     "ext": "jpeg",
@@ -1234,6 +1246,12 @@
     "id": "780nwco",
     "ext": "jpeg",
     "sha256": "0hhr52j3hqzcyl0h2h1j1lw6z0ikscv7fiakf813wlj36gbbjqr4"
+  },
+  {
+    "name": "japanese-boulevard",
+    "id": "IKREZY8",
+    "ext": "jpeg",
+    "sha256": "00a5b7433y3axrl414yr264y88svpqv6w6784imwj05c6hn5zw73"
   },
   {
     "name": "japanese-room-ocean",
@@ -1500,6 +1518,12 @@
     "sha256": "0aqa7xx174lfz71xgzq59fb8z1w7gc8kqmpcrg1q2k0xmhzdfiff"
   },
   {
+    "name": "mountain-swiss-alps",
+    "id": "3NGBrLl",
+    "ext": "jpeg",
+    "sha256": "01rxizsyj7ag691b1cxcw5mcn13rza906qbp6hrbh7qhsr167ghm"
+  },
+  {
     "name": "mountain-yellow-red",
     "id": "9vfMeTG",
     "ext": "jpeg",
@@ -1560,6 +1584,12 @@
     "sha256": "13xdv960jsqn15ijz13qggy4bcywbipc7pcxa7nb0dnzdwbq4v3y"
   },
   {
+    "name": "neon-forrest",
+    "id": "GVIHcvz",
+    "ext": "jpeg",
+    "sha256": "1v748ywxmljmlib3afh52zxa39h8b2gb2bq9ls1avahd9ga6m1wv"
+  },
+  {
     "name": "neon-tokyo-billboard",
     "id": "GSp2kD9",
     "ext": "jpeg",
@@ -1588,6 +1618,18 @@
     "id": "EYJUyfp",
     "ext": "png",
     "sha256": "1658rm6a36dhmg6pl5v8fslr3r8xm3f60576lj4ckgggrwp4y3nk"
+  },
+  {
+    "name": "nixos-purple",
+    "id": "MvS5tUv",
+    "ext": "png",
+    "sha256": "0zy844n0yvm2y0ws5g4qhd73hambkac8hh8mf9xyng7kmic8jg9k"
+  },
+  {
+    "name": "nixos-rainbow",
+    "id": "1YztPg4",
+    "ext": "png",
+    "sha256": "0qp7lzzgmj8f2v981z2r6v2qynm34i97lb2sni5bj1xnm7k334n7"
   },
   {
     "name": "nostalgic-windmill",
@@ -1690,6 +1732,12 @@
     "id": "faCqnm7",
     "ext": "jpeg",
     "sha256": "1ip9icxsva5rlwyv6wlwdnhx7gnkwsqg8y04glvq45qgr6p3s4i5"
+  },
+  {
+    "name": "purple-alien-lands",
+    "id": "mka2VCK",
+    "ext": "jpeg",
+    "sha256": "0j0c8jnspjrbalhv7kri2ywk88gvda3wxmhqqqz4jq5lvj5zhina"
   },
   {
     "name": "purple-pink-circuits-minimalist",
@@ -1890,6 +1938,12 @@
     "sha256": "0q8z4j4xchk0kmcpniyyqj8nkiqh97d90gzk7b7gv196vhxldhq3"
   },
   {
+    "name": "the-code",
+    "id": "QJbicei",
+    "ext": "png",
+    "sha256": "0iqs962ffy1fq531v224m6yj9di0wnxyp63bf9d1y98gvjw0jzcz"
+  },
+  {
     "name": "tokyo-streets-night",
     "id": "6SdA4J3",
     "ext": "jpeg",
@@ -1914,10 +1968,34 @@
     "sha256": "1nwyrw353b57zfdqnrxh0bqz7d61aci1ybwmrr1pgpsf50ys30cy"
   },
   {
+    "name": "vaporwave-bebop",
+    "id": "05g4weM",
+    "ext": "jpeg",
+    "sha256": "1xmxb4iws75qj7bn64jsi0jjkdzsk3wi8096nbzxfwplgy2k2mjg"
+  },
+  {
     "name": "vaporwave-mountain",
     "id": "EV7a6cm",
     "ext": "jpeg",
     "sha256": "0wg6qnsbc3z0ncl17wv850qckky6bfvqf9hhxsg3n1cgml9am364"
+  },
+  {
+    "name": "vaporwave-samurai",
+    "id": "AhtJDfk",
+    "ext": "jpeg",
+    "sha256": "022xd7ki9i3dj69isz0jqr3k5ll9b9684acgpv3rv5fzi3ajq8l6"
+  },
+  {
+    "name": "vaporwave-wave",
+    "id": "l7ar9cf",
+    "ext": "png",
+    "sha256": "15pmz0ryal99zbmai7zb84b9wxpzbzrl4lvll6jjrms52clihz2a"
+  },
+  {
+    "name": "waporwave-palm",
+    "id": "Js5s2rf",
+    "ext": "jpeg",
+    "sha256": "0gvmhn2mqlcw3xr3q4gj4jrbywph9nm9iv71gz3p0x9yg5my861c"
   },
   {
     "name": "watercolor-beach",

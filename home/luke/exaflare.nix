@@ -13,7 +13,7 @@
   # |  D1  | |  D2  | |  D3  |
   # |------| |------| |------|
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.aenami-house-clouds;
+  wallpaper = lib.mkDefault pkgs.wallpapers.neon-forrest;
 
   monitors = [
     {

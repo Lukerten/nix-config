@@ -5,7 +5,7 @@
 }: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.aenami-window-cat;
+  wallpaper = lib.mkDefault pkgs.wallpapers.back-alley;
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;
