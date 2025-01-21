@@ -1,4 +1,10 @@
 {pkgs, ...}: {
-  programs.wireshark = {enable = true;};
-  environment.systemPackages = with pkgs; [wireshark];
+  programs.wireshark = {
+    package = pkgs.wireshark;
+    enable = true;
+  };
+  users.groups.wireshark = {
+    name = "wireshark";
+    gid = 500;
+  };
 }

@@ -9,5 +9,6 @@
     ./vesktop.nix
     ./webex.nix
     ./whatsapp.nix
+    ./zoom.nix
   ];
 }
