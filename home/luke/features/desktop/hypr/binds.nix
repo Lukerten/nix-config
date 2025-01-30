@@ -173,6 +173,26 @@
         [
           "SUPER,backspace,exec,${hyprlock}"
           "SUPER,XF86Calculator,exec,${hyprlock}"
-        ]);
+        ])
+      ++ (
+        let
+          # Save to image and share it to device, if png; else share as text to clipboard.
+          share-kdeconnect = lib.getExe (pkgs.writeShellScriptBin "kdeconnect-share" ''
+            type="$(wl-paste -l | head -1)"
+            device="$(kdeconnect-cli -a --id-only | head -1)"
+            if [ "$type" == "image/png" ]; then
+              path="$(mktemp XXXXXXX.png)"
+              wl-paste > "$path"
+              output="$(kdeconnect-cli --share "$path" -d "$device")"
+            else
+              output="$(kdeconnect-cli --share-text "$(wl-paste)" -d "$device")"
+            fi
+            notify-send -i kdeconnect "$output"
+          '');
+        in
+          lib.optionals config.services.kdeconnect.enable [
+            "SUPER,v,exec,${share-kdeconnect}"
+          ]
+      );
   };
 }
