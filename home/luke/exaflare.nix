@@ -7,6 +7,7 @@
     ./global
     ./features/desktop/hypr
     ./features/games
+    ./features/games/path-of-exile.nix
   ];
 
   # |------| |------| |------|
