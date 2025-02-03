@@ -142,7 +142,7 @@
         lib.optionals config.services.mako.enable [
           "SUPER,w,exec,${makoctl} dismiss"
           "SUPERSHIFT,w,exec,${makoctl} restore"
-      ])
+        ])
       ++
       # Launcher
       (let
@@ -152,9 +152,8 @@
           "SUPER,d,exec,${wofi} -S drun --location left --width 25% --height 90% -x 10 --no-action"
           "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
           "SUPER,x,exec,${wofi} -S run"
-      ])
-      ++
-      (let
+        ])
+      ++ (let
         pass-wofi = lib.getExe config.programs.wofi.pass.package;
       in
         lib.optionals config.programs.wofi.pass.enable [
@@ -163,15 +162,14 @@
 
           "SUPER,p,exec,${pass-wofi}"
           "SHIFTSUPER,p,exec,${pass-wofi} fill"
-      ])
-      ++
-      (let
+        ])
+      ++ (let
         cliphist = lib.getExe config.services.cliphist.package;
         wofi = lib.getExe config.programs.wofi.package;
       in
         lib.optionals config.services.cliphist.enable [
           ''SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
-      ])
+        ])
       ++
       # Hyprlock
       (let

@@ -2,13 +2,13 @@
   config,
   pkgs,
   ...
-}:{
+}: {
   programs.helix.settings.keys = {
     normal = {
       space.space = "file_picker";
       space.w = ":w";
       space.q = ":q";
-      esc = [ "collapse_selection" "keep_primary_selection" ];
+      esc = ["collapse_selection" "keep_primary_selection"];
     };
   };
 }

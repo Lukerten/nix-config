@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkEnableOption mkOption mkIf optionals types;
 in {
   options.programs.wofi.emoji = {
@@ -30,7 +35,7 @@ in {
       pass-wofi = config.programs.wofi.pass.package;
       emoji-wofi = config.programs.wofi.emoji.package;
     in
-      optionals config.programs.wofi.pass.enable [ pass-wofi ] ++
-      optionals config.programs.wofi.emoji.enable [ emoji-wofi ];
+      optionals config.programs.wofi.pass.enable [pass-wofi]
+      ++ optionals config.programs.wofi.emoji.enable [emoji-wofi];
   };
 }
