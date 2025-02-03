@@ -28,7 +28,7 @@ in {
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than +3";
+      options = "--delete-older-than 7d";
     };
 
     # Add each flake input as a registry and nix_path

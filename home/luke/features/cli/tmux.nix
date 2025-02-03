@@ -115,15 +115,15 @@
       set -g message-style 'fg=yellow bg=black bold'
     '';
   };
-    xdg.desktopEntries = {
-      tmux = {
-        name = "Tmux";
-        genericName = "Terminal Multiplexer";
-        comment = "Terminal Multiplexer";
-        exec = "tmux";
-        icon = "tmux";
-        terminal = true;
-        type = "Application";
-      };
+  xdg.desktopEntries = {
+    tmux = {
+      name = "Tmux";
+      genericName = "Terminal Multiplexer";
+      comment = "Terminal Multiplexer";
+      exec = "tmux";
+      icon = "tmux";
+      terminal = true;
+      type = "Application";
     };
+  };
 }
