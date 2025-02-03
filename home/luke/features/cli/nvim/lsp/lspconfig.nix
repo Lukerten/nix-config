@@ -10,7 +10,7 @@ with builtins; let
     ''
       -- Bash language server
       lspconfig.bashls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
         cmd = {'${pkgs.bash-language-server}/bin/bash-language-server'};
       }
@@ -96,44 +96,45 @@ with builtins; let
     ''
       -- CSS language server
       lspconfig.cssls.setup{
-        cmd = {'${pkgs.gopls}/bin/vscode-css-languageserver-bin'};
-        filetypes = {'css', 'scss', 'less'};
+        cmd = {'${pkgs.vscode-langservers-extracted}/bin/vscode-css-languageserver-bin', "--stdio"},
+        filetypes = {'css', 'scss', 'less'},
+        init_options = { provideFormatter = true },
         settings = {
           css = {
-            validate = true;
-          };
+            validate = true,
+          },
           less = {
-            validate = true;
-          };
+            validate = true,
+          },
           scss = {
-            validate = true;
-          };
-        };
+            validate = true,
+          },
+        },
       }
     ''
     # lua
     ''
       -- Elixir language server
       lspconfig.elixirls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.elixir-ls}/bin/language_server.sh'};
+        cmd = {'${pkgs.elixir-ls}/bin/language_server.sh'},
       }
     ''
     # lua
     ''
       -- Erlang language server
       lspconfig.erlangls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.erlang-ls}/bin/erlang_ls'};
+        cmd = {'${pkgs.erlang-ls}/bin/erlang_ls'},
       }
     ''
     # lua
     ''
       -- eslint language server
       lspconfig.eslint.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
         cmd = {'${pkgs.eslint_d}/bin/eslint_d'};
       }
@@ -143,26 +144,26 @@ with builtins; let
       -- Go language server
       lspconfig.gopls.setup{
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.gopls}/bin/gopls'};
-        filetypes = {'gox', 'go'};
+        cmd = {'${pkgs.gopls}/bin/gopls'},
+        filetypes = {'gox', 'go'},
       }
     ''
     # lua
     ''
       -- Haskell language server
       lspconfig.hls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper'};
+        cmd = {'${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper'},
       }
     ''
     # lua
     ''
       -- HYPR language server hyprls
       lspconfig.hyprls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.hyprls}/bin/hyprls'};
+        cmd = {'${pkgs.hyprls}/bin/hyprls'},
       }
     ''
     # lua
@@ -221,10 +222,10 @@ with builtins; let
 
       config.settings = {
         java = {
-          referencesCodeLens = {enabled = true};
-          signatureHelp = { enabled = true };
-          implementationsCodeLens = { enabled = true };
-          contentProvider = { preferred = 'fernflower' };
+          referencesCodeLens = {enabled = true},
+          signatureHelp = { enabled = true },
+          implementationsCodeLens = { enabled = true },
+          contentProvider = { preferred = 'fernflower' },
           completion = {
             favoriteStaticMembers = {
               "org.hamcrest.MatcherAssert.assertThat",
@@ -234,14 +235,14 @@ with builtins; let
               "java.util.Objects.requireNonNull",
               "java.util.Objects.requireNonNullElse",
               "org.mockito.Mockito.*"
-            }
-          };
+            },
+          },
           sources = {
             organizeImports = {
-              starThreshold = 9999;
-              staticStarThreshold = 9999;
-            };
-          };
+              starThreshold = 9999,
+              staticStarThreshold = 9999,
+            },
+          },
           configuration = {
             runtimes = {
               {
@@ -252,10 +253,10 @@ with builtins; let
                 name = "JavaSE-21",
                 path = "${pkgs.jdk21}/lib/openjdk/",
               },
-            }
-          };
-        };
-      };
+            },
+          },
+        },
+      }
       config.cmd = {
         "${pkgs.jdt-language-server}/bin/jdtls",
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -305,9 +306,9 @@ with builtins; let
     ''
       -- JSON language server
       lspconfig.jsonls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver', '--stdio'};
+        cmd = {'${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver', '--stdio'},
         root_dir = util.find_git_ancestor,
         single_file_support = true,
         init_options = {
@@ -337,16 +338,16 @@ with builtins; let
     ''
       -- Kotlin language server
       lspconfig.kotlin_language_server.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.kotlin-language-server}/bin/kotlin-language-server'};
+        cmd = {'${pkgs.kotlin-language-server}/bin/kotlin-language-server'},
       }
     ''
     # lua
     ''
       -- Lua language server
       lspconfig.lua_ls.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
         cmd = { "${pkgs.lua-language-server}/bin/lua-language-server" },
         Lua = {
@@ -361,8 +362,8 @@ with builtins; let
           },
           telemetry = {
             enable = false,
-          };
-        };
+          },
+        },
       }
     ''
     # lua
@@ -383,15 +384,15 @@ with builtins; let
     ''
       -- PHP language server
       lspconfig.phpactor.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.phpactor}/bin/phpactor', 'language-server'};
-        filetypes = {'php'};
+        cmd = {'${pkgs.phpactor}/bin/phpactor', 'language-server'},
+        filetypes = {'php'},
         root_dir = function(pattern)
           local cwd = vim.loop.cwd()
           local root = util.root_pattern('composer.json', '.git', 'phpactor.json', '.git', '.gitignore')(cwd)
           return util.path.is_descendant(cwd, root) and cwd or root
-        end;
+        end,
         docs = {
           description = [[
             https://github.com/phpactor/phpactor
@@ -531,9 +532,9 @@ with builtins; let
       end
 
       lspconfig.rust_analyzer.setup{
-        capabilities = capabilities;
+        capabilities = capabilities,
         on_attach = attach_keymaps,
-        cmd = {'${pkgs.rust-analyzer}/bin/rust-analyzer'};
+        cmd = {'${pkgs.rust-analyzer}/bin/rust-analyzer'},
         filetypes = { 'rust' },
         single_file_support = true,
         root_dir = function(fname)
