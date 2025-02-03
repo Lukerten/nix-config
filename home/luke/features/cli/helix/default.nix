@@ -6,6 +6,11 @@
   inherit (config) colorscheme;
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
 in {
+  imports = [
+    ./languages.nix
+    ./keymap.nix
+  ];
+
   programs.helix = {
     enable = true;
     settings = {
@@ -20,18 +25,6 @@ in {
           insert = "bar";
           select = "underline";
         };
-      };
-    };
-    languages = {
-      language = [
-        {
-          name = "nix";
-          language-servers = ["nixd" "nil"];
-        }
-      ];
-      language-server.nixd = {
-        command = "nixd";
-        config.formatting.command = "alejandra";
       };
     };
     themes."nix-${hash}" = import ./theme.nix {inherit colorscheme;};
