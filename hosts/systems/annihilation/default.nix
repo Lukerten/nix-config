@@ -19,7 +19,6 @@
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
     ../../optional/regreet.nix
-    ../../optional/remote-hosts.nix
     ../../optional/systemd-boot.nix
     ../../optional/thunar.nix
     ../../optional/wireshark.nix

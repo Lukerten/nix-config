@@ -33,12 +33,6 @@ in {
         setEnv.WAYLAND_DISPLAY = "wayland-waypipe";
         extraOptions.StreamLocalBindUnlink = "yes";
       };
-      "gox-lucasb" = {
-        hostname = "gox-lucasb.os.intern.cm-ag";
-        user = "debian";
-        identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_cm";
-        forwardAgent = false;
-      };
       "hye-fherfurt" = {
         hostname = "hye.ai.fh-erfurt.de";
         user = "student";
@@ -49,8 +43,6 @@ in {
     extraConfig = ''
       IdentityFile ${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen
       IdentityFile ${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_fhe
-      IdentityFile ${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_cm
-      IdentityFile ${config.home.homeDirectory}/.ssh/id_ed25519_Lucas_Brendgen_cm
     '';
   };
   # Compatibility with programs that don't respect SSH configurations (e.g. jujutsu's libssh2)
