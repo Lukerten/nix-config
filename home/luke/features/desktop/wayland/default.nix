@@ -10,10 +10,10 @@
     ./mako.nix
     ./mpv.nix
     ./qutebrowser.nix
-    ./rofi.nix
     ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
+    ./wofi.nix
     ./zathura.nix
   ];
 

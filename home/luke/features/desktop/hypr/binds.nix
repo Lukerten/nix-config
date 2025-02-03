@@ -142,28 +142,36 @@
         lib.optionals config.services.mako.enable [
           "SUPER,w,exec,${makoctl} dismiss"
           "SUPERSHIFT,w,exec,${makoctl} restore"
-        ])
+      ])
       ++
       # Launcher
       (let
-        rofi-laucher = lib.getExe config.programs.rofi.launcher.package;
+        wofi = lib.getExe config.programs.wofi.package;
       in
-        lib.optionals config.programs.rofi.launcher.enable
-        ["SUPER,d,exec,${rofi-laucher}"])
+        lib.optionals config.programs.wofi.enable [
+          "SUPER,d,exec,${wofi} -S drun --location left --width 25% --height 94% -x 10 --no-action"
+          "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
+          "SUPER,x,exec,${wofi} -S run"
+      ])
       ++
-      # Clipper
       (let
-        rofi-clipper = lib.getExe config.programs.rofi.cliphist.package;
+        pass-wofi = lib.getExe config.programs.wofi.pass.package;
       in
-        lib.optionals config.programs.rofi.cliphist.enable
-        ["SUPER,c,exec,${rofi-clipper}"])
+        lib.optionals config.programs.wofi.pass.enable [
+          ",XF86Calculator,exec,${pass-wofi}"
+          "SHIFT,XF86Calculator,exec,${pass-wofi} fill"
+
+          "SUPER,p,exec,${pass-wofi}"
+          "SHIFTSUPER,p,exec,${pass-wofi} fill"
+      ])
       ++
-      # Special
       (let
-        rofi-special = lib.getExe config.programs.rofi.specialisation.package;
+        cliphist = lib.getExe config.services.cliphist.package;
+        wofi = lib.getExe config.programs.wofi.package;
       in
-        lib.optionals config.programs.rofi.specialisation.enable
-        ["SUPER,s,exec,${rofi-special}"])
+        lib.optionals config.services.cliphist.enable [
+          ''SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+      ])
       ++
       # Hyprlock
       (let

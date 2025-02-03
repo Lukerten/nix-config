@@ -8,8 +8,8 @@
     ./images
     ./messagers
     ./productivity
-    ./rofi
     ./spotify.nix
     ./thunar.nix
+    ./wofi.nix
   ];
 }

@@ -67,8 +67,8 @@
 
   custom-binds = {
     normal = {
-      "e" = "spawn --userscript qute-pass";
-      "E" = "spawn --userscript qute-pass --password-only";
+      "e" = ''spawn --userscript qute-pass --dmenu-invocation "wofi --dmenu"'';
+      "E" = ''spawn --userscript qute-pass --dmenu-invocation "wofi --dmenu" --password-only'';
       "<ctrl-v>" = "spawn mpv {url}";
       "<f1>" = lib.mkMerge [
         "config-cycle tabs.show never always"

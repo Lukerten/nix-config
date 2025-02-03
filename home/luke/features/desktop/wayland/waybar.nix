@@ -142,7 +142,6 @@ in {
         "custom/menu" = {
           interval = 1;
           return-type = "json";
-          on-click = lib.mkIf config.programs.rofi.launcher.enable "${lib.getExe config.programs.rofi.launcher.package}";
           exec = mkScriptJson {
             deps = lib.optional hyprlandCfg.enable hyprlandCfg.package;
             text = "";
