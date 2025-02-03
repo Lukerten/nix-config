@@ -9,6 +9,7 @@
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasSpecialisationCli = hasPackage "specialisation";
   hasAwsCli = hasPackage "awscli2";
+  hasCliphistory = config.services.cliphist.enable;
   hasLazygit = hasPackage "lazygit";
   hasNeovim = config.programs.neovim.enable;
   hasNeomutt = config.programs.neomutt.enable;
@@ -43,6 +44,7 @@ in {
     vi = vim;
     m = mutt;
     aws-switch = mkIf hasAwsCli "export AWS_PROFILE=(aws configure list-profiles | fzf)";
+    clipboard = mkIf hasCliphistory "cliphist-fzf";
     awssw = aws-switch;
   };
 
