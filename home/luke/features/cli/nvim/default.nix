@@ -44,7 +44,7 @@
       "application/x-perl"
       "application/x-lua"
     ];
-    mimeMap = lib.lists.foldl' (acc: type: acc // { "${type}" = "nvim.desktop"; }) {} mime;
+    mimeMap = lib.lists.foldl' (acc: type: acc // {"${type}" = "nvim.desktop";}) {} mime;
   in {
     desktopEntries = {
       nvim = {
