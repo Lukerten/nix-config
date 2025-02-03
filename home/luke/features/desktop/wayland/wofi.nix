@@ -25,13 +25,15 @@
       show_all = true;
       key_expand = "Tab";
       prompt = "Search: ";
+      location = "top";
+      y = 56;
     };
     style = let
       inherit (config.colorscheme) colors;
       fontMonospace = config.fontProfiles.monospace.name;
     in ''
       * {
-        font-family: ${fontMonospace}; 
+        font-family: ${fontMonospace};
         border-radius: 10px;
       }
 
@@ -60,7 +62,7 @@
       #entry {
         padding: 10px;
         color: ${colors.on_surface};
-        border-radius: 10px;  
+        border-radius: 10px;
       }
 
       #entry:hover {

@@ -149,7 +149,7 @@
         wofi = lib.getExe config.programs.wofi.package;
       in
         lib.optionals config.programs.wofi.enable [
-          "SUPER,d,exec,${wofi} -S drun --location left --width 25% --height 94% -x 10 --no-action"
+          "SUPER,d,exec,${wofi} -S drun --location left --width 25% --height 90% -x 10 --no-action"
           "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
           "SUPER,x,exec,${wofi} -S run"
       ])
