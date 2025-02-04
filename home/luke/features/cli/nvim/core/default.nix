@@ -11,7 +11,7 @@
     done
   '';
 in {
-  imports = [./autocmd.nix ./core.nix ./jj.nix];
+  imports = [./autocmd.nix ./binds.nix];
 
   xdg.configFile."nvim/color.vim".source = color;
   xdg.configFile."nvim/color.vim".onChange = reloadNvim;
@@ -70,5 +70,23 @@ in {
       noremap <Down> <Nop>
       noremap <Left> <Nop>
       noremap <Right> <Nop>
+    '';
+
+  programs.neovim.extraLuaConfig =
+    # lua
+    ''
+      function add_sign(name, text)
+        vim.fn.sign_define(name, { text = text, texthl = name, numhl = name})
+      end
+
+      function default_opts( desc )
+        return { noremap = true, silent = true, desc = desc }
+      end
+
+      add_sign("DiagnosticSignError", "󰅚 ")
+      add_sign("DiagnosticSignWarn", " ")
+      add_sign("DiagnosticSignHint", "󰌶 ")
+      add_sign("DiagnosticSignInfo", " ")
+      })
     '';
 }

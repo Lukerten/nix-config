@@ -13,6 +13,9 @@
     ./which-key.nix
   ];
   programs.neovim.plugins = with pkgs.vimPlugins; [
+    hunk-nvim
+    nui-nvim
+    popup-nvim
     {
       plugin = nvim-colorizer-lua;
       type = "lua";

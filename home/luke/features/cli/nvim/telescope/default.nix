@@ -20,8 +20,8 @@
         },
       }
     }
-    vim.keymap.set("n", "<leader>s", "<cmd>Telescope find_files<cr>", default_opts("Search files"))
-    vim.keymap.set("n", "<leader><space>", "<cmd>Telescope live_grep<cr>", default_opts("Live grep"))
+    vim.keymap.set("n", "<leader><space>", "<cmd>Telescope find_files<cr>", default_opts("Search files"))
+    vim.keymap.set("n", "<leader>s", "<cmd>Telescope live_grep<cr>", default_opts("Live grep"))
     vim.keymap.set("n", "<leader>Sh", "<cmd>Telescope help_tags<cr>", default_opts("Help tags"))
     vim.keymap.set("n", "<leader>Sm", "<cmd>Telescope man_pages<cr>", default_opts("Man Pages"))
     vim.keymap.set("n", "<leader>So", "<cmd>Telescope oldfiles<cr>", default_opts("Old files"))

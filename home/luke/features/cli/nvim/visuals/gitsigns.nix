@@ -8,18 +8,18 @@
         ''
           require('gitsigns').setup {
             watch_gitdir = {
-            interval = 1000,
-            follow_files = true
+              interval = 1000,
+              follow_files = true
             },
             attach_to_untracked = true,
             current_line_blame = false,
             current_line_blame_opts = {
               virt_text = true,
-              virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+              virt_text_pos = 'overlay', -- 'eol' | 'overlay' | 'right_align'
               delay = 1000,
               ignore_whitespace = false,
             },
-            current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+            current_line_blame_formatter = '<author>: <summary>',
             sign_priority = 6,
             update_debounce = 100,
             status_formatter = nil,
@@ -39,11 +39,7 @@
                 vim.keymap.set(mode, l, r, opts)
               end
 
-              -- actions
               map('n', '<leader>b', function() gs.blame_line{full=true} end)
-
-              -- Text objects
-              map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
             end
           }
         '';

@@ -1,18 +1,15 @@
 {pkgs, ...}: {
   imports = [
-    ./compiler.nix
     ./dap.nix
     ./gx.nix
     ./kommentary.nix
     ./obsidian.nix
     ./oil.nix
+    ./presence.nix
     ./vimwiki.nix
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
-    hunk-nvim
-    nui-nvim
-    popup-nvim
     vim-illuminate
     vim-numbertoggle
     {
