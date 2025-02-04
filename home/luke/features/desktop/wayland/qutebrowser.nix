@@ -15,10 +15,12 @@
     wikipedia = "https://de.wikipedia.org/w/index.php?search={}";
     openstreetmap = "https://www.openstreetmap.org/search?query={}";
     youtube = "https://www.youtube.com/results?search_query={}";
+    mynixos = "https://mynixos.com/search?q={}";
 
     # Shortcuts
     ddg = duckduckgo;
     g = google;
+    mn = mynixos;
     nixpkgs = nixospackages;
     np = nixospackages;
     nixwiki = nixoswiki;
@@ -30,17 +32,23 @@
     DEFAULT = ddg;
   };
 
-  quickmarks = {
-    "home" = defaultPage;
-    "nixos" = "https://nixos.org/";
-    "nixpkgs" = "https://nixos.org/nixpkgs/";
-    "gmail" = "https://mail.google.com/";
-    "outlook" = "https://outlook.office365.com/mail/inbox";
-    "calendar" = "https://calendar.google.com/";
-    "github" = "https://github.com/";
-    "gitlab" = "https://gitlab.mbretsch.de/";
-    "yt" = "https://www.youtube.com/";
-    "openai" = "https://chat.openai.com";
+  quickmarks = rec {
+    home = defaultPage;
+    nixos = "https://nixos.org/";
+    mynixos = "https://mynixos.com";
+    nixpkgs = "https://nixos.org/nixpkgs/";
+    gmail = "https://mail.google.com/";
+    outlook = "https://outlook.office365.com/mail/inbox";
+    calendar = "https://calendar.google.com/";
+    github = "https://github.com/";
+    gitlab = "https://gitlab.mbretsch.de/";
+    youtube = "https://www.youtube.com/";
+    openai = "https://chat.openai.com";
+
+    yt = youtube;
+    mx = mynixos;
+    gh = github;
+    np = nixpkgs;
 
     # FHE Student
     "fh/gitlab" = "https://git.ai.fh-erfurt.de/";
