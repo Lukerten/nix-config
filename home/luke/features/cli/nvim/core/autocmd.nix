@@ -2,12 +2,6 @@
   programs.neovim.extraConfig =
     # vim
     ''
-      "AutoClose Terminal
-      augroup AutoCloseTerminal
-        autocmd!
-        autocmd BufLeave * if &buftype ==# 'terminal' | execute 'bdelete!' | endif
-      augroup END
-
       "4 char-wide overrides
       augroup four_space_tab
         autocmd!

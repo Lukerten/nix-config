@@ -20,5 +20,55 @@ in {
     ''
       "Source colorscheme
       source ${color}
+
+      "Use system clipboard
+      set clipboard=unnamedplus
+
+      "Tabs
+      set tabstop=2 "2 char-wide tab
+      set softtabstop=0 "Use same length as 'tabstop'
+      set shiftwidth=0 "Use same length as 'tabstop'
+      set expandtab "Use spaces
+
+      "Line numbers
+      set number
+
+      "disable line wrap
+      set nowrap
+      set nofoldenable
+
+      "Highlight search
+      set cmdheight=1
+      set wildcharm=<tab>
+
+      "Timouts
+      set updatetime=1
+      set shortmess+=c
+      set tm=500
+      set hidden
+
+      "Disable swap and backup files
+      set noswapfile
+      set nobackup
+      set nowritebackup
+
+      "Disable Bell"
+      set noerrorbells
+      set novisualbell
+
+      "Split Right and Below
+      set splitright
+      set splitbelow
+
+      "set Leader Key to space
+      let mapleader=" "
+      let maplocalleader=" "
+
+      "disabe mouse and arrow keys
+      set mouse=
+      noremap <Up> <Nop>
+      noremap <Down> <Nop>
+      noremap <Left> <Nop>
+      noremap <Right> <Nop>
     '';
 }

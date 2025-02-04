@@ -14,7 +14,6 @@
     nui-nvim
     popup-nvim
     vim-illuminate
-    nvim-notify
     vim-numbertoggle
     {
       plugin = lazygit-nvim;

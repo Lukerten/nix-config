@@ -76,7 +76,6 @@
               },
               -- :Noice errors
               errors = {
-                -- options for the message history that you get with `:Noice`
                 view = "popup",
                 opts = { enter = true, format = "details" },
                 filter = { error = true },

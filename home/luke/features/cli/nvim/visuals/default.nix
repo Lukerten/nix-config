@@ -4,8 +4,9 @@
     ./bufferline.nix
     ./fidget.nix
     ./gitsigns.nix
-    ./ibf.nix
+    ./ibl.nix
     ./noice.nix
+    ./notify.nix
     ./nvim-tree.nix
     ./statusline.nix
     ./todo.nix

@@ -3,64 +3,7 @@
   config,
   lib,
   ...
-}: let
-  color = pkgs.writeText "color.vim" (import ./theme.nix config.colorscheme);
-in {
-  xdg.configFile."nvim/color.vim".source = color;
-  programs.neovim.extraConfig =
-    # vim
-    ''
-      "Use system clipboard
-      set clipboard=unnamedplus
-
-      "Source colorscheme
-      source ${color}
-
-      "I hate vims folding
-      set nofoldenable
-
-      "Lets us easily trigger completion from binds
-      set wildcharm=<tab>
-
-      "Tabs
-      set tabstop=2 "2 char-wide tab
-      set softtabstop=0 "Use same length as 'tabstop'
-      set shiftwidth=0 "Use same length as 'tabstop'
-      set expandtab "Use spaces
-
-      "Line numbers
-      set number
-
-      "disable line wrap
-      set nowrap
-
-      "Highlight search
-      set cmdheight=1
-
-      "Timouts
-      set updatetime=1
-      set shortmess+=c
-      set tm=500
-      set hidden
-
-      "Disable swap and backup files
-      set noswapfile
-      set nobackup
-      set nowritebackup
-
-      "Disable Bell"
-      set noerrorbells
-      set novisualbell
-
-      "Split Right and Below
-      set splitright
-      set splitbelow
-
-      "set Leader Key to space
-      let mapleader=" "
-      let maplocalleader=" "
-    '';
-
+}: {
   programs.neovim.extraLuaConfig =
     # lua
     ''
