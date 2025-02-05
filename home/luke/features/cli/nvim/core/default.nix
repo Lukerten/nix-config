@@ -87,6 +87,5 @@ in {
       add_sign("DiagnosticSignWarn", " ")
       add_sign("DiagnosticSignHint", "󰌶 ")
       add_sign("DiagnosticSignInfo", " ")
-      })
     '';
 }
