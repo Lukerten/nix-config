@@ -26,199 +26,236 @@
 # | Vue                       | vue-language-server        |                  |
 # | YAML                      | yaml-language-server       |                  |
 # | Zig                       | zig-language-server        |                  |
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.helix = {
+    extraPackages = with pkgs; [
+      bash-language-server
+      biome
+      clang-tools
+      docker-compose-language-service
+      dockerfile-language-server-nodejs
+      golangci-lint
+      golangci-lint-langserver
+      gopls
+      gotools
+      marksman
+      nil
+      nixd
+      nixpkgs-fmt
+      nodePackages.prettier
+      nodePackages.typescript-language-server
+      sql-formatter
+      ruff
+      (python3.withPackages (p: (with p; [
+        python-lsp-ruff
+        python-lsp-server
+      ])))
+      rust-analyzer
+      taplo
+      taplo-lsp
+      terraform-ls
+      typescript
+      vscode-langservers-extracted
+      yaml-language-server
+    ];
     languages = {
+      language-server.biome = {
+        command = "biome";
+        args = ["lsp-proxy"];
+      };
+
+      language-server.rust-analyzer.config.check = {
+        command = "clippy";
+      };
+
+      language-server.yaml-language-server.config.yaml.schemas = {
+        kubernetes = "k8s/*.yaml";
+      };
+
+      language-server.typescript-language-server.config.tsserver = {
+        path = "${pkgs.typescript}/lib/node_modules/typescript/lib/tsserver.js";
+      };
+
       language = [
         {
-          name = "bash";
-          language-servers = ["bash-ls"];
-        }
-        {
-          name = "c";
-          formatter.command = "clang-format";
-          language-servers = ["clangd"];
-        }
-        {
-          name = "cpp";
-          language-servers = ["clangd"];
-          formatter.command = "clang-format";
-        }
-        {
           name = "css";
-          language-servers = ["css-ls"];
-        }
-        {
-          name = "docker-compose";
-          language-servers = ["docker-compose-ls"];
-        }
-        {
-          name = "dockerfile";
-          language-servers = ["docker-ls"];
-        }
-        {
-          name = "erlang";
-          language-servers = ["erlang-ls"];
+          language-servers = ["vscode-css-language-server"];
+          formatter = {
+            command = "prettier";
+            args = ["--stdin-filepath" "file.css"];
+          };
+          auto-format = true;
         }
         {
           name = "go";
-          language-servers = ["gopls"];
-          formatter.command = "dlv";
+          language-servers = ["gopls" "golangci-lint-lsp"];
+          formatter = {
+            command = "goimports";
+          };
+          auto-format = true;
         }
         {
           name = "html";
-          language-servers = ["html-ls"];
-        }
-        {
-          name = "hyprlang";
-          language-servers = ["hypr-ls"];
-        }
-        {
-          name = "java";
-          language-servers = ["jdtls"];
+          language-servers = ["vscode-html-language-server"];
+          formatter = {
+            command = "prettier";
+            args = ["--stdin-filepath" "file.html"];
+          };
+          auto-format = true;
         }
         {
           name = "javascript";
-          language-servers = ["ts-ls"];
-          formatter.command = "prettier";
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = ["format"];
+            }
+            "biome"
+          ];
+          auto-format = true;
         }
         {
           name = "json";
-          language-servers = ["json-ls"];
+          language-servers = [
+            {
+              name = "vscode-json-language-server";
+              except-features = ["format"];
+            }
+            "biome"
+          ];
+          formatter = {
+            command = "biome";
+            args = ["format" "--indent-style" "space" "--stdin-file-path" "file.json"];
+          };
+          auto-format = true;
         }
         {
-          name = "lua";
-          language-servers = ["lua-lsp"];
+          name = "jsonc";
+          language-servers = [
+            {
+              name = "vscode-json-language-server";
+              except-features = ["format"];
+            }
+            "biome"
+          ];
+          formatter = {
+            command = "biome";
+            args = ["format" "--indent-style" "space" "--stdin-file-path" "file.jsonc"];
+          };
+          file-types = ["jsonc" "hujson"];
+          auto-format = true;
+        }
+        {
+          name = "jsx";
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = ["format"];
+            }
+            "biome"
+          ];
+          formatter = {
+            command = "biome";
+            args = ["format" "--indent-style" "space" "--stdin-file-path" "file.jsx"];
+          };
+          auto-format = true;
         }
         {
           name = "markdown";
           language-servers = ["marksman"];
-        }
-        {
-          name = "meson";
-          language-servers = ["mesonlsp"];
+          formatter = {
+            command = "prettier";
+            args = ["--stdin-filepath" "file.md"];
+          };
+          auto-format = true;
         }
         {
           name = "nix";
+          formatter = {
+            command = "nixpkgs-fmt";
+          };
           auto-format = true;
-          formatter.command = "alejandra";
-          language-servers = ["nixd" "nil"];
-        }
-        {
-          name = "php";
-          language-servers = ["intelephense"];
         }
         {
           name = "python";
-          language-servers = ["ruff"];
+          language-servers = ["pylsp"];
+          formatter = {
+            command = "sh";
+            args = ["-c" "ruff check --select I --fix - | ruff format --line-length 88 -"];
+          };
+          auto-format = true;
         }
         {
           name = "rust";
           language-servers = ["rust-analyzer"];
+          auto-format = true;
         }
         {
-          name = "svelte";
-          language-servers = ["svelte-ls"];
+          name = "scss";
+          language-servers = ["vscode-css-language-server"];
+          formatter = {
+            command = "prettier";
+            args = ["--stdin-filepath" "file.scss"];
+          };
+          auto-format = true;
         }
         {
-          name = "tfvars";
-          language-servers = ["terraform-ls"];
+          name = "sql";
+          formatter = {
+            command = "sql-formatter";
+            args = ["-l" "postgresql" "-c" "{\"keywordCase\": \"lower\", \"dataTypeCase\": \"lower\", \"functionCase\": \"lower\", \"expressionWidth\": 120, \"tabWidth\": 4}"];
+          };
+          auto-format = true;
         }
         {
-          name = "vue";
-          language-servers = ["vue-ls"];
+          name = "toml";
+          language-servers = ["taplo"];
+          formatter = {
+            command = "taplo";
+            args = ["fmt" "-o" "column_width=120" "-"];
+          };
+          auto-format = true;
+        }
+        {
+          name = "tsx";
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = ["format"];
+            }
+            "biome"
+          ];
+          formatter = {
+            command = "biome";
+            args = ["format" "--indent-style" "space" "--stdin-file-path" "file.tsx"];
+          };
+          auto-format = true;
+        }
+        {
+          name = "typescript";
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = ["format"];
+            }
+            "biome"
+          ];
+          formatter = {
+            command = "biome";
+            args = ["format" "--indent-style" "space" "--stdin-file-path" "file.ts"];
+          };
+          auto-format = true;
         }
         {
           name = "yaml";
-          language-servers = ["yaml-ls"];
-        }
-        {
-          name = "zig";
-          language-servers = ["zig-ls"];
+          language-servers = ["yaml-language-server"];
+          formatter = {
+            command = "prettier";
+            args = ["--stdin-filepath" "file.yaml"];
+          };
+          auto-format = true;
         }
       ];
-      language-server = {
-        bash-ls = {
-          command = "${pkgs.bash-language-server}/bin/bash-language-server";
-        };
-        clangd = {
-          command = "${pkgs.clang-tools}/bin/clangd";
-        };
-        css-ls = {
-          command = "${pkgs.vscode-langservers-extracted}/bin/css-languageserver";
-        };
-        docker-compose-ls = {
-          command = "${pkgs.docker-compose-language-service}/bin/docker-compose-language-service";
-        };
-        docker-ls = {
-          command = "${pkgs.dockerfile-language-server-nodejs}/bin/dockerfile-language-server-nodejs";
-        };
-        erlang-ls = {
-          command = "${pkgs.erlang-ls}/bin/erlang-ls";
-        };
-        gopl = {
-          command = "${pkgs.gopls}/bin/gopls";
-        };
-        html-ls = {
-          command = "${pkgs.vscode-langservers-extracted}/bin/html-languageserver";
-        };
-        hypr-ls = {
-          command = "${pkgs.hyprls}/bin/hyprls";
-        };
-        jdtls = {
-          command = "${pkgs.jdt-language-server}/bin/jdt-language-server";
-        };
-        ts-ls = {
-          command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
-        };
-        json-ls = {
-          command = "${pkgs.vscode-langservers-extracted}/bin/json-languageserver";
-        };
-        lua-lsp = {
-          command = "${pkgs.lua-language-server}/bin/lua-language-server";
-        };
-        marksman = {
-          command = "${pkgs.marksman}/bin/marksman";
-        };
-        mesonlsp = {
-          command = "${pkgs.mesonlsp}/bin/mesonlsp";
-        };
-        nixd = {
-          command = "${pkgs.nixd}/bin/nixd";
-          config.formatting.command = "alejandra";
-        };
-        nil = {
-          command = "${pkgs.nil}/bin/nil";
-        };
-        intelephense = {
-          command = "${pkgs.intelephense}/bin/intelephense";
-        };
-        ruff = {
-          command = "${pkgs.ruff}/bin/ruff";
-        };
-        rust-analyzer = {
-          command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-        };
-        svelte-ls = {
-          command = "${pkgs.svelte-language-server}/bin/svelte-language-server";
-        };
-        terraform-ls = {
-          command = "${pkgs.terraform-ls}/bin/terraform-ls";
-        };
-        vue-ls = {
-          command = "${pkgs.vue-language-server}/bin/vue-language-server";
-        };
-        yaml-ls = {
-          command = "${pkgs.yaml-language-server}/bin/yaml-language-server";
-        };
-        zig-ls = {
-          command = "${pkgs.zls}/bin/zls";
-        };
-      };
     };
   };
 }
