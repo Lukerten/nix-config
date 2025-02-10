@@ -13,7 +13,6 @@ in {
   config.programs = mkIf cfg.enable {
     unity.enable = mkDefault true;
     godot.enable = mkDefault true;
-    blender.enable = mkDefault true;
     vscode.enable = mkDefault true;
   };
 
