@@ -1,7 +1,6 @@
 {
   imports = [
     ./helix
-    ./nushell
     ./nvim
     ./direnv.nix
     ./fish.nix

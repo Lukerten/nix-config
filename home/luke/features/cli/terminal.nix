@@ -14,6 +14,9 @@
   hasNeovim = config.programs.neovim.enable;
   hasNeomutt = config.programs.neomutt.enable;
   hasTmux = config.programs.tmux.enable;
+  hasBat = config.programs.bat.enable;
+  hasEza = config.programs.eza.enable;
+  hasRipgrep = config.programs.ripgrep.enable;
 in {
   home.shellAliases = rec {
     n = "nix";
@@ -46,6 +49,15 @@ in {
     aws-switch = mkIf hasAwsCli "export AWS_PROFILE=(aws configure list-profiles | fzf)";
     clipboard = mkIf hasCliphistory "cliphist-fzf";
     awssw = aws-switch;
+
+    grep = mkIf hasRipgrep "rg";
+    cat = mkIf hasBat "bat";
+    ls = mkIf hasEza "exa";
+    ll = mkIf hasEza "exa -l";
+    la = mkIf hasEza "exa -la";
+    lt = mkIf hasEza "exa --icons --tree -a";
+    l = ls;
+    tree = lt;
   };
 
   programs = {
