@@ -20,7 +20,7 @@
     ../../optional/gamemode.nix
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
-    ../../optional/regreet.nix
+    ../../optional/tuigreet.nix
     ../../optional/systemd-boot.nix
     ../../optional/thunar.nix
     ../../optional/x11-no-suspend.nix
