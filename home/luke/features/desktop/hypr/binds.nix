@@ -85,7 +85,6 @@
         # Default applications
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
         "SUPER,a,exec,${defaultApp "x-scheme-handler/https"}"
-        "SUPER,e,exec,${defaultApp "inode/directory"}"
 
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"

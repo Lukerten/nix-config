@@ -74,7 +74,6 @@ in {
     };
     jq.enable = true;
     pfetch.enable = true;
-    ranger.enable = true;
     ripgrep.enable = true;
     zoxide.enable = true;
   };

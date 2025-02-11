@@ -12,7 +12,6 @@
     ./gtk.nix
     ./kdeconnect.nix
     ./qt.nix
-    ./thunar.nix
     ./thunderbird.nix
     ./vesktop.nix
   ];

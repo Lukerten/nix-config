@@ -10,6 +10,7 @@
     ./jujutsu.nix
     ./nix-index.nix
     ./pass.nix
+    ./ranger.nix
     ./ssh.nix
     ./starship.nix
     ./terminal.nix
