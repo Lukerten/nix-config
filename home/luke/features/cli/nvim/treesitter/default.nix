@@ -40,10 +40,12 @@
           # lua
           ''
             vim.opt.conceallevel = 2
+            vim.cmd("syntax off") -- Disable old Vim syntax highlighting
 
             require'nvim-treesitter.configs'.setup {
               highlight = {
                 enable = true,
+                additional_vim_regex_highlighting = false,
                 disable = {},
               },
 
