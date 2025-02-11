@@ -894,6 +894,12 @@
     "sha256": "1qf7n3mxz68gip646f4qpvlj85flc5694lp48rc6gwv4gidn51fl"
   },
   {
+    "name": "cyberpunk-car",
+    "id": "yJJEITk",
+    "ext": "jpeg",
+    "sha256": "0rfx6sanc5sr78pfydql0knccrk6n10ip1a8phbcc0maab1jckh4"
+  },
+  {
     "name": "cyberpunk-city",
     "id": "JD65zCQ",
     "ext": "jpeg",
@@ -1326,6 +1332,12 @@
     "sha256": "1r8fdi4k53lxq213m56rkhi8aj8b5my50i2my2k652h9l847zxq0"
   },
   {
+    "name": "landscape-los-angeles",
+    "id": "7hpDNk1",
+    "ext": "jpeg",
+    "sha256": "0fa6hc1hj3kq9cmg3dfir7sgy0qxq07mymnpj01hv1smfrv7yx61"
+  },
+  {
     "name": "landscape-mountains-purple-blue",
     "id": "oLnpVAh",
     "ext": "jpeg",
@@ -1336,6 +1348,12 @@
     "id": "Ny8Qt2W",
     "ext": "jpeg",
     "sha256": "1kzk919rz1g11na0hfihwk1dlcrjnd470aqpxkvnxw1zy2yaxsg8"
+  },
+  {
+    "name": "landscape-pink-purple",
+    "id": "C8x1Xoa",
+    "ext": "jpeg",
+    "sha256": "057aai4713h8wciql1zbpq4ylzbb7n5zsgw4w8nnmf4fnl2dgalp"
   },
   {
     "name": "landscape-river-birds",
@@ -1968,10 +1986,40 @@
     "sha256": "1nwyrw353b57zfdqnrxh0bqz7d61aci1ybwmrr1pgpsf50ys30cy"
   },
   {
+    "name": "vaporwave-abstract",
+    "id": "55g4H0K",
+    "ext": "png",
+    "sha256": "0byz314ribpqs6s425jn83fcp5wbdlcslrfd10alwjwhhs5f2bmk"
+  },
+  {
+    "name": "vaporwave-angel",
+    "id": "kqY1ujn",
+    "ext": "png",
+    "sha256": "1lhcdakrjg9v15h09360a9li83fpak7sdpq8ixq775k6l98qfh7l"
+  },
+  {
     "name": "vaporwave-bebop",
     "id": "05g4weM",
     "ext": "jpeg",
     "sha256": "1xmxb4iws75qj7bn64jsi0jjkdzsk3wi8096nbzxfwplgy2k2mjg"
+  },
+  {
+    "name": "vaporwave-car-mountains",
+    "id": "9ttoipA",
+    "ext": "png",
+    "sha256": "1vwkrm04ck5dxfjwvxxqsqfk57m01n2v4xlxck5gq6jr2r9hr3nw"
+  },
+  {
+    "name": "vaporwave-circles",
+    "id": "8bVm1JV",
+    "ext": "jpeg",
+    "sha256": "0w9ygr64l6bc8z1zpamdmc53is1mqw2rxy6mfhpz0b3bhvx6rqqm"
+  },
+  {
+    "name": "vaporwave-japanese",
+    "id": "7V1AjzC",
+    "ext": "jpeg",
+    "sha256": "1m3yymsdl615j3yjnkx5r9lsmzzn7kzb5f7hfdvravi9iv7y8cp5"
   },
   {
     "name": "vaporwave-mountain",
@@ -1980,16 +2028,40 @@
     "sha256": "0wg6qnsbc3z0ncl17wv850qckky6bfvqf9hhxsg3n1cgml9am364"
   },
   {
+    "name": "vaporwave-pink-blue",
+    "id": "1sTrRdW",
+    "ext": "jpeg",
+    "sha256": "15x0a3wlwigd7109hiplrblay1rsxh3ajajbrh92sij1zyybcbpf"
+  },
+  {
+    "name": "vaporwave-rainbow",
+    "id": "F3KoI5k",
+    "ext": "png",
+    "sha256": "1nwr2lcsj8y6lrqbdp0p9nqg1xxprnawij6ddm0rlxs4xc5ds100"
+  },
+  {
     "name": "vaporwave-samurai",
     "id": "AhtJDfk",
     "ext": "jpeg",
     "sha256": "022xd7ki9i3dj69isz0jqr3k5ll9b9684acgpv3rv5fzi3ajq8l6"
   },
   {
+    "name": "vaporwave-sunset",
+    "id": "qfnbc0h",
+    "ext": "jpeg",
+    "sha256": "069wd2n2ny53f87hifc5v562l9q8q25x3ra9rv9ng42wfkwg1w4q"
+  },
+  {
     "name": "vaporwave-wave",
     "id": "l7ar9cf",
     "ext": "png",
     "sha256": "15pmz0ryal99zbmai7zb84b9wxpzbzrl4lvll6jjrms52clihz2a"
+  },
+  {
+    "name": "vaporwave-woman",
+    "id": "4IDrZzP",
+    "ext": "png",
+    "sha256": "04n8y2f6wzps4adgr36d0rifi42clvg8xdcxspwajnj8l87lzy86"
   },
   {
     "name": "waporwave-palm",

@@ -5,7 +5,7 @@
 }: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.back-alley;
+  wallpaper = lib.mkDefault pkgs.wallpapers.vaporwave-woman;
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;
