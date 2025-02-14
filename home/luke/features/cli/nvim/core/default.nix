@@ -21,9 +21,6 @@ in {
       "Source colorscheme
       source ${color}
 
-      "Use system clipboard
-      set clipboard=unnamedplus
-
       "Tabs
       set tabstop=2 "2 char-wide tab
       set softtabstop=0 "Use same length as 'tabstop'

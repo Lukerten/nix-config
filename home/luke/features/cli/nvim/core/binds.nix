@@ -93,6 +93,14 @@
       vim.api.nvim_set_keymap('n', 'K', '<cmd>m .-2<CR>==', { noremap = true, silent = true, desc = 'Move line up' })
       vim.api.nvim_set_keymap('n', 'J', '<cmd>m .+1<CR>==', { noremap = true, silent = true, desc = 'Move line down' })
 
+      -- copy to system clipboard
+      vim.api.nvim_set_keymap("n", "<leader>c", '"+yy', { noremap = true, silent = true, desc = 'Copy to clipboard' })
+      vim.api.nvim_set_keymap("v", "<leader>c", '"+y', { noremap = true, silent = true, desc = 'Copy to clipboard' })
+
+      -- paste from system clipboard
+      vim.api.nvim_set_keymap("n", "<leader>p", '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
+      vim.api.nvim_set_keymap("v", "<leader>p", '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
+
     '';
 
   programs.neovim.plugins = with pkgs.vimPlugins; [
