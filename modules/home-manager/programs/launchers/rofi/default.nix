@@ -33,6 +33,12 @@ in {
       };
     };
 
+    columns = lib.mkOption {
+      type = lib.types.int;
+      default = 1;
+      description = "Columns for rofi";
+    };
+
     align = lib.mkOption {
       type = lib.types.enum ["north" "east" "south" "west"];
       default = "south";
@@ -185,7 +191,7 @@ in {
 
         "listview" = {
           enabled = true;
-          columns = 1;
+          columns = cfg.columns;
           cycle = true;
           dynamic = true;
           scrollbar = false;
