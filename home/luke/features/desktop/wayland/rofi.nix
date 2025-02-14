@@ -26,8 +26,9 @@ in {
     };
     xoffset = 10;
 
-    pass.enable = true;
     cliphist.enable = true;
+    emoji.enable = true;
+    pass.enable = true;
+    specialisation.enable = true;
   };
-
 }

@@ -9,6 +9,7 @@
 in {
   imports = [
     ./cliphist.nix
+    ./emoji.nix
     ./specialisation.nix
   ];
 

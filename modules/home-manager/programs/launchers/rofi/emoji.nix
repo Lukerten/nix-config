@@ -7,7 +7,7 @@
   cfg = config.programs.rofi;
   inherit (lib) mkIf mkOption types;
 in {
-  options.programs.rofi.cliphist = {
+  options.programs.rofi.emoji = {
     enable = mkOption {
       type = types.bool;
       default = config.services.cliphist.enable && cfg.enable;
@@ -15,19 +15,13 @@ in {
     };
     package = mkOption {
       type = types.package;
-      default = pkgs.writeShellScriptBin "rofi-cliphist" ''
-        selection=$(cliphist list | rofi -dmenu -i -p "󰅇")
-
-        if [ -n "$selection" ]; then
-          entry_id=$(echo "$selection" | awk '{print $1}')
-          cliphist decode "$entry_id" | wl-copy
-        fi
-      '';
+      default = pkgs.rofimoji;
       description = "Package for clipboard history for rofi";
     };
   };
 
-  config = mkIf cfg.cliphist.enable {
-    home.packages = [cfg.cliphist.package];
+  config = mkIf cfg.emoji.enable {
+    home.packages = [cfg.emoji.package];
+    programs.rofi.plugins = [ cfg.emoji.package ];
   };
 }
