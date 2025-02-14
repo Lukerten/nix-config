@@ -161,6 +161,12 @@
         ])
       ++
       (let
+        rofi-emoji = lib.getExe config.programs.rofi.emoji.package;
+      in lib.optionals config.programs.rofi.emoji.enable [
+          "SUPER,e,exec,${rofi-emoji}"
+        ])
+      ++
+      (let
         rofi-pass = lib.getExe config.programs.rofi.pass.package;
       in
         lib.optionals config.programs.rofi.pass.enable [
@@ -169,19 +175,12 @@
           "SUPER,p,exec,${rofi-pass}"
           "SHIFTSUPER,p,exec,${rofi-pass} fill"
         ])
-      ++ (let
-        cliphist = lib.getExe config.services.cliphist.package;
-        wofi = lib.getExe config.programs.wofi.package;
+      ++
+      (let
+          rofi-cliphist = lib.getExe config.programs.rofi.cliphist.package;
       in
-        lib.optionals config.services.cliphist.enable [
-          ''SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
-        ])
-        ++
-        (let
-          wofi-emoji = lib.getExe config.programs.wofi.emoji.package;
-        in
-          lib.optionals config.programs.wofi.emoji.enable [
-            "SUPER,e,exec,${wofi-emoji}"
+        lib.optionals config.programs.rofi.cliphist.enable [
+          "SUPER,c,exec,${rofi-cliphist}"
         ])
       ++
       # Hyprlock
