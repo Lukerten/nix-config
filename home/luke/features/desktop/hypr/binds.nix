@@ -145,22 +145,29 @@
       ++
       # Launcher
       (let
-        wofi = lib.getExe config.programs.wofi.package;
+        rofi = lib.getExe config.programs.rofi.package;
       in
-        lib.optionals config.programs.wofi.enable [
-          "SUPER,d,exec,${wofi} -S drun --location left --width 25% --height 90% -x 10 --no-action"
-          "SUPER,s,exec,specialisation $(specialisation | ${wofi} -S dmenu)"
-          "SUPER,x,exec,${wofi} -S run"
+        lib.optionals config.programs.rofi.enable [
+          "SUPER,space,exec,${rofi} -show drun"
+          "SUPER,d,exec,${rofi} -show drun"
+          "SUPER,x,exec,${rofi} -show run"
         ])
-      ++ (let
-        pass-wofi = lib.getExe config.programs.wofi.pass.package;
+      ++
+      (let
+        rofi-specialisation = lib.getExe config.programs.rofi.specialisation.package;
       in
-        lib.optionals config.programs.wofi.pass.enable [
-          ",XF86Calculator,exec,${pass-wofi}"
-          "SHIFT,XF86Calculator,exec,${pass-wofi} fill"
-
-          "SUPER,p,exec,${pass-wofi}"
-          "SHIFTSUPER,p,exec,${pass-wofi} fill"
+        lib.optionals config.programs.rofi.specialisation.enable [
+          "SUPER,s,exec,${rofi-specialisation}"
+        ])
+      ++
+      (let
+        rofi-pass = lib.getExe config.programs.rofi.pass.package;
+      in
+        lib.optionals config.programs.rofi.pass.enable [
+          ",XF86Calculator,exec,${rofi-pass}"
+          "SHIFT,XF86Calculator,exec,${rofi-pass} fill"
+          "SUPER,p,exec,${rofi-pass}"
+          "SHIFTSUPER,p,exec,${rofi-pass} fill"
         ])
       ++ (let
         cliphist = lib.getExe config.services.cliphist.package;
@@ -168,6 +175,13 @@
       in
         lib.optionals config.services.cliphist.enable [
           ''SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+        ])
+        ++
+        (let
+          wofi-emoji = lib.getExe config.programs.wofi.emoji.package;
+        in
+          lib.optionals config.programs.wofi.emoji.enable [
+            "SUPER,e,exec,${wofi-emoji}"
         ])
       ++
       # Hyprlock

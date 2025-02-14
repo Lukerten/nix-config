@@ -37,6 +37,7 @@
         "layersOut,1,3,easein,slide"
         "windowsOut,1,3,easein,slide"
         "border,1,3,easeout"
+        "borderangle, 1, 100, easeout , loop"
         "fadeDim,1,3,easeinout"
         "fadeShadow,1,3,easeinout"
         "fadeSwitch,1,3,easeinout"

@@ -9,11 +9,11 @@
     ./imv.nix
     ./mako.nix
     ./mpv.nix
+    ./rofi.nix
     ./qutebrowser.nix
     ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
-    ./wofi.nix
     ./zathura.nix
   ];
 

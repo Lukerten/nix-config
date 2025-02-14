@@ -8,6 +8,7 @@
     settings = let
       rgb = color: "rgb(${lib.removePrefix "#" color})";
       rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
+      c = config.colorscheme.colors;
     in {
       general = {
         gaps_in = 5;
@@ -15,8 +16,8 @@
         border_size = 2;
         resize_on_border = true;
         allow_tearing = true;
-        "col.active_border" = rgb config.colorscheme.colors.primary;
-        "col.inactive_border" = rgb config.colorscheme.colors.surface;
+        "col.active_border" = "${rgb c.secondary} ${rgb c.primary} ${rgb c.tertiary} 45deg";
+        "col.inactive_border" = "${rgb c.surface}";
       };
       cursor.inactive_timeout = 4;
       group = {

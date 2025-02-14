@@ -6,12 +6,11 @@
       kdeconnect-pointer = "class:org.kdeconnect.daemon";
       wineTray = "class:explorer.exe";
       rsiLauncher = "class:rsi launcher.exe";
-      steamBigPicture = "title:Steam Big Picture Mode";
+      steamBigPicture = "title:Steam Big Picture Mode";#
     in [
       "nofocus, ${sweethome3d-tooltips}"
 
       "immediate, ${steamGame}"
-
       "size 100% 100%, ${kdeconnect-pointer}"
       "float, ${kdeconnect-pointer}"
       "nofocus, ${kdeconnect-pointer}"
@@ -21,11 +20,8 @@
       "noborder, ${kdeconnect-pointer}"
       "plugin:hyprbars:nobar, ${kdeconnect-pointer}"
       "suppressevent fullscreen, ${kdeconnect-pointer}"
-
       "workspace special silent, ${wineTray}"
-
       "tile, ${rsiLauncher}"
-
       "fullscreen, ${steamBigPicture}"
     ];
   };
