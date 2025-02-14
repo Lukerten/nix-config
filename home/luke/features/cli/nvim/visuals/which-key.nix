@@ -16,6 +16,11 @@
               mappings = false,
             },
           }
+
+          wk.add({
+            mode = { "n" },
+            {"<leader>Gb", "Blame line"}
+          })
         '';
     }
   ];

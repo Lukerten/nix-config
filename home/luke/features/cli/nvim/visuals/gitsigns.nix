@@ -38,8 +38,7 @@
                 opts.buffer = bufnr
                 vim.keymap.set(mode, l, r, opts)
               end
-
-              map('n', '<leader>b', function() gs.blame_line{full=true} end)
+              map("n","<leader>Gb",function() gs.blame_line{full=true} end)
             end
           }
         '';

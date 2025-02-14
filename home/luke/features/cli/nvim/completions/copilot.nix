@@ -70,7 +70,7 @@
           vim.keymap.set({ 'n', 'v' }, '<leader>Cs', '<cmd>CopilotChatStop<cr>', { silent = true, noremap = true, desc = "CopilotChat - Stop current window output" })
           vim.keymap.set({ 'n', 'v' }, '<leader>Ca', '<cmd>lua copilot_chat_action()<cr>', { silent = true, noremap = true, desc = "CopilotChat - Select action" })
           vim.keymap.set({ 'n', 'v' }, '<leader>Cc', '<cmd>lua copilot_chat()<cr>', { silent = true, noremap = true, desc = "CopilotChat - Ask a question" })
-          vim.keymap.set({ 'n', 'v' }, '<leader>a', '<cmd>lua copilot_chat()<cr>', { silent = true, noremap = true, desc = " Ask Copilot" })
+          vim.keymap.set({ 'n', 'v' }, '<leader>a', '<cmd>lua copilot_chat()<cr>', { silent = true, noremap = true, desc = "Ask Copilot" })
 
           -- Autocommand to map 'q' to close buffer when filetype is copilot-chat
           vim.cmd([[
