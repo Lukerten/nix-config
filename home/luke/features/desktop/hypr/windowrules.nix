@@ -1,6 +1,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     windowrulev2 = let
+      rofi = "class:Rofi";
       sweethome3d-tooltips = "title:win[0-9],class:com-eteks-sweethome3d-SweetHome3DBootstrap";
       steamGame = "class:steam_app_[0-9]*";
       kdeconnect-pointer = "class:org.kdeconnect.daemon";
@@ -23,6 +24,7 @@
       "workspace special silent, ${wineTray}"
       "tile, ${rsiLauncher}"
       "fullscreen, ${steamBigPicture}"
+      "stayfocused, ${rofi}"
     ];
   };
 }

@@ -102,6 +102,7 @@ in {
         display-window = " ";
         display-ssh = " ";
         drun-display-format = "{name}";
+        click-to-exit=true;
       };
       theme = {
         "*" = {
