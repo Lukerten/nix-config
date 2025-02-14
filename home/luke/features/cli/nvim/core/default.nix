@@ -64,8 +64,7 @@ in {
       let mapleader=" "
       let maplocalleader=" "
 
-      "disabe mouse and arrow keys
-      set mouse=
+      "arrow keys
       noremap <Up> <Nop>
       noremap <Down> <Nop>
       noremap <Left> <Nop>
