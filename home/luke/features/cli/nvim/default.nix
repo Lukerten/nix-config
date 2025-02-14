@@ -18,4 +18,3 @@
   programs.neovim.enable = true;
   programs.pvim.enable = true;
 }
-

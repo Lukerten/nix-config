@@ -6,7 +6,7 @@
       kdeconnect-pointer = "class:org.kdeconnect.daemon";
       wineTray = "class:explorer.exe";
       rsiLauncher = "class:rsi launcher.exe";
-      steamBigPicture = "title:Steam Big Picture Mode";#
+      steamBigPicture = "title:Steam Big Picture Mode"; #
     in [
       "nofocus, ${sweethome3d-tooltips}"
 

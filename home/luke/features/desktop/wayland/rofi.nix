@@ -17,7 +17,7 @@ in {
       active = rmHash colors.secondary;
       urgent = rmHash colors.error_container;
     };
-    font = let font= config.fontProfiles.regular; in "${font.name} ${toString font.size}";
+    font = let font = config.fontProfiles.regular; in "${font.name} ${toString font.size}";
     align = "west";
     size = {
       width = 30;

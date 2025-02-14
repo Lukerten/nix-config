@@ -152,21 +152,19 @@
           "SUPER,d,exec,${rofi} -show drun"
           "SUPER,x,exec,${rofi} -show run"
         ])
-      ++
-      (let
+      ++ (let
         rofi-specialisation = lib.getExe config.programs.rofi.specialisation.package;
       in
         lib.optionals config.programs.rofi.specialisation.enable [
           "SUPER,s,exec,${rofi-specialisation}"
         ])
-      ++
-      (let
+      ++ (let
         rofi-emoji = lib.getExe config.programs.rofi.emoji.package;
-      in lib.optionals config.programs.rofi.emoji.enable [
+      in
+        lib.optionals config.programs.rofi.emoji.enable [
           "SUPER,e,exec,${rofi-emoji}"
         ])
-      ++
-      (let
+      ++ (let
         rofi-pass = lib.getExe config.programs.rofi.pass.package;
       in
         lib.optionals config.programs.rofi.pass.enable [
@@ -175,9 +173,8 @@
           "SUPER,p,exec,${rofi-pass}"
           "SHIFTSUPER,p,exec,${rofi-pass} fill"
         ])
-      ++
-      (let
-          rofi-cliphist = lib.getExe config.programs.rofi.cliphist.package;
+      ++ (let
+        rofi-cliphist = lib.getExe config.programs.rofi.cliphist.package;
       in
         lib.optionals config.programs.rofi.cliphist.enable [
           "SUPER,c,exec,${rofi-cliphist}"

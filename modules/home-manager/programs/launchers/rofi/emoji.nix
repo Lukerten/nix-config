@@ -22,6 +22,6 @@ in {
 
   config = mkIf cfg.emoji.enable {
     home.packages = [cfg.emoji.package];
-    programs.rofi.plugins = [ cfg.emoji.package ];
+    programs.rofi.plugins = [cfg.emoji.package];
   };
 }

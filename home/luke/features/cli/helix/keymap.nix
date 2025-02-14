@@ -1,13 +1,14 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }: {
   programs.helix.settings.keys = {
     normal = {
       H = "extend_char_left";
       x = "extend_to_line_bounds";
-      J = [ "extend_line_down" "extend_to_line_bounds" ];
-      K = [ "extend_line_up" "extend_to_line_bounds" ];
+      J = ["extend_line_down" "extend_to_line_bounds"];
+      K = ["extend_line_up" "extend_to_line_bounds"];
       L = "extend_char_right";
       B = "extend_prev_word_start";
       W = "extend_next_word_start";
@@ -26,7 +27,7 @@
       A-F = "extend_prev_char";
       A-j = "join_selections";
       A-k = "keep_selections";
-      M = [ "select_mode" "match_brackets" "normal_mode" ];
+      M = ["select_mode" "match_brackets" "normal_mode"];
       "#" = "toggle_comments";
       A-l = "extend_to_line_end";
       A-h = "extend_to_line_start";
@@ -38,8 +39,8 @@
       N = "extend_search_next";
       A-n = "search_prev";
       A-N = "extend_search_prev";
-      C-d = [ "page_cursor_half_down" "align_view_center" ];
-      C-u = [ "page_cursor_half_up" "align_view_center" ];
+      C-d = ["page_cursor_half_down" "align_view_center"];
+      C-u = ["page_cursor_half_up" "align_view_center"];
       tab = "move_parent_node_end";
       S-tab = "move_parent_node_start";
 
@@ -66,8 +67,8 @@
     };
 
     insert = {
-      C-u = [ "extend_to_line_bounds" "delete_selection_noyank" "open_above" ];
-      C-w = [ "move_prev_word_start" "delete_selection_noyank" ];
+      C-u = ["extend_to_line_bounds" "delete_selection_noyank" "open_above"];
+      C-w = ["move_prev_word_start" "delete_selection_noyank"];
       C-space = "completion";
       S-tab = "move_parent_node_start";
     };
