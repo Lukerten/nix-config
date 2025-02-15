@@ -253,7 +253,7 @@ in {
       window#waybar {
         padding: 0;
         border-radius: 0.5em;
-        background-color: ${toRGBA colors.surface "0.7"};
+        background-color: ${toRGBA colors.surface "1.0"};
         color: ${colors.on_surface};
       }
       tooltip {
