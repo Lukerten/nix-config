@@ -6,7 +6,6 @@
     ./obsidian.nix
     ./oil.nix
     ./presence.nix
-    ./vimwiki.nix
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [

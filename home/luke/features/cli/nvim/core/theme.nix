@@ -55,45 +55,45 @@ in
       hi CursorLine    guifg=NONE guibg=${c.tertiary_container} gui=NONE guisp=NONE
       hi CursorLineNr  guifg=${c.green} guibg=${c.surface_variant} gui=NONE guisp=NONE
       hi QuickFixLine  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE
-    hi PMenu         guifg=${c.on_surface} guibg=${c.surface_container_high} gui=NONE guisp=NONE
-    hi PMenuSel      guifg=${c.on_surface} guibg=${c.surface_container_low} gui=NONE guisp=NONE
-    hi TabLine       guifg=${c.on_surface} guibg=${c.surface_container_lowest} gui=NONE guisp=NONE
-    hi TabLineFill   guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE
-    hi TabLineSel    guifg=${c.on_surface} guibg=${c.primary} gui=NONE guisp=NONE
-    hi EndOfBuffer   guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
-    hi PMenu         guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE
-    hi PMenuSel      guifg=${c.surface_variant} guibg=${c.on_surface} gui=NONE guisp=NONE
+      hi PMenu         guifg=${c.on_surface} guibg=${c.surface_container_high} gui=NONE guisp=NONE
+      hi PMenuSel      guifg=${c.on_surface} guibg=${c.surface_container_low} gui=NONE guisp=NONE
+      hi TabLine       guifg=${c.on_surface} guibg=${c.surface_container_lowest} gui=NONE guisp=NONE
+      hi TabLineFill   guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE
+      hi TabLineSel    guifg=${c.on_surface} guibg=${c.primary} gui=NONE guisp=NONE
+      hi EndOfBuffer   guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
+      hi PMenu         guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE
+      hi PMenuSel      guifg=${c.surface_variant} guibg=${c.on_surface} gui=NONE guisp=NONE
       hi TabLine       guifg=${c.primary_container} guibg=${c.surface_container} gui=NONE guisp=NONE
       hi TabLineFill   guifg=${c.primary_container} guibg=${c.tertiary_container} gui=NONE guisp=NONE
       hi TabLineSel    guifg=${c.green} guibg=${c.primary} gui=NONE guisp=NONE
       hi EndOfBuffer   guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
 
-    hi Boolean       guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi Character     guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi Comment       guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE
-    hi Conditional   guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi Constant      guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi Define        guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi Delimiter     guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
-    hi Float         guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi Function      guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi Identifier    guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi Include       guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi Keyword       guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi Label         guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi Number        guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi Operator      guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi PreProc       guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi Repeat        guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi Special       guifg=${c.cyan} guibg=NONE gui=NONE guisp=NONE
-    hi SpecialChar   guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
-    hi Statement     guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi StorageClass  guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi String        guifg=${c.green} guibg=NONE gui=NONE guisp=NONE
-    hi Structure     guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi Tag           guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi Type          guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi Typedef       guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi Boolean       guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi Character     guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi Comment       guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE
+      hi Conditional   guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi Constant      guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi Define        guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi Delimiter     guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
+      hi Float         guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi Function      guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi Identifier    guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi Include       guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi Keyword       guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi Label         guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi Number        guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi Operator      guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi PreProc       guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi Repeat        guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi Special       guifg=${c.cyan} guibg=NONE gui=NONE guisp=NONE
+      hi SpecialChar   guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
+      hi Statement     guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi StorageClass  guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi String        guifg=${c.green} guibg=NONE gui=NONE guisp=NONE
+      hi Structure     guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi Tag           guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi Type          guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi Typedef       guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
 
       hi Todo          guifg=${c.surface_variant} guibg=${c.yellow} gui=NONE guisp=NONE
       hi Done          guifg=${c.surface_variant} guibg=${c.green} gui=NONE guisp=NONE
@@ -158,64 +158,64 @@ in
       hi link LspDiagnosticsUnderlineWarning     DiagnosticUnderlineWarning
       hi link LspDiagnosticsUnderlineInformation DiagnosticUnderlineInformation
       hi link LspDiagnosticsUnderlineHint        DiagnosticUnderlineHint
-    hi TSAnnotation          guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
-    hi TSAttribute           guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi TSBoolean             guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi TSCharacter           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSComment             guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE "was italic
-    hi TSConstructor         guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi TSConditional         guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi TSConstant            guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi TSConstBuiltin        guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE "was italic
-    hi TSConstMacro          guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSError               guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSException           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSField               guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi TSFloat               guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi TSFunction            guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi TSFuncBuiltin         guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE "was italic
-    hi TSFuncMacro           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSInclude             guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi TSKeyword             guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi TSKeywordFunction     guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi TSKeywordOperator     guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
-    hi TSLabel               guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi TSMethod              guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi TSNamespace           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSNone                guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi TSNumber              guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi TSOperator            guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi TSParameter           guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi TSParameterReference  guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi TSProperty            guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi TSPunctDelimiter      guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
-    hi TSPunctBracket        guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi TSPunctSpecial        guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi TSRepeat              guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi TSString              guifg=${c.green} guibg=NONE gui=NONE guisp=NONE
-    hi TSStringRegex         guifg=${c.cyan} guibg=NONE gui=NONE guisp=NONE
-    hi TSStringEscape        guifg=${c.cyan} guibg=NONE gui=NONE guisp=NONE
-    hi TSSymbol              guifg=${c.green} guibg=NONE gui=NONE guisp=NONE
-    hi TSTag                 guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi TSTagDelimiter        guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
-    hi TSText                guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
-    hi TSStrong              guifg=NONE guibg=NONE gui=bold guisp=NONE
-    hi TSEmphasis            guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE "was italic
-    hi TSUnderline           guifg=${c.surface} guibg=NONE gui=underline guisp=NONE
-    hi TSStrike              guifg=${c.surface} guibg=NONE gui=strikethrough guisp=NONE
-    hi TSTitle               guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
-    hi TSLiteral             guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
-    hi TSURI                 guifg=${c.primary} guibg=NONE gui=underline guisp=NONE
-    hi TSType                guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
-    hi TSTypeBuiltin         guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE "was italic
-    hi TSVariable            guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSVariableBuiltin     guifg=${c.red} guibg=NONE gui=NONE guisp=NONE "was italic
+      hi TSAnnotation          guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
+      hi TSAttribute           guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi TSBoolean             guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi TSCharacter           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi TSComment             guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE "was italic
+      hi TSConstructor         guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi TSConditional         guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi TSConstant            guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi TSConstBuiltin        guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE "was italic
+      hi TSConstMacro          guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi TSError               guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi TSException           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi TSField               guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi TSFloat               guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi TSFunction            guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi TSFuncBuiltin         guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE "was italic
+      hi TSFuncMacro           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi TSInclude             guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi TSKeyword             guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi TSKeywordFunction     guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi TSKeywordOperator     guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
+      hi TSLabel               guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi TSMethod              guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi TSNamespace           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi TSNone                guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi TSNumber              guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi TSOperator            guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi TSParameter           guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi TSParameterReference  guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi TSProperty            guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi TSPunctDelimiter      guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
+      hi TSPunctBracket        guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi TSPunctSpecial        guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi TSRepeat              guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi TSString              guifg=${c.green} guibg=NONE gui=NONE guisp=NONE
+      hi TSStringRegex         guifg=${c.cyan} guibg=NONE gui=NONE guisp=NONE
+      hi TSStringEscape        guifg=${c.cyan} guibg=NONE gui=NONE guisp=NONE
+      hi TSSymbol              guifg=${c.green} guibg=NONE gui=NONE guisp=NONE
+      hi TSTag                 guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi TSTagDelimiter        guifg=${c.error} guibg=NONE gui=NONE guisp=NONE
+      hi TSText                guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+      hi TSStrong              guifg=NONE guibg=NONE gui=bold guisp=NONE
+      hi TSEmphasis            guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE "was italic
+      hi TSUnderline           guifg=${c.surface} guibg=NONE gui=underline guisp=NONE
+      hi TSStrike              guifg=${c.surface} guibg=NONE gui=strikethrough guisp=NONE
+      hi TSTitle               guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
+      hi TSLiteral             guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
+      hi TSURI                 guifg=${c.primary} guibg=NONE gui=underline guisp=NONE
+      hi TSType                guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
+      hi TSTypeBuiltin         guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE "was italic
+      hi TSVariable            guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
+      hi TSVariableBuiltin     guifg=${c.red} guibg=NONE gui=NONE guisp=NONE "was italic
 
-    hi TSDefinition          guifg=NONE guibg=NONE gui=underline guisp=${c.on_surface_variant}
-    hi TSDefinitionUsage     guifg=NONE guibg=NONE gui=underline guisp=${c.on_surface_variant}
-    hi TSCurrentScope        guifg=NONE guibg=NONE gui=bold guisp=NONE
+      hi TSDefinition          guifg=NONE guibg=NONE gui=underline guisp=${c.on_surface_variant}
+      hi TSDefinitionUsage     guifg=NONE guibg=NONE gui=underline guisp=${c.on_surface_variant}
+      hi TSCurrentScope        guifg=NONE guibg=NONE gui=bold guisp=NONE
 
-    if has('nvim-0.8.0')
+      if has('nvim-0.8.0')
         highlight! link @annotation TSAnnotation
         highlight! link @attribute TSAttribute
         highlight! link @boolean TSBoolean
@@ -265,10 +265,9 @@ in
         highlight! link @variable TSVariable
         highlight! link @variable.builtin TSVariableBuiltin
       endif
+      let g:terminal_color_background = "${c.surface}"
+      let g:terminal_color_foreground = "${c.on_surface}"
 
-
-    let g:terminal_color_background = "${c.surface}"
-    let g:terminal_color_foreground = "${c.on_surface}"
       hi IndentBlankLine       guifg=${c.surface_variant} guibg=NONE gui=NONE guisp=NONE
       hi NvimTreeNormal        guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
 
@@ -318,4 +317,17 @@ in
       hi User9  guifg=${c.surface} guibg=${c.tertiary_container} gui=NONE guisp=NONE
 
       hi TreesitterContext  guifg=NONE guibg=${c.surface_variant} gui=NONE guisp=NONE "was italic
+
+      hi RenderMarkdownH1 guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
+      hi RenderMarkdownH2 guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
+      hi RenderMarkdownH3 guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
+      hi RenderMarkdownH4 guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
+      hi RenderMarkdownH5 guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
+      hi RenderMarkdownH6 guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
+      hi RenderMarkdownH1Bg guifg=NONE guibg=${c.blue_container} gui=NONE guisp=NONE
+      hi RenderMarkdownH2Bg guifg=NONE guibg=${c.magenta_container} gui=NONE guisp=NONE
+      hi RenderMarkdownH3Bg guifg=NONE guibg=${c.red_container} gui=NONE guisp=NONE
+      hi RenderMarkdownH4Bg guifg=NONE guibg=${c.yellow_container} gui=NONE guisp=NONE
+      hi RenderMarkdownH5Bg guifg=NONE guibg=${c.green_container} gui=NONE guisp=NONE
+      hi RenderMarkdownH6Bg guifg=NONE guibg=${c.cyan_container} gui=NONE guisp=NONE
   ''
