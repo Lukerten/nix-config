@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./waybar
     ./gammastep.nix
     ./imv.nix
     ./mako.nix
@@ -13,7 +14,6 @@
     ./qutebrowser.nix
     ./swayidle.nix
     ./swaylock.nix
-    ./waybar.nix
     ./zathura.nix
   ];
 
