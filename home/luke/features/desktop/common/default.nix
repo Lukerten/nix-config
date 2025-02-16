@@ -28,6 +28,10 @@
   xdg.portal.enable = true;
   home.sessionVariables.XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
 
+  home.packages = with pkgs; [
+    qalculate-gtk
+  ];
+
   suits = {
     messagers.minimal.enable = true;
     productivity.notes.enable = true;
