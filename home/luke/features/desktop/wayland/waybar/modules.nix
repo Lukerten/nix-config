@@ -53,7 +53,6 @@ in {
 
     "wlr/taskbar" = {
       format = "{icon}";
-      icon-size = 18;
       all-outputs = false;
       on-click = "activate";
       on-click-middle = "close";
@@ -152,7 +151,6 @@ in {
     };
 
     tray = {
-      icon-size = 21;
       spacing = 10;
     };
 
