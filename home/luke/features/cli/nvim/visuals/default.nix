@@ -5,6 +5,8 @@
     ./fidget.nix
     ./gitsigns.nix
     ./ibl.nix
+    ./markdown.nix
+    ./mini.nix
     ./noice.nix
     ./notify.nix
     ./nvim-tree.nix

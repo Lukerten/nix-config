@@ -27,6 +27,9 @@ in {
       set shiftwidth=0 "Use same length as 'tabstop'
       set expandtab "Use spaces
 
+      "UTF-8 encoding
+      set encoding=utf-8
+
       "Line numbers
       set number
 

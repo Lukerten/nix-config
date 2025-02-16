@@ -7,6 +7,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
+
       window = {
         padding = {
           x = 20;
@@ -20,6 +21,16 @@
         history = 4000;
         multiplier = 3;
       };
+      keyboard = {
+        bindings = [
+          {
+            key = "N";
+            mods = "Control";
+            action = "CreateNewWindow";
+          }
+        ];
+      };
+
       font = {
         normal = {
           family = config.fontProfiles.monospace.name;
