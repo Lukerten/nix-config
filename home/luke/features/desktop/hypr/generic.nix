@@ -105,11 +105,7 @@
             else 0;
         };
       in
-        [
-          ",addreserved,${toString waybarSpace.top},${
-            toString waybarSpace.bottom
-          },${toString waybarSpace.left},${toString waybarSpace.right}"
-        ]
+        []
         ++ (map (m: "${m.name},${
           if m.enabled
           then "${toString m.width}x${toString m.height}@${
