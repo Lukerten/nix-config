@@ -266,7 +266,7 @@
         # lua
         ''
           -- Golangci-lint language server
-          lspconfig.golangcilint.setup{
+          lspconfig.golangci_lint_ls.setup{
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {'${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver'};
