@@ -241,6 +241,32 @@
       '';
     }
     {
+      package = pkgs.golangci-lint-langserver;
+      config = ''
+        -- Golangci-lint language server
+        lspconfig.golangcilint.setup{
+          capabilities = capabilities;
+          on_attach = attach_keymaps,
+          cmd = {'${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver'};
+          filetypes = { 'go', 'gomod' },
+          init_options = {
+            command = { '${pkgs.golangci-lint}/bin/golangci-lint', 'run', '--out-format', 'json' },
+          },
+          root_dir = function(fname)
+            return util.root_pattern(
+              '.golangci.yml',
+              '.golangci.yaml',
+              '.golangci.toml',
+              '.golangci.json',
+              'go.work',
+              'go.mod',
+              '.git'
+            )(fname)
+          end,
+        }
+      '';
+    }
+    {
       package = pkgs.gopls;
       config = ''
         lspconfig.gopls.setup{
@@ -658,7 +684,6 @@
       package = pkgs.texlab;
       config = ''
         -- TeX language server
-
         lspconfig.texlab.setup{
           cmd = { '${pkgs.texlab}/bin/texlab' },
           filetypes = { 'tex', 'plaintex', 'bib' },
@@ -719,18 +744,19 @@
             -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
             redhat = { telemetry = { enabled = false } },
           },
-          docs = {
-            description = [[
-              https://github.com/redhat-developer/yaml-language-server
-            ]],
-          },
         }
       '';
     }
   ];
+
+  extraPackages = [
+    pkgs.go
+    pkgs.nodejs
+    pkgs.python3
+  ];
 in {
   programs.neovim = {
-    extraPackages = map (cfg: cfg.package) configuration;
+    extraPackages = map (cfg: cfg.package) configuration ++ extraPackages;
     plugins = with pkgs.vimPlugins; [
       {
         plugin = nvim-lspconfig;
