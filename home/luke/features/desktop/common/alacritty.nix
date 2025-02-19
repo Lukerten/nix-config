@@ -98,12 +98,12 @@
         normal = {
           black = colors.surface_dim;
           white = colors.on_surface;
-          red = colors.error;
-          green = colors.primary;
-          yellow = colors.inverse_primary;
-          blue = colors.secondary;
-          magenta = colors.tertiary_container;
-          cyan = colors.tertiary;
+          red = colors.red;
+          green = colors.green;
+          yellow = colors.yellow;
+          blue = colors.blue;
+          magenta = colors.magenta;
+          cyan = colors.cyan;
         };
         bright =
           normal

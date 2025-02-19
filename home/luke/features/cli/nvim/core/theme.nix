@@ -162,7 +162,7 @@ in
     hi TSAttribute           guifg=${c.yellow} guibg=NONE gui=NONE guisp=NONE
     hi TSBoolean             guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
     hi TSCharacter           guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
-    hi TSComment             guifg=${c.primary_container} guibg=NONE gui=NONE guisp=NONE "was italic
+    hi TSComment             guifg=${c.outline} guibg=NONE gui=NONE guisp=NONE "was italic
     hi TSConstructor         guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
     hi TSConditional         guifg=${c.magenta} guibg=NONE gui=NONE guisp=NONE
     hi TSConstant            guifg=${c.primary} guibg=NONE gui=NONE guisp=NONE
