@@ -1,5 +1,4 @@
-{pkgs, ...}:{
-
+{pkgs, ...}: {
   imports = [
     ./layout.nix
     ./modules.nix

@@ -210,8 +210,6 @@ in {
       max-length = 50;
     };
 
-
-
     backlight = {
       format = "{icon} {percent}%";
       format-icons = [
@@ -234,7 +232,6 @@ in {
       "scroll-step" = 1;
     };
 
-
     battery = {
       bat = "BAT1";
       interval = 10;
@@ -248,7 +245,6 @@ in {
       interval = 60;
       icon = false;
     };
-
 
     idle_inhibitor = {
       format = "{icon} ";

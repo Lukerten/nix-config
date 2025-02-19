@@ -1,4 +1,9 @@
-{config, lib, inputs, ...}:{
+{
+  config,
+  lib,
+  inputs,
+  ...
+}: {
   programs.waybar = {
     style = let
       inherit (inputs.nix-colors.lib.conversions) hexToRGBString;
