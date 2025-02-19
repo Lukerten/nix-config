@@ -21,6 +21,7 @@
     ../../optional/tuigreet.nix
     ../../optional/systemd-boot.nix
     ../../optional/thunar.nix
+    ../../optional/virtualbox.nix
     ../../optional/wireshark.nix
     ../../optional/x11-no-suspend.nix
   ];

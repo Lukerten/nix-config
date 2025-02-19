@@ -14,4 +14,5 @@
       seamless = true;
     };
   };
+  virtualisation.libvirtd.enable = true;
 }
