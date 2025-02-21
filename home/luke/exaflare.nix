@@ -14,7 +14,7 @@
   # |  D1  | |  D2  | |  D3  |
   # |------| |------| |------|
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.vaporwave-car-mountains;
+  wallpaper = lib.mkDefault pkgs.wallpapers.pixel-waterfall;
 
   monitors = [
     {
