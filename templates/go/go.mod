@@ -1,3 +1,3 @@
-module example-module
+module example.com/gomod2nix-template
 
-go 1.22.5
+go 1.17

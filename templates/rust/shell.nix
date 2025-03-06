@@ -9,7 +9,6 @@ in
   mainPkg.overrideAttrs (oa: {
     nativeBuildInputs =
       [
-        # Additional rust tooling
         rust-analyzer
         rustfmt
         clippy
