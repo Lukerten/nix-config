@@ -9,7 +9,6 @@
     ./core
     ./lsp
     ./treesitter
-    ./telescope
     ./utils
     ./visuals
   ];

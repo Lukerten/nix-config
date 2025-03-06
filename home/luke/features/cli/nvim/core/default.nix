@@ -11,7 +11,7 @@
     done
   '';
 in {
-  imports = [./autocmd.nix ./binds.nix];
+  imports = [./autocmd.nix ./binds.nix ./telescope.nix];
 
   xdg.configFile."nvim/color.vim".source = color;
   xdg.configFile."nvim/color.vim".onChange = reloadNvim;
