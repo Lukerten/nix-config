@@ -5,7 +5,7 @@
 }: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.vaporwave-woman;
+  wallpaper = lib.mkDefault pkgs.wallpapers.pixel-city;
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;
@@ -19,6 +19,10 @@
     blueman-applet.enable = true;
     network-manager-applet.enable = true;
   };
+
+  home.packages = with pkgs; [
+    dwarf-fortress
+  ];
 
   monitors = [
     {
