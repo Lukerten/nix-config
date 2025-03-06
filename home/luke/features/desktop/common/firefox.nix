@@ -183,7 +183,7 @@ in {
           ];
           engines = engines;
         };
-        extensions = extensions;
+        extensions.packages = extensions;
         settings = settings;
         id = 0;
       };
@@ -203,7 +203,7 @@ in {
             "Youtube"
           ];
         };
-        extensions = devextensions;
+        extensions.packages = devextensions;
         settings = settings;
         id = 1;
       };
