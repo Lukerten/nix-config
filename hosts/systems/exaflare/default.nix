@@ -15,14 +15,14 @@
 
     # optional configuration
     ../../optional/bluetooth.nix
-    ../../optional/cups.nix
     ../../optional/cm4all-vpn.nix
-    ../../optional/gamemode.nix
+    ../../optional/cups.nix
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
     ../../optional/tuigreet.nix
     ../../optional/systemd-boot.nix
     ../../optional/thunar.nix
+    ../../optional/wireshark.nix
     ../../optional/x11-no-suspend.nix
   ];
 
