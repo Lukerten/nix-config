@@ -22,7 +22,8 @@ the Work of [Misterio77](https://github.com/Misterio77). \\
 
 # My Hosts:
 
-Currently this configuration only powers 2 desktop systems, as i am focusing on completing these before moving on to other systems.
+Currently this configuration only powers 2 desktop systems, as i am focusing on
+completing these before moving on to other systems.
 
 - `anihilaton` - My Home Laptop.
 - `exaflare` - My Home Desktop.
