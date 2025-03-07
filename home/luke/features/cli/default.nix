@@ -3,6 +3,7 @@
     ./helix
     ./nvim
     ./direnv.nix
+    ./fastfetch.nix
     ./fish.nix
     ./gh.nix
     ./git.nix

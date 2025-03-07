@@ -73,7 +73,6 @@ in {
       defaultOptions = ["--color 16"];
     };
     jq.enable = true;
-    neofetch.enable = true;
     ripgrep.enable = true;
     zoxide.enable = true;
   };
