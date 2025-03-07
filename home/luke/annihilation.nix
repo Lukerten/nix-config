@@ -1,11 +1,7 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.pixel-city;
+  wallpaper = pkgs.inputs.themes.wallpapers.pixel-city;
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;

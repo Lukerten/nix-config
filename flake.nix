@@ -8,6 +8,10 @@
     hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
 
+    themes = {
+      url = "github:Lukerten/themes";
+      inputs.systems.follows = "systems";
+    };
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

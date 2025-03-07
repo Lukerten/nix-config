@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./global
     ./features/desktop/hypr
@@ -14,7 +10,7 @@
   # |  D1  | |  D2  | |  D3  |
   # |------| |------| |------|
 
-  wallpaper = lib.mkDefault pkgs.wallpapers.pixel-waterfall;
+  wallpaper = pkgs.inputs.themes.wallpapers.pixel-waterfall;
 
   suits = {
     dev.gamedev.enable = true;
