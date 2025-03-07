@@ -69,6 +69,16 @@ in {
               end
 
               local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+              -- organize imports sync
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                callback = function(args)
+                  vim.lsp.buf.format()
+                  vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
+                  vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
+                end,
+              })
+
               -- Language Server Configurations
               ${concatMapStringsSep "\n" (cfg: cfg.config) lspConfigs}
             '';

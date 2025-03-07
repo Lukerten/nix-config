@@ -16,6 +16,10 @@
 
   wallpaper = lib.mkDefault pkgs.wallpapers.pixel-waterfall;
 
+  suits = {
+    dev.gamedev.enable = true;
+  };
+
   monitors = [
     {
       name = "DP-2";

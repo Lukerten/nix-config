@@ -31,7 +31,6 @@ in {
               sources = ls_sources,
               on_attach=default_on_attach
             })
-
           '';
       }
     ];

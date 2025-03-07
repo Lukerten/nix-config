@@ -19,14 +19,32 @@
               },
             },
           }
-          -- organize imports sync
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            callback = function(args)
-              vim.lsp.buf.format()
-              vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
-              vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
+        '';
+    }
+    {
+      package = pkgs.golangci-lint-langserver;
+      config =
+        # lua
+        ''
+          lspconfig.golangci_lint_ls.setup{
+            cmd = {'${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver'};
+            capabilities = capabilities;
+            on_attach = attach_keymaps,
+            init_options = {
+              command = { '${pkgs.golangci-lint}/bin/golangci-lint', 'run', '--out-format', 'json' },
+            },
+            root_dir = function(fname)
+              return util.root_pattern(
+                '.golangci.yml',
+                '.golangci.yaml',
+                '.golangci.toml',
+                '.golangci.json',
+                'go.work',
+                'go.mod',
+                '.git'
+              )(fname)
             end,
-          })
+          }
         '';
     }
   ];
@@ -34,27 +52,7 @@
   extraPackages = with pkgs; [
     go
     golangci-lint
+    gotools
   ];
-  extraPlugins = with pkgs.vimPlugins; [
-    {
-      plugin = go-nvim;
-      type = "lua";
-      config =
-        # lua
-        ''
-          -- Setup Go.nvim plugin
-          require("go").setup()
-          require("go.format").goimports()
-
-          local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = "*.go",
-            callback = function()
-             require('go.format').goimports()
-            end,
-            group = format_sync_grp,
-          })
-        '';
-    }
-  ];
+  extraPlugins = [];
 }

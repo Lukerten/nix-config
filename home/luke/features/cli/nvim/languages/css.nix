@@ -2,38 +2,30 @@
   lsp = [
     {
       package = pkgs.vscode-langservers-extracted;
-      config = ''
-        -- CSS Language Server
-        lspconfig.cssls.setup{
-          on_attach = attach_keymaps,
-          cmd = {'${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server'};
-          filetypes = {'css', 'scss', 'less'};
-          settings = {
-            css = {
-              validate = true;
-            };
-            less = {
-              validate = true;
-            };
-            scss = {
-              validate = true;
-            };
-          };
-        }
-      '';
+      config =
+        # lua
+        ''
+          -- CSS Language Server
+          lspconfig.cssls.setup{
+            cmd = {'${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server', "--stdio" };
+            capabilities = default_capabilities,
+            on_attach = attach_keymaps,
+          }
+        '';
     }
     {
       package = pkgs.tailwindcss-language-server;
-      config = ''
-        -- TailwindCSS Language Server
-        lspconfig.tailwindcss.setup{
-          cmd = {'${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server'},
-          filetypes = {'css', 'scss', 'less', 'html', 'vue', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'},
-          root_dir = require('lspconfig/util').root_pattern('tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.lua', 'package.json'),
-          on_attach = attach_keymaps;
-          capabilities = capabilities;
-        }
-      '';
+      config =
+        # lua
+        ''
+          -- TailwindCSS Language Server
+          lspconfig.tailwindcss.setup{
+            cmd = {'${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server'},
+            root_dir = require('lspconfig/util').root_pattern('tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.lua', 'package.json'),
+            capabilities = capabilities;
+            on_attach = attach_keymaps;
+          }
+        '';
     }
   ];
   formatter = null;
