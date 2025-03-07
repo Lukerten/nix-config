@@ -1,14 +1,14 @@
 {
   wayland.windowManager.hyprland.settings = {
     decoration = {
-      active_opacity = 1.00;
-      inactive_opacity = 1.00;
+      active_opacity = 0.85;
+      inactive_opacity = 0.85;
       fullscreen_opacity = 1.00;
       rounding = 4;
       blur = {
-        enabled = false;
-        size = 6;
-        passes = 4;
+        enabled = true;
+        size = 10;
+        passes = 2;
         popups = true;
       };
       shadow = {
