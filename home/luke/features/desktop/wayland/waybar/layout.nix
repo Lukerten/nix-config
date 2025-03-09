@@ -8,11 +8,6 @@
       "custom/empty"
     ];
 
-    modules-center = [
-      "hyprland/window"
-      "custom/empty"
-    ];
-
     modules-right = [
       "tray"
       "wlr/taskbar"
