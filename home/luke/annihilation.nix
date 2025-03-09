@@ -1,14 +1,12 @@
 {pkgs, ...}: {
   imports = [./global ./features/desktop/hypr];
 
-  wallpaper = pkgs.inputs.themes.wallpapers.pixel-city;
+  wallpaper = pkgs.inputs.themes.wallpapers.pixel-vaporwave;
   suits = {
     dev.appdev.enable = true;
     dev.gamedev.enable = true;
     dev.network.enable = true;
   };
-
-  programs.steam.enable = true;
 
   services = {
     batsignal.enable = true;

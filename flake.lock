@@ -337,11 +337,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741385432,
-        "narHash": "sha256-QBZ2bRmZhnqJW1iE+Kq20+PGlke1t9/95nUvuvGteec=",
+        "lastModified": 1741389506,
+        "narHash": "sha256-yXslEvbMW9R41XZHMKIa4kJMMKJS91J/7jvtIkPTVgY=",
         "owner": "Lukerten",
         "repo": "themes",
-        "rev": "b8cd223ceab0a45ef80589caa9238add09c5fe6f",
+        "rev": "d033a5d14202fd102fcebfe6699e1b1385f980f7",
         "type": "github"
       },
       "original": {
