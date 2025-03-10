@@ -1,0 +1,41 @@
+\documentclass{beamer}
+\usepackage{theme/beamerthemefhe}
+\usetheme{fhe}
+
+% Add bibliography package
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+\title{Sample Beamer Presentation}
+\author{Lucas Constantin Brendgen}
+\date{\today}
+
+\begin{document}
+
+% Title page
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Structure section
+\section*{Structure}
+\begin{frame}{Structure}
+    \tableofcontents
+\end{frame}
+
+% Example section
+\section{Introduction}
+\begin{frame}{Introduction}
+    \begin{itemize}
+        \item Point 1
+        \item Point 2
+    \end{itemize}
+\end{frame}
+
+% Bibliography section
+\section{References}
+\begin{frame}[allowframebreaks]{References}
+    \printbibliography
+\end{frame}
+
+\end{document}

@@ -1,0 +1,257 @@
+%%% presentation mode
+
+\mode<presentation>
+% Requirement
+\RequirePackage{tikz}
+\RequirePackage{fitbox}
+\RequirePackage{xkeyval}
+\RequirePackage{bera}
+\RequirePackage{lmodern}
+
+\def\beamer@fhe@style{default}
+\def\beamer@fhe@authorfontsize{default}
+\def\beamer@fhe@aligntitlepage{default}
+
+% ------------ Begin Define Options for Template -----------------------------
+% ------------ Begin Define Options for usetemplate Command ------------------
+\newif\if@fhe@disablebar
+\newif\if@fhe@usestyletitlecolor
+\newif\if@fhe@usestyleframetitlecolor
+\newif\if@fhe@disabledateinfooter
+\newif\if@fhe@disablefontbold
+\newif\if@fhe@fitframetitle
+
+\DeclareOptionBeamer{style}[default]{\def\beamer@fhe@style{#1}}
+\DeclareOptionBeamer{authorfontsize}[default]{\def\beamer@fhe@authorfontsize{#1}}
+\DeclareOptionBeamer{aligntitlepage}[default]{\def\beamer@fhe@aligntitlepage{#1}}
+
+\DeclareOptionBeamer{disablebar}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@disablebartrue
+\else
+	\@fhe@disablebarfalse
+\fi
+}
+\DeclareOptionBeamer{fitframetitle}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@fitframetitletrue
+\else
+	\@fhe@fitframetitlefalse
+\fi
+}
+
+\DeclareOptionBeamer{disablefontbold}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@disablefontboldtrue
+\else
+	\@fhe@disablefontboldfalse
+\fi
+}
+
+\DeclareOptionBeamer{usestyleframetitlecolor}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@usestyleframetitlecolortrue
+\else
+	\@fhe@usestyleframetitlecolorfalse
+\fi
+}
+\DeclareOptionBeamer{usestyletitlecolor}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@usestyletitlecolortrue
+\else
+	\@fhe@usestyletitlecolorfalse
+\fi
+}
+
+\DeclareOptionBeamer{disabledateinfooter}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@disabledateinfootertrue
+\else
+	\@fhe@disabledateinfooterfalse
+\fi
+}
+\ProcessOptionsBeamer
+
+% --------- End Define Options for usetemplate Command ----------------------
+% --------- Begin Define Options for Frame ----------------------------------
+
+\define@cmdkey{beamerframe}{disablebar}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@disablebartrue
+\else
+	\@fhe@disablebarfalse
+\fi
+}
+
+\define@cmdkey{beamerframe}{fitframetitle}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@fitframetitletrue
+\else
+	\@fhe@fitframetitlefalse
+\fi
+}
+
+\define@cmdkey{beamerframe}{disabledateinfooter}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@disabledateinfootertrue
+\else
+	\@fhe@disabledateinfooterfalse
+\fi
+}
+
+\define@cmdkey{beamerframe}{usestyleframetitlecolor}{
+\ifnum\pdfstrcmp{#1}{true}=0
+	\@fhe@usestyleframetitlecolortrue
+\else
+	\@fhe@usestyleframetitlecolorfalse
+\fi
+}
+
+\def\beamer@fhe@footertitlepage{}
+\def\beamer@fhe@footernormalpages{}
+\newcommand{\footertitlepage}[1]{\def\beamer@fhe@footertitlepage{#1}}
+\newcommand{\footernormalpages}[1]{\def\beamer@fhe@footernormalpages{#1}}
+
+\newcommand{\fheoptions}[1]{%
+  \setkeys{fheoptions}{#1}%
+  \beamer@fhe@style@do
+}
+% --------- End Define Options for Frame --------------------------------------
+% --------- End Define Options for Template -----------------------------------
+
+% --------- Begin Define Variables --------------------------------------------
+
+% --------- Variables for TitlePage -------------------------------------------
+
+\ifdim\beamer@paperwidth=16.00cm\relax%
+	\def\beamer@fhe@titlepage@footer@textright{.165\paperwidth}
+	\def\beamer@fhe@titlepage@endbar{\the\paperwidth*0.8397}
+	\ifdim\beamer@paperheight=10.00cm\relax%
+		\def\beamer@fhe@titlepage@beginbar{\the\paperwidth*0.69133}
+		\def\beamer@fhe@titlepage@titlewidthpt{.63133\paperwidth}
+		\def\beamer@fhe@titlepage@footer@left{.65133\paperwidth}
+		\def\beamer@fhe@titlepage@footer@textmiddle{.14837\paperwidth}
+		\def\beamer@fhe@titlepage@footer@leftfittingtext{.58133\paperwidth}
+	\else%
+		\def\beamer@fhe@titlepage@beginbar{\the\paperwidth*0.70533}
+		\def\beamer@fhe@titlepage@titlewidthpt{.64533\paperwidth}
+		\def\beamer@fhe@titlepage@footer@left{.70533\paperwidth}
+		\def\beamer@fhe@titlepage@footer@textmiddle{.13437\paperwidth}
+		\def\beamer@fhe@titlepage@footer@leftfittingtext{.64533\paperwidth}
+	\fi%
+
+\else%
+	\def\beamer@fhe@titlepage@footer@textright{.2103\paperwidth}
+	\def\beamer@fhe@titlepage@endbar{\the\paperwidth*0.7897}
+	\ifdim\beamer@paperwidth=14.00cm\relax%
+		\def\beamer@fhe@titlepage@beginbar{\the\paperwidth*0.63533}
+		\def\beamer@fhe@titlepage@titlewidthpt{.58533\paperwidth}
+		\def\beamer@fhe@titlepage@footer@left{.64533\paperwidth}
+		\def\beamer@fhe@titlepage@footer@textmiddle{.14437\paperwidth}
+		\def\beamer@fhe@titlepage@footer@leftfittingtext{.58533\paperwidth}
+	\else%
+		\def\beamer@fhe@titlepage@beginbar{\the\paperwidth*0.6129}
+		\def\beamer@fhe@titlepage@titlewidthpt{.5529\paperwidth}
+		\def\beamer@fhe@titlepage@footer@left{.6129\paperwidth}
+		\def\beamer@fhe@titlepage@footer@textmiddle{.1768\paperwidth}
+		\def\beamer@fhe@titlepage@footer@leftfittingtext{.5529\paperwidth}
+	\fi%
+\fi% 
+
+\def\beamer@fhe@titlepage@heightheaderbar{\the\paperheight*0.0771}
+
+\def\beamer@fhe@titlepage@startline{\the\paperheight - \the\paperheight*0.2488}
+\def\beamer@fhe@titlepage@linept{.2488\paperheight}
+\def\beamer@fhe@titlepage@titleheight{\the\paperheight*0.1716}
+\def\beamer@fhe@titlepage@titleposition{\the\paperheight*0.5976}
+
+\def\beamer@fhe@titlepage@heightheaderbarpt{.0771\paperheight}
+\def\beamer@fhe@titlepage@titleheightpt{.1716\paperheight}
+\def\beamer@fhe@titlepage@heightheaderbarfittedtextpt{0.02355\paperheight}
+\def\beamer@fhe@titlepage@heightheaderbarfittedpt{0.0971\paperheight}
+
+\def\beamer@fhe@titlepage@widthlogo{.3563\paperwidth}
+\def\beamer@fhe@titlepage@heightlogo{.2189\paperheight}
+
+
+% --------- Variables for otherPages ------------------------------------------
+
+\ifdim\beamer@paperwidth=16.00cm\relax%
+	\def\beamer@fhe@otherpage@endbar{\the\paperwidth*0.9000}
+	\def\beamer@fhe@otherpage@footer@textright{.1100\paperwidth}
+	\ifdim\beamer@paperheight=10.00cm\relax%
+		\def\beamer@fhe@otherpage@beginbar{\the\paperwidth*0.812}
+		\def\beamer@fhe@otherpage@subtitlewidthpt{.64\paperwidth}
+		\def\beamer@fhe@otherpage@titlewidthpt{.66\paperwidth}
+		\def\beamer@fhe@otherpage@footer@left{.81\paperwidth}
+		\def\beamer@fhe@otherpage@footer@textmiddle{.0902\paperwidth}
+		\def\beamer@fhe@otherpage@footer@leftfittingtext{.7273\paperwidth}
+		\def\beamer@fhe@otherpage@footer@middlefittingtext{.0772\paperwidth}
+	\else%
+		\def\beamer@fhe@otherpage@beginbar{\the\paperwidth*0.821}
+		\def\beamer@fhe@otherpage@subtitlewidthpt{.7\paperwidth}
+		\def\beamer@fhe@otherpage@titlewidthpt{.7\paperwidth}
+		\def\beamer@fhe@otherpage@footer@left{.821\paperwidth}
+		\def\beamer@fhe@otherpage@footer@textmiddle{.0792\paperwidth}
+		\def\beamer@fhe@otherpage@footer@leftfittingtext{.7353\paperwidth}
+		\def\beamer@fhe@otherpage@footer@middlefittingtext{.0692\paperwidth}
+	\fi%
+\else%
+	\def\beamer@fhe@otherpage@endbar{\the\paperwidth*0.8645}
+	\def\beamer@fhe@otherpage@footer@textright{.14\paperwidth}
+	\ifdim\beamer@paperwidth=14.00cm\relax%
+		\def\beamer@fhe@otherpage@beginbar{\the\paperwidth*0.7743}
+		\def\beamer@fhe@otherpage@subtitlewidthpt{.64\paperwidth}
+		\def\beamer@fhe@otherpage@titlewidthpt{.66\paperwidth}
+		\def\beamer@fhe@otherpage@footer@left{.7803\paperwidth}
+		\def\beamer@fhe@otherpage@footer@textmiddle{.0792\paperwidth}
+		\def\beamer@fhe@otherpage@footer@leftfittingtext{.7353\paperwidth}
+		\def\beamer@fhe@otherpage@footer@middlefittingtext{.0692\paperwidth}
+	\else%
+		\def\beamer@fhe@otherpage@beginbar{\the\paperwidth*0.7602}
+		\def\beamer@fhe@otherpage@subtitlewidthpt{.64\paperwidth}
+		\def\beamer@fhe@otherpage@titlewidthpt{.66\paperwidth}
+		\def\beamer@fhe@otherpage@footer@left{.7602\paperwidth}
+		\def\beamer@fhe@otherpage@footer@textmiddle{.1043\paperwidth}
+		\def\beamer@fhe@otherpage@footer@leftfittingtext{.7002\paperwidth}
+		\def\beamer@fhe@otherpage@footer@middlefittingtext{.0943\paperwidth}
+	\fi%
+\fi%
+
+\def\beamer@fhe@otherpage@heightheaderbar{\the\paperheight*0.0383}
+\def\beamer@fhe@otherpage@leftmargin{.05\paperwidth}
+\def\beamer@fhe@otherpage@rightmargin{.05\paperwidth}
+\def\beamer@fhe@otherpage@titletosubtitleskippt{.020\paperheight}
+
+
+\def\beamer@fhe@otherpage@startline{\the\paperheight - \the\paperheight*0.1401}
+\def\beamer@fhe@otherpage@titleheight{\the\paperheight*0.1018}
+
+\def\beamer@fhe@otherpage@heightheaderbarpt{0.0383\paperheight}
+\def\beamer@fhe@otherpage@heightheaderbartitleskippt{0.0423\paperheight}
+\def\beamer@fhe@otherpage@heightheaderbartitleskipwithoutfitpt{0.025\paperheight}
+\def\beamer@fhe@otherpage@heightheaderbarfittedtextpt{0.0202\paperheight}
+\def\beamer@fhe@otherpage@heightheaderbarfittedpt{0.0450\paperheight}
+\def\beamer@fhe@otherpage@titleheightpt{.048\paperheight}
+\def\beamer@fhe@otherpage@subtitleheightpt{.0398\paperheight}
+
+\def\beamer@fhe@otherpage@widthlogo{.2092\paperwidth}
+\def\beamer@fhe@otherpage@heightlogo{.1286\paperheight}
+
+
+% --------- Variables for allPages --------------------------------------------
+
+% --------- End Define Variables --------------------------------------------
+\usepackage{theme/beamerfontthemefhe}
+\usepackage{theme/beamercolorthemefhe}
+\usepackage{theme/beamerinnerthemefhe}
+\usepackage{theme/beamerouterthemefhe}
+\useinnertheme{fhe}
+\useoutertheme{fhe}
+\usefonttheme{fhe}
+\usecolortheme{fhe}
+
+\mode
+<all>
+
+\makeatother

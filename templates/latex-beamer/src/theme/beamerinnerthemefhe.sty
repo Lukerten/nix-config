@@ -1,0 +1,164 @@
+\mode<presentation>
+\useinnertheme[shadow]{rounded}
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+
+\setbeamertemplate{section in toc}
+{\leavevmode\leftskip=2ex%
+  \llap{%
+    \usebeamerfont*{section number projected}%
+    \usebeamercolor{section number projected}%
+    \begin{pgfpicture}{0ex}{0ex}{1ex}{2ex}
+      \color{bg}
+      \pgfpathcircle{\pgfpoint{0pt}{1ex}}{1.5ex}
+      \pgfusepath{fill}
+      \pgftext[base, y=0.3ex]{\color{fg}\inserttocsectionnumber}
+    \end{pgfpicture}\kern1.25ex%
+  }%
+  \inserttocsection\par
+ }
+
+\setbeamertemplate{subsection in toc}
+{\leavevmode\leftskip=2em\inserttocsubsection\par}
+
+%\setbeamertemplate{sections/subsections in toc}[circle]
+
+% --------- Begin Define Options for title page alignment ----------------------
+\def\beamer@fhe@aligntitlepage@do@left{
+	\def\beamer@fhe@titlepage@colorboxoptions{}
+}
+
+\def\beamer@fhe@aligntitlepage@do@center{
+	\def\beamer@fhe@titlepage@colorboxoptions{center}
+}
+
+\def\beamer@fhe@aligntitlepage@do@right{
+	\def\beamer@fhe@titlepage@colorboxoptions{right}
+}
+\let\beamer@fhe@aligntitlepage@do@default=\beamer@fhe@aligntitlepage@do@center
+
+
+
+\def\beamer@fhe@aligntitlepage@do{%
+	\expandafter\let\expandafter\next
+	\csname beamer@fhe@aligntitlepage@do@\beamer@fhe@aligntitlepage\endcsname
+	\ifx\next\relax \let\next\beamer@fhe@aligntitlepage@do@default \fi
+	\next
+	
+}
+
+\beamer@fhe@aligntitlepage@do
+% --------- End Define Options for title page alignment ----------------------
+
+\pgfdeclarelayer{bg}    % declare background layer
+\pgfsetlayers{bg,main}  % set the order of the layers (main is the standard layer)
+\usetikzlibrary{positioning}
+
+\setbeamertemplate{background}{
+	\begin{tikzpicture}
+	\useasboundingbox(0,0) rectangle(\the\paperwidth,\the\paperheight);
+	\ifnum\thepage>1\relax%
+		% top-bar other-pages
+		\fill[color=headergrey] (0,\the\paperheight) rectangle (\the\paperwidth,\the\paperheight - \beamer@fhe@otherpage@heightheaderbar);
+		\fill[color=fhgroundcolor] (\beamer@fhe@otherpage@beginbar,\the\paperheight) rectangle (\beamer@fhe@otherpage@endbar,\the\paperheight - \beamer@fhe@otherpage@heightheaderbar);
+		
+		%Logo other-pages
+		\begin{pgfonlayer}{bg}    % select the background layer
+			\node[inner sep=0pt] (fhlogo) 
+				at (\beamer@fhe@otherpage@endbar ,\the\paperheight - \beamer@fhe@otherpage@heightheaderbar - \beamer@fhe@otherpage@titleheight*0.5) {
+				\includegraphics[height=\beamer@fhe@otherpage@heightlogo,width=\beamer@fhe@otherpage@widthlogo,keepaspectratio]{\beamer@fhe@logo}
+				};
+		\end{pgfonlayer}
+		\if@fhe@disablebar
+		\else
+			% Shader-Bar other-pages
+			\shade[top color=headergrey, bottom color=white] (\beamer@fhe@otherpage@beginbar,\beamer@fhe@otherpage@startline + 0.02cm) rectangle (\beamer@fhe@otherpage@endbar,\beamer@fhe@otherpage@heightheaderbar );
+		\fi
+		%Line other-pages
+		\fill[color=footcolor] (0,\beamer@fhe@otherpage@startline) rectangle (\beamer@fhe@otherpage@endbar,\beamer@fhe@otherpage@startline + 0.02cm );
+		
+		% bottom-bar other-pages
+		\fill[color=footerbarcolor] (0,0) rectangle (\the\paperwidth,\beamer@fhe@otherpage@heightheaderbar);
+		\fill[color=barfootercolor] (\beamer@fhe@otherpage@beginbar,0) rectangle (\beamer@fhe@otherpage@endbar,\beamer@fhe@otherpage@heightheaderbar);
+	\else
+		% top-bar title-page
+		\fill[color=headergrey] (0,\the\paperheight) rectangle (\the\paperwidth,\the\paperheight - \beamer@fhe@titlepage@heightheaderbar);
+		\fill[color=fhgroundcolor] (\beamer@fhe@titlepage@beginbar,\the\paperheight) rectangle (\beamer@fhe@titlepage@endbar,\the\paperheight - \beamer@fhe@titlepage@heightheaderbar);
+		
+		%Logo title-page
+		\begin{pgfonlayer}{bg}    % select the background layer
+			\node[inner sep=0pt] (fhlogo) 
+				at (\beamer@fhe@titlepage@endbar ,\the\paperheight - \beamer@fhe@titlepage@heightheaderbar - \beamer@fhe@titlepage@titleheight*0.5) {
+				\includegraphics[height=\beamer@fhe@titlepage@heightlogo,width=\beamer@fhe@titlepage@widthlogo,keepaspectratio]{\beamer@fhe@logo}
+				};
+		\end{pgfonlayer}
+		
+		% Shader-Bar title-page
+		\shade[top color=headergrey, bottom color=white] (\beamer@fhe@titlepage@beginbar,\beamer@fhe@titlepage@startline + 0.02cm) rectangle (\beamer@fhe@titlepage@endbar,\beamer@fhe@titlepage@heightheaderbar );
+		
+		
+		%Line title-page
+		\fill[color=footcolor] (0,\beamer@fhe@titlepage@startline) rectangle (\beamer@fhe@titlepage@endbar,\beamer@fhe@titlepage@startline + 0.02cm );
+		
+		% bottom-bar title-page
+		\fill[color=footerbarcolor] (0,0) rectangle (\the\paperwidth,\beamer@fhe@titlepage@heightheaderbar);
+		\fill[color=barfootercolor] (\beamer@fhe@titlepage@beginbar,0) rectangle (\beamer@fhe@titlepage@endbar,\beamer@fhe@titlepage@heightheaderbar);
+	\fi
+  \end{tikzpicture}
+}
+
+% Title page
+\defbeamertemplate*{title page}{fhe}[1][]
+{ 
+	\vskip \beamer@fhe@titlepage@linept
+	\begingroup
+		\begin{beamercolorbox}[sep=8pt,\beamer@fhe@titlepage@colorboxoptions]{title}
+		  \usebeamerfont{title}\inserttitle\par%
+		  \ifx\insertsubtitle\@empty%
+		  \else%
+			\vskip0.5em%
+			{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+		  \fi%     
+		\end{beamercolorbox}%
+		\vskip1em\par
+		\begin{beamercolorbox}[sep=8pt,\beamer@fhe@titlepage@colorboxoptions]{author}
+		  	\usebeamerfont{author}\insertauthor
+			\ifx\insertinstitute\@empty%
+			\else%
+			\vskip0.5em%
+			{\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\par}%
+			\fi%     
+		\end{beamercolorbox}
+		\begin{beamercolorbox}[sep=8pt,\beamer@fhe@titlepage@colorboxoptions]{date}
+		  \usebeamerfont{date}\insertdate
+		\end{beamercolorbox}
+	\endgroup
+}
+
+
+\defbeamertemplate*{part page}{fhe}[1][]
+{
+  \begingroup
+    \centering
+    {\usebeamerfont{part name}\usebeamercolor[fg]{part name}\partname~\insertromanpartnumber}
+    \vskip1em\par
+      \insertpart\par
+  \endgroup
+}
+
+
+% Section page: default
+
+\defbeamertemplate*{section page}{fhe}[1][]
+{
+  \begingroup
+    \centering
+    \vskip5em\par
+		\usebeamerfont{section title}\insertsection\par
+  \endgroup
+}
+
+\mode
+<all>

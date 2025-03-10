@@ -1,0 +1,81 @@
+\mode<presentation>
+
+%% -------------------- outer templates --------------------
+\defbeamertemplate*{frametitle}{fhe}
+{%
+	\vskip \beamer@fhe@otherpage@heightheaderbartitleskipwithoutfitpt
+	\begin{beamercolorbox}[wd=\paperwidth,leftskip=.05\paperwidth]{frametitle}
+		\if@fhe@fitframetitle 
+			\fitbox[maxwidth=\beamer@fhe@otherpage@titlewidthpt, minwidth=\beamer@fhe@otherpage@titlewidthpt, maxheight=\beamer@fhe@otherpage@titleheightpt, minheight=\beamer@fhe@otherpage@titleheightpt]
+			{\usebeamerfont{frametitle}\insertframetitle}	
+		\else 
+			\usebeamerfont{frametitle}\insertframetitle
+		\fi	
+	\end{beamercolorbox}
+	\ifx\insertframesubtitle\@empty%
+    \else%
+		\vskip \beamer@fhe@otherpage@titletosubtitleskippt
+		\begin{beamercolorbox}[wd=\paperwidth,leftskip=.075\paperwidth]{framesubtitle}
+			\usebeamerfont{framesubtitle}\insertframesubtitle
+		\end{beamercolorbox}
+    \fi% 
+	\vskip \beamer@fhe@otherpage@heightheaderbartitleskippt
+}
+
+\defbeamertemplate*{footline}{fhe}
+{
+\ifnum\thepage>1\relax%
+	\hbox{%
+		\begin{beamercolorbox}[wd=\beamer@fhe@otherpage@footer@left,ht=\beamer@fhe@otherpage@heightheaderbarfittedpt,left,leftskip=2ex]{title in head/foot}%
+			\vbox to\beamer@fhe@otherpage@heightheaderbarfittedpt{
+				\vfil
+				\fitbox[maxwidth=\beamer@fhe@otherpage@footer@leftfittingtext, minwidth=\beamer@fhe@otherpage@footer@leftfittingtext, maxheight=\beamer@fhe@otherpage@heightheaderbarfittedtextpt]
+					{\usebeamerfont{title in head/foot}
+					\ifx\beamer@fhe@footernormalpages\@empty%
+						\insertshorttitle{} - \insertshortauthor
+					\else
+						\beamer@fhe@footernormalpages
+					\fi
+				}\vfil}%
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=\beamer@fhe@otherpage@footer@textmiddle,ht=\beamer@fhe@otherpage@heightheaderbarfittedpt,center]{page number in head/foot}%
+			\vbox to\beamer@fhe@otherpage@heightheaderbarfittedpt{
+				\vfil
+				\fitbox[maxwidth=\beamer@fhe@otherpage@footer@middlefittingtext, minwidth=\beamer@fhe@otherpage@footer@middlefittingtext, maxheight=\beamer@fhe@otherpage@heightheaderbarfittedtextpt]
+					{Seite \insertframenumber{} / \inserttotalframenumber}
+					\vfil}%
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=\beamer@fhe@otherpage@footer@textright,ht=\beamer@fhe@otherpage@heightheaderbarpt,right,rightskip=2ex]{date in head/foot}%
+			\vbox to\beamer@fhe@otherpage@heightheaderbarpt{\vfil\hbox{\usebeamerfont{date in head/foot}\if@fhe@disabledateinfooter \else \insertshortdate{} \fi}\vfil}%
+		\end{beamercolorbox}
+	}%
+\else
+\hbox{%
+\begin{beamercolorbox}[wd=\beamer@fhe@titlepage@footer@left,ht=\beamer@fhe@titlepage@heightheaderbarfittedpt,left,leftskip=2ex]{title in head/foot}%
+    \vbox to\beamer@fhe@titlepage@heightheaderbarfittedpt{\vfil
+		\fitbox[maxwidth=\beamer@fhe@titlepage@footer@leftfittingtext, minwidth=\beamer@fhe@titlepage@footer@leftfittingtext, maxheight=\beamer@fhe@titlepage@heightheaderbarfittedtextpt, minheight=\beamer@fhe@titlepage@heightheaderbarfittedtextpt]
+			{\usebeamerfont{title in head/foot}
+			\ifx\beamer@fhe@footertitlepage\@empty%
+				\insertshorttitle{} - \insertshortauthor
+			\else
+				\beamer@fhe@footertitlepage
+			\fi
+			}\vfil}%
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=\beamer@fhe@titlepage@footer@textmiddle,ht=\beamer@fhe@titlepage@heightheaderbarpt,center]{}%
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=\beamer@fhe@titlepage@footer@textright,ht=\beamer@fhe@titlepage@heightheaderbarpt,right,rightskip=2ex]{date in head/foot}%
+    \vbox to\beamer@fhe@titlepage@heightheaderbarpt{\vfil\hbox{\usebeamerfont{date in head/foot}\insertshortdate{}}\vfil}%
+\end{beamercolorbox}}%
+\fi
+}
+\defbeamertemplate*{headline}{fhe}
+{
+}
+
+\defbeamertemplate*{navigation symbols}{fhe}
+{
+}
+
+
+\mode<all>

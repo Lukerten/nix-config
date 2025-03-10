@@ -1,0 +1,224 @@
+\mode<presentation>
+
+%% -------------------- Begin Defines Colors and Logos for Subjects --------------------
+% General Colors and Logos
+\def\beamer@fhe@style@do@general{
+	\definecolor{fhcolor}{RGB}{0,55,116}
+	\definecolor{fhhalfcolor}{RGB}{127,158,189}
+	\definecolor{pagecolor}{RGB}{255,255,255}
+	\definecolor{footerbargraycolor}{RGB}{224,224,224}
+	\colorlet{footercolor}{fhcolor}
+	\colorlet{footerbarcolor}{footerbargraycolor}
+	\def\beamer@fhe@logo{images/logo_general}
+}
+
+% Architektur 
+\def\beamer@fhe@style@do@arc{
+	\definecolor{atcolor}{RGB}{165,155,147}
+	\definecolor{athalfcolor}{RGB}{212,207,201}
+	\definecolor{pagecolor}{RGB}{0,55,116}
+	\colorlet{footercolor}{atcolor}
+	\colorlet{footerbarcolor}{athalfcolor}
+	\def\beamer@fhe@logo{images/logo_arc}
+}
+
+% Angewandte Informatik
+\def\beamer@fhe@style@do@ai{
+	\definecolor{aicolor}{RGB}{104,140,164}
+	\definecolor{aihalfcolor}{RGB}{179,197,211}
+	\definecolor{pagecolor}{RGB}{255,255,255}
+	\colorlet{footercolor}{aicolor}
+	\colorlet{footerbarcolor}{aihalfcolor}
+	\def\beamer@fhe@logo{images/logo_ai}
+}
+
+% Bauingenieurwesen
+\def\beamer@fhe@style@do@bau{
+	\definecolor{baucolor}{RGB}{0,112,184}
+	\definecolor{bauhalfcolor}{RGB}{139,178,219}
+	\definecolor{pagecolor}{RGB}{255,255,255}
+	\colorlet{footercolor}{baucolor}
+	\colorlet{footerbarcolor}{bauhalfcolor}
+	\def\beamer@fhe@logo{images/logo_bau}
+}
+
+% Bildung und Erziehung von Kindern
+\def\beamer@fhe@style@do@bek{
+	\definecolor{bekcolor}{RGB}{238,127,0}
+	\definecolor{bekhalfcolor}{RGB}{250,200,139}
+	\definecolor{pagecolor}{RGB}{0,55,116}
+	\colorlet{footercolor}{bekcolor}
+	\colorlet{footerbarcolor}{bekhalfcolor}
+	\def\beamer@fhe@logo{images/logo_bek}
+}
+
+% Forstwirtschaft
+\def\beamer@fhe@style@do@forst{
+	\definecolor{forstcolor}{RGB}{0,124,81}
+	\definecolor{forsthalfcolor}{RGB}{129,185,158}
+	\definecolor{pagecolor}{RGB}{255,255,255}
+	\colorlet{footercolor}{forstcolor}
+	\colorlet{footerbarcolor}{forsthalfcolor}
+	\def\beamer@fhe@logo{images/logo_forst}
+}
+
+% Gartenbau
+\def\beamer@fhe@style@do@garten{
+	\definecolor{gbcolor}{RGB}{ 81,159,37}
+	\definecolor{gbhalfcolor}{RGB}{177,207,147}
+	\definecolor{pagecolor}{RGB}{255,255,255}
+	\colorlet{footercolor}{gbcolor}
+	\colorlet{footerbarcolor}{gbhalfcolor}
+	\def\beamer@fhe@logo{images/logo_garten}
+}
+
+% Gebäude- und Energietechnik
+\def\beamer@fhe@style@do@get{
+	\definecolor{getcolor}{RGB}{0,161,163}
+	\definecolor{gethalfcolor}{RGB}{156,212,209}
+	\definecolor{pagecolor}{RGB}{0,55,116}
+	\colorlet{footercolor}{getcolor}
+	\colorlet{footerbarcolor}{gethalfcolor}
+	\def\beamer@fhe@logo{images/logo_get}
+}
+
+% Landschaftsarchitektur
+\def\beamer@fhe@style@do@la{
+	\definecolor{lacolor}{RGB}{107,145,122}
+	\definecolor{lahalfcolor}{RGB}{181,201,190}
+	\definecolor{pagecolor}{RGB}{0,55,116}
+	\colorlet{footercolor}{lacolor}
+	\colorlet{footerbarcolor}{lahalfcolor}
+	\def\beamer@fhe@logo{images/logo_la}
+}
+
+% Konservierung und Restaurierung
+\def\beamer@fhe@style@do@kr{
+	\definecolor{krcolor}{RGB}{167,2,48}
+	\definecolor{krhalfcolor}{RGB}{212,137,132}
+	\definecolor{pagecolor}{RGB}{255,255,255}
+	\colorlet{footercolor}{krcolor}
+	\colorlet{footerbarcolor}{krhalfcolor}
+	\def\beamer@fhe@logo{images/logo_kr}
+}
+
+% Stadt- und Raumplanung
+\def\beamer@fhe@style@do@sr{
+	\definecolor{srpcolor}{RGB}{ 165,155,147}
+	\definecolor{srphalfcolor}{RGB}{212,207,201}
+	\definecolor{pagecolor}{RGB}{0,55,116}
+	\colorlet{footercolor}{srpcolor}
+	\colorlet{footerbarcolor}{srphalfcolor}
+	\def\beamer@fhe@logo{images/logo_sr}
+}
+
+% Soziale Arbeit
+\def\beamer@fhe@style@do@sozial{
+	\definecolor{sacolor}{RGB}{238,127,0}
+	\definecolor{sahalfcolor}{RGB}{250,200,139}
+	\definecolor{pagecolor}{RGB}{0,55,116}
+	\colorlet{footercolor}{sacolor}
+	\colorlet{footerbarcolor}{sahalfcolor}
+	\def\beamer@fhe@logo{images/logo_sozial}
+}
+
+% Wirtschaftswissenschaften
+\def\beamer@fhe@style@do@wiwi{
+	\definecolor{wiwicolor}{RGB}{249,178,0}
+	\definecolor{wiwihalfcolor}{RGB}{253,217,155}
+	\definecolor{pagecolor}{RGB}{0,55,116}
+	\colorlet{footercolor}{wiwicolor}
+	\colorlet{footerbarcolor}{wiwihalfcolor}
+	\def\beamer@fhe@logo{images/logo_wiwi}
+}
+% Verkehrs- und Transportwesen
+\def\beamer@fhe@style@do@vt{
+	\definecolor{vtcolor}{RGB}{0,109,132}
+	\definecolor{vthalfcolor}{RGB}{115,179,191}
+	\definecolor{pagecolor}{RGB}{255,255,255}
+	\colorlet{footercolor}{vtcolor}
+	\colorlet{footerbarcolor}{vthalfcolor}
+	\def\beamer@fhe@logo{images/logo_vt}
+}
+%% -------------------- End Defines Colors and Logos for Subjects -----------
+\let\beamer@fhe@style@do@default=\beamer@fhe@style@do@general
+
+%% -------------------- Defines Colors and Logos for all --------------------
+\def\beamer@fhe@style@do@common{
+	\definecolor{fhblue}{RGB}{0,55,116}
+	\definecolor{headergrey}{RGB}{224,224,224}
+	\definecolor{footerblue}{RGB}{187,204,221}
+	\colorlet{barfootercolor}{footercolor}
+	\colorlet{fhgroundcolor}{fhblue}
+	\colorlet{footcolor}{footerblue}
+	\colorlet{headercolor}{headergrey}
+}
+
+\def\beamer@fhe@style@do{%
+  \expandafter\let\expandafter\next
+    \csname beamer@fhe@style@do@\beamer@fhe@style\endcsname
+  \ifx\next\relax \let\next\beamer@fhe@style@do@default \fi
+  \next
+  \beamer@fhe@style@do@common
+  \usebeamercolor[fg]{normal text}%
+ 
+}
+
+\beamer@fhe@style@do
+
+
+% ---------- Begin Set Colors -----------------------------------------------
+
+\if@fhe@usestyletitlecolor
+\setbeamercolor{title}{fg=barfootercolor}
+\setbeamercolor{subtitle}{fg=barfootercolor}
+\else
+\setbeamercolor{title}{fg=fhgroundcolor}
+\setbeamercolor{subtitle}{fg=fhgroundcolor}
+\fi
+\if@fhe@usestyleframetitlecolor
+\setbeamercolor{frametitle}{fg=barfootercolor}
+\setbeamercolor{framesubtitle}{fg=barfootercolor}
+\else
+\setbeamercolor{frametitle}{fg=fhgroundcolor}
+\setbeamercolor{framesubtitle}{fg=fhgroundcolor}
+\fi
+
+\if@fhe@usestyleframetitlecolor
+\setbeamercolor{part title}{fg=barfootercolor}
+\else
+\setbeamercolor{part title}{fg=fhgroundcolor}
+\fi
+
+
+
+\setbeamercolor{title in head/foot}{fg=fhgroundcolor}
+\setbeamercolor{page number in head/foot}{fg=pagecolor}
+\setbeamercolor{author}{fg=fhgroundcolor}
+\setbeamercolor{structure}{fg=fhgroundcolor}
+\setbeamercolor{date}{fg=fhgroundcolor}
+\setbeamercolor{date in head/foot}{fg=fhgroundcolor}
+\setbeamercolor{itemize item}{fg=barfootercolor}
+\setbeamercolor{itemize subitem}{fg=barfootercolor}
+\setbeamercolor{itemize subsubitem}{fg=barfootercolor}
+\setbeamercolor{item projected}{bg=barfootercolor, fg=white}
+\setbeamercolor{enumerate item}{fg=barfootercolor}
+\setbeamercolor{enumerate subitem}{fg=barfootercolor}
+\setbeamercolor{enumerate subsubitem}{fg=barfootercolor}
+\setbeamercolor{section in toc}{fg=fhgroundcolor}
+\setbeamercolor{subsection in toc}{fg=fhgroundcolor}
+\setbeamercolor{navigation symbols}{fg=fhgroundcolor}
+\setbeamercolor{normal text}{fg=fhgroundcolor}
+
+\setbeamercolor{block title}{use=structure,fg=white,bg=barfootercolor}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=footerbarcolor}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!25!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!25!bg}
+
+
+
+% ---------- End Set Colors ------------------------------------------------
+\mode
+<all>

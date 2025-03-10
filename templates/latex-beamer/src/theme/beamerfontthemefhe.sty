@@ -1,0 +1,56 @@
+\mode<presentation>
+%% -------------------- font theme --------------------
+
+\if@fhe@disablefontbold
+\else	
+\usefonttheme{structurebold}
+\fi
+
+% ------- Begin Option for author font size --------------------------------
+
+\def\beamer@fhe@authorfontsize@do@small{
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamerfont{author}{size=\footnotesize}
+\setbeamerfont{institute}{size=\footnotesize}
+}
+
+\def\beamer@fhe@authorfontsize@do@large{
+\setbeamerfont{date}{size=\large}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{institute}{size=\large}
+}
+
+\def\beamer@fhe@authorfontsize@do@normal{
+\setbeamerfont{date}{size=\normalsize}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\normalsize}
+}
+\let\beamer@fhe@authorfontsize@do@default=\beamer@fhe@authorfontsize@do@normal
+
+
+
+\def\beamer@fhe@authorfontsize@do{%
+	\expandafter\let\expandafter\next
+	\csname beamer@fhe@authorfontsize@do@\beamer@fhe@authorfontsize\endcsname
+	\ifx\next\relax \let\next\beamer@fhe@authorfontsize@do@default \fi
+	\next
+	
+}
+
+\beamer@fhe@authorfontsize@do
+
+% ------- End Option for author font size --------------------------------
+
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{subtitle}{size=\large}
+\setbeamerfont{section in toc}{size=\large}
+\setbeamerfont{frametitle}{size=\LARGE}
+\setbeamerfont{framesubtitle}{size=\Large}
+\setbeamerfont{subsection in toc}{size=\normalsize}
+\setbeamersize{
+text margin left=\beamer@fhe@otherpage@leftmargin
+}
+\setbeamersize{
+text margin right=\beamer@fhe@otherpage@rightmargin
+}
+\mode<all>
