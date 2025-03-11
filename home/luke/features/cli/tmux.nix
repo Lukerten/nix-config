@@ -69,9 +69,42 @@ in {
       {
         plugin = catppuccin;
         extraConfig = ''
+          # --> Override Color theme
+          set -ogq @thm_bg "${config.colorscheme.colors.surface}"
+          set -ogq @thm_fg "${config.colorscheme.colors.on_surface}"
+
+          # Colors
+          set -ogq @thm_rosewater "${config.colorscheme.colors.orange}"
+          set -ogq @thm_flamingo "${config.colorscheme.colors.orange}"
+          set -ogq @thm_rosewater "${config.colorscheme.colors.red}"
+          set -ogq @thm_pink "${config.colorscheme.colors.magenta}"
+          set -ogq @thm_mauve "${config.colorscheme.colors.magenta}"
+          set -ogq @thm_red "${config.colorscheme.colors.red}"
+          set -ogq @thm_maroon "${config.colorscheme.colors.red}"
+          set -ogq @thm_peach "${config.colorscheme.colors.yellow}"
+          set -ogq @thm_yellow "${config.colorscheme.colors.yellow}"
+          set -ogq @thm_green "${config.colorscheme.colors.green}"
+          set -ogq @thm_teal "${config.colorscheme.colors.cyan}"
+          set -ogq @thm_sky "${config.colorscheme.colors.cyan}"
+          set -ogq @thm_sapphire "${config.colorscheme.colors.blue}"
+          set -ogq @thm_blue "${config.colorscheme.colors.blue}"
+          set -ogq @thm_lavender "${config.colorscheme.colors.magenta}"
+
+          # Surfaces and overlays
+          set -ogq @thm_subtext_1 "${config.colorscheme.colors.surface}"
+          set -ogq @thm_subtext_0 "${config.colorscheme.colors.surface_bright}"
+          set -ogq @thm_overlay_2 "${config.colorscheme.colors.surface_variant}"
+          set -ogq @thm_overlay_1 "${config.colorscheme.colors.surface_bright}"
+          set -ogq @thm_overlay_0 "${config.colorscheme.colors.surface_variant}"
+          set -ogq @thm_surface_2 "${config.colorscheme.colors.surface_variant}"
+          set -ogq @thm_surface_1 "${config.colorscheme.colors.surface_bright}"
+          set -ogq @thm_surface_0 "${config.colorscheme.colors.surface}"
+          set -ogq @thm_mantle "${config.colorscheme.colors.surface}"
+          set -ogq @thm_crust "${config.colorscheme.colors.surface}"
+
           set -g @catppuccin_flavour 'mocha'
-          set -g @catppuccin_window_left_separator "█"
-          set -g @catppuccin_window_right_separator "█ "
+          set -g @catppuccin_window_left_separator ""
+          set -g @catppuccin_window_right_separator ""
           set -g @catppuccin_window_middle_separator " █"
           set -g @catppuccin_window_number_position "right"
 
