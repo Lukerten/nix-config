@@ -16,7 +16,7 @@
         '';
     }
   ];
-  formatter = null;
+  format = [];
   extraPackages = [];
   extraPlugins = [];
 }

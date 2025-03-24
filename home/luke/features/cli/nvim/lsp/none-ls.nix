@@ -6,7 +6,7 @@
 with lib;
 with builtins; let
   languages = import ../languages {inherit pkgs lib;};
-  formatterConfigs = languages.formatterConfigs;
+  formatterConfigs = languages.formatters;
 in {
   programs.neovim = {
     plugins = [

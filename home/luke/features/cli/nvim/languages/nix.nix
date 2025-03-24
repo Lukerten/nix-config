@@ -31,17 +31,19 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.alejandra;
-    config =
-      # lua
-      ''
-        -- Nix formatting: alejandra
-        table.insert(ls_sources, none_ls.builtins.formatting.alejandra.with({
-          command = "${pkgs.alejandra}/bin/alejandra",
-        }))
-      '';
-  };
+  format = [
+    {
+      package = pkgs.alejandra;
+      config =
+        # lua
+        ''
+          -- Nix formatting: alejandra
+          table.insert(ls_sources, none_ls.builtins.formatting.alejandra.with({
+            command = "${pkgs.alejandra}/bin/alejandra",
+          }))
+        '';
+    }
+  ];
   extraPackages = [];
   extraPlugins = [];
 }

@@ -83,21 +83,23 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.google-java-format;
-    config =
-      # lua
-      ''
-        -- Java formatting: google-java-format
-          table.insert(ls_sources, none_ls.builtins.formatting.google_java_format.with({
-            command = "${pkgs.google-java-format}/bin/google-java-format",
-            args = {
-              "--aosp",
-              "--skip-removing-unused-imports",
-            },
-          }))
-      '';
-  };
+  formatter = [
+    {
+      package = pkgs.google-java-format;
+      config =
+        # lua
+        ''
+          -- Java formatting: google-java-format
+            table.insert(ls_sources, none_ls.builtins.formatting.google_java_format.with({
+              command = "${pkgs.google-java-format}/bin/google-java-format",
+              args = {
+                "--aosp",
+                "--skip-removing-unused-imports",
+              },
+            }))
+        '';
+    }
+  ];
   extraPackages = [];
   extraPlugins = [];
 }

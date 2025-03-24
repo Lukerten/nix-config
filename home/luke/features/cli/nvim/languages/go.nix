@@ -23,7 +23,7 @@
     }
   ];
 
-  formatter = null;
+  format = [];
 
   extraPackages = with pkgs; [
     go

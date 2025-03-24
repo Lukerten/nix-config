@@ -38,17 +38,19 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.black;
-    config =
-      # lua
-      ''
-        -- Python formatting: black
-        table.insert(ls_sources, none_ls.builtins.formatting.black.with({
-          command = "${pkgs.black}/bin/black",
-        }))
-      '';
-  };
+  format = [
+    {
+      package = pkgs.black;
+      config =
+        # lua
+        ''
+          -- Python formatting: black
+          table.insert(ls_sources, none_ls.builtins.formatting.black.with({
+            command = "${pkgs.black}/bin/black",
+          }))
+        '';
+    }
+  ];
   extraPackages = [];
   extraPlugins = [];
 }

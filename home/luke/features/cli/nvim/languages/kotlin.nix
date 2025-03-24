@@ -16,17 +16,19 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.ktlint;
-    config =
-      # lua
-      ''
-        -- Kotlin formatting: ktlint
-        table.insert(ls_sources, none_ls.builtins.formatting.ktlint.with({
-          command = "${pkgs.ktlint}/bin/ktlint",
-        }))
-      '';
-  };
+  format = [
+    {
+      package = pkgs.ktlint;
+      config =
+        # lua
+        ''
+          -- Kotlin formatting: ktlint
+          table.insert(ls_sources, none_ls.builtins.formatting.ktlint.with({
+            command = "${pkgs.ktlint}/bin/ktlint",
+          }))
+        '';
+    }
+  ];
   extraPackages = [];
   extraPlugins = [];
 }

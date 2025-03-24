@@ -16,17 +16,19 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.mdformat;
-    config =
-      # lua
-      ''
-        -- Markdown formatting: mdformat
-        table.insert(ls_sources, none_ls.builtins.formatting.mdformat.with({
-          command = {"${pkgs.mdformat}/bin/mdformat", "--wrap", "80"},
-        }))
-      '';
-  };
+  format = [
+    {
+      package = pkgs.mdformat;
+      config =
+        # lua
+        ''
+          -- Markdown formatting: mdformat
+          table.insert(ls_sources, none_ls.builtins.formatting.mdformat.with({
+            command = {"${pkgs.mdformat}/bin/mdformat", "--wrap", "80"},
+          }))
+        '';
+    }
+  ];
   extraPackages = [];
   extraPlugins = [];
 }

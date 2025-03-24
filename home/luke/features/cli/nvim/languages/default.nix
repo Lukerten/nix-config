@@ -31,12 +31,13 @@
     ./terraform.nix
     ./yaml.nix
   ];
+  l = map (lang: import lang {inherit pkgs lib;}) languages;
+  ensureConfig = cfg: cfg.package != null && cfg.config != null;
 
-  importedLanguages = map (lang: import lang {inherit pkgs lib;}) languages;
-  lspConfigs = filter (cfg: cfg != null) (concatMap (lang: lang.lsp) importedLanguages);
-  formatterConfigs = filter (cfg: cfg != null) (concatMap (lang: [lang.formatter]) importedLanguages);
-  extraPackages = filter (pkg: pkg != null) (concatMap (lang: lang.extraPackages) importedLanguages);
-  extraPlugins = filter (plugin: plugin != null) (concatMap (lang: lang.extraPlugins or []) importedLanguages);
+  lspServers = filter ensureConfig (concatMap (lang: lang.lsp or []) l);
+  formatters = filter ensureConfig (concatMap (lang: lang.format or []) l);
+  extraPackages = filter (pkg: pkg != null) (concatMap (lang: lang.extraPackages) l);
+  extraPlugins = filter (plugin: plugin != null) (concatMap (lang: lang.extraPlugins or []) l);
 in {
-  inherit lspConfigs formatterConfigs extraPackages extraPlugins;
+  inherit lspServers formatters extraPackages extraPlugins;
 }

@@ -82,17 +82,19 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.clang-tools;
-    config =
-      # lua
-      ''
-        -- C/C++ formatting: clang-format
-        table.insert(ls_sources, none_ls.builtins.formatting.clang_format.with({
-          command = "${pkgs.clang-tools}/bin/clang-format",
-        }))
-      '';
-  };
+  format = [
+    {
+      package = pkgs.clang-tools;
+      config =
+        # lua
+        ''
+          -- C/C++ formatting: clang-format
+          table.insert(ls_sources, none_ls.builtins.formatting.clang_format.with({
+            command = "${pkgs.clang-tools}/bin/clang-format",
+          }))
+        '';
+    }
+  ];
   extraPackages = [];
   extraPlugins = [];
 }

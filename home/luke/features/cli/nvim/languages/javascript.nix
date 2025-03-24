@@ -58,15 +58,17 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.nodePackages.prettier;
-    config = ''
-      -- JavaScript/TypeScript formatting: prettier
-      table.insert(ls_sources, none_ls.builtins.formatting.prettier.with({
-        command = "${pkgs.nodePackages.prettier}/bin/prettier",
-      }))
-    '';
-  };
+  format = [
+    {
+      package = pkgs.nodePackages.prettier;
+      config = ''
+        -- JavaScript/TypeScript formatting: prettier
+        table.insert(ls_sources, none_ls.builtins.formatting.prettier.with({
+          command = "${pkgs.nodePackages.prettier}/bin/prettier",
+        }))
+      '';
+    }
+  ];
   extraPackages = with pkgs; [nodejs];
   extraPlugins = [];
 }

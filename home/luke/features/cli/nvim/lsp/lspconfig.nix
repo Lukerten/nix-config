@@ -6,7 +6,7 @@
 with lib;
 with builtins; let
   languages = import ../languages {inherit pkgs lib;};
-  lspConfigs = languages.lspConfigs;
+  lspConfigs = languages.lspServers;
   extraPackages = languages.extraPackages;
   extraPlugins = languages.extraPlugins;
 in {
