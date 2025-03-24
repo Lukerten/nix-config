@@ -7,8 +7,9 @@
   hash = builtins.hashString "md5" (builtins.toJSON colorscheme.colors);
 in {
   imports = [
-    ./languages.nix
+    ./helix-gpt.nix
     ./keymap.nix
+    ./languages.nix
   ];
 
   home.sessionVariables.EDITOR = "hx";

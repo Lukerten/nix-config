@@ -171,6 +171,7 @@
         }
         {
           name = "nix";
+          language-servers = ["nixd" "nil" "helix-gpt"];
           formatter = {
             command = "nixpkgs-fmt";
           };
