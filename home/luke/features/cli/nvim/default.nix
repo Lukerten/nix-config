@@ -8,7 +8,6 @@
     ./completions
     ./core
     ./lsp
-    ./treesitter
     ./utils
     ./visuals
   ];
