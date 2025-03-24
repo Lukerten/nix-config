@@ -7,15 +7,11 @@ creation_rules:
   - path_regex: hosts/secrets.ya?ml
     key_groups:
       - age:
-        - *exaflare
+          - *exaflare
+          - *annihilation
 
-  - path_regex: hosts/secrets.ya?ml
+  - path_regex: home/luke/secrets.ya?ml
     key_groups:
       - age:
-        - *annihilation
-
-  - path_regex: hosts/secrets.ya?ml
-    key_groups:
-      - age:
-        - *exaflare
-        - *annihilation
+          - *exaflare
+          - *annihilation

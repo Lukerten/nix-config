@@ -25,6 +25,9 @@
   home-manager.extraSpecialArgs = {
     inherit inputs outputs;
   };
+  home-manager.sharedModules = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;

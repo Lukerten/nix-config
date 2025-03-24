@@ -12,6 +12,14 @@
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
+  sops = {
+    age.keyFile = "/home/luke/.config/sops/age/keys.txt"; # must have no password!
+
+    defaultSopsFile = ./secrets.yaml;
+    defaultSymlinkPath = "/run/user/1000/secrets";
+    defaultSecretsMountPoint = "/run/user/1000/secrets.d";
+  };
+
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
