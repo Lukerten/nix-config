@@ -16,7 +16,7 @@ in
 
     hi clear
 
-    hi Normal        guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
+    hi Normal        guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
     hi Bold          guifg=NONE guibg=NONE gui=bold guisp=NONE
     hi Debug         guifg=${c.red} guibg=NONE gui=NONE guisp=NONE
     hi Directory     guifg=${c.blue} guibg=NONE gui=NONE guisp=NONE
