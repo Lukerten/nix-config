@@ -24,7 +24,7 @@
       # lua
       ''
         -- SQL formatting: sqlfluff
-        table.insert(ls_sources, null_ls.builtins.formatting.sql_formatter.with({
+        table.insert(ls_sources, none_ls.builtins.formatting.sql_formatter.with({
           command = "${pkgs.sql-formatter}/bin/sql-formatter",
           filetypes = { "sql" },
         }))

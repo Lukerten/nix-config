@@ -88,17 +88,18 @@
         '';
     }
   ];
-  formatter = {
-    package = pkgs.rustfmt;
-    config =
-      # lua
-      ''
-        table.insert(ls_sources, null_ls.builtins.formatting.rustfmt.with({
-             command = "${pkgs.rustfmt}/bin/rustfmt";
-           })
-         )
-      '';
-  };
+  formatter = null;
+  # {
+  #   package = pkgs.rustfmt;
+  #   config =
+  #     # lua
+  #     ''
+  #       -- Rust Formatter: rustfmt
+  #       table.insert(ls_sources, none_ls.builtins.formatting.rustfmt.with({
+  #         command = "${pkgs.rustfmt}/bin/rustfmt",
+  #       }))
+  #     '';
+  # };
   extraPackages = [];
   extraPlugins = [];
 }

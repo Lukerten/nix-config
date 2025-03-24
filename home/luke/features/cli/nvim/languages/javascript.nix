@@ -2,28 +2,32 @@
   lsp = [
     {
       package = pkgs.nodePackages.typescript-language-server;
-      config = ''
-        -- TypeScript/JavaScript Language Server
-        lspconfig.ts_ls.setup{
-          capabilities = capabilities;
-          on_attach = attach_keymaps,
-          cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" },
-          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-          root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-        }
-      '';
+      config =
+        # lua
+        ''
+          -- TypeScript/JavaScript Language Server
+          lspconfig.ts_ls.setup{
+            capabilities = capabilities;
+            on_attach = attach_keymaps,
+            cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" },
+            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+            root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+          }
+        '';
     }
     {
       package = pkgs.eslint_d;
-      config = ''
-        -- ESLint Language Server
-        lspconfig.eslint.setup{
-          capabilities = capabilities;
-          on_attach = attach_keymaps,
-          cmd = { "${pkgs.eslint_d}/bin/eslint_d" },
-          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "astro" },
-        }
-      '';
+      config =
+        # lua
+        ''
+          -- ESLint Language Server
+          lspconfig.eslint.setup{
+            capabilities = capabilities;
+            on_attach = attach_keymaps,
+            cmd = { "${pkgs.eslint_d}/bin/eslint_d" },
+            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "astro" },
+          }
+        '';
     }
     {
       package = pkgs.biome;
@@ -58,7 +62,7 @@
     package = pkgs.nodePackages.prettier;
     config = ''
       -- JavaScript/TypeScript formatting: prettier
-      table.insert(ls_sources, null_ls.builtins.formatting.prettier.with({
+      table.insert(ls_sources, none_ls.builtins.formatting.prettier.with({
         command = "${pkgs.nodePackages.prettier}/bin/prettier",
       }))
     '';

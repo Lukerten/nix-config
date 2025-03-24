@@ -22,7 +22,7 @@
       # lua
       ''
         -- Markdown formatting: mdformat
-        table.insert(ls_sources, null_ls.builtins.formatting.mdformat.with({
+        table.insert(ls_sources, none_ls.builtins.formatting.mdformat.with({
           command = {"${pkgs.mdformat}/bin/mdformat", "--wrap", "80"},
         }))
       '';

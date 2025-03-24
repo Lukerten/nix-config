@@ -28,56 +28,46 @@ in {
               -- Default Keymap Options
               local attach_keymaps = function(client, bufnr)
                 vim.lsp.inlay_hint.enable(true)
-                vim.keymap.set("n", "<leader>Lgc", "<cmd> lua vim.lsp.buf.declaration()<cr>",default_opts("Go to declaration", bufnr))
-                vim.keymap.set("n", "<leader>Lgd", "<cmd> lua vim.lsp.buf.definition()<cr>",default_opts("Go to definition", bufnr))
-                vim.keymap.set("n", "<leader>Lgt", "<cmd> lua vim.lsp.buf.type_definition()<cr>",default_opts("Go to type definition", bufnr))
-                vim.keymap.set("n", "<leader>Lgr", "<cmd> lua vim.lsp.buf.references()<cr>",default_opts("Go to references", bufnr))
-                vim.keymap.set("n", "<leader>Lgn", "<cmd> lua vim.lsp.diagnostic.goto_next()<cr>",default_opts("next diagnostic", bufnr))
-                vim.keymap.set("n", "<leader>Lgp", "<cmd> lua vim.lsp.diagnostic.goto_prev()<cr>",default_opts("previous diagnostic", bufnr))
-                vim.keymap.set("n", "<leader>Lgi", "<cmd> lua vim.lsp.buf.implementation()<cr>",default_opts("Go to implementation", bufnr))
-                vim.keymap.set("n", "<leader>Lwa", "<cmd> lua vim.lsp.buf.add_workspace_folder()<cr>",default_opts("Add workspace folder", bufnr))
-                vim.keymap.set("n", "<leader>Lwr", "<cmd> lua vim.lsp.buf.remove_workspace_folder()<cr>",default_opts("Remove workspace folder", bufnr))
-                vim.keymap.set("n", "<leader>Lwl", "<cmd> lua vim.lsp.buf.list_workspace_folders()<cr>",default_opts("List workspace folders", bufnr))
-                vim.keymap.set("n", "<leader>Lh" , "<cmd> lua vim.lsp.buf.hover()<cr>",default_opts("Hover Documentation", bufnr))
-                vim.keymap.set("n", "<leader>Ls" , "<cmd> lua vim.lsp.buf.signature_help()<cr>",default_opts("Signature help", bufnr))
-                vim.keymap.set("n", "<leader>r"  , "<cmd> lua vim.lsp.buf.rename()<cr>",default_opts("Rename", bufnr))
-                vim.keymap.set("n", "<leader>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code", bufnr))
-                vim.keymap.set("v", "<leader>f"  , "<cmd> lua vim.lsp.buf.format()<cr>",default_opts("Format code",bufnr))
-                vim.keymap.set("n", "<leader>h"  , "<cmd> lua vim.lsp.buf.hover()<cr>",default_opts("Hover Documentation", bufnr))
-                vim.keymap.set("n", "<leader>i"  , function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle inlay hint" })
-              end
 
-              -- Enable formatting
-              format_callback = function(client, bufnr)
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                  group = augroup,
-                  buffer = bufnr,
-                  callback = function()
-                    if vim.g.formatsave then
-                      if client.supports_method("textDocument/formatting") then
-                        local params = require'vim.lsp.util'.make_formatting_params({})
-                        client.request('textDocument/formatting', params, nil, bufnr)
-                      end
-                    end
-                  end
-                })
+                -- Rename
+                vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, default_opts("Rename", bufnr))
+                vim.keymap.set("n", "grn", vim.lsp.buf.rename, default_opts("Rename", bufnr))
+
+                -- Code Actions
+                vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, default_opts("Code Actions", bufnr))
+                vim.keymap.set("n", "gra", vim.lsp.buf.code_action, default_opts("Code Actions", bufnr))
+
+                -- References
+                vim.keymap.set("n", "<leader>g", vim.lsp.buf.references, default_opts("References", bufnr))
+                vim.keymap.set("n", "grr", vim.lsp.buf.references, default_opts("References", bufnr))
+
+                -- Signature
+                vim.keymap.set("n", "<leader>s", vim.lsp.buf.signature_help, default_opts("Signature Help", bufnr))
+                vim.keymap.set("n", "grs", vim.lsp.buf.signature_help, default_opts("Signature Help", bufnr))
+
+                -- Hover
+                vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, default_opts("Hover", bufnr))
+                vim.keymap.set("n", "grh", vim.lsp.buf.hover, default_opts("Hover", bufnr))
+
+                -- Format
+                vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, default_opts("Format", bufnr))
+                vim.keymap.set("n", "grf", vim.lsp.buf.format, default_opts("Format", bufnr))
+
+                -- GoTo
+                vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, default_opts("Go To Definition", bufnr))
+                vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, default_opts("Go To Declaration", bufnr))
+                vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, default_opts("Go To Implementation", bufnr))
+                vim.keymap.set("n", "<leader>gt", vim.lsp.buf.type_definition, default_opts("Go To Type Definition", bufnr))
+
+                -- Inlay Hints
+                vim.keymap.set("n", "<leader>i"  , function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle inlay hint" })
               end
 
               default_on_attach = function(client, bufnr)
                 attach_keymaps(client, bufnr)
                 format_callback(client, bufnr)
               end
-
               local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-              -- organize imports sync
-              vim.api.nvim_create_autocmd("BufWritePre", {
-                callback = function(args)
-                  vim.lsp.buf.format()
-                  vim.lsp.buf.code_action { context = { only = { 'source.organizeImports' } }, apply = true }
-                  vim.lsp.buf.code_action { context = { only = { 'source.fixAll' } }, apply = true }
-                end,
-              })
 
               -- Language Server Configurations
               ${concatMapStringsSep "\n" (cfg: cfg.config) lspConfigs}
