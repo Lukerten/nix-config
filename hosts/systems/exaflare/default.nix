@@ -15,7 +15,6 @@
 
     # optional configuration
     ../../optional/bluetooth.nix
-    ../../optional/cm4all-vpn.nix
     ../../optional/cups.nix
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
