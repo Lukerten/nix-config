@@ -51,7 +51,7 @@
       definedAliases = ["@nw"];
     };
 
-    "Wikipedia (de)" = {
+    "wikipedia-de" = {
       urls = [
         {
           template = "https://de.wikipedia.org/w/index.php";
@@ -66,7 +66,7 @@
       definedAliases = ["@wd"];
     };
 
-    "Wikipedia (en)" = {
+    "wikipedia" = {
       urls = [
         {
           template = "https://en.wikipedia.org/w/index.php";
@@ -99,8 +99,8 @@
       definedAliases = ["@yt"];
     };
     "Amazon".metaData.hidden = true;
-    "Google".metaData.hidden = true;
-    "Bing".metaData.hidden = true;
+    google.metaData.hidden = true;
+    bing.metaData.hidden = true;
   };
 
   settings = {
@@ -170,42 +170,20 @@ in {
       luke = {
         search = {
           force = true;
-          default = "DuchDuckGo";
-          privateDefault = "DuckDuckGo";
+          default = "ddg";
+          privateDefault = "ddg";
           order = [
-            "DuckDuckGo"
+            "ddg"
             "Nix Packages"
             "NixOS Wiki"
-            "Wikipedia (de)"
-            "Wikipedia (en)"
-            "Openstreetmap"
-            "Youtube"
+            "wikipedia-de"
+            "wikipedia"
           ];
           engines = engines;
         };
         extensions.packages = extensions;
         settings = settings;
         id = 0;
-      };
-      # TODO: addd Dev Profile
-      dev = {
-        search = {
-          force = true;
-          default = "DuchDuckGo";
-          privateDefault = "DuckDuckGo";
-          order = [
-            "DuckDuckGo"
-            "Nix Packages"
-            "NixOS Wiki"
-            "Wikipedia (de)"
-            "Wikipedia (en)"
-            "Openstreetmap"
-            "Youtube"
-          ];
-        };
-        extensions.packages = devextensions;
-        settings = settings;
-        id = 1;
       };
     };
   };

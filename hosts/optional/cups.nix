@@ -2,8 +2,6 @@
   printing-drivers = [
     pkgs.gutenprint
     pkgs.gutenprintBin
-    pkgs.hplip
-    pkgs.hplipWithPlugin
     pkgs.postscript-lexmark
     pkgs.samsung-unified-linux-driver
     pkgs.splix
