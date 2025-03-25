@@ -1,9 +1,10 @@
 {
   imports = [
     ./dolphin.nix
-    ./fultimatordesktop.nix
+    ./fultimator-desktop.nix
     ./melonDS.nix
     ./mgba.nix
+    ./path-of-building.nix
     ./prismlauncher.nix
     ./steam.nix
     ./wine.nix

@@ -3,6 +3,7 @@
   shellcolord = pkgs.callPackage ./shellcolord {};
   trekscii = pkgs.callPackage ./trekscii {};
   lyrics = pkgs.python3Packages.callPackage ./lyrics {};
+  fultimator-desktop = pkgs.callPackage ./fultimator-desktop {};
 
   # Personal scripts
   xpo = pkgs.callPackage ./xpo {};

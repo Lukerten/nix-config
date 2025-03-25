@@ -3,7 +3,6 @@
     ./global
     ./features/desktop/hypr
     ./features/games
-    ./features/games/path-of-exile.nix
   ];
 
   # |------| |------| |------|
@@ -11,6 +10,9 @@
   # |------| |------| |------|
 
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-waterfall;
+
+  programs.fultimator-desktop.enable = true;
+  programs.path-of-building.enable = true;
 
   suits = {
     dev.gamedev.enable = true;
