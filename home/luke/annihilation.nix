@@ -9,10 +9,6 @@
     network-manager-applet.enable = true;
   };
 
-  home.packages = with pkgs; [
-    dwarf-fortress
-  ];
-
   monitors = [
     {
       name = "eDP-1";
