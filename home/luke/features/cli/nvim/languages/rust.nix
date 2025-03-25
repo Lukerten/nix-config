@@ -89,18 +89,50 @@
     }
   ];
   format = [
-    # {
-    #   package = pkgs.rustfmt;
-    #   config =
-    #     # lua
-    #     ''
-    #       -- Rust Formatter: rustfmt
-    #       table.insert(ls_sources, none_ls.builtins.formatting.rustfmt.with({
-    #         command = "${pkgs.rustfmt}/bin/rustfmt",
-    #       }))
-    #     '';
-    # };
+    {
+      package = pkgs.rustfmt;
+      config =
+        # lua
+        ''
+          -- Rust Formatter: rustfmt
+          local h = require("null-ls.helpers")
+          local methods = require("null-ls.methods")
+          local FORMATTING = methods.internal.FORMATTING
+
+          local rustfmt = h.make_builtin({
+            name = "rustfmt",
+            meta = {
+              url = "https://github.com/rust-lang/rustfmt",
+              description = "A tool for formatting rust code according to style guidelines.",
+              notes = {
+                  "`--edition` defaults to `2015`. To set a different edition, use `extra_args`.",
+                  "See [the wiki](https://github.com/nvimtools/none-ls.nvim/wiki/Source-specific-Configuration#rustfmt) for other workarounds.",
+              },
+            },
+            method = FORMATTING,
+            filetypes = { "rust" },
+            generator_opts = {
+              command = "${pkgs.rustfmt}/bin/rustfmt",
+              args = { "--emit=stdout" },
+              to_stdin = true,
+            },
+            factory = h.formatter_factory,
+          })
+
+          table.insert(ls_sources, rustfmt)
+        '';
+    }
   ];
-  extraPackages = [];
-  extraPlugins = [];
+  extraPackages = with pkgs; [cargo];
+  extraPlugins = with pkgs.vimPlugins; [
+    {
+      plugin = crates-nvim;
+      type = "lua";
+      config =
+        # lua
+        ''
+          require('crates').setup()
+        '';
+    }
+  ];
 }

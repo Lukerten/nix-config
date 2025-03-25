@@ -16,6 +16,7 @@
                 },
                 staticcheck = true,
                 gofumpt = true,
+                buildFlags = {"-tags=unittest wireinject integrationtest systemtest ruleguard"},
               },
             },
           }

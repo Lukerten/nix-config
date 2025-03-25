@@ -2,8 +2,6 @@
   imports = [
     ./dap.nix
     ./oil.nix
-    ./telescope.nix
-    ./treesitter.nix
   ];
 
   programs.neovim.plugins = with pkgs.vimPlugins; [

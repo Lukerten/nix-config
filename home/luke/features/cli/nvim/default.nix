@@ -1,13 +1,11 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./completions
+    ./copilot
     ./core
     ./lsp
+    ./telescope
+    ./treesitter
     ./utils
     ./visuals
   ];
