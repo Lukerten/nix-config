@@ -4,7 +4,10 @@
   ...
 }: {
   imports = [
+    inputs.hardware.nixosModules.common-pc-laptop
     inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-gpu-intel-sandy-bridge
+    inputs.hardware.nixosModules.common-hidpi
     inputs.hardware.nixosModules.common-pc-ssd
     ./hardware-configuration.nix
 
