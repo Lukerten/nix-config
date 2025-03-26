@@ -5,9 +5,9 @@
   lyrics = pkgs.python3Packages.callPackage ./lyrics {};
 
   # Personal scripts
-  xpo = pkgs.callPackage ./xpo {};
+  minicava = pkgs.callPackage ./minicava {};
   pvim = pkgs.callPackage ./pvim {};
   pmux = pkgs.callPackage ./pmux {};
   plymouth-spinner-monochrome = pkgs.callPackage ./plymouth-spinner-monochrome {};
-  gocypher = pkgs.callPackage ./gocypher {};
+  xpo = pkgs.callPackage ./xpo {};
 }
