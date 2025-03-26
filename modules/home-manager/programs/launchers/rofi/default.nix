@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -100,6 +101,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.rofi = {
+      package = pkgs.rofi;
+
       extraConfig = {
         modi = "drun,window,ssh";
         show-icons = true;
