@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.neovim.plugins = with pkgs.vimPlugins; [
     otter-nvim
+    vim-vsnip
     cmp-buffer
     cmp-nvim-lsp
     cmp_luasnip
