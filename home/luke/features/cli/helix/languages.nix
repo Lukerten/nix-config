@@ -35,7 +35,6 @@
       docker-compose-language-service
       dockerfile-language-server-nodejs
       golangci-lint
-      golangci-lint-langserver
       gopls
       gotools
       marksman

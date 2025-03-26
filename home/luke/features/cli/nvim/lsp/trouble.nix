@@ -6,10 +6,9 @@
       config =
         # lua
         ''
-          -- Enable trouble diagnostics viewer
+          -- Trouble
           require("trouble").setup()
 
-          -- Trouble
           vim.keymap.set("n", "<leader>Ht", "<cmd>Trouble diagnostics toggle<CR>",default_opts("Toggle diagnostics"))
           vim.keymap.set("n", "<leader>Hd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",default_opts("Workspace diagnostics"))
           vim.keymap.set("n", "<leader>Hs", "<cmd>Trouble symbols togglefocus=false<CR>",default_opts("LSP symbols"))
