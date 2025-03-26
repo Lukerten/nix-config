@@ -16,6 +16,7 @@
                 },
                 staticcheck = true,
                 gofumpt = true,
+                buildFlags = {"-tags=unittest wireinject integrationtest systemtest ruleguard"},
               },
             },
           }
@@ -24,6 +25,18 @@
   ];
 
   format = [];
+
+  dap = [
+    {
+      config =
+        #lua
+        ''
+          -- Go
+          require('dap-go').setup()
+        '';
+      package = pkgs.vimPlugins.nvim-dap-go;
+    }
+  ];
 
   extraPackages = with pkgs; [
     go

@@ -16,7 +16,7 @@
             suggestion = {
               enabled = true,
               keymap = {
-                accept = "<C-a>",
+                accept = "<Tab>",
               },
             },
             copilot_node_command = "${lib.getExe pkgs.nodejs-slim}",
@@ -71,15 +71,6 @@
           vim.keymap.set({ 'n', 'v' }, '<leader>Ca', '<cmd>lua copilot_chat_action()<cr>', { silent = true, noremap = true, desc = "CopilotChat - Select action" })
           vim.keymap.set({ 'n', 'v' }, '<leader>Cc', '<cmd>lua copilot_chat()<cr>', { silent = true, noremap = true, desc = "CopilotChat - Ask a question" })
           vim.keymap.set({ 'n', 'v' }, '<leader>a', '<cmd>lua copilot_chat()<cr>', { silent = true, noremap = true, desc = "Ask Copilot" })
-
-          -- Autocommand to map 'q' to close buffer when filetype is copilot-chat
-          vim.cmd([[
-            augroup CopilotChat
-              autocmd!
-              autocmd FileType copilot-chat nnoremap <buffer> q :q<CR>
-              autocmd FileType copilot-chat inoremap <buffer> q <ESC>:q<CR>
-            augroup END
-          ]])
         '';
     }
   ];

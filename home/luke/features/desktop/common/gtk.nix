@@ -89,12 +89,12 @@ in rec {
       package = pkgs.papirus-icon-theme;
     };
     cursorTheme = {
-      package = pkgs.vimix-cursor-theme;
-      name = "Vimix-Cursors${
+      package = pkgs.vimix-cursors;
+      name = "Vimix-${
         if config.colorscheme.mode == "dark"
-        then "-White"
+        then "white-"
         else ""
-      }";
+      }cursors";
       size = 24;
     };
   };
