@@ -82,6 +82,7 @@
             sources = {
               {
                 name='nvim_lsp',
+              },
               {
                 name = 'copilot',
                 max_item_count = 1,
