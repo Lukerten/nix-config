@@ -7,6 +7,7 @@
   imports =
     [
       inputs.home-manager.nixosModules.home-manager
+      ./acme.nix
       ./gamemode.nix
       ./kdeconnect.nix
       ./locale.nix
