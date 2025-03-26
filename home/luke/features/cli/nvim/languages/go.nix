@@ -26,6 +26,18 @@
 
   format = [];
 
+  dap = [
+    {
+      config =
+        #lua
+        ''
+          -- Go
+          require('dap-go').setup()
+        '';
+      package = pkgs.vimPlugins.nvim-dap-go;
+    }
+  ];
+
   extraPackages = with pkgs; [
     go
     golangci-lint
