@@ -15,9 +15,11 @@
       ./nix.nix
       ./openssh.nix
       ./podman.nix
+      ./prometheus-node-exporter.nix
       ./sops.nix
       ./steam-hardware.nix
       ./systemd-initrd.nix
+      ./tailscale.nix
       ./upower.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
