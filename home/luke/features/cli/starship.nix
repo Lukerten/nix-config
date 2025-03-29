@@ -30,7 +30,7 @@
         style_root = "yellow bold";
       };
       hostname = {
-        format = "[@$hostname]($style) ";
+        format = "[$hostname ]($style) ";
         ssh_only = true;
         style = "bold green";
       };
