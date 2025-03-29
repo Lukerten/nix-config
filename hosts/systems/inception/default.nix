@@ -1,10 +1,14 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
+
     ../../global
     ../../users/luke
 
     ../../optional/systemd-boot.nix
+
+    ./adguardhome
+    ./traefik
   ];
 
   networking = {
