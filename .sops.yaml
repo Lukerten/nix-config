@@ -11,6 +11,8 @@ creation_rules:
       - age:
           - *exaflare
           - *annihilation
+          - *sanctity
+          - *inception
 
   - path_regex: home/luke/secrets.ya?ml
     key_groups:
