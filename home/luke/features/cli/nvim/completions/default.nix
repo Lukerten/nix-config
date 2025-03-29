@@ -7,10 +7,12 @@
         # lua
         ''
           opts = {
-            keymap = { preset = 'default' },
-            appearance = {
-              use_nvim_cmp_as_default = true,
-              nerd_font_variant = 'mono'
+            keymap = {
+              preset = 'default',
+              ['<tab>'] = {'select_prev', 'fallback'},
+              ['<c-tab>'] = {'select_prev', 'fallback'},
+              ['<c-e>'] = {}
+              ['<c-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
             },
             fuzzy = {
               implementation = 'prefer_rust',
