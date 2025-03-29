@@ -7,7 +7,7 @@
 
     ../../optional/systemd-boot.nix
 
-    ./adguardhome
+    ./adguard
     ./traefik
   ];
 

@@ -28,20 +28,12 @@
         safe_search.enabled = true;
         rewrites = [
           {
-            "domain" = "lenin";
-            "answer" = "192.168.178.143";
-          }
-          {
-            "domain" = "*.lenin";
-            "answer" = "192.168.178.143";
-          }
-          {
             "domain" = "local";
-            "answer" = "192.168.178.143";
+            "answer" = "192.168.2.222";
           }
           {
             "domain" = "*.local";
-            "answer" = "192.168.178.143";
+            "answer" = "192.168.2.222";
           }
           {
             "domain" = "speedport.ip";
