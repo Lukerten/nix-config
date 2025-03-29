@@ -3,17 +3,7 @@
   config,
   pkgs,
   ...
-}: let
-  rgb = color: "rgb(${lib.removePrefix "#" color})";
-  rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
-
-  primary = rgb config.colorscheme.colors.primary;
-  surface = rgb config.colorscheme.colors.surface;
-  on_surface = rgb config.colorscheme.colors.on_surface;
-  primary_alpha = rgba config.colorscheme.colors.primary "cc";
-  tertiary_alpha = rgba config.colorscheme.colors.tertiary "cc";
-  surface_alpha = rgba config.colorscheme.colors.surface "cc";
-in {
+}: {
   imports = [
     ../common
     ../wayland
