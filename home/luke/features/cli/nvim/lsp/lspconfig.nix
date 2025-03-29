@@ -67,9 +67,9 @@ in {
                 attach_keymaps(client, bufnr)
                 format_callback(client, bufnr)
               end
-              local capabilities = vim.lsp.protocol.make_client_capabilities()
-
+              local capabilities = require('blink.cmp').get_lsp_capabilities()
               -- Language Server Configurations
+
               ${concatMapStringsSep "\n" (cfg: cfg.config) lspConfigs}
             '';
         }
