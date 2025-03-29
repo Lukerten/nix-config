@@ -16,7 +16,7 @@
             suggestion = {
               enabled = true,
               keymap = {
-                accept = "<Tab>",
+                accept = "<C-A>",
               },
             },
             copilot_node_command = "${lib.getExe pkgs.nodejs-slim}",
