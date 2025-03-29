@@ -1,15 +1,15 @@
-{
+{pkgs,...}:{
   imports = [
-    ../hardware-configuration.nix
+    ./hardware-configuration.nix
     ../../global
     ../../users/luke
   ];
 
-  network = {
+  networking = {
     hostName = "inception";
     useDHCP = true;
     dhcpcd.IPv6rs = true;
-    interface.ens3 = {
+    interfaces.ens3 = {
       useDHCP = true;
       wakeOnLan.enable = true;
     };
@@ -25,6 +25,7 @@
       efi.canTouchEfiVariables = true;
     };
   };
+  services.openssh.enable = true;
 
-  system.stateVersion = "24.05"
+  system.stateVersion = "24.05";
 }

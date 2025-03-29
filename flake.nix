@@ -81,6 +81,12 @@
         modules = [./hosts/systems/exaflare];
         specialArgs = {inherit inputs outputs;};
       };
+
+      # Homelab Server configuration
+      inception = lib.nixosSystem {
+        modules = [./hosts/systems/inception];
+        specialArgs = {inherit inputs outputs;};
+      };
     };
 
     #  Home Manager configuration
@@ -98,6 +104,14 @@
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
+
+      # Homelab Server configuration
+      "luke@inception" = lib.homeManagerConfiguration {
+        modules = [./home/luke/exaflare.nix ./home/luke/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+
     };
   };
 }
