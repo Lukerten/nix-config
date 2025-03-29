@@ -2,6 +2,8 @@ keys:
   - &hosts:
     - &exaflare age1lzurp5dvgpgeqhan7sf5aftc6wphf0kkvjyyznpf6s7uwpvlf5lszracjc
     - &annihilation age1242kck29d7z36a5qewzxeyn3crrujp306qd0nwv7fnx4aadnq5rs339nfv
+    - &sanctity age16wer0vssw3u6s5p3dl7dflv3kzkryhh2w3sd880wd9ylpkwgksvq7dk6nh
+    - &inception age188kgkc86p5gzr6frzmj368tvv28cnr32a0tsy35zflu2t8tvhsfqvhhlw6
 
 creation_rules:
   - path_regex: hosts/secrets.ya?ml
@@ -13,5 +15,15 @@ creation_rules:
   - path_regex: home/luke/secrets.ya?ml
     key_groups:
       - age:
+          - *exaflare
+          - *annihilation
+          - *sanctity
+          - *inception
+
+  # Sanctity
+  - path_regex: hosts/systems/sanctity/secrets.ya?ml$
+    key_groups:
+      - age:
+          - *sanctity
           - *exaflare
           - *annihilation
