@@ -18,7 +18,7 @@
     ../../optional/cups.nix
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
-    ../../optional/tuigreet.nix
+    ../../optional/regreet.nix
     ../../optional/systemd-boot.nix
     ../../optional/thunar.nix
     ../../optional/wireshark.nix
