@@ -17,10 +17,9 @@
               ['<C-Space>'] = { 'show_documentation', 'fallback'},
               ['<Up>'] = { 'scroll_documentation_up', 'fallback' },
               ['<Down>'] = { 'scroll_documentation_down', 'fallback' },
-              ['<CR>'] = { 'accept' },
+              ['<CR>'] = { 'accept', 'fallback' },
               ['<C-a>'] = { 'show'},
             },
-
             completion = {
               list = {
                 max_items = 200,
