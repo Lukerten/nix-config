@@ -1,26 +1,68 @@
 {pkgs, ...}: {
   programs.neovim.plugins = with pkgs.vimPlugins; [
+    blink-cmp-copilot
     {
       plugin = blink-cmp;
       type = "lua";
       config =
         # lua
         ''
-          opts = {
+          require("blink.cmp").setup({
             keymap = {
-              preset = 'default',
-              ['<tab>'] = {'select_prev', 'fallback'},
-              ['<c-tab>'] = {'select_prev', 'fallback'},
-              ['<c-e>'] = {}
-              ['<c-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+              preset = 'none',
+              ['<Tab>'] = {'snippet_forward','select_next', 'fallback'},
+              ['<C-Tab>'] = {'snippet_backward','select_next', 'fallback'},
+              ['<C-s>'] = { 'show_signature', 'fallback'},
+              ['<C-e>'] = {},
+              ['<C-Space>'] = { 'show_documentation', 'fallback'},
+              ['<Up>'] = { 'scroll_documentation_up', 'fallback' },
+              ['<Down>'] = { 'scroll_documentation_down', 'fallback' },
+              ['<CR>'] = { 'accept' },
+              ['<C-a>'] = { 'show'},
             },
+
+            completion = {
+              list = {
+                max_items = 200,
+                selection = {
+                  preselect = true,
+                  auto_insert = true,
+                },
+                cycle = {
+                  from_bottom = true,
+                  from_top = true,
+                },
+              },
+              documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 200,
+                window = {
+                  border = "rounded",
+                },
+              },
+              menu = {
+                border = "rounded",
+              },
+            },
+
             fuzzy = {
               implementation = 'prefer_rust',
             },
-            signature = { enabled = true }
-          },
 
-          require("blink.cmp").setup(opts)
+            signature = { enabled = true },
+
+            sources = {
+              default = { "lsp", "path", "snippets", "buffer", "copilot" },
+              providers = {
+                copilot = {
+                  name = "copilot",
+                  module = "blink-cmp-copilot",
+                  score_offset = 100,
+                  async = true,
+                },
+              },
+            },
+          })
         '';
     }
   ];

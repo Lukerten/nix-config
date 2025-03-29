@@ -236,7 +236,7 @@ in {
       bat = "BAT1";
       interval = 10;
       format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-      format = "{icon}";
+      format = "{icon} {capacity}%";
       format-charging = "󰂄 {capacity}%";
     };
 
