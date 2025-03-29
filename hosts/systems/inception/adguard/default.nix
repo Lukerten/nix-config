@@ -65,16 +65,16 @@
       };
     };
   };
-
   services.traefik.dynamicConfigOptions = {
     http.routers = {
       adguard = {
-        rule = " Host(`ag.local`)";
+        rule = " Host(`adguard.local`) || Host(`ag.local`)";
         entryPoints = ["web"];
         service = "adguard";
         tls = false;
       };
     };
+
     http.services = {
       adguard = {
         loadBalancer.servers = [

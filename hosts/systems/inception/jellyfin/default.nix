@@ -1,20 +1,21 @@
-{pkgs, ...}: {
+{
   imports = [./package.nix];
-
   services.jellyfin = {
     enable = true;
     openFirewall = true;
+    user = "luke";
   };
 
   services.traefik.dynamicConfigOptions = {
     http.routers = {
       jellyfin = {
-        rule = " Host(`jf.local`)";
+        rule = " Host(`jellyfin.local`) || Host(`jf.local`)";
         entryPoints = ["web"];
         service = "jellyfin";
         tls = false;
       };
     };
+
     http.services = {
       jellyfin = {
         loadBalancer.servers = [

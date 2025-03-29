@@ -7,10 +7,12 @@
     builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
   users.mutableUsers = false;
+  users.groups.luke = {};
   users.users.luke = {
     isNormalUser = true;
     shell = pkgs.fish;
     home = "/home/luke";
+    group = "luke";
     extraGroups =
       ["wheel" "video" "audio"]
       ++ ifTheyExist [
@@ -29,6 +31,7 @@ in {
         "podman"
         "vboxusers"
         "wireshark"
+        "jellyfin"
       ];
 
     hashedPasswordFile = config.sops.secrets.luke-password.path;

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   imports = [
     ./hardware-configuration.nix
 
@@ -8,6 +8,7 @@
     ../../optional/systemd-boot.nix
 
     ./adguard
+    ./jellyfin
     ./traefik
   ];
 
@@ -20,8 +21,9 @@
       wakeOnLan.enable = true;
     };
   };
-
+  sops.secrets.brendgen-user-password-hashed = {
+    sopsFile = ./secrets.yaml;
+  };
   services.openssh.enable = true;
-
   system.stateVersion = "24.05";
 }
