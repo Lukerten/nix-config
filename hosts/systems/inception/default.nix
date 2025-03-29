@@ -1,8 +1,10 @@
-{pkgs,...}:{
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../global
     ../../users/luke
+
+    ../../optional/systemd-boot.nix
   ];
 
   networking = {
@@ -15,16 +17,6 @@
     };
   };
 
-  boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    loader = {
-      systemd-boot = {
-        enable = true;
-        consoleMode = "max";
-      };
-      efi.canTouchEfiVariables = true;
-    };
-  };
   services.openssh.enable = true;
 
   system.stateVersion = "24.05";
