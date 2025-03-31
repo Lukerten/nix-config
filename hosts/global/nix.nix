@@ -24,6 +24,7 @@ in {
         "nixos-test"
       ];
       flake-registry = "";
+      allow-import-from-derivation = true;
     };
     gc = {
       automatic = true;
