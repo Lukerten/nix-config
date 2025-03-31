@@ -2,8 +2,6 @@
   imports = [
     ./hardware-configuration.nix
 
-    ../../optional/systemd-boot.nix
-
     ../../global
     ../../users/luke
   ];
@@ -17,7 +15,11 @@
       wakeOnLan.enable = true;
     };
   };
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  boot.loader = {
+    grub.enable = true;
+    grub.device = "nodev";
+  };
 
   services.openssh = {
     enable = true;

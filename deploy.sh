@@ -20,4 +20,4 @@ fi
 
 # Deploy:
 printf "\e[1;32m%s\e[0m\n" "deploying to $host"
-deploy .#$host --hostname "$host" --interactive-sudo true -- $extra_args
+deploy .#$host --interactive-sudo true -- $extra_args
