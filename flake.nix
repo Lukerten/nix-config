@@ -94,6 +94,11 @@
         modules = [./hosts/systems/inception];
         specialArgs = {inherit inputs outputs;};
       };
+
+      sanctity = lib.nixosSystem {
+        modules = [./hosts/systems/sanctity];
+        specialArgs = {inherit inputs outputs;};
+      };
     };
 
     #  Home
@@ -112,6 +117,12 @@
 
       "luke@inception" = lib.homeManagerConfiguration {
         modules = [./home/luke/exaflare.nix ./home/luke/nixpkgs.nix];
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+
+      "luke@sanctity" = lib.homeManagerConfiguration {
+        modules = [./home/luke/sanctity.nix ./home/luke/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
@@ -146,6 +157,16 @@
         profiles.system = {
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.inception;
+        };
+      };
+
+      sanctity = {
+        host = "sanctity";
+        sshUser = "luke";
+        magicRollback = false;
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.sanctity;
         };
       };
     };
