@@ -1,9 +1,9 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   rgb = color: "rgb(${lib.removePrefix "#" color})";
   rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
   inherit (config.colorscheme) colors;
@@ -81,8 +81,7 @@ let
         --blurple-to-accent-3-filter: hue-rotate(304deg) saturate(0.84) brightness(1.2);
       }
     '';
-in
-{
+in {
   programs.vesktop = {
     enable = true;
     customCss = {
