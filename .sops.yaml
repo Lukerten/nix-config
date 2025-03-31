@@ -27,9 +27,13 @@ creation_rules:
     key_groups:
       - age:
           - *sanctity
+          - *exaflare
+          - *annihilation
 
   # Inception
   - path_regex: hosts/systems/inception/secrets.ya?ml$
     key_groups:
       - age:
           - *inception
+          - *exaflare
+          - *annihilation

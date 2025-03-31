@@ -21,9 +21,14 @@
       wakeOnLan.enable = true;
     };
   };
-  sops.secrets.brendgen-user-password-hashed = {
-    sopsFile = ./secrets.yaml;
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
   };
-  services.openssh.enable = true;
+
   system.stateVersion = "24.05";
 }
