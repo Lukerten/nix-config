@@ -24,28 +24,17 @@
         '';
     }
     {
-      plugin = copilot-cmp;
-      type = "lua";
-      config =
-        # lua
-        ''
-          require("copilot_cmp").setup()
-        '';
-    }
-    {
       plugin = CopilotChat-nvim;
       type = "lua";
       config =
         # lua
         ''
           require("CopilotChat").setup({
-            context = "buffers",
             window = {
               layout = "vertical",
               title = "Copilot Chat",
             },
           })
-
           function _G.copilot_chat()
             local input = vim.fn.input("Quick Chat: ")
             if input ~= "" then

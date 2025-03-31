@@ -11,10 +11,11 @@
     modules-right = [
       "tray"
       "wlr/taskbar"
+      "pulseaudio"
+      "battery"
       "idle_inhibitor"
       "bluetooth"
       "network"
-      "battery"
       "clock"
     ];
   };

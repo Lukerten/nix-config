@@ -2,9 +2,7 @@ scheme: let
   c = scheme.colors;
   hash = builtins.hashString "md5" (builtins.toJSON scheme.colors);
 in
-  /*
-  vim
-  */
+  # vim
   ''
     let g:colors_name="nix-${hash}"
 
@@ -125,6 +123,27 @@ in
     hi gitcommitUnmergedFile   guifg=${c.red} guibg=NONE gui=bold guisp=NONE
     hi gitcommitDiscardedFile  guifg=${c.red} guibg=NONE gui=bold guisp=NONE
     hi gitcommitSelectedFile   guifg=${c.green} guibg=NONE gui=bold guisp=NONE
+
+    hi BlinkCmpMenu              guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpMenuBorder        guifg=${c.primary} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpMenuSelection     guifg=${c.on_surface} guibg=${c.surface_container_high} gui=NONE guisp=NONE
+    hi BlinkCmpScrollBarThumb    guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE
+    hi BlinkCmpScrollBarGutter   guifg=${c.surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpLabel             guifg=${c.on_surface} guibg=NONE gui=NONE guisp=NONE
+    hi BlinkCmpLabelDeprecated   guifg=${c.primary_container} guibg=NONE gui=strikethrough guisp=NONE
+    hi BlinkCmpLabelMatch        guifg=${c.primary} guibg=NONE gui=bold guisp=NONE
+    hi BlinkCmpLabelDetail       guifg=${c.on_surface_variant} guibg=NONE gui=NONE guisp=NONE
+    hi BlinkCmpLabelDescription  guifg=${c.on_surface_variant} guibg=NONE gui=italic guisp=NONE
+    hi BlinkCmpKind              guifg=${c.cyan} guibg=NONE gui=NONE guisp=NONE
+    hi BlinkCmpSource            guifg=${c.on_surface_variant} guibg=NONE gui=NONE guisp=NONE
+    hi BlinkCmpGhostText         guifg=${c.surface_variant} guibg=NONE gui=italic guisp=NONE
+    hi BlinkCmpDoc               guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpDocBorder         guifg=${c.on_surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpDocSeparator      guifg=${c.surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpDocCursorLine     guifg=NONE guibg=${c.tertiary_container} gui=NONE guisp=NONE
+    hi BlinkCmpSignatureHelp     guifg=${c.on_surface} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpSignatureHelpBorder guifg=${c.on_surface_variant} guibg=${c.surface} gui=NONE guisp=NONE
+    hi BlinkCmpSignatureHelpiActiveParameter guifg=${c.primary} guibg=NONE gui=bold guisp=NONE
 
     hi GitGutterAdd           guifg=${c.green} guibg=${c.surface} gui=NONE guisp=NONE
     hi GitGutterChange        guifg=${c.blue} guibg=${c.surface} gui=NONE guisp=NONE

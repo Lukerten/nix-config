@@ -42,7 +42,6 @@ in {
     };
     extraConfig = ''
       IdentityFile ${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen
-      IdentityFile ${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_fhe
     '';
   };
   # Compatibility with programs that don't respect SSH configurations (e.g. jujutsu's libssh2)

@@ -18,7 +18,7 @@
     ../../optional/cups.nix
     ../../optional/pipewire.nix
     ../../optional/quietboot.nix
-    ../../optional/tuigreet.nix
+    ../../optional/regreet.nix
     ../../optional/systemd-boot.nix
     ../../optional/thunar.nix
     ../../optional/wireshark.nix
@@ -28,18 +28,6 @@
   networking = {
     hostName = "exaflare";
     networkmanager.enable = true;
-  };
-
-  boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    binfmt.emulatedSystems = ["aarch64-linux" "i686-linux"];
-    loader = {
-      systemd-boot = {
-        enable = true;
-        consoleMode = "max";
-      };
-      efi.canTouchEfiVariables = true;
-    };
   };
 
   hardware = {

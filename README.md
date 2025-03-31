@@ -27,6 +27,8 @@ completing these before moving on to other systems.
 
 - `anihilaton` - My Home Laptop.
 - `exaflare` - My Home Desktop.
+- `inception` - Homelab Server.
+- `sanctity` - Small VM
 
 # Secrets
 

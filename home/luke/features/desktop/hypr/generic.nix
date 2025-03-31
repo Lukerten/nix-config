@@ -36,16 +36,6 @@
           "col.locked_inactive" = rgba config.colorscheme.colors.surface "cc";
         };
       };
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_distance = 700;
-        workspace_swipe_fingers = 3;
-        workspace_swipe_cancel_ratio = 0.15;
-        workspace_swipe_min_speed_to_force = 5;
-        workspace_swipe_direction_lock = true;
-        workspace_swipe_direction_lock_threshold = 0;
-        workspace_swipe_create_new = true;
-      };
       binds = {
         movefocus_cycles_fullscreen = false;
       };

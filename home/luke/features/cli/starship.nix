@@ -11,7 +11,7 @@
       format = let
         lower = "\${custom.lower}";
         upper = "\${custom.upper}";
-        systemInfo = "($shlvl)$nix_shell$battery$time";
+        systemInfo = "$hostname($shlvl)$nix_shell$battery$time";
         locationInfo = "$directory($git_branch$git_commit$git_state$git_status)";
         prompt = "$jobs$character";
       in ''
@@ -30,8 +30,8 @@
         style_root = "yellow bold";
       };
       hostname = {
-        format = "[@$hostname]($style) ";
-        ssh_only = false;
+        format = "[$hostname ]($style) ";
+        ssh_only = true;
         style = "bold green";
       };
       shlvl = {
