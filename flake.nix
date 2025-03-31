@@ -38,6 +38,10 @@
       url = "github:nix-community/nixgl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -45,6 +49,7 @@
     nixpkgs,
     home-manager,
     systems,
+    deploy-rs,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -68,50 +73,83 @@
     devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
-    # NixOS configuration entrypoint
+    # NixOS configurations
+    # ├─ annihilation: Main Laptop configuration
+    # ├─ exaflare: Home Desktop configuration
+    # ╰─ inception: Homelab Server configuration
+
+    # Hosts
     nixosConfigurations = {
-      # Main Laptop configuration
       annihilation = lib.nixosSystem {
         modules = [./hosts/systems/annihilation];
         specialArgs = {inherit inputs outputs;};
       };
 
-      # Home Desktop configuration
       exaflare = lib.nixosSystem {
         modules = [./hosts/systems/exaflare];
         specialArgs = {inherit inputs outputs;};
       };
 
-      # Homelab Server configuration
       inception = lib.nixosSystem {
         modules = [./hosts/systems/inception];
         specialArgs = {inherit inputs outputs;};
       };
     };
 
-    #  Home Manager configuration
+    #  Home
     homeConfigurations = {
-      #  # Main Laptop configuration
       "luke@annihilation" = lib.homeManagerConfiguration {
         modules = [./home/luke/annihilation.nix ./home/luke/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
-      # Home Desktop configuration
       "luke@exaflare" = lib.homeManagerConfiguration {
         modules = [./home/luke/exaflare.nix ./home/luke/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
-      # Homelab Server configuration
       "luke@inception" = lib.homeManagerConfiguration {
         modules = [./home/luke/exaflare.nix ./home/luke/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
-
     };
+
+    # Deploy
+    deploy.nodes = {
+      annihilation = {
+        host = "annihilation";
+        sshUser = "luke";
+        magicRollback = false;
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.annihilation;
+        };
+      };
+
+      exafare = {
+        host = "exafare";
+        sshUser = "luke";
+        magicRollback = false;
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.exaflare;
+        };
+      };
+
+      inception = {
+        host = "inception";
+        sshUser = "luke";
+        magicRollback = false;
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.inception;
+        };
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
