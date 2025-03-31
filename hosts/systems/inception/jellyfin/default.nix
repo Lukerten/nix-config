@@ -9,7 +9,7 @@
   services.traefik.dynamicConfigOptions = {
     http.routers = {
       jellyfin = {
-        rule = " Host(`jellyfin.local`) || Host(`jf.local`)";
+        rule = "Host(`jellyfin.local`) || Host(`jf.local`)";
         entryPoints = ["web"];
         service = "jellyfin";
         tls = false;
