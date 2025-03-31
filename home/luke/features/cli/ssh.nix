@@ -5,6 +5,8 @@
   ...
 }: let
   hostnames = builtins.attrNames outputs.nixosConfigurations;
+  filterNames = ["annihilation" "exaflare" "inception"];
+  filterHostnames = builtins.filter (host: builtins.elem host filterNames) hostnames;
 in {
   services.ssh-agent.enable = true;
 
@@ -13,10 +15,12 @@ in {
     addKeysToAgent = "yes";
     matchBlocks = {
       net = {
-        host = lib.concatStringsSep " " (lib.flatten (map (host: [
+        host = lib.concatStringsSep " " (lib.flatten (
+          map (host: [
             host
           ])
-          hostnames));
+          filterHostnames
+        ));
         forwardAgent = true;
         remoteForwards = [
           {
@@ -37,6 +41,12 @@ in {
         hostname = "hye.ai.fh-erfurt.de";
         user = "student";
         identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen_fhe";
+        forwardAgent = false;
+      };
+      "sanctity" = {
+        hostname = "23.88.53.225";
+        user = "luke";
+        identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_Lucas_Brendgen";
         forwardAgent = false;
       };
     };

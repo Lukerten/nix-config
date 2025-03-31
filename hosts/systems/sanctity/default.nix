@@ -1,7 +1,8 @@
 {
   imports = [
-    ./services
     ./hardware-configuration.nix
+
+    ../../optional/systemd-boot.nix
 
     ../../global
     ../../users/luke
@@ -16,6 +17,7 @@
       wakeOnLan.enable = true;
     };
   };
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   services.openssh = {
     enable = true;

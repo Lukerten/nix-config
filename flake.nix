@@ -130,28 +130,8 @@
 
     # Deploy
     deploy.nodes = {
-      annihilation = {
-        host = "annihilation";
-        sshUser = "luke";
-        magicRollback = false;
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.annihilation;
-        };
-      };
-
-      exafare = {
-        host = "exafare";
-        sshUser = "luke";
-        magicRollback = false;
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.exaflare;
-        };
-      };
-
       inception = {
-        host = "inception";
+        hostname = "inception";
         sshUser = "luke";
         magicRollback = false;
         profiles.system = {
@@ -161,7 +141,7 @@
       };
 
       sanctity = {
-        host = "sanctity";
+        hostname = "sanctity";
         sshUser = "luke";
         magicRollback = false;
         profiles.system = {
