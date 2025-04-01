@@ -4,6 +4,9 @@
 
     ../../global
     ../../users/luke
+    ../../services/traefik.nix
+
+    ./mailserver
   ];
 
   networking = {
@@ -27,6 +30,11 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
+  };
+
+  sops.secrets = {
+    lucas-brendgen-mail-password-hashed.sopsFile = ./secrets.yaml;
+    grafana-mail-password-hashed.sopsFile = ./secrets.yaml;
   };
 
   system.stateVersion = "24.05";

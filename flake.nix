@@ -3,21 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     systems.url = "github:nix-systems/default-linux";
     hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
 
-    themes = {
-      url = "github:Lukerten/themes";
-      inputs.systems.follows = "systems";
-    };
     sops-nix = {
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nh = {
-      url = "github:viperml/nh";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -30,6 +26,10 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    themes = {
+      url = "github:Lukerten/themes";
+      inputs.systems.follows = "systems";
+    };
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,9 +38,10 @@
       url = "github:nix-community/nixgl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
+    nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-24_11.follows = "nixpkgs-stable";
     };
   };
 
