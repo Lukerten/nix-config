@@ -6,10 +6,10 @@
     ../../users/luke
 
     ../../optional/systemd-boot.nix
+    ../../services/traefik.nix
 
     ./adguard
     ./jellyfin
-    ./traefik
   ];
 
   networking = {
