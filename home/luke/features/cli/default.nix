@@ -1,6 +1,5 @@
 {
   imports = [
-    ./helix
     ./nvim
     ./direnv.nix
     ./fastfetch.nix
@@ -8,7 +7,6 @@
     ./gh.nix
     ./git.nix
     ./gpg.nix
-    ./jujutsu.nix
     ./nix-index.nix
     ./pass.nix
     ./ranger.nix

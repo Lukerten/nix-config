@@ -75,6 +75,8 @@ in {
     jq.enable = true;
     ripgrep.enable = true;
     zoxide.enable = true;
+    thefuck.enable = true;
+    thefuck.enableInstantMode = true;
   };
 
   # Extra Terminal Utilities

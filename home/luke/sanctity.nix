@@ -1,4 +1,3 @@
-{pkgs, ...}: {
-  imports = [./global];
-  wallpaper = pkgs.inputs.themes.wallpapers.lake-houses-sunset-gold;
+{
+  programs.neovim.enable = true;
 }

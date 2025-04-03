@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./completions
     ./copilot
@@ -9,6 +13,9 @@
     ./utils
     ./visuals
   ];
+
+  home.sessionVariables.COLORTERM = "truecolor";
+  home.sessionVariables.EDITOR = lib.getExe pkgs.neovim;
 
   home.packages = with pkgs; [lazygit xclip];
   programs.neovim.enable = true;
