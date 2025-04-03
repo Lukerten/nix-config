@@ -1,3 +1,3 @@
 {
-  programs.neovim.enable = true;
+  imports = [./global];
 }

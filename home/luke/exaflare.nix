@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./global
+    ./features/cli
     ./features/desktop/hypr
     ./features/games
   ];
