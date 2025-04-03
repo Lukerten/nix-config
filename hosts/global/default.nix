@@ -6,21 +6,16 @@
 }: {
   imports =
     [
-      inputs.home-manager.nixosModules.home-manager
-      ./acme.nix
-      ./gamemode.nix
-      ./kdeconnect.nix
       ./locale.nix
       ./nix-ld.nix
       ./nix.nix
       ./openssh.nix
-      ./podman.nix
       ./prometheus-node-exporter.nix
       ./sops.nix
-      ./steam-hardware.nix
       ./systemd-initrd.nix
       ./tailscale.nix
-      ./upower.nix
+
+      inputs.home-manager.nixosModules.home-manager
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 

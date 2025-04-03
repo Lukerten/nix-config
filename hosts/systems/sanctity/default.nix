@@ -5,8 +5,7 @@
     ../../global
     ../../users/luke
     ../../services/traefik.nix
-
-    ./mailserver
+    ../../services/acme.nix
   ];
 
   networking = {

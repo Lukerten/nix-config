@@ -105,25 +105,25 @@
     #  Home
     homeConfigurations = {
       "luke@annihilation" = lib.homeManagerConfiguration {
-        modules = [./home/luke/annihilation.nix ./home/luke/nixpkgs.nix];
+        modules = [./home/luke/annihilation.nix ./home/luke/global/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
       "luke@exaflare" = lib.homeManagerConfiguration {
-        modules = [./home/luke/exaflare.nix ./home/luke/nixpkgs.nix];
+        modules = [./home/luke/exaflare.nix ./home/luke/global/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
       "luke@inception" = lib.homeManagerConfiguration {
-        modules = [./home/luke/exaflare.nix ./home/luke/nixpkgs.nix];
+        modules = [./home/luke/exaflare.nix ./home/luke/global/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
       "luke@sanctity" = lib.homeManagerConfiguration {
-        modules = [./home/luke/sanctity.nix ./home/luke/nixpkgs.nix];
+        modules = [./home/luke/sanctity.nix ./home/luke/global/nixpkgs.nix];
         pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };

@@ -17,11 +17,14 @@
     # optional configuration
     ../../optional/bluetooth.nix
     ../../optional/cups.nix
+    ../../optional/podman.nix
     ../../optional/pipewire.nix
+    ../../optional/podman.nix
     ../../optional/quietboot.nix
     ../../optional/regreet.nix
     ../../optional/systemd-boot.nix
     ../../optional/thunar.nix
+    ../../optional/upower.nix
     ../../optional/wireshark.nix
     ../../optional/x11-no-suspend.nix
   ];
