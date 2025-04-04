@@ -61,12 +61,12 @@
   format = [
     {
       package = pkgs.nodePackages.prettier;
-      config = ''
-        -- JavaScript/TypeScript formatting: prettier
-        table.insert(ls_sources, none_ls.builtins.formatting.prettier.with({
-          command = "${pkgs.nodePackages.prettier}/bin/prettier",
-        }))
-      '';
+      config =
+        # lua
+        ''
+          -- JavaScript/TypeScript formatting: prettier
+          table.insert(ls_sources, none_ls.builtins.formatting.prettier)
+        '';
     }
   ];
   extraPackages = with pkgs; [nodejs];

@@ -7,6 +7,8 @@ with lib;
 with builtins; let
   languages = import ../languages {inherit pkgs lib;};
   formatterConfigs = languages.formatters;
+  formaterConfigString = concatMapStringsSep "\n" (cfg: cfg.config) formatterConfigs;
+  formatterExtraPackages = map (cfg: cfg.package) formatterConfigs;
 in {
   programs.neovim = {
     plugins = [
@@ -24,7 +26,7 @@ in {
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
             -- Formatters
-            ${concatMapStringsSep "\n" (cfg: cfg.config) formatterConfigs}
+            ${formaterConfigString}
 
             require('null-ls').setup({
               diagnostics_format = "[#{m}] #{s} (#{c})",
@@ -47,5 +49,6 @@ in {
           '';
       }
     ];
+    extraPackages = formatterExtraPackages;
   };
 }

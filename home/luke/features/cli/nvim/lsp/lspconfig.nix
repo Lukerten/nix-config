@@ -7,11 +7,13 @@ with lib;
 with builtins; let
   languages = import ../languages {inherit pkgs lib;};
   lspConfigs = languages.lspServers;
+  lspConfigString = concatMapStringsSep "\n" (cfg: cfg.config) lspConfigs;
+  lspExtraPackages = map (cfg: cfg.package) lspConfigs;
   extraPackages = languages.extraPackages;
   extraPlugins = languages.extraPlugins;
 in {
   programs.neovim = {
-    extraPackages = map (cfg: cfg.package) lspConfigs ++ extraPackages;
+    extraPackages = lspExtraPackages ++ extraPackages;
     plugins = with pkgs.vimPlugins;
       [
         {
@@ -70,7 +72,7 @@ in {
               local capabilities = require('blink.cmp').get_lsp_capabilities()
               -- Language Server Configurations
 
-              ${concatMapStringsSep "\n" (cfg: cfg.config) lspConfigs}
+              ${lspConfigString}
             '';
         }
       ]

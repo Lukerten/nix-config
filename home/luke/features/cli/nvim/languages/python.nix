@@ -45,9 +45,7 @@
         # lua
         ''
           -- Python formatting: black
-          table.insert(ls_sources, none_ls.builtins.formatting.black.with({
-            command = "${pkgs.black}/bin/black",
-          }))
+          table.insert(ls_sources, none_ls.builtins.formatting.black)
         '';
     }
   ];

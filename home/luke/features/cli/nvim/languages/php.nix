@@ -27,9 +27,7 @@
         # lua
         ''
           -- PHP formatting: php-cs-fixer
-          table.insert(ls_sources, none_ls.builtins.formatting.phpcsfixer.with({
-            command = "${pkgs.php83Packages.php-cs-fixer}/bin/php-cs-fixer",
-          }))
+          table.insert(ls_sources, none_ls.builtins.formatting.phpcsfixer)
         '';
     }
   ];

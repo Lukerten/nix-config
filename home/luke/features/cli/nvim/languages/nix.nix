@@ -38,9 +38,7 @@
         # lua
         ''
           -- Nix formatting: alejandra
-          table.insert(ls_sources, none_ls.builtins.formatting.alejandra.with({
-            command = "${pkgs.alejandra}/bin/alejandra",
-          }))
+          table.insert(ls_sources, none_ls.builtins.formatting.alejandra)
         '';
     }
   ];
