@@ -33,8 +33,9 @@ in {
       "Line numbers
       set number
 
-      "disable line wrap
-      set nowrap
+      "Wrap lines with indent
+      set linebreak
+      set breakindent
       set nofoldenable
 
       "Highlight search
