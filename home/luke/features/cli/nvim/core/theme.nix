@@ -61,8 +61,8 @@ in
     hi EndOfBuffer   guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
     hi PMenu         guifg=${c.on_surface} guibg=${c.surface_variant} gui=NONE guisp=NONE
     hi PMenuSel      guifg=${c.surface_variant} guibg=${c.on_surface} gui=NONE guisp=NONE
-    hi TabLine       guifg=${c.primary_container} guibg=${c.surface_container} gui=NONE guisp=NONE
-    hi TabLineFill   guifg=${c.primary_container} guibg=${c.tertiary_container} gui=NONE guisp=NONE
+    hi TabLine       guifg=${c.primary_container} guibg=${c.surface} gui=NONE guisp=NONE
+    hi TabLineFill   guifg=${c.primary_container} guibg=${c.surface_container} gui=NONE guisp=NONE
     hi TabLineSel    guifg=${c.green} guibg=${c.primary} gui=NONE guisp=NONE
     hi EndOfBuffer   guifg=${c.surface} guibg=NONE gui=NONE guisp=NONE
 
