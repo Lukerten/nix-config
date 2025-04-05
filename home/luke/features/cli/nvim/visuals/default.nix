@@ -5,6 +5,7 @@
     ./fidget.nix
     ./gitsigns.nix
     ./ibl.nix
+    ./inline-diagnostic.nix
     ./markdown.nix
     ./mini.nix
     ./noice.nix

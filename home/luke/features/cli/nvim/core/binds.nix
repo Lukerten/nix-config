@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   programs.neovim.extraLuaConfig =
     # lua
     ''
@@ -81,13 +76,6 @@
       vim.keymap.set("n", "<leader>Tt", "<cmd>lua OpenDoubleTerminalsInNewTab()<cr>", {desc = "Open terminal in new tab"})
       vim.keymap.set("n", "<leader>Tm", "<cmd>lua OpenMultipleTerminalsInNewTab()<cr>", {desc = "Open terminal in new tab"})
       vim.keymap.set("n", "<leader>t", "<cmd>split | terminal<cr>", {desc = "Open terminal"})
-      vim.diagnostic.config({
-        virtual_text = false
-      })
-
-      -- Show line diagnostics automatically in hover window
-      vim.o.updatetime = 250
-      vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
       -- Move line up and down
       vim.api.nvim_set_keymap('n', 'K', '<cmd>m .-2<CR>==', { noremap = true, silent = true, desc = 'Move line up' })
