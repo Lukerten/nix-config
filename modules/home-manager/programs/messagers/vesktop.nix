@@ -12,7 +12,7 @@ in {
     enable = mkEnableOption "discord";
     package = mkOption {
       type = types.package;
-      default = pkgs.stable.vesktop;
+      default = pkgs.vesktop;
       description = "The code package to use.";
     };
     customCss = {

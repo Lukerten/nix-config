@@ -2,7 +2,6 @@
   imports = [
     inputs.hardware.nixosModules.common-cpu-amd
     inputs.hardware.nixosModules.common-gpu-amd
-    inputs.hardware.nixosModules.common-pc-ssd
     ./hardware-configuration.nix
 
     # common configuration
@@ -12,7 +11,6 @@
     # optional configuration
     ../../optional/bluetooth.nix
     ../../optional/cups.nix
-    ../../optional/gamemode.nix
     ../../optional/pipewire.nix
     ../../optional/podman.nix
     ../../optional/quietboot.nix
@@ -36,13 +34,27 @@
     };
     bluetooth.enable = true;
     uinput.enable = true;
-    enableAllFirmware = true;
   };
 
   programs = {
     adb.enable = true;
     dconf.enable = true;
     light.enable = true;
+  };
+
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      general = {
+        softrealtime = "on";
+        inhibit_screensaver = 1;
+      };
+      gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+        gpu_device = 0;
+        amd_performance_level = "high";
+      };
+    };
   };
 
   system.stateVersion = "24.05";
