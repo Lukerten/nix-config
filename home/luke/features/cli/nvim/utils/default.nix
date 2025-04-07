@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./dap.nix
+    ./neogit.nix
     ./oil.nix
     ./presence.nix
   ];

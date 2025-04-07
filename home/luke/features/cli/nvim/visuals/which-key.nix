@@ -16,7 +16,7 @@
 
           wk.add({
             mode = { "n" },
-            {"<leader>Gb", "Blame line"}
+            {"<leader>gb", "Blame line"}
           })
         '';
     }

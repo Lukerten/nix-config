@@ -17,7 +17,7 @@
   home.sessionVariables.COLORTERM = "truecolor";
   home.sessionVariables.EDITOR = lib.getExe pkgs.neovim;
 
-  home.packages = with pkgs; [lazygit xclip];
+  home.packages = with pkgs; [xclip];
   programs.neovim.enable = true;
   programs.pvim.enable = true;
 }
