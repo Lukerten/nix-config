@@ -1,16 +1,10 @@
-{pkgs, ...}: let
-  git-bare-clone = pkgs.writeShellScriptBin "git-bare-clone" "${builtins.readFile ./git-bare-clone.sh}";
-  git-create-worktree = pkgs.writeShellScriptBin "git-create-worktree" "${builtins.readFile ./git-create-worktree.sh}";
-  git-fixup = pkgs.writeShellScriptBin "git-fixup" "${builtins.readFile ./git-fixup.sh}";
-  git-recent = pkgs.writeShellScriptBin "git-recent" "${builtins.readFile ./git-recent.sh}";
-  git-track = pkgs.writeShellScriptBin "git-track" "${builtins.readFile ./git-track.sh}";
-in {
+{pkgs, ...}: {
   home.packages = [
-    git-bare-clone
-    git-create-worktree
-    git-fixup
-    git-recent
-    git-track
+    pkgs.git-bare-clone
+    pkgs.git-create-worktree
+    pkgs.git-fixup
+    pkgs.git-recent
+    pkgs.git-track
     pkgs.gitflow
   ];
 
