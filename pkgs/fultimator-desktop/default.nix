@@ -4,10 +4,10 @@
   fetchurl,
 }: let
   pname = "fultimator";
-  version = "0.1.4";
+  version = "1.0.0";
   src = fetchurl {
-    url = "https://github.com/fultimator/fultimator-desktop/releases/download/v${version}/Fultimator-${version}.AppImage";
-    sha256 = "IlUG5Jqxljb1T0nJvMViCPQFsLL2TwIuzs5U751xMno=";
+    url = "https://github.com/fultimator/fultimator-desktop/releases/download/v${version}/Fultimator-Linux-x86_64-${version}.AppImage";
+    sha256 = "32anuCguW39R0bL/lvFT8440tsnOfN1Rn0cB6oKcHcs=";
   };
   appimageContents = appimageTools.extractType1 {inherit pname version src;};
 in
