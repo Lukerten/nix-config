@@ -1,11 +1,10 @@
 {
   imports = [
+    ./git
     ./nvim
     ./direnv.nix
     ./fastfetch.nix
     ./fish.nix
-    ./gh.nix
-    ./git.nix
     ./gpg.nix
     ./nix-index.nix
     ./pass.nix
