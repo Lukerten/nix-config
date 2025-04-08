@@ -26,5 +26,6 @@ in {
   };
   environment.systemPackages = [
     podman-stopall
+    pkgs.podman-compose
   ];
 }
