@@ -22,5 +22,6 @@
     pkgs.jellyfin
     pkgs.jellyfin-web
     pkgs.jellyfin-ffmpeg
+    pkgs.yt-dlp
   ];
 }
