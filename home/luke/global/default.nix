@@ -28,7 +28,7 @@
     stateVersion = lib.mkDefault "24.05";
     sessionPath = ["$HOME/.local/bin"];
     sessionVariables = {
-      FLAKE = "$HOME/Projects/private/config";
+      FLAKE = "$HOME/Projects/private/config/main";
     };
   };
 }
