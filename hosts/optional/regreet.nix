@@ -27,8 +27,7 @@ in {
 
   programs.regreet = {
     enable = true;
-    iconTheme = lukeCfg.gtk.iconTheme;
-    theme = lukeCfg.gtk.theme;
+    inherit (lukeCfg.gtk) iconTheme theme;
     font = lukeCfg.fontProfiles.regular;
     cursorTheme = {
       inherit (lukeCfg.gtk.cursorTheme) name package;

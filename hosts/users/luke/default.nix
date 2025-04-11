@@ -6,36 +6,38 @@
   ifTheyExist = groups:
     builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
-  users.mutableUsers = false;
-  users.groups.luke = {};
-  users.users.luke = {
-    isNormalUser = true;
-    shell = pkgs.fish;
-    home = "/home/luke";
-    group = "luke";
-    extraGroups =
-      ["wheel" "video" "audio"]
-      ++ ifTheyExist [
-        "deluge"
-        "docker"
-        "git"
-        "gns3"
-        "i2c"
-        "libvirtd"
-        "lxd"
-        "minecraft"
-        "mysql"
-        "network"
-        "openrazer"
-        "plugdev"
-        "podman"
-        "vboxusers"
-        "wireshark"
-        "jellyfin"
-      ];
+  users = {
+    mutableUsers = false;
+    groups.luke = {};
+    users.luke = {
+      isNormalUser = true;
+      shell = pkgs.fish;
+      home = "/home/luke";
+      group = "luke";
+      extraGroups =
+        ["wheel" "video" "audio"]
+        ++ ifTheyExist [
+          "deluge"
+          "docker"
+          "git"
+          "gns3"
+          "i2c"
+          "libvirtd"
+          "lxd"
+          "minecraft"
+          "mysql"
+          "network"
+          "openrazer"
+          "plugdev"
+          "podman"
+          "vboxusers"
+          "wireshark"
+          "jellyfin"
+        ];
 
-    hashedPasswordFile = config.sops.secrets.luke-password.path;
-    packages = [pkgs.home-manager];
+      hashedPasswordFile = config.sops.secrets.luke-password.path;
+      packages = [pkgs.home-manager];
+    };
   };
 
   programs.fish = {

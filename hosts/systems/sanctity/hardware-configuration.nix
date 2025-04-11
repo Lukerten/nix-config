@@ -1,7 +1,5 @@
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -9,27 +7,29 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/b90ed92b-8ab7-49e0-912e-31278a199e65";
-    fsType = "ext4";
+  boot = {
+    initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod"];
+    initrd.kernelModules = [];
+    kernelModules = [];
+    extraModulePackages = [];
   };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/b90ed92b-8ab7-49e0-912e-31278a199e65";
+      fsType = "ext4";
+    };
 
-  fileSystems."/efi" = {
-    device = "systemd-1";
-    fsType = "autofs";
+    "/efi" = {
+      device = "systemd-1";
+      fsType = "autofs";
+    };
+
+    "/boot" = {
+      device = "/dev/disk/by-uuid/564D-E28E";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
   };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/564D-E28E";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
-
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

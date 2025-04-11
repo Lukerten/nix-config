@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   # Hide all .desktop, except for org.kde.kdeconnect.settings
   xdg.desktopEntries = {
     "org.kde.kdeconnect.sms" = {

@@ -1,14 +1,14 @@
 {pkgs, ...}: let
-  printing-drivers = [
-    pkgs.gutenprint
-    pkgs.gutenprintBin
-    pkgs.postscript-lexmark
-    pkgs.samsung-unified-linux-driver
-    pkgs.splix
-    pkgs.brlaser
-    pkgs.brgenml1lpr
-    pkgs.brgenml1cupswrapper
-    pkgs.cnijfilter2
+  printing-drivers = with pkgs; [
+    gutenprint
+    gutenprintBin
+    postscript-lexmark
+    samsung-unified-linux-driver
+    splix
+    brlaser
+    brgenml1lpr
+    brgenml1cupswrapper
+    cnijfilter2
   ];
 in {
   services.printing = {

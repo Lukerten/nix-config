@@ -1,12 +1,12 @@
 {pkgs, ...}: {
-  home.packages = [
-    pkgs.git-bare-clone
-    pkgs.git-create-worktree
-    pkgs.git-fixup
-    pkgs.git-recent
-    pkgs.git-track
-    pkgs.gitflow
-    pkgs.lazygit
+  home.packages = with pkgs; [
+    git-bare-clone
+    git-create-worktree
+    git-fixup
+    git-recent
+    git-track
+    gitflow
+    lazygit
   ];
 
   programs.git = {

@@ -1,11 +1,4 @@
-{
-  outputs,
-  lib,
-  inputs,
-  ...
-}: let
-  flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-in {
+{outputs, ...}: {
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {

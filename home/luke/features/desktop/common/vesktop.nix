@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
-  rgb = color: "rgb(${lib.removePrefix "#" color})";
-  rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
+{config, ...}: let
   inherit (config.colorscheme) colors;
   inherit (config.fontProfiles) regular;
   customCSS =

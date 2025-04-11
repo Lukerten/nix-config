@@ -96,14 +96,9 @@
           background = "${colors.surface}";
         };
         normal = {
+          inherit (colors) red green yellow blue magenta cyan;
           black = colors.surface_dim;
           white = colors.on_surface;
-          red = colors.red;
-          green = colors.green;
-          yellow = colors.yellow;
-          blue = colors.blue;
-          magenta = colors.magenta;
-          cyan = colors.cyan;
         };
         bright =
           normal

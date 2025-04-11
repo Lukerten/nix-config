@@ -18,15 +18,15 @@
       inputs.home-manager.nixosModules.home-manager
     ]
     ++ (builtins.attrValues outputs.nixosModules);
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = {
-    inherit inputs outputs;
+  home-manager = {
+    useGlobalPkgs = true;
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
+    sharedModules = [
+      inputs.sops-nix.homeManagerModules.sops
+    ];
   };
-  home-manager.sharedModules = [
-    inputs.sops-nix.homeManagerModules.sops
-  ];
-
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
     config = {allowUnfree = true;};

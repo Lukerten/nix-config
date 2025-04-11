@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+let
   defaultSettings = {
     "general.useragent.locale" = "en-US";
     "mail.server.default.check_all_folders_for_new" = true;
