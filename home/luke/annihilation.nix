@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./global ./features/cli ./features/desktop/hypr];
+  imports = [./global ./features/desktop/hypr];
 
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-vaporwave;
 

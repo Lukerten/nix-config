@@ -6,6 +6,7 @@
     pkgs.git-recent
     pkgs.git-track
     pkgs.gitflow
+    pkgs.lazygit
   ];
 
   programs.git = {

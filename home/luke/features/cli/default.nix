@@ -1,6 +1,5 @@
 {
   imports = [
-    ./nvim
     ./direnv.nix
     ./fastfetch.nix
     ./fish.nix

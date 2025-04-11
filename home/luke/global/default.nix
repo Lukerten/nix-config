@@ -2,9 +2,16 @@
   lib,
   config,
   outputs,
+  inputs,
   ...
 }: {
-  imports = builtins.attrValues outputs.homeManagerModules;
+  imports =
+    [
+      inputs.nixvim.homeManagerModules.nixvim
+      ../features/cli
+      ../features/nvim
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
 
   sops = {
     age.keyFile = "/home/luke/.config/sops/age/keys.txt";
@@ -19,7 +26,6 @@
   programs = {
     home-manager.enable = true;
     git.enable = true;
-    neovim.enable = true;
   };
 
   home = {
