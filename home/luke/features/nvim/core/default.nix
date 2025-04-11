@@ -4,14 +4,12 @@
     ./theme.nix
     ./treesitter.nix
   ];
-
   programs.nixvim = {
     opts = {
       number = true;
       relativenumber = true;
 
       termguicolors = true;
-      completeopt = ["menuone" "noselect" "noinsert"];
       signcolumn = "yes";
 
       mouse = "a";

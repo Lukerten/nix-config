@@ -1,6 +1,7 @@
 {
   imports = [
     ./completion
+    ./copilot
     ./core
     ./languages
     ./telescope
@@ -18,10 +19,13 @@
         enable = true;
         standalonePlugins = [
           "neorg"
+          "copilot-lua"
           "nvim-treesitter"
+          "blink.cmp"
+          "copilot.lua"
         ];
       };
-      byteCompileLua.enable = true;
+      byteCompileLua.enable = false;
     };
 
     viAlias = true;

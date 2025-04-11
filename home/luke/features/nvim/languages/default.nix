@@ -10,16 +10,17 @@
     ./python
     ./rust
     ./typescript
-
     ./misc/css.nix
     ./misc/html.nix
     ./misc/json.nix
     ./misc/just.nix
+    ./misc/latex.nix
     ./misc/markdown.nix
     ./misc/shell.nix
     ./misc/sql.nix
     ./misc/terraform.nix
     ./misc/toml.nix
+    ./misc/typst.nix
     ./misc/yaml.nix
   ];
 
@@ -52,7 +53,6 @@
           "<leader>E" = "open_float";
           "[" = "goto_prev";
           "]" = "goto_next";
-          "<leader>do" = "setloclist";
         };
         lspBuf = {
           "gD" = "declaration";
@@ -78,7 +78,7 @@
         # lua
         ''
           vim.diagnostic.config({
-            virtual_text = false,
+            virtual_text = true,
             severity_sort = true,
             float = {
               border = 'rounded',

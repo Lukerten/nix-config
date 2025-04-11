@@ -8,6 +8,7 @@
     ./inline-diagnostic.nix
     ./leap.nix
     ./lualine.nix
+    ./neoscroll.nix
     ./noice.nix
     ./notify.nix
     ./nvim-tree.nix

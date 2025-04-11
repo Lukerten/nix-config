@@ -1,5 +1,6 @@
 {
   imports = [
+    ./dap.nix
     ./git-worktree.nix
     ./neogit.nix
     ./neorg.nix
@@ -11,9 +12,12 @@
       vim-surround.enable = true;
       undotree.enable = true;
       bufdelete.enable = true;
-
       todo-comments = {
         enable = true;
+        settings = {
+          opleader.line = "<C-b>";
+          toggler.line = "<C-b>";
+        };
         keymaps = {
           todoTelescope = {
             key = "<leader>sT";
@@ -36,7 +40,7 @@
       # Undotree
       {
         mode = "n";
-        key = "<leader>ut";
+        key = "<leader>u";
         action = "<cmd>UndotreeToggle<CR>";
         options = {
           desc = "Undotree";
