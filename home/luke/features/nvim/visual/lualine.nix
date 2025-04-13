@@ -17,6 +17,7 @@ in {
           __unkeyed-7 = "NeogitStatus";
           __unkeyed-8 = "NeogitDiffview";
           __unkeyed-9 = "gitcommit";
+          __unkeyed-10 = "Avante";
         };
         component_separators = {
           left = "⏽";

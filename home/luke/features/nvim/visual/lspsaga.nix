@@ -1,15 +1,13 @@
 {
   programs.nixvim.plugins.lspsaga = {
     enable = true;
-    beacon = {
-      enable = true;
-    };
+    beacon.enable = true;
     ui = {
-      border = "rounded"; # One of none, single, double, rounded, solid, shadow
-      codeAction = "💡"; # Can be any symbol you want 💡
+      border = "rounded";
+      codeAction = "💡";
     };
     hover = {
-      openCmd = "!floorp"; # Choose your browser
+      openCmd = "!floorp";
       openLink = "gx";
     };
     diagnostic = {
@@ -17,9 +15,7 @@
       diagnosticOnlyCurrent = false;
       showCodeAction = true;
     };
-    symbolInWinbar = {
-      enable = true; # Breadcrumbs
-    };
+    symbolInWinbar.enable = true;
     codeAction = {
       extendGitSigns = false;
       showServerName = true;
