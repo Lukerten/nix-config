@@ -2,6 +2,13 @@
   programs.nixvim.plugins = {
     bacon.enable = true;
     conform-nvim.settings.formatters_by_ft.rust = ["rustfmt"];
+    luasnip.fromSnipmate = [
+      {
+        paths = ../../snippets/store/snippets/rust.snippets;
+        include = ["rust"];
+      }
+    ];
+    # Extra PLugin Rustacean
     rustaceanvim = {
       enable = true;
       settings = {

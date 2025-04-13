@@ -16,7 +16,7 @@
     nixpkgs.useGlobalPackages = true;
     performance = {
       combinePlugins = {
-        enable = true;
+        enable = false;
         standalonePlugins = [
           "neorg"
           "copilot-lua"

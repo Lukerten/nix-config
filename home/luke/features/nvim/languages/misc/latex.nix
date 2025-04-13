@@ -35,6 +35,13 @@
       };
     };
 
+    plugins.luasnip.fromSnipmate = [
+      {
+        paths = ../../snippets/store/snippets/tex.snippets;
+        include = ["tex"];
+      }
+    ];
+
     files."after/ftplugin/tex.lua" = {
       localOpts.conceallevel = 1;
 

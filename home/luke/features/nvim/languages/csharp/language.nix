@@ -17,5 +17,11 @@ in {
 
     none-ls.sources.formatting.csharpier.enable = true;
     neotest.adapters.dotnet.enable = lib.mkIf hasNeotest true;
+    luasnip.fromSnipmate = [
+      {
+        paths = ../../snippets/store/snippets/cs.snippets;
+        include = ["cs"];
+      }
+    ];
   };
 }

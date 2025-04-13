@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   imports = [./global ./features/desktop/hypr];
-
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-vaporwave;
 
   services = {

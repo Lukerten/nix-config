@@ -61,5 +61,27 @@
     };
     lsp.servers.eslint.enable = true;
     none-ls.sources.formatting.prettier.disableTsServerFormatter = false;
+    luasnip.fromSnipmate = [
+      {
+        paths = ../../snippets/store/snippets/javascript/javascript.snippets;
+        include = ["javascript"];
+      }
+      {
+        paths = ../../snippets/store/snippets/javascript/javascript-react.snippets;
+        include = ["javascript-react"];
+      }
+      {
+        paths = ../../snippets/store/UltiSnips/javascript-node.snippets;
+        include = ["javascript-node"];
+      }
+      {
+        paths = ../../snippets/store/snippets/typescript.snippets;
+        include = ["typescript"];
+      }
+      {
+        paths = ../../snippets/store/snippets/typescriptreact.snippets;
+        include = ["typescript-react"];
+      }
+    ];
   };
 }

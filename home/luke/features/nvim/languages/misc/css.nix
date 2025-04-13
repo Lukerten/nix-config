@@ -6,5 +6,11 @@
       __unkeyed-2 = "prettier";
       stop_after_first = true;
     };
+    luasnip.fromSnipmate = [
+      {
+        paths = ../../snippets/store/snippets/css.snippets;
+        include = ["css"];
+      }
+    ];
   };
 }

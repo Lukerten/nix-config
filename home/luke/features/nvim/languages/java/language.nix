@@ -21,5 +21,11 @@
     #   enable = true;
     #   java.gradle.enabled = true;
     # };
+    luasnip.fromSnipmate = [
+      {
+        paths = ../../snippets/store/snippets/java.snippets;
+        include = ["java"];
+      }
+    ];
   };
 }

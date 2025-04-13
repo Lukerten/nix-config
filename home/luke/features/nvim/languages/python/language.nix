@@ -7,5 +7,11 @@
       ruff.enable = true;
     };
     none-ls.sources.formatting.black.enable = true;
+    luasnip.fromSnipmate = [
+      {
+        paths = ../../snippets/store/snippets/python.snippets;
+        include = ["python"];
+      }
+    ];
   };
 }
