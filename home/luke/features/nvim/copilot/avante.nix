@@ -2,7 +2,7 @@
   programs.nixvim = {
     plugins.avante = {
       # TODO: set this up!
-      enable = false;
+      enable = true;
 
       lazyLoad.settings.event = ["BufEnter"];
       settings = {
@@ -11,11 +11,14 @@
             add_current = "<leader>a.";
           };
         };
-        claude = {
-          endpoint = "https://api.anthropic.com";
-          max_tokens = 4096;
-          model = "claude-3-7-sonnet-latest";
+        copilot = {
+          model = "claude-3.7-sonnet";
+          endpoint = "https://api.githubcopilot.com";
+          allow_insecure = false;
+          timeout = 10 * 60 * 1000;
           temperature = 0;
+          max_completion_tokens = 1000000;
+          reasoning_effort = "high";
         };
         diff = {
           autojump = true;
@@ -41,7 +44,7 @@
             theirs = "tc";
           };
         };
-        provider = "claude";
+        provider = "copilot";
         windows = {
           sidebar_header = {
             align = "center";
