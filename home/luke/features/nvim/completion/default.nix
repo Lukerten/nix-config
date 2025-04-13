@@ -19,12 +19,12 @@
           "<Tab>" = ["snippet_forward" "select_next" "fallback"];
           "<C-Tab>" = ["snippet_backward" "select_next" "fallback"];
           "<C-s>" = ["show_signature" "fallback"];
-          "<C-e>" = [];
+          "<C-e>" = ["cancel"];
           "<C-Space>" = ["show_documentation" "fallback"];
           "<Up>" = ["scroll_documentation_up" "fallback"];
           "<Down>" = ["scroll_documentation_down" "fallback"];
           "<CR>" = ["accept" "fallback"];
-          "<C-a>" = ["show"];
+          "<C-a>" = ["show" "hide"];
         };
 
         signature.enabled = true;
