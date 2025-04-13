@@ -18,6 +18,7 @@ with lib; let
   hasTelescopeProject = config.programs.nixvim.plugins.telescope.extensions.project.enable;
   hasNeoGit = config.programs.nixvim.plugins.neogit.enable;
   hasNeorg = config.programs.nixvim.plugins.neorg.enable;
+  hasRemoteNvim = config.programs.nixvim.plugins.remote-nvim.enable;
 in {
   programs.nixvim.plugins.alpha = {
     enable = true;
@@ -110,6 +111,14 @@ in {
               val = "  Neogit";
               on_press.__raw = "function() vim.cmd[[Neogit]] end";
               opts = mkButtonOpts "s";
+            }
+          ]
+          ++ optionals hasRemoteNvim [
+            {
+              type = "button";
+              val = "󰒉  Remote Nvim";
+              on_press.__raw = "function() vim.cmd[[RemoteStart]] end";
+              opts = mkButtonOpts "r";
             }
           ]
           ++ optionals hasNeorg [
