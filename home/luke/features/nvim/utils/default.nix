@@ -8,7 +8,7 @@
     ./neogit.nix
     ./neorg.nix
     ./presence.nix
-    ./presence.nix
+    ./remote-nvim.nix
     ./schemastore.nix
     ./todo-comment.nix
   ];
