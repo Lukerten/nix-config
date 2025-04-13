@@ -25,6 +25,7 @@
           "copilot-lua"
           "nvim-treesitter"
           "blink.cmp"
+          "image.nvim"
           "copilot.lua"
         ];
       };
