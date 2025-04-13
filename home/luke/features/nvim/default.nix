@@ -3,6 +3,7 @@
     ./completion
     ./copilot
     ./core
+    ./highlight
     ./languages
     ./telescope
     ./utils
@@ -16,7 +17,7 @@
     nixpkgs.useGlobalPackages = true;
     performance = {
       combinePlugins = {
-        enable = false;
+        enable = true;
         standalonePlugins = [
           "neorg"
           "copilot-lua"
@@ -25,7 +26,7 @@
           "copilot.lua"
         ];
       };
-      byteCompileLua.enable = false;
+      byteCompileLua.enable = true;
     };
 
     viAlias = true;

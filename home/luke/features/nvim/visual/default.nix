@@ -15,8 +15,17 @@
     ./trouble.nix
     ./which-key.nix
   ];
-  programs.nixvim.plugins = {
-    todo-comments = {enable = true;};
-    web-devicons.enable = true;
+  programs.nixvim = {
+    plugins = {
+      todo-comments = {enable = true;};
+      web-devicons.enable = true;
+    };
+
+    extraConfigLua =
+      # lua
+      ''
+        vim.wo.fillchars='eob: '
+        vim.opt.fillchars='eob: '
+      '';
   };
 }

@@ -5,13 +5,14 @@
 }:
 with lib; let
   mkButtonOpts = shortcut: {
+    inherit shortcut;
     position = "center";
     hl = "Number";
-    shortcut = shortcut;
     width = 50;
     align_shortcut = "right";
     hl_shortcut = "Keyword";
   };
+  hasDadbod = config.programs.nixvim.plugins.vim-dadbod-ui.enable;
   hasTelescope = config.programs.nixvim.plugins.telescope.enable;
   hasTelescopeProject = config.programs.nixvim.plugins.telescope.extensions.project.enable;
   hasNeoGit = config.programs.nixvim.plugins.neogit.enable;
@@ -83,6 +84,14 @@ in {
               val = "󱎸  Find text";
               on_press.__raw = "function() vim.cmd[[Telescope live_grep]] end";
               opts = mkButtonOpts "g";
+            }
+          ]
+          ++ optionals hasDadbod [
+            {
+              type = "button";
+              val = "󰒋  DB UI";
+              on_press.__raw = "function() vim.cmd[[DBUI]] end";
+              opts = mkButtonOpts "d";
             }
           ]
           ++ optionals hasNeoGit [

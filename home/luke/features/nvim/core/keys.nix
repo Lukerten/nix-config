@@ -52,7 +52,7 @@ in {
       mode = "n";
       key = "<leader>m";
       action = "<cmd>make";
-      options = mkOption "Make";
+      options.desc = "Make";
     }
 
     # Move Lines

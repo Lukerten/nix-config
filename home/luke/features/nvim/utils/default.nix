@@ -1,9 +1,16 @@
 {
   imports = [
+    ./coverage.nix
+    ./schemastore.nix
+    ./dadbod.nix
     ./dap.nix
     ./git-worktree.nix
     ./neogit.nix
     ./neorg.nix
+    ./presence.nix
+    ./presence.nix
+    ./schemastore.nix
+    ./todo-comment.nix
   ];
 
   programs.nixvim = {
@@ -12,38 +19,38 @@
       vim-surround.enable = true;
       undotree.enable = true;
       bufdelete.enable = true;
-      todo-comments = {
-        enable = true;
-        settings = {
-          opleader.line = "<C-b>";
-          toggler.line = "<C-b>";
-        };
-        keymaps = {
-          todoTelescope = {
-            key = "<leader>sT";
-            keywords = ["TODO"];
-          };
-        };
-      };
+      gx.enable = true;
     };
+
     keymaps = [
-      # Bufferdelete
       {
         key = "<leader>x";
         action = ":Bdelete <CR>";
         mode = "n";
         options = {
-          silent = true;
           desc = "Delete buffer";
+          silent = true;
+          noremap = true;
         };
       }
-      # Undotree
       {
         mode = "n";
         key = "<leader>u";
         action = "<cmd>UndotreeToggle<CR>";
         options = {
           desc = "Undotree";
+          silent = true;
+          noremap = true;
+        };
+      }
+      {
+        mode = "v";
+        key = "<leader>b";
+        action = "<cmd>Browse<cr>";
+        options = {
+          desc = "Browse";
+          silent = true;
+          noremap = true;
         };
       }
     ];
