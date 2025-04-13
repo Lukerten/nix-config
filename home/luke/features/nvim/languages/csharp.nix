@@ -19,9 +19,23 @@ in {
     neotest.adapters.dotnet.enable = lib.mkIf hasNeotest true;
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/cs.snippets;
+        paths = ../snippets/store/snippets/cs.snippets;
         include = ["cs"];
       }
     ];
+    dap = {
+      configurations.cs = [
+        {
+          type = "coreclr";
+          request = "launch";
+          name = "launch - netcoredbg";
+          program = ''
+            function()
+                    return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+                end,
+          '';
+        }
+      ];
+    };
   };
 }

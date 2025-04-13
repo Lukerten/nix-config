@@ -37,7 +37,7 @@
 
     plugins.luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/tex.snippets;
+        paths = ../snippets/store/snippets/tex.snippets;
         include = ["tex"];
       }
     ];

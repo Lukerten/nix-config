@@ -11,7 +11,7 @@
     # Snippet Support
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/markdown.snippets;
+        paths = ../snippets/store/snippets/markdown.snippets;
         include = ["markdown"];
       }
     ];
@@ -55,7 +55,18 @@
           above = " ";
           below = " ";
         };
+        file_types = [
+          "markdown"
+          "neorg"
+          "Avante"
+        ];
       };
     };
+
+    # Extra Plug: Image
+    image.enable = true;
+
+    # Extra Plug: Diagram
+    diagram.enable = true;
   };
 }

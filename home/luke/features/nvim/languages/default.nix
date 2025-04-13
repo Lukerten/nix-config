@@ -1,27 +1,28 @@
 {pkgs, ...}: {
   imports = [
-    ./cpp
-    ./csharp
-    ./golang
-    ./java
-    ./lua
-    ./nix
-    ./php
-    ./python
-    ./rust
-    ./typescript
-    ./misc/css.nix
-    ./misc/html.nix
-    ./misc/json.nix
-    ./misc/just.nix
-    ./misc/latex.nix
-    ./misc/markdown.nix
-    ./misc/shell.nix
-    ./misc/sql.nix
-    ./misc/terraform.nix
-    ./misc/toml.nix
-    ./misc/typst.nix
-    ./misc/yaml.nix
+    ./cpp.nix
+    ./csharp.nix
+    ./golang.nix
+    ./css.nix
+    ./html.nix
+    ./java.nix
+    ./json.nix
+    ./just.nix
+    ./kotlin.nix
+    ./latex.nix
+    ./lua.nix
+    ./markdown.nix
+    ./nix.nix
+    ./php.nix
+    ./python.nix
+    ./rust.nix
+    ./shell.nix
+    ./sql.nix
+    ./terraform.nix
+    ./toml.nix
+    ./typescript.nix
+    ./typst.nix
+    ./yaml.nix
   ];
 
   programs.nixvim.plugins = {

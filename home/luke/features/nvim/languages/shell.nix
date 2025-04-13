@@ -7,15 +7,15 @@
 
       luasnip.fromSnipmate = [
         {
-          paths = ../../snippets/store/snippets/sh.snippets;
+          paths = ../snippets/store/snippets/sh.snippets;
           include = ["sh"];
         }
         {
-          paths = ../../snippets/store/snippets/bash.snippets;
+          paths = ../snippets/store/snippets/bash.snippets;
           include = ["bash"];
         }
         {
-          paths = ../../snippets/store/snippets/zsh.snippets;
+          paths = ../snippets/store/snippets/zsh.snippets;
           include = ["zsh"];
         }
       ];

@@ -5,7 +5,7 @@
     none-ls.sources.formatting.golines.enable = true;
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/go.snippets;
+        paths = ../snippets/store/snippets/go.snippets;
         include = ["go"];
       }
     ];

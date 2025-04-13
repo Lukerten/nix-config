@@ -63,23 +63,23 @@
     none-ls.sources.formatting.prettier.disableTsServerFormatter = false;
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/javascript/javascript.snippets;
+        paths = ../snippets/store/snippets/javascript/javascript.snippets;
         include = ["javascript"];
       }
       {
-        paths = ../../snippets/store/snippets/javascript/javascript-react.snippets;
+        paths = ../snippets/store/snippets/javascript/javascript-react.snippets;
         include = ["javascript-react"];
       }
       {
-        paths = ../../snippets/store/UltiSnips/javascript-node.snippets;
+        paths = ../snippets/store/UltiSnips/javascript-node.snippets;
         include = ["javascript-node"];
       }
       {
-        paths = ../../snippets/store/snippets/typescript.snippets;
+        paths = ../snippets/store/snippets/typescript.snippets;
         include = ["typescript"];
       }
       {
-        paths = ../../snippets/store/snippets/typescriptreact.snippets;
+        paths = ../snippets/store/snippets/typescriptreact.snippets;
         include = ["typescript-react"];
       }
     ];

@@ -1,5 +1,4 @@
 {
-  # TODO: Factor this into a Highlight - then use matugen for better style
   programs.nixvim = {
     colorschemes.catppuccin = {
       enable = true;

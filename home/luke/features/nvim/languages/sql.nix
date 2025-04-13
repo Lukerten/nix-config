@@ -4,7 +4,7 @@
     conform-nvim.settings.formatters_by_ft.sql = ["sqlformat"];
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/sql.snippets;
+        paths = ../snippets/store/snippets/sql.snippets;
         include = ["sql"];
       }
     ];

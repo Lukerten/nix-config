@@ -14,7 +14,7 @@
 
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/html.snippets;
+        paths = ../snippets/store/snippets/html.snippets;
         include = ["html"];
       }
     ];

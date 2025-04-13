@@ -5,7 +5,7 @@
     lsp.servers.clangd.enable = true;
     luasnip.fromSnipmate = [
       {
-        paths = ./vim-snippets/snippets/html.snippets;
+        paths = ../snippets/store/snippets/html.snippets;
         include = ["html"];
       }
     ];

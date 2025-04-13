@@ -4,7 +4,7 @@
     conform-nvim.settings.formatters_by_ft.rust = ["rustfmt"];
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/rust.snippets;
+        paths = ../snippets/store/snippets/rust.snippets;
         include = ["rust"];
       }
     ];
@@ -22,6 +22,16 @@
               files = {excludeDirs = ["target" ".git" ".cargo" ".github" ".direnv"];};
             };
           };
+        };
+      };
+    };
+    rustaceanvim.settings.server = {
+      dap.adapters.lldb = {
+        type = "server";
+        port = "${''$''}{port}";
+        executable = {
+          command = "codelldb";
+          args = ["--port" "${''$''}{port}"];
         };
       };
     };

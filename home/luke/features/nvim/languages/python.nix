@@ -9,7 +9,7 @@
     none-ls.sources.formatting.black.enable = true;
     luasnip.fromSnipmate = [
       {
-        paths = ../../snippets/store/snippets/python.snippets;
+        paths = ../snippets/store/snippets/python.snippets;
         include = ["python"];
       }
     ];
