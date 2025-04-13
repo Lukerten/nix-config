@@ -13,6 +13,10 @@ in {
           __unkeyed-3 = "Outline";
           __unkeyed-4 = "alpha";
           __unkeyed-5 = "Trouble";
+          __unkeyed-6 = "toggleterm";
+          __unkeyed-7 = "NeogitStatus";
+          __unkeyed-8 = "NeogitDiffview";
+          __unkeyed-9 = "gitcommit";
         };
         component_separators = {
           left = "⏽";

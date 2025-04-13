@@ -13,6 +13,7 @@ with lib; let
     hl_shortcut = "Keyword";
   };
   hasDadbod = config.programs.nixvim.plugins.vim-dadbod-ui.enable;
+  hasTodoComment = config.programs.nixvim.plugins.todo-comments.enable;
   hasTelescope = config.programs.nixvim.plugins.telescope.enable;
   hasTelescopeProject = config.programs.nixvim.plugins.telescope.extensions.project.enable;
   hasNeoGit = config.programs.nixvim.plugins.neogit.enable;
@@ -46,7 +47,7 @@ in {
         ];
         opts = {
           position = "center";
-          hl = "Type";
+          hl = "Title";
         };
       }
       {
@@ -84,6 +85,15 @@ in {
               val = "󱎸  Find text";
               on_press.__raw = "function() vim.cmd[[Telescope live_grep]] end";
               opts = mkButtonOpts "g";
+            }
+          ]
+          ++ optionals (hasTodoComment
+            && hasTelescope) [
+            {
+              type = "button";
+              val = "󰅚  Find todos";
+              on_press.__raw = "function() vim.cmd[[TodoTelescope]] end";
+              opts = mkButtonOpts "t";
             }
           ]
           ++ optionals hasDadbod [
