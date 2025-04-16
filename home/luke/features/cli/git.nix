@@ -6,7 +6,6 @@
     git-recent
     git-track
     gitflow
-    lazygit
   ];
 
   programs.git = {
