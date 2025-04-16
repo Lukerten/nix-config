@@ -16,9 +16,7 @@
           "-p 3000:8080"
           "--network=host"
         ];
-        environment = {
-          WEBUI_AUTH = false;
-        };
+        environment.WEBUI_AUTH = false;
       };
     };
   };
