@@ -101,5 +101,6 @@ in {
     nh # home-manager & nixos wrapper
     nix-index # index nix packages
     just # justfile
+    p7zip
   ];
 }
