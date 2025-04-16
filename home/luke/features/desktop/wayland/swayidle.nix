@@ -5,15 +5,13 @@
   ...
 }: let
   inherit (lib) mkIf;
+  inherit (config.system) lockTime;
   swaylock = "${config.programs.swaylock.package}/bin/swaylock";
   pgrep = "${pkgs.procps}/bin/pgrep";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
   swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
-
   isLocked = "${pgrep} -x ${swaylock}";
-  lockTime = 5 * 60; # TODO: configurable desktop (20 min)/laptop (5 min)
-
   # Makes two timeouts: one for when the screen is not locked (lockTime+timeout) and one for when it is.
   afterLockTimeout = {
     timeout,

@@ -2,6 +2,8 @@
   imports = [./global ./features/desktop/hypr];
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-vaporwave;
 
+  system.type = "laptop";
+
   services = {
     batsignal.enable = true;
     blueman-applet.enable = true;
