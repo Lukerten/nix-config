@@ -1,7 +1,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-
+    ./outline
     ../../global
     ../../users/luke
     ../../services/traefik.nix
@@ -11,10 +11,15 @@
   networking = {
     hostName = "sanctity";
     useDHCP = true;
-    dhcpcd.IPv6rs = true;
-    interfaces.ens3 = {
+    interfaces.enp1s0 = {
       useDHCP = true;
       wakeOnLan.enable = true;
+      ipv6.addresses = [
+        {
+          address = "2a01:4f8:1c1e:dc97::1";
+          prefixLength = 64;
+        }
+      ];
     };
   };
 
