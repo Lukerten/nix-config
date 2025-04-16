@@ -1,36 +1,92 @@
 [![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org)
+[![nixos-unstable](https://img.shields.io/badge/NixOS-Unstable-blue.svg?style=flat&logo=NixOS&logoColor=white)](https://nixos.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Lukes NixOS configuration
+# Luke's NixOS Configurations
 
-This is my personal NixOS configuration. Requires
-[Nix flakes](https://nixos.wiki/wiki/Flakes). \\ This Config is heavily based on
-the Work of [Misterio77](https://github.com/Misterio77). \\
+A comprehensive, modular NixOS and Home Manager configuration for managing multiple systems with a unified configuration approach.
 
-## Structure:
+## Systems Overview
 
-- `home`- Contains home-manager configuration.
-- `hosts` - Contains the configuration for the different systems.
-- `modules` - Contains the configuration for different services.
-  - `nixos` - Extends the Nixos Module base.
-  - `home-manager` - Extends the Home-Manager Module base.
-- `overlays` - Different package overlays.
-- `pkgs` - Custom packages.
-- `templates` - Templates for different projects.
-- `flake.nix` - The entry point for the flake.
-- `hydra.nix` - Hydra configuration.
-- `shell.nix` - The shell configuration.
+| System           | Type    | Description              |
+| ---------------- | ------- | ------------------------ |
+| **annihilation** | Laptop  | Main development laptop  |
+| **exaflare**     | Desktop | Home desktop workstation |
+| **inception**    | Server  | Homelab server           |
+| **sanctity**     | Server  | Secondary server         |
 
-# My Hosts:
+## Features
 
-Currently this configuration only powers 2 desktop systems, as i am focusing on
-completing these before moving on to other systems.
+- **Modular Configuration**: Separate modules for different aspects of the system
+- **Multiple System Support**: Single repository managing multiple machines
+- **Declarative User Environment**: Home Manager configurations for complete user environment setup
+- **Remote Deployment**: Using deploy-rs for deploying configurations to remote systems
+- **Secret Management**: Using sops-nix for encrypting secrets
+- **Custom Themes**: Unified theming across systems with nix-colors
+- **Specialized Configurations**: For development, gaming, and server use cases
 
-- `anihilaton` - My Home Laptop.
-- `exaflare` - My Home Desktop.
-- `inception` - Homelab Server.
-- `sanctity` - Small VM
+## Structure
 
-# Secrets
+```
+.
+├── flake.nix          # Main flake configuration
+├── modules/           # Shared module configurations
+│   ├── home-manager/  # Home Manager modules
+│   └── nixos/         # NixOS modules
+├── hosts/             # Host-specific configurations
+├── home/              # Home Manager user configurations
+├── overlays/          # Nixpkgs overlays
+├── pkgs/              # Custom packages
+├── templates/         # Nix flake templates
+├── flake.nix          # Nixos Configuration flake
+├── shell.nix          # Development Shell environment
+├── hydra.nix          # Hydra building
+├── deploy.nix         # deploy script
+└── cleanup.nix        # cleanup script
+```
 
-This Project uses [Mic92/sops-nix](https://github.com/Mic92/sops-nix) for
-provisioning secrets.
+## Key Components
+
+- **NixOS Modules**: Reusable NixOS configuration components
+- **Home Manager Modules**: User environment configurations
+- **Flake Outputs**: Systems, packages, modules, and deployment configurations
+- **Custom Overlays**: Package customizations and fixes
+- **Deployment**: Remote system configurations via deploy-rs
+
+## Usage
+
+### Building a system
+
+```bash
+sudo nixos-rebuild switch --flake .#<hostname>
+```
+
+### Building a home configuration
+
+```bash
+home-manager switch --flake .#<username>@<hostname>
+```
+
+### Deploying to a remote system
+
+```bash
+./deploy.sh <hostname>
+```
+
+### Update dependencies
+
+```bash
+nix flake update
+```
+
+## Integrations
+
+- **Firefox Addons**: Custom Firefox configurations and extensions
+- **NixGL**: OpenGL/Vulkan support for graphical applications
+- **Nix-gaming**: Optimized gaming configurations
+- **Mailserver**: NixOS mailserver configurations for self-hosted email
+- **NixVim**: Neovim configuration using Nix
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
