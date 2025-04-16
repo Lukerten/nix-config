@@ -1,5 +1,10 @@
 {pkgs, ...}: {
-  imports = [./global ./features/desktop/hypr];
+  imports = [
+    ./global
+    ./features/cli
+    ./features/nvim
+    ./features/desktop/hypr
+  ];
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-vaporwave;
 
   system.type = "laptop";

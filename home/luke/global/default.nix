@@ -8,8 +8,6 @@
   imports =
     [
       inputs.nixvim.homeManagerModules.nixvim
-      ../features/cli
-      ../features/nvim
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

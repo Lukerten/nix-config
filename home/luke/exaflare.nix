@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ./global
+    ./features/cli
+    ./features/nvim
     ./features/desktop/hypr
     ./features/games
   ];
