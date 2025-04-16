@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: {
+}: let
+  hasKitty = config.programs.kitty.enable;
+in {
   programs.alacritty = {
-    enable = true;
+    enable = !hasKitty;
     settings = {
       window = {
         padding = {
@@ -110,7 +112,7 @@
   };
 
   # add terminal scheme handler
-  xdg.mimeApps = {
+  xdg.mimeApps = lib.mkIf (!hasKitty) {
     associations.added = {
       "x-scheme-handler/terminal" = "Alacritty.desktop";
     };
@@ -120,13 +122,11 @@
   };
 
   # add xterm wrapper
-  home = {
-    packages = [
-      (
-        pkgs.writeShellScriptBin "xterm" ''
-          ${lib.getExe config.programs.alacritty.package} "$@"
-        ''
-      )
-    ];
-  };
+  home.packages = lib.optionals (!hasKitty) [
+    (
+      pkgs.writeShellScriptBin "xterm" ''
+        ${lib.getExe config.programs.alacritty.package} "$@"
+      ''
+    )
+  ];
 }

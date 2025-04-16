@@ -1,13 +1,9 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./waybar
     ./gammastep.nix
     ./imv.nix
+    ./kitty.nix
     ./mako.nix
     ./mpv.nix
     ./rofi.nix
