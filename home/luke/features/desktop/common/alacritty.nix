@@ -7,7 +7,7 @@
   hasKitty = config.programs.kitty.enable;
 in {
   programs.alacritty = {
-    enable = !hasKitty;
+    enable = lib.mkDefault (!hasKitty);
     settings = {
       window = {
         padding = {
