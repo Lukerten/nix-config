@@ -7,7 +7,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>Gg";
+        key = "<leader>n";
         action = ":Neogit<CR>";
         options = {
           silent = true;
