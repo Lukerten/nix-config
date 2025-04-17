@@ -17,6 +17,7 @@
   ];
   programs.nixvim = {
     plugins = {
+      comment-box.enable = true;
       todo-comments.enable = true;
       web-devicons.enable = true;
     };
