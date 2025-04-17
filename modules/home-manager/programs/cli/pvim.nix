@@ -1,11 +1,11 @@
 {
-  lib,
   config,
   pkgs,
+  lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.pvim;
-  inherit (lib) mkOption mkIf types getExe;
 in {
   options.programs.pvim = {
     enable = mkOption {

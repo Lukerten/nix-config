@@ -3,9 +3,10 @@
   config,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.rofi;
-  rmHash = lib.removePrefix "#";
+  rmHash = removePrefix "#";
   inherit (config.lib.formats.rasi) mkLiteral;
 in {
   imports = [
@@ -16,90 +17,90 @@ in {
 
   options.programs.rofi = {
     size = {
-      width = lib.mkOption {
-        type = lib.types.int;
+      width = mkOption {
+        type = types.int;
         default = 80;
         description = "Width for rofi in percentage";
       };
 
-      height = lib.mkOption {
-        type = lib.types.int;
+      height = mkOption {
+        type = types.int;
         default = 80;
         description = "Height for rofi in percentage";
       };
-      margin = lib.mkOption {
-        type = lib.types.int;
+      margin = mkOption {
+        type = types.int;
         default = 10;
         description = "Margin for rofi";
       };
     };
 
-    columns = lib.mkOption {
-      type = lib.types.int;
+    columns = mkOption {
+      type = types.int;
       default = 1;
       description = "Columns for rofi";
     };
 
-    align = lib.mkOption {
-      type = lib.types.enum ["north" "east" "south" "west"];
+    align = mkOption {
+      type = types.enum ["north" "east" "south" "west"];
       default = "south";
       description = "Align for rofi";
     };
 
     border = {
-      radius = lib.mkOption {
-        type = lib.types.int;
+      radius = mkOption {
+        type = types.int;
         default = 15;
         description = "Border radius for rofi";
       };
 
-      color = lib.mkOption {
-        type = lib.types.str;
+      color = mkOption {
+        type = types.str;
         default = cfg.colorscheme.active;
         description = "Border color for rofi";
       };
     };
 
     colorscheme = {
-      background = lib.mkOption {
-        type = lib.types.str;
+      background = mkOption {
+        type = types.str;
         default = "#000000";
         description = "Background color for rofi";
       };
 
-      background-alt = lib.mkOption {
-        type = lib.types.str;
+      background-alt = mkOption {
+        type = types.str;
         default = "#444444";
         description = "Alternative background color for rofi";
       };
 
-      foreground = lib.mkOption {
-        type = lib.types.str;
+      foreground = mkOption {
+        type = types.str;
         default = "#FF00FF";
         description = "Foreground color for rofi";
       };
 
-      selected = lib.mkOption {
-        type = lib.types.str;
+      selected = mkOption {
+        type = types.str;
         default = "00FF00";
         description = "Selected color for rofi";
       };
 
-      active = lib.mkOption {
-        type = lib.types.str;
+      active = mkOption {
+        type = types.str;
         default = "#00FF00";
         description = "Active color for rofi";
       };
 
-      urgent = lib.mkOption {
-        type = lib.types.str;
+      urgent = mkOption {
+        type = types.str;
         default = "#FF0000";
         description = "Urgent color for rofi";
       };
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     programs.rofi = {
       package = pkgs.rofi;
 

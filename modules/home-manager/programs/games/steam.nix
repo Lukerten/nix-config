@@ -1,9 +1,10 @@
 {
+  config,
   pkgs,
   lib,
-  config,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.steam;
   steam-with-pkgs = pkgs.steam.override {
     extraPkgs = pkgs:
@@ -12,6 +13,7 @@
         xorg.libXi
         xorg.libXinerama
         xorg.libXScrnSaver
+
         libpng
         libpulseaudio
         libvorbis
@@ -21,10 +23,10 @@
         gamescope
       ];
   };
-  monitor = lib.head (lib.filter (m: m.primary) config.monitors);
+  monitor = head (filter (m: m.primary) config.monitors);
   steam-session = let
-    gamescope = lib.concatStringsSep " " [
-      (lib.getExe pkgs.gamescope)
+    gamescope = concatStringsSep " " [
+      (getExe pkgs.gamescope)
       "--output-width ${toString monitor.width}"
       "--output-height ${toString monitor.height}"
       "--framerate-limit ${toString monitor.refreshRate}"
@@ -34,13 +36,13 @@
       "--hdr-enabled"
       "--steam"
     ];
-    steam = lib.concatStringsSep " " [
+    steam = concatStringsSep " " [
       "steam"
       "steam://open/bigpicture"
     ];
   in
     pkgs.writeTextDir "share/wayland-sessions/steam-session.desktop" # ini
-    
+
     ''
       [Desktop Entry]
       Name=Steam Session
@@ -49,49 +51,49 @@
     '';
 in {
   options.programs.steam = {
-    enable = lib.mkEnableOption "xivlauncher";
-    package = lib.mkOption {
-      type = lib.types.package;
+    enable = mkEnableOption "xivlauncher";
+    package = mkOption {
+      type = types.package;
       default = steam-with-pkgs;
       description = "The xivlauncher package to use.";
     };
-    withSession = lib.mkOption {
-      type = lib.types.bool;
+    withSession = mkOption {
+      type = types.bool;
       default = true;
       description = "Whether to enable Steam Session.";
     };
-    SessionPackage = lib.mkOption {
-      type = lib.types.package;
+    SessionPackage = mkOption {
+      type = types.package;
       default = steam-session;
       description = "The SteamSession package to use.";
     };
-    withGamescope = lib.mkOption {
-      type = lib.types.bool;
+    withGamescope = mkOption {
+      type = types.bool;
       default = true;
       description = "Whether to enable Gamescope.";
     };
-    GamescopePackage = lib.mkOption {
-      type = lib.types.package;
+    GamescopePackage = mkOption {
+      type = types.package;
       default = pkgs.gamescope;
       description = "The Gamescope package to use.";
     };
-    withProtontricks = lib.mkOption {
-      type = lib.types.bool;
+    withProtontricks = mkOption {
+      type = types.bool;
       default = true;
       description = "Whether to enable Protontricks.";
     };
-    ProtontricksPackage = lib.mkOption {
-      type = lib.types.package;
+    ProtontricksPackage = mkOption {
+      type = types.package;
       default = pkgs.protontricks;
       description = "The Protontricks package to use.";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages =
       [cfg.package]
-      ++ lib.optionals cfg.withSession [cfg.SessionPackage]
-      ++ lib.optionals cfg.withGamescope [cfg.GamescopePackage]
-      ++ lib.optionals cfg.withProtontricks [cfg.ProtontricksPackage];
+      ++ optionals cfg.withSession [cfg.SessionPackage]
+      ++ optionals cfg.withGamescope [cfg.GamescopePackage]
+      ++ optionals cfg.withProtontricks [cfg.ProtontricksPackage];
   };
 }

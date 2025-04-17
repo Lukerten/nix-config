@@ -15,6 +15,9 @@
     network-manager-applet.enable = true;
   };
 
+  programs.steam.enable = true;
+  suits.dev.pentest.enable = true;
+
   monitors = [
     {
       name = "eDP-1";

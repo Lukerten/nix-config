@@ -3,18 +3,18 @@
   config,
   pkgs,
   ...
-}: let
-  inherit (config.colorscheme) colors;
+}:
+with lib; let
   cfg = config.programs.obsidian;
 in {
   options.programs.obsidian = {
-    enable = lib.mkEnableOption "obsidian";
+    enable = mkEnableOption "obsidian";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.obsidian;
       description = "The obsidian package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

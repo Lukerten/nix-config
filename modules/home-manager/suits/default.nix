@@ -4,6 +4,7 @@
     ./dev/appdev.nix
     ./dev/gamedev.nix
     ./dev/network.nix
+    ./dev/pentest.nix
 
     # Games
     ./games/emulators.nix

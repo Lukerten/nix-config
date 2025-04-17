@@ -3,9 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption mkIf types;
-  inherit (config.colorschemes) colors;
+}:
+with lib; let
   cfg = config.programs.vesktop;
 in {
   options.programs.vesktop = {

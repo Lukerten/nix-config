@@ -3,9 +3,8 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption mkIf optionals types;
-in {
+}:
+with lib; {
   options.programs.wofi.emoji = {
     enable = mkEnableOption {
       default = false;

@@ -2,8 +2,8 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption mkIf mkDefault types;
+}:
+with lib; let
   cfg = config.suits.dev.network;
 in {
   options.suits.dev.network = {

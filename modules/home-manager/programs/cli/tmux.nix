@@ -1,22 +1,23 @@
 {
-  lib,
   config,
   pkgs,
+  lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.tmux.pmux;
 in {
   options.programs.tmux.pmux = {
-    enable = lib.mkEnableOption "pmux";
+    enable = mkEnableOption "pmux";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.pmux;
       description = "The pmux package";
     };
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages = [cfg.package];
-    programs.zoxide.enable = lib.mkDefault true;
+    programs.zoxide.enable = mkDefault true;
   };
 }

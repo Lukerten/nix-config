@@ -3,26 +3,27 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.prismLauncher;
 in {
   options.programs.prismLauncher = {
-    enable = lib.mkEnableOption "prismLauncher";
+    enable = mkEnableOption "prismLauncher";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.prismlauncher;
       description = "The prism-launcher package to use.";
     };
 
-    installAdditionalJDK = lib.mkOption {
-      type = lib.types.bool;
+    installAdditionalJDK = mkOption {
+      type = types.bool;
       default = false;
       description = "Install additional JDK.";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages =
       [cfg.package]
       ++ (

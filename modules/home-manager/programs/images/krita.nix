@@ -3,17 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.krita;
 in {
   options.programs.krita = {
-    enable = lib.mkEnableOption "krita";
+    enable = mkEnableOption "krita";
 
-    package = lib.mkOption {
-      type = with pkgs; lib.types.package;
+    package = mkOption {
+      type = with pkgs; types.package;
       default = pkgs.krita;
       description = "The krita package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

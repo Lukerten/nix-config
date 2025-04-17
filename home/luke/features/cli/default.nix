@@ -8,7 +8,6 @@
     ./gpg.nix
     ./nix-index.nix
     ./pass.nix
-    ./pentest.nix
     ./ranger.nix
     ./ssh.nix
     ./starship.nix

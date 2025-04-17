@@ -1,9 +1,5 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
+{lib, ...}:
+with lib; let
   config = {
     color_theme = "Default";
     theme_background = false;
@@ -82,5 +78,5 @@
     custom_gpu_name5 = "";
   };
 in {
-  programs.btop.settings = lib.mkDefault config;
+  programs.btop.settings = mkDefault config;
 }

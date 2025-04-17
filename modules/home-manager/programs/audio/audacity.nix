@@ -3,17 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.audacity;
 in {
   options.programs.audacity = {
-    enable = lib.mkEnableOption "audacity";
+    enable = mkEnableOption "audacity";
 
-    package = lib.mkOption {
-      type = with pkgs; lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.audacity;
       description = "The Audacity package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

@@ -3,32 +3,33 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.androidStudio;
   displayName = "Android Studio";
   pname = "android-studio";
 in {
   options.programs.androidStudio = {
-    enable = lib.mkEnableOption "${pname}";
+    enable = mkEnableOption "${pname}";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.android-studio;
       description = "The ${pname} package to use.";
     };
 
-    DesktopEntry = lib.mkOption {
-      type = lib.types.bool;
+    DesktopEntry = mkOption {
+      type = types.bool;
       default = true;
       description = "Weather to create a Desktop Entry for ${pname}.";
     };
   };
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages = [cfg.package];
 
     # the Default Desktop Entry has a wierd name
     # i just override it with a new one
-    xdg.desktopEntries = lib.mkIf cfg.DesktopEntry {
+    xdg.desktopEntries = mkIf cfg.DesktopEntry {
       android-studio = {
         name = displayName;
         comment = "Official Android IDE";

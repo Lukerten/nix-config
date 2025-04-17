@@ -3,20 +3,17 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.webex;
 in {
   options.programs.webex = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable Webex";
-    };
-    package = lib.mkOption {
-      type = lib.types.package;
+    enable = mkEnableOption "Enable Webex";
+    package = mkOption {
+      type = types.package;
       default = pkgs.webex;
       description = "Webex messager package";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

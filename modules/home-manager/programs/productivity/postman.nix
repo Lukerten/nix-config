@@ -1,19 +1,20 @@
 {
-  lib,
   config,
   pkgs,
+  lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.postman;
 in {
   options.programs.postman = {
-    enable = lib.mkEnableOption "postman";
+    enable = mkEnableOption "postman";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.postman;
       description = "The Postman package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

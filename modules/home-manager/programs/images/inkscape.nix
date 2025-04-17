@@ -3,19 +3,20 @@
   config,
   pkgs,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.inkscape;
   defaultPackage = pkgs.inkscape;
 in {
   options.programs.inkscape = {
-    enable = lib.mkEnableOption "inkscape";
+    enable = mkEnableOption "inkscape";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = defaultPackage;
       description = "The inkscape package to use.";
     };
   };
 
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

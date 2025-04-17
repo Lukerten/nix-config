@@ -3,27 +3,28 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.xpo;
   package = pkgs.xpo;
 in {
   options.programs.xpo = {
-    enable = lib.mkEnableOption "xpo";
+    enable = mkEnableOption "xpo";
 
-    defaultServer = lib.mkOption {
+    defaultServer = mkOption {
       default = null;
-      type = with lib.types; nullOr str;
+      type = with types; nullOr str;
       description = ''
         Default SSH server/endpoint to use when tunneling.
       '';
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home = {
       packages = [package];
       sessionVariables.XPO_SERVER =
-        lib.optionalString (cfg.defaultServer != null) cfg.defaultServer;
+        optionalString (cfg.defaultServer != null) cfg.defaultServer;
     };
   };
 }

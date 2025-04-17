@@ -3,17 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.filezilla;
 in {
   options.programs.filezilla = {
-    enable = lib.mkEnableOption "filezilla";
+    enable = mkEnableOption "filezilla";
 
-    package = lib.mkOption {
-      type = with pkgs; lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.filezilla;
       description = "The Filezilla package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

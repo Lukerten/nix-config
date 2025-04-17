@@ -3,17 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.office;
 in {
   options.programs.office = {
-    enable = lib.mkEnableOption "office";
+    enable = mkEnableOption "office";
 
-    package = lib.mkOption {
-      type = with pkgs; lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.onlyoffice-bin;
       description = "The Office package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

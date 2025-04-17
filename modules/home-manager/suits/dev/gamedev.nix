@@ -2,8 +2,8 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption mkIf mkDefault types;
+}:
+with lib; let
   cfg = config.suits.dev.gamedev;
 in {
   options.suits.dev.gamedev = {

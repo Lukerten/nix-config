@@ -3,17 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.gimp;
 in {
   options.programs.gimp = {
-    enable = lib.mkEnableOption "gimp";
+    enable = mkEnableOption "gimp";
 
-    package = lib.mkOption {
-      type = with pkgs; lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.gimp;
       description = "The Gimp package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }

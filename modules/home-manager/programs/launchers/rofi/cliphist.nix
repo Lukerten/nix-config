@@ -3,9 +3,9 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.rofi;
-  inherit (lib) mkIf mkOption types;
 in {
   options.programs.rofi.cliphist = {
     enable = mkOption {

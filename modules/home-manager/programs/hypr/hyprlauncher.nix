@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.hyprlauncher;
   defaultConfig = {
     window = {
@@ -81,22 +82,22 @@
   };
 in {
   options.programs.hyprlauncher = {
-    enable = lib.mkEnableOption "hyprlauncher";
+    enable = mkEnableOption "hyprlauncher";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.hyprlauncher;
       description = "The hyprpicker package to use.";
     };
 
-    config = lib.mkOption {
-      type = lib.types.attrs;
+    config = mkOption {
+      type = types.attrs;
       default = {};
       description = "Configuration for hyprlauncher.";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     home.packages = [cfg.package];
     xdg.configFile."hyprlauncher/config.json".text = builtins.toJSON (defaultConfig // cfg.config);
   };

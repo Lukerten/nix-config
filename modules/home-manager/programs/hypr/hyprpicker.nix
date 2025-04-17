@@ -3,17 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   cfg = config.programs.hyprpicker;
 in {
   options.programs.hyprpicker = {
-    enable = lib.mkEnableOption "hyprpicker";
+    enable = mkEnableOption "hyprpicker";
 
-    package = lib.mkOption {
-      type = lib.types.package;
+    package = mkOption {
+      type = types.package;
       default = pkgs.hyprpicker;
       description = "The hyprpicker package to use.";
     };
   };
-  config = lib.mkIf cfg.enable {home.packages = [cfg.package];};
+  config = mkIf cfg.enable {home.packages = [cfg.package];};
 }
