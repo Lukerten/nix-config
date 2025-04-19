@@ -20,7 +20,7 @@
           "<Up>" = ["scroll_documentation_up" "fallback"];
           "<Down>" = ["scroll_documentation_down" "fallback"];
           "<CR>" = ["accept" "fallback"];
-          "<C-a>" = ["show" "hide"];
+          "<C-x>" = ["show" "hide"];
         };
 
         signature.enabled = true;
