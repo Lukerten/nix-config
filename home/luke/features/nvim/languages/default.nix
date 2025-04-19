@@ -62,17 +62,17 @@
           "gI" = "implementation";
           "gy" = "type_definition";
           "<leader>h" = "hover";
-          "<leader>f" = "format";
-          "<leader>ca" = "code_action";
-          "<leader>cr" = "rename";
-          "<leader>cD" = "declaration";
-          "<leader>cd" = "definition";
-          "<leader>cR" = "references";
-          "<leader>cI" = "implementation";
-          "<leader>cy" = "type_definition";
-          "<leader>wl" = "list_workspace_folders";
-          "<leader>wr" = "remove_workspace_folder";
-          "<leader>wa" = "add_workspace_folder";
+          "<leader>Cf" = "format";
+          "<leader>Ca" = "code_action";
+          "<leader>Cr" = "rename";
+          "<leader>CD" = "declaration";
+          "<leader>Cd" = "definition";
+          "<leader>CR" = "references";
+          "<leader>CI" = "implementation";
+          "<leader>Cy" = "type_definition";
+          "<leader>Wl" = "list_workspace_folders";
+          "<leader>Wr" = "remove_workspace_folder";
+          "<leader>Wa" = "add_workspace_folder";
         };
       };
       preConfig =

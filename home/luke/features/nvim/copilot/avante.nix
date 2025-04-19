@@ -1,6 +1,8 @@
-{
+{config, ...}: let
+  hasCopilotChat = config.programs.nixvim.plugins.copilot-chat.enable;
+in {
   programs.nixvim.plugins.avante = {
-    enable = true;
+    enable = !hasCopilotChat;
 
     lazyLoad.settings.event = ["BufEnter"];
     settings = {

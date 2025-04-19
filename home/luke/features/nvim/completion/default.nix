@@ -1,14 +1,10 @@
-{pkgs, ...}: {
-  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
-    blink-ripgrep-nvim
-  ];
+{
   programs.nixvim.plugins = {
     blink-cmp-dictionary.enable = true;
     blink-cmp-git.enable = true;
     blink-cmp-spell.enable = true;
     blink-copilot.enable = true;
     blink-emoji.enable = true;
-    blink-ripgrep.enable = true;
     blink-cmp = {
       enable = true;
       setupLspCapabilities = true;
@@ -39,15 +35,9 @@
             "emoji"
             "git"
             "spell"
-            "ripgrep"
           ];
 
           providers = {
-            ripgrep = {
-              name = "Ripgrep";
-              module = "blink-ripgrep";
-              score_offset = 1;
-            };
             dictionary = {
               name = "Dict";
               module = "blink-cmp-dictionary";

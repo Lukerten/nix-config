@@ -27,9 +27,15 @@
           "blink.cmp"
           "image.nvim"
           "copilot.lua"
+          "mini.nvim"
         ];
       };
-      byteCompileLua.enable = true;
+      byteCompileLua = {
+        enable = true;
+        nvimRuntime = true;
+        configs = true;
+        plugins = true;
+      };
     };
 
     viAlias = true;

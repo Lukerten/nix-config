@@ -4,6 +4,7 @@
     ./schemastore.nix
     ./dadbod.nix
     ./dap.nix
+    ./gitlinker.nix
     ./git-worktree.nix
     ./neogit.nix
     ./neorg.nix

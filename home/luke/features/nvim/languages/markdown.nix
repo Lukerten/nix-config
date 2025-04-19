@@ -17,82 +17,29 @@
         }
       ];
 
-      # Extra Plug: render Markdown
-      render-markdown = {
+      markview = {
         enable = true;
         settings = {
-          render_modes = true;
-          signs.enabled = false;
-          bullet = {
-            icons = [
-              "◆ "
-              "• "
-              "• "
+          preview = {
+            buf_ignore = [];
+            hybrid_modes = [
+              "i"
             ];
-            right_pad = 1;
-          };
-          heading = {
-            sign = false;
-            width = "full";
-            position = "inline";
-            border = true;
-            icons = [
-              "1 "
-              "2 "
-              "3 "
-              "4 "
-              "5 "
-              "6 "
+            modes = [
+              "n"
+              "i"
+              "no"
+              "c"
             ];
-          };
-          code = {
-            sign = false;
-            width = "block";
-            position = "right";
-            language_pad = 2;
-            left_pad = 2;
-            right_pad = 2;
-            border = "thick";
-            above = " ";
-            below = " ";
-          };
-          file_types = [
-            "markdown"
-            "neorg"
-            "Avante"
-          ];
-        };
-      };
-
-      # Extra Plug: Image
-      image.enable = true;
-
-      # Extra Plug: Diagram
-      diagram = {
-        enable = true;
-        settings = {
-          integrations = [
-            {
-              __raw = "require('diagram.integrations.markdown')";
-            }
-            {
-              __raw = "require('diagram.integrations.neorg')";
-            }
-          ];
-          renderer_options = {
-            d2.theme_id = 1;
-            mermaid.theme = "forest";
-            plantuml.charset = "utf-8";
-            gnuplot = {
-              size = "800,600";
-              theme = "dark";
-            };
+            callbacks.on_enable.__raw = ''
+              function(_, win)
+                vim.wo[win].conceallevel = 2
+                vim.wo[win].concealcursor = "nc"
+              end
+            '';
           };
         };
       };
     };
-    extraPackages = with pkgs; [
-      plantuml-c4
-    ];
   };
 }

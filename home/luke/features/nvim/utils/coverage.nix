@@ -3,7 +3,7 @@
 
   programs.nixvim.keymaps = [
     {
-      key = "<leader>cc";
+      key = "<leader>Cc";
       action = "<cmd>Coverage<CR>";
       mode = "n";
       options = {
@@ -13,7 +13,7 @@
       };
     }
     {
-      key = "<leader>cl";
+      key = "<leader>Cl";
       action = "<cmd>CoverageLoad<CR>";
       mode = "n";
       options = {
@@ -23,7 +23,7 @@
       };
     }
     {
-      key = "<leader>cs";
+      key = "<leader>Cs";
       action = "<cmd>CoverageSummary<CR>";
       mode = "n";
       options = {
@@ -33,7 +33,7 @@
       };
     }
     {
-      key = "<leader>ch";
+      key = "<leader>Ch";
       action = "<cmd>CoverageHide<CR>";
       mode = "n";
       options = {
@@ -43,7 +43,7 @@
       };
     }
     {
-      key = "<leader>ct";
+      key = "<leader>Ct";
       action = "<cmd>CoverageToggle<CR>";
       mode = "n";
       options = {
@@ -53,7 +53,7 @@
       };
     }
     {
-      key = "<leader>cC";
+      key = "<leader>CC";
       action = "<cmd>CoverageClear<CR>";
       mode = "n";
       options = {
@@ -63,7 +63,7 @@
       };
     }
     {
-      key = "<leader>cS";
+      key = "<leader>CS";
       action = "<cmd>CoverageShow<CR>";
       mode = "n";
       options = {
@@ -73,7 +73,7 @@
       };
     }
     {
-      key = "<leader>clc";
+      key = "<leader>Clc";
       action = "<cmd>CoverageLoadLcov<CR>";
       mode = "n";
       options = {
