@@ -8,6 +8,5 @@
   imports = [
     ./ai.nix
     ./diff.nix
-    ./files.nix
   ];
 }
