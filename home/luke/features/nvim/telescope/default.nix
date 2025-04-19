@@ -1,4 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  hasSnacks = config.programs.nixvim.plugins.snacks.enable;
+in {
   programs.nixvim = {
     plugins.telescope = {
       enable = true;
@@ -8,7 +16,7 @@
       };
     };
 
-    keymaps = [
+    keymaps = optionals (!hasSnacks) [
       {
         mode = "n";
         key = "<leader><space>";
@@ -21,7 +29,7 @@
 
       {
         mode = "n";
-        key = "<leader>g";
+        key = "<leader>fg";
         action = "<cmd>lua require('telescope.builtin').live_grep()<CR>";
         #    lua = true;
         options = {
@@ -32,7 +40,7 @@
 
       {
         mode = "n";
-        key = "<leader>sb";
+        key = "<leader>fb";
         action = "<cmd>lua require('telescope.builtin').buffers()<CR>";
         options = {
           silent = true;
@@ -42,7 +50,7 @@
 
       {
         mode = "n";
-        key = "<leader>sh";
+        key = "<leader>fh";
         action = "<cmd>lua require('telescope.builtin').help_tags()<CR>";
         options = {
           silent = true;
@@ -52,7 +60,7 @@
 
       {
         mode = "n";
-        key = "<leader>sd";
+        key = "<leader>fd";
         action = "<cmd>lua require('telescope.builtin').diagnostics()<CR>";
         options = {
           silent = true;
@@ -62,7 +70,7 @@
 
       {
         mode = "n";
-        key = "<leader>st";
+        key = "<leader>ft";
         action = "<cmd>lua require('telescope.builtin').treesitter()<CR>";
         options = {
           silent = true;
