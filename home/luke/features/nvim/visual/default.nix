@@ -14,6 +14,7 @@
     ./noice.nix
     ./notify.nix
     ./nvim-tree.nix
+    ./nvim-ufo.nix
     ./trouble.nix
     ./which-key.nix
   ];
