@@ -1,22 +1,31 @@
 {pkgs, ...}: {
-  imports = [
-    ./avante.nix
-    ./keymap.nix
-  ];
   programs.nixvim = {
     plugins = {
       copilot-lua.enable = true;
-      copilot-chat.enable = true;
+      codecompanion = {
+        enable = true;
+        settings = {
+          strategies = {
+            agent = {
+              adapter = "copilot";
+            };
+            chat = {
+              adapter = "copilot";
+            };
+            inline = {
+              adapter = "copilot";
+            };
+          };
+        };
+      };
       render-markdown = {
         enable = true;
         lazyLoad.settings = {
-          ft = [
-            "copilot-chat"
-          ];
+          ft = ["codecompanion"];
         };
         settings = {
           file_types = [
-            "copilot-chat"
+            "codecompanion"
           ];
         };
       };
