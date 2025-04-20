@@ -4,12 +4,17 @@
     # These options were recommended by nvim-ufo
     # See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
     opts = {
-      foldcolumn = "1";
       foldlevel = 99;
       foldlevelstart = 99;
       foldenable = true;
       foldmethod = "indent";
     };
+    extraConfigLua =
+      # lua
+      ''
+        vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+        vim.o.foldcolumn = 'auto:9'
+      '';
 
     plugins.nvim-ufo = {
       enable = true;
@@ -32,7 +37,7 @@
           ''
             function(virtText, lnum, endLnum, width, truncate)
               local newVirtText = {}
-              local suffix = ('  %d '):format(endLnum - lnum)
+              local suffix = (' ... %d lines hidden '):format(endLnum - lnum)
               local sufWidth = vim.fn.strdisplaywidth(suffix)
               local targetWidth = width - sufWidth
               local curWidth = 0
