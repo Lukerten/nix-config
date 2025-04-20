@@ -18,6 +18,7 @@ in {
           __unkeyed-8 = "NeogitDiffview";
           __unkeyed-9 = "gitcommit";
           __unkeyed-10 = "Avante";
+          __unkeyed-11 = "AvanteSelectedFiles";
         };
         component_separators = {
           left = "⏽";
