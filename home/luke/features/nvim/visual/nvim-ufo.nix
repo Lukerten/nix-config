@@ -13,8 +13,34 @@
       # lua
       ''
         vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-        vim.o.foldcolumn = 'auto:9'
+        vim.o.foldcolumn = "0"
+
+
+        -- Add Fold Command to turn on/off the foldcolumn by toggle between foldcolumn = 0 and auto:9
+        vim.api.nvim_create_user_command('ToggleFoldBar', function()
+          local foldcolumn = vim.wo.foldcolumn
+          if foldcolumn == '0' then
+            vim.wo.foldcolumn = 'auto:9'
+          else
+            vim.wo.foldcolumn = '0'
+          end
+        end, { desc = 'Toggle Fold Column' })
+        -- Add Keymap
       '';
+
+    # Keymap to toggle between foldcolumn = 0 and auto:9
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>s";
+        action = "<cmd>ToggleFoldBar<cr>";
+        options = {
+          desc = "Toggle Fold Column";
+          silent = true;
+          noremap = true;
+        };
+      }
+    ];
 
     plugins.nvim-ufo = {
       enable = true;
