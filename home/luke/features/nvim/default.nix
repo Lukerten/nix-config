@@ -28,7 +28,6 @@
           "image.nvim"
           "copilot.lua"
           "mini.nvim"
-          "codecompanion.nvim"
         ];
       };
       byteCompileLua = {
