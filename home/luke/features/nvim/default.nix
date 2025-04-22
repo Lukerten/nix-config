@@ -1,5 +1,6 @@
-{
+{inputs, ...}: {
   imports = [
+    inputs.nixvim.homeManagerModules.nixvim
     ./completion
     ./copilot
     ./core
@@ -28,6 +29,7 @@
           "image.nvim"
           "copilot.lua"
           "mini.nvim"
+          "typst-preview.nvim"
         ];
       };
       byteCompileLua = {
