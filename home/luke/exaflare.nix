@@ -18,10 +18,6 @@
   programs.fultimator-desktop.enable = true;
   programs.path-of-building.enable = true;
 
-  suits = {
-    dev.gamedev.enable = true;
-  };
-
   monitors = [
     {
       name = "DP-2";
