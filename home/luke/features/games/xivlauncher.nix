@@ -1,0 +1,3 @@
+{
+  programs.xivlauncher.enable = true;
+}

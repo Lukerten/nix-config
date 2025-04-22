@@ -5,6 +5,9 @@
     ./features/nvim
     ./features/desktop/hypr
     ./features/games
+    ./features/games/emulators.nix
+    ./features/games/fultimator-desktop.nix
+    ./features/games/prism.nix
   ];
 
   system.type = "desktop";
@@ -14,9 +17,6 @@
   # |------| |------| |------|
 
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-waterfall;
-
-  programs.fultimator-desktop.enable = true;
-  programs.path-of-building.enable = true;
 
   monitors = [
     {

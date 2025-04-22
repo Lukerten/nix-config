@@ -3,6 +3,7 @@
     ./global
     ./features/cli
     ./features/nvim
+    ./features/games
     ./features/desktop/hypr
   ];
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-vaporwave;
