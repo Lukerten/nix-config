@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  defaultPage = "https://start.duckduckgo.com/";
-
   inherit (config.colorscheme) colors;
+
+  defaultPage = "https://start.duckduckgo.com/";
   searchEngines = rec {
     duckduckgo = "https://duckduckgo.com/?q={}";
     google = "https://google.com/search?hl=en&q={}";
@@ -17,7 +17,7 @@
     youtube = "https://www.youtube.com/results?search_query={}";
     mynixos = "https://mynixos.com/search?q={}";
 
-    # Shortcuts
+    # Shortnames
     ddg = duckduckgo;
     g = google;
     mn = mynixos;
@@ -43,34 +43,26 @@
     github = "https://github.com/";
     gitlab = "https://gitlab.mbretsch.de/";
     youtube = "https://www.youtube.com/";
-    openai = "https://chat.openai.com";
 
+    # Personal
+    adguard = "ag.local";
+    jellyfin = "jf.local";
+    typing = "www.typing.com";
+
+    # FHE
+    fh-gitlab = "https://git.ai.fh-erfurt.de/";
+    fh-ecampus = "https://ecampus.fh-erfurt.de/";
+    fh-moodle = "https://moodle.fh-erfurt.de/";
+    fh-webmail = "https://fhemail.fh-erfurt.de/";
+    fh-nextcloud = "https://cloud.fh-erfurt.de/";
+    fh-fsrmail = "https://group.fh-erfurt.de/";
+    fh-dbl-tool = "https://fh-erfurt.biccloud.de?idpHint=manual";
+
+    # Shortnames
     yt = youtube;
     mx = mynixos;
     gh = github;
     np = nixpkgs;
-
-    # FHE Student
-    "fh/gitlab" = "https://git.ai.fh-erfurt.de/";
-    "fh/ecampus" = "https://ecampus.fh-erfurt.de/";
-    "fh/moodle" = "https://moodle.fh-erfurt.de/";
-    "fh/webmail" = "https://fhemail.fh-erfurt.de/";
-    "fh/nextcloud" = "https://cloud.fh-erfurt.de/";
-
-    # FHE FSR
-    "fsr/fsrmail" = "https://group.fh-erfurt.de/";
-    "fsr/asana" = "https://app.asana.com/";
-    "fsr/dbl-tool" = "https://fh-erfurt.biccloud.de?idpHint=manual";
-
-    # CM4all
-    "cm/gitlab" = "https://dev.t8o.de";
-    "cm/openstack" = "https://os.t8o.de";
-    "cm/confluence" = "https://cm4all.atlassian.net/";
-
-    # United Internet
-    "ui/gitlab" = "https://gitlab.smb.server.lan/";
-    "ui/confluence" = "https://confluence.united-internet.org/";
-    "ui/united" = "https://united-internet.org/";
   };
 
   custom-binds = {
@@ -89,7 +81,6 @@
     prompt = {
       "<ctrl-y>" = "prompt-yes";
       "<ctrl-v>" = "insert-text {primary}";
-      "n" = "open -t ${defaultPage}";
     };
     passthrough = {
       "<ctrl-g>" = "mode-leave";
@@ -119,9 +110,9 @@
 in {
   programs.qutebrowser = {
     enable = true;
+
+    inherit searchEngines quickmarks;
     loadAutoconfig = true;
-    searchEngines = searchEngines;
-    quickmarks = quickmarks;
     keyBindings = custom-binds;
     settings = {
       url = rec {

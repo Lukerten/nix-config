@@ -1,12 +1,16 @@
 {
   pkgs,
   lib,
+  config,
   ...
-}: {
-  programs.browserpass.enable = true;
+}:
+with lib; let
+  hasQutebrowser = config.programs.qutebrowser.enable;
+in {
+  programs.browserpass.enable = !hasQutebrowser;
   programs.firefox = {
     package = pkgs.firefox;
-    enable = true;
+    enable = !hasQutebrowser;
     profiles = {
       luke = {
         id = 0;
@@ -169,5 +173,11 @@
         };
       };
     };
+  };
+  xdg.mimeApps.defaultApplications = mkIf (!hasQutebrowser) {
+    "text/html" = ["firefox.desktop"];
+    "text/xml" = ["firefox.desktop"];
+    "x-scheme-handler/http" = ["firefox.desktop"];
+    "x-scheme-handler/https" = ["firefox.desktop"];
   };
 }
