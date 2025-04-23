@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+with lib; let
   inherit (config.colorscheme) colors;
 
   defaultPage = "https://start.duckduckgo.com/";
@@ -317,7 +318,7 @@ in {
   };
 
   xdg.configFile."qutebrowser/scrollbar.css".text = customStlyeSheet;
-  xdg.mimeApps.defaultApplications = {
+  xdg.mimeApps.defaultApplications = mkIf config.programs.qutebrowser.enable {
     "text/html" = ["org.qutebrowser.qutebrowser.desktop"];
     "text/xml" = ["org.qutebrowser.qutebrowser.desktop"];
     "application/xhtml+xml" = ["org.qutebrowser.qutebrowser.desktop"];
