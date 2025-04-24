@@ -11,7 +11,7 @@ in {
     groups.luke = {};
     users.luke = {
       isNormalUser = true;
-      shell = pkgs.fish;
+      shell = pkgs.nushell;
       home = "/home/luke";
       group = "luke";
       extraGroups =
@@ -37,15 +37,6 @@ in {
 
       hashedPasswordFile = config.sops.secrets.luke-password.path;
       packages = [pkgs.home-manager];
-    };
-  };
-
-  programs.fish = {
-    enable = true;
-    vendor = {
-      completions.enable = true;
-      config.enable = true;
-      functions.enable = true;
     };
   };
 

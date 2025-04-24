@@ -14,8 +14,6 @@
   hasNeovim = config.programs.neovim.enable;
   hasNeomutt = config.programs.neomutt.enable;
   hasTmux = config.programs.tmux.enable;
-  hasBat = config.programs.bat.enable;
-  hasEza = config.programs.eza.enable;
   hasRipgrep = config.programs.ripgrep.enable;
 in {
   home.shellAliases = rec {
@@ -49,15 +47,15 @@ in {
     aws-switch = mkIf hasAwsCli "export AWS_PROFILE=(aws configure list-profiles | fzf)";
     clipboard = mkIf hasCliphistory "cliphist-fzf";
     awssw = aws-switch;
-
     grep = mkIf hasRipgrep "rg";
-    cat = mkIf hasBat "bat";
-    ls = mkIf hasEza "exa";
-    ll = mkIf hasEza "exa -l";
-    la = mkIf hasEza "exa -la";
-    lt = mkIf hasEza "exa --icons --tree -a";
+    ls = "ls -a";
+    ll = "ls -l";
+    la = "ls -la";
     l = ls;
-    tree = lt;
+    ".." = "cd ../";
+    "..." = "cd ../../";
+    "...." = "cd ../../../";
+    "x" = "exit";
   };
 
   programs = {
@@ -67,7 +65,6 @@ in {
       enable = true;
       config = {theme = "base16";};
     };
-    eza.enable = true;
     fzf = {
       enable = true;
       defaultOptions = ["--color 16"];

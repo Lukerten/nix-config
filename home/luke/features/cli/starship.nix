@@ -3,14 +3,13 @@
     enable = true;
     settings = {
       format = let
-        lower = "\${custom.lower}";
+        lower = "\${custom.lower} ";
         upper = "\${custom.upper}";
         systemInfo = "$hostname($shlvl)$nix_shell$battery$time";
         locationInfo = "$directory($git_branch$git_commit$git_state$git_status)";
-        prompt = "$jobs$character";
       in ''
         ${upper} ${locationInfo}$fill ${systemInfo}
-        ${lower} ${prompt}
+        ${lower}
       '';
 
       add_newline = true;
