@@ -2,7 +2,6 @@
   imports = [
     ./global
     ./features/cli
-    ./features/nvim
     ./features/desktop/hypr
     ./features/games
     ./features/games/emulators.nix

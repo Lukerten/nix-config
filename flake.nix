@@ -44,7 +44,7 @@
       inputs.nixpkgs-24_11.follows = "nixpkgs-stable";
     };
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:Lukerten/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

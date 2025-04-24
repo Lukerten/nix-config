@@ -80,27 +80,31 @@ in {
   };
 
   # Extra Terminal Utilities
-  home.packages = with pkgs; [
-    comma # Install and run programs by adding a , in front
-    distrobox # Nice escape hatch, integrates docker images with my environment
-    dnsutils # dig
-    extra-container # Run declarative containers without full system rebuilds
-    ncdu # TUI disk usage
-    zip # Compression
-    unzip # Decompression
-    ripgrep # Search using better grep
-    fd # Find using better find
-    sd # Search and replace using better sed
-    moreutils # ts, etc
-    httpie # Better curl
-    diffsitter # Better diff
-    timer # Timer
-    alejandra # default nix formatter
-    nix-diff # differ
-    nix-health # health checker
-    nh # home-manager & nixos wrapper
-    nix-index # index nix packages
-    just # justfile
-    p7zip
-  ];
+  home = {
+    sessionVariables.EDITOR = "nvim";
+    packages = with pkgs; [
+      comma # Install and run programs by adding a , in front
+      distrobox # Nice escape hatch, integrates docker images with my environment
+      dnsutils # dig
+      extra-container # Run declarative containers without full system rebuilds
+      ncdu # TUI disk usage
+      zip # Compression
+      unzip # Decompression
+      ripgrep # Search using better grep
+      fd # Find using better find
+      sd # Search and replace using better sed
+      moreutils # ts, etc
+      httpie # Better curl
+      diffsitter # Better diff
+      timer # Timer
+      alejandra # default nix formatter
+      nix-diff # differ
+      nix-health # health checker
+      nh # home-manager & nixos wrapper
+      nix-index # index nix packages
+      just # justfile
+      p7zip
+      neovim
+    ];
+  };
 }

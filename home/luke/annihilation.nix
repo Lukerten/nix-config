@@ -2,7 +2,6 @@
   imports = [
     ./global
     ./features/cli
-    ./features/nvim
     ./features/games
     ./features/desktop/hypr
   ];
