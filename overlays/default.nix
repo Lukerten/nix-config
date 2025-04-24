@@ -38,23 +38,11 @@ in {
   };
 
   # Adds my custom packages
-  additions = final: prev:
-    import ../pkgs {pkgs = final;}
-    // {
-      formats = (prev.formats or {}) // import ../pkgs/formats {pkgs = final;};
-      vimPlugins = (prev.vimPlugins or {}) // import ../pkgs/vim-plugins {pkgs = final;};
-    };
+  additions = final: _:
+    import ../pkgs {pkgs = final;};
 
   # Modifies existing packages
   modifications = final: prev: rec {
-    vimPlugins =
-      prev.vimPlugins
-      // {
-        vim-numbertoggle = addPatches prev.vimPlugins.vim-numbertoggle [
-          ./vim-numbertoggle-command-mode.patch
-        ];
-      };
-
     # https://github.com/NixOS/nixpkgs/pull/303472
     gns3-server = prev.gns3-server.overrideAttrs (_: {
       makeWrapperArgs = ["--suffix PATH : ${final.lib.makeBinPath [final.util-linux]}"];
