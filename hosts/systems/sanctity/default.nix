@@ -1,7 +1,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./outline
     ../../global
     ../../users/luke
     ../../services/traefik.nix
@@ -34,11 +33,6 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
-  };
-
-  sops.secrets = {
-    lucas-brendgen-mail-password-hashed.sopsFile = ./secrets.yaml;
-    grafana-mail-password-hashed.sopsFile = ./secrets.yaml;
   };
 
   system.stateVersion = "24.05";
