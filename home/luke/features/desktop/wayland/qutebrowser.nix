@@ -13,6 +13,7 @@ with lib; let
     google = "https://google.com/search?hl=en&q={}";
     nixospackages = "https://search.nixos.org/packages?query={}";
     nixoswiki = "https://nixos.wiki/index.php?search={}";
+    nueschtOS = "https://search.nüschtos.de/?query={}";
     wikipedia = "https://de.wikipedia.org/w/index.php?search={}";
     openstreetmap = "https://www.openstreetmap.org/search?query={}";
     youtube = "https://www.youtube.com/results?search_query={}";
@@ -24,6 +25,7 @@ with lib; let
     mn = mynixos;
     nixpkgs = nixospackages;
     np = nixospackages;
+    "nüscht" = nueschtOS;
     nixwiki = nixoswiki;
     nw = nixoswiki;
     wiki = wikipedia;
