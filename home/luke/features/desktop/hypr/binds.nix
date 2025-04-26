@@ -42,9 +42,9 @@
         up = "u";
         down = "d";
         h = left;
-        l = right;
-        k = up;
-        j = down;
+        i = right;
+        e = up;
+        n = down;
       };
 
       wlogout = lib.getExe pkgs.wlogout;

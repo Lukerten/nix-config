@@ -32,6 +32,12 @@
     config = {allowUnfree = true;};
   };
 
+  console.useXkbConfig = true;
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "colemak";
+  };
+
   environment = {
     profileRelativeSessionVariables = {
       QT_PLUGIN_PATH = ["/lib/qt-6/plugins"];

@@ -40,7 +40,8 @@
         movefocus_cycles_fullscreen = false;
       };
       input = {
-        kb_layout = "de";
+        kb_layout = "us";
+        kb_variant = "colemak";
         touchpad = {
           disable_while_typing = true;
           natural_scroll = true;
