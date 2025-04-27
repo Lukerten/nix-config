@@ -48,9 +48,9 @@ with lib; let
     youtube = "https://www.youtube.com/";
 
     # Personal
-    adguard = "ag.local";
-    jellyfin = "jf.local";
-    typing = "www.typing.com";
+    adguard = "http://ag.local";
+    jellyfin = "http://jf.local";
+    typing = "https://www.monkeytype.com";
 
     # FHE
     fh-gitlab = "https://git.ai.fh-erfurt.de/";

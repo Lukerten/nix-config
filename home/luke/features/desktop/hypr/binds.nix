@@ -80,7 +80,7 @@
         # Special workspace
         "SUPER,u,togglespecialworkspace"
         "SUPERSHIFT,u,movetoworkspacesilent,special"
-        "SUPER,i,pseudo"
+        "SUPER,u,pseudo"
 
         # Default applications
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
@@ -149,20 +149,20 @@
       in
         lib.optionals config.programs.rofi.enable [
           "SUPER,space,exec,${rofi} -show drun"
-          "SUPER,d,exec,${rofi} -show drun"
+          "SUPER,s,exec,${rofi} -show drun"
           "SUPER,x,exec,${rofi} -show run"
         ])
       ++ (let
         rofi-specialisation = lib.getExe config.programs.rofi.specialisation.package;
       in
         lib.optionals config.programs.rofi.specialisation.enable [
-          "SUPER,s,exec,${rofi-specialisation}"
+          "SUPER,r,exec,${rofi-specialisation}"
         ])
       ++ (let
         rofi-emoji = lib.getExe config.programs.rofi.emoji.package;
       in
         lib.optionals config.programs.rofi.emoji.enable [
-          "SUPER,e,exec,${rofi-emoji}"
+          "SUPER,o,exec,${rofi-emoji}"
         ])
       ++ (let
         rofi-pass = lib.getExe config.programs.rofi.pass.package;
