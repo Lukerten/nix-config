@@ -80,7 +80,7 @@
         # Special workspace
         "SUPER,u,togglespecialworkspace"
         "SUPERSHIFT,u,movetoworkspacesilent,special"
-        "SUPER,u,pseudo"
+        "SUPER,i,pseudo"
 
         # Default applications
         "SUPER,Return,exec,${defaultApp "x-scheme-handler/terminal"}"
@@ -149,7 +149,7 @@
       in
         lib.optionals config.programs.rofi.enable [
           "SUPER,space,exec,${rofi} -show drun"
-          "SUPER,s,exec,${rofi} -show drun"
+          "SUPER,d,exec,${rofi} -show drun"
           "SUPER,x,exec,${rofi} -show run"
         ])
       ++ (let
