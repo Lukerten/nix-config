@@ -41,6 +41,7 @@
       };
       input = {
         kb_layout = "us";
+        kb_variant = "intl";
         touchpad = {
           disable_while_typing = true;
           natural_scroll = true;
