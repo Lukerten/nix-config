@@ -2,6 +2,7 @@
   programs.waybar.settings.primary = {
     modules-left = [
       "custom/menu"
+      "hyprland/language"
       "custom/currentplayer"
       "hyprland/workspaces"
       "custom/player"

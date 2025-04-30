@@ -41,7 +41,8 @@
       };
       input = {
         kb_layout = "us";
-        kb_variant = "intl";
+        kb_variant = "altgr-intl";
+        kb_options = "grp:caps_toggle ";
         touchpad = {
           disable_while_typing = true;
           natural_scroll = true;
