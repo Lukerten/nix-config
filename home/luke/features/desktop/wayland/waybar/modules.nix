@@ -253,10 +253,5 @@ in {
         deactivated = "󰒲";
       };
     };
-
-    "hyprland/language" = {
-      format = "Lang: {}";
-      format-en = "AMERICA, HELL YEAH!";
-    };
   };
 }
