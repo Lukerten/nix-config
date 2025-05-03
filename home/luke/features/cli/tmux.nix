@@ -23,9 +23,9 @@ in {
     python311
   ];
 
-  programs.tmux = {
+  programs.tmux = with lib; {
     enable = true;
-    shell = "${pkgs.fish}/bin/fish";
+    shell = "${getExe pkgs.nushell}";
     terminal = "tmux-256color";
     historyLimit = 100000;
     keyMode = "vi";
