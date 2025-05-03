@@ -17,6 +17,12 @@
 
   wallpaper = pkgs.inputs.themes.wallpapers.pixel-waterfall;
 
+  programs = {
+    maptool.enable = true;
+    inkscape.enable = true;
+    gimp.enable = true;
+  };
+
   monitors = [
     {
       name = "DP-2";

@@ -2,6 +2,7 @@
   imports = [
     ./dolphin.nix
     ./fultimator-desktop.nix
+    ./maptool.nix
     ./melonDS.nix
     ./mgba.nix
     ./path-of-building.nix
